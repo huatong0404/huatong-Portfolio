@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Hua Tong</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260709">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a href="about.html" class="active">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-hero">
+        <h1>About Me</h1>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+
+        <!-- Portrait placeholder -->
+        <img src="assets/about/portrait.png" alt="Self Portrait, 2025 by Hua Tong">
+
+        <p>
+            Hua Tong is an interdisciplinary designer, illustrator, architect, and researcher. This portfolio spans architecture, industrial design, historical research, tabletop game design, and illustration — held together by a balance of exploration, responsibility, empathy, and documentation. Sometimes a solution is offered. Other times, one isn't.
+        </p>
+
+        <h2>Get in Touch</h2>
+        <p>
+            huatong0404@gmail.com
+        </p>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Hua Tong. Designed with intention.</p>
+        <p><a href="mailto:hello@huatong.com">hello@huatong.com</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Cruiser — Hua Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* === Campus Cruiser — page-specific layout === */
+
+        .split-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .split-row + .split-row { border-top: none; }
+        .split-row.reverse { direction: rtl; }
+        .split-row.reverse > * { direction: ltr; }
+
+        .split-text {
+            padding: 48px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-text h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+        .split-text h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #40C1AC;
+            margin-top: 12px;
+        }
+        .split-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #525252;
+            max-width: 440px;
+        }
+        .split-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+        }
+        .split-text ul li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #525252;
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+        .split-text ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: #40C1AC;
+        }
+
+        .split-image {
+            overflow: hidden;
+            background: #F5F5F5;
+        }
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .split-image.contain img {
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        .image-band {
+            width: 100%;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .image-band img {
+            width: 100%;
+            max-height: 560px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+        }
+
+        .card-strip {
+            display: flex;
+            gap: 20px;
+            padding: 48px 64px;
+            overflow-x: auto;
+            border-bottom: 2px solid #E5E5E5;
+            background: #0A0A0A;
+        }
+        .card-strip .card-item {
+            flex-shrink: 0;
+            width: 280px;
+            height: 320px;
+            background: #1A1A1A;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 13px;
+            font-style: italic;
+            text-align: center;
+            padding: 24px;
+        }
+        .card-strip img {
+            height: 320px;
+            width: auto;
+            flex-shrink: 0;
+            border: 2px solid #333;
+        }
+
+        .photo-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-duo > div, .photo-duo img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F5F5F5;
+        }
+        .photo-duo > div:first-child {
+            border-right: 1px solid #E5E5E5;
+        }
+        .photo-duo > div:last-child {
+            border-left: 1px solid #E5E5E5;
+        }
+
+        .photo-trio {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-trio > div {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F5F5F5;
+        }
+        .photo-trio > div:not(:last-child) {
+            border-right: 1px solid #E5E5E5;
+        }
+
+        .cc-intro {
+            max-width: 720px;
+            padding: 64px 64px 48px;
+        }
+        .cc-intro .lead {
+            font-size: 20px;
+            line-height: 1.65;
+            margin-bottom: 32px;
+            color: #0A0A0A;
+        }
+        .cc-intro .team-list {
+            font-size: 13px;
+            color: #A3A3A3;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .cc-intro .team-list strong {
+            color: #40C1AC;
+            font-weight: 600;
+        }
+
+        .cc-reflection {
+            max-width: 720px;
+            padding: 64px;
+        }
+        .cc-reflection h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0A0A0A;
+        }
+        .cc-reflection p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Iteration comparison strip */
+        .iteration-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .iteration-item {
+            padding: 32px;
+            border-right: 1px solid #E5E5E5;
+            background: #FAFAFA;
+        }
+        .iteration-item:last-child { border-right: none; }
+        .iteration-item .iter-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #40C1AC;
+            margin-bottom: 8px;
+        }
+        .iteration-item .iter-title {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .iteration-item p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #737373;
+        }
+        .iteration-item .iter-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #F0F0F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        /* Placeholder for missing images */
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            background: #F0F0F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+            text-align: center;
+            padding: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .split-row { grid-template-columns: 1fr; }
+            .split-row.reverse { direction: ltr; }
+            .split-text { padding: 32px 24px; }
+            .card-strip { padding: 32px 24px; }
+            .photo-duo { grid-template-columns: 1fr; }
+            .photo-duo > div:first-child { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .photo-duo > div:last-child { border-left: none; }
+            .photo-trio { grid-template-columns: 1fr; }
+            .photo-trio > div:not(:last-child) { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .iteration-strip { grid-template-columns: 1fr; }
+            .iteration-item { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .cc-intro { padding: 40px 24px 32px; }
+            .cc-reflection { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-detail-hero">
+        <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+        <h1>Campus Cruiser</h1>
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                UI/UX &middot; Interaction Design
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                Fabrication Director &middot; UX Researcher &middot; Interface Designer
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Context</span>
+                CMU HCI Department, Fall 2024
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Team</span>
+                John, Xinfei, Daisy, <strong style="color:#40C1AC">Hua</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover — hero mockup placeholder -->
+    <div class="image-band">
+        <div class="placeholder-img" style="max-height:560px;">
+            [Hero image — high-fidelity e-bike UI mockup on device, or product render of the Campus Cruiser e-bike with screen interface visible]
+        </div>
+    </div>
+
+    <!-- Intro -->
+    <div class="cc-intro">
+        <p class="lead">
+            A semi-autonomous e-bike designed for college students, featuring a student ID-based rental system, intuitive physical controls, and a screen interface for mode switching, turn signals, and speed adjustment. The design prioritizes clarity, ease of use, and safety for efficient campus mobility.
+        </p>
+        <p class="team-list">
+            Team: John &middot; Xinfei &middot; Daisy &middot; <strong>Hua</strong>
+        </p>
+    </div>
+
+    <!-- Section 1: Design Task — text left, placeholder right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Design Task</h2>
+            <p>
+                Our team aimed to create an intuitive and user-friendly interface for an e-bike with semi-autonomous functionality, allowing riders to partially disengage from active control during the ride. The design prioritizes clarity, ease of use, and safety, ensuring that users can seamlessly interact with the system while maintaining confidence in its operation.
+            </p>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image — e-bike concept sketch or overview diagram showing the semi-autonomous vehicle design]
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: User Research — research image left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>User Research</h2>
+            <p>
+                Our research combined primary and secondary methods. We conducted 3 on-campus interviews with e-bike riders near CMU to understand their experiences and pain points. Key findings:
+            </p>
+            <ul>
+                <li>~50% of rental bikes were broken or low on battery</li>
+                <li>Poor seat-handlebar alignment caused discomfort</li>
+                <li>Riders wanted clear issue indicators and lightweight, safe designs</li>
+                <li>E-bike adoption is growing, with bike-sharing projected to reach $12.66B by 2029</li>
+            </ul>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image — user research affinity clustering / interview notes / Bulls' Eye diagram]
+            </div>
+        </div>
+    </div>
+
+    <!-- Usability testing results — horizontal strip -->
+    <div class="card-strip">
+        <div class="card-item">Parking &amp; Locking Issues: The locking mechanism was unclear and interfered with switching between modes.</div>
+        <div class="card-item">Turn Signals &amp; Controls: Turn signal buttons were not easily distinguishable from other controls.</div>
+        <div class="card-item">SAV Mode Confusion: Users were unclear about "Auto" meaning, expecting it to pedal automatically.</div>
+        <div class="card-item">Acceleration: Users struggled with the push-forward / pull-back system for speed control.</div>
+        <div class="card-item">Reporting Issues: The broken bike button was rarely noticed or used by testers.</div>
+    </div>
+
+    <!-- Section 3: Low-Fi Prototype — text left, prototype right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Low-Fidelity Prototype</h2>
+            <p>
+                We conducted 5 usability tests with the first iteration. The e-bike allows users to switch modes, adjust speed, and activate turn signals using physical buttons on the prototype. An electronic screen provides real-time status updates, ensuring clear communication of changes.
+            </p>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image — low-fidelity physical prototype with buttons and screen, or GIF of usability testing in action]
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: First Iteration — prototype image left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>First Iteration</h2>
+            <p>
+                Based on usability testing, we made several improvements — especially on the physical aspect and operations. We redesigned the position of the bell and the acceleration button, and optimized the size of the interface to make it more accessible. The physical controls were rearranged for natural hand positioning during riding.
+            </p>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image — first iteration prototype showing redesigned button layout and interface, or comparison before/after]
+            </div>
+        </div>
+    </div>
+
+    <!-- Iteration Process: Locking System — 3 stages -->
+    <div class="iteration-strip">
+        <div class="iteration-item">
+            <div class="iter-label">Version 1</div>
+            <div class="iter-placeholder">[Screenshot — Student ID typing to lock]</div>
+            <div class="iter-title">Student ID Lock</div>
+            <p>Students type their student ID to lock. Difficult for most people to complete this operation on a bike.</p>
+        </div>
+        <div class="iteration-item">
+            <div class="iter-label">Version 2</div>
+            <div class="iter-placeholder">[Screenshot — Long press button to lock]</div>
+            <div class="iter-title">Long Press Lock</div>
+            <p>Users long press a button when speed is zero to lock. Still not instinctive for most riders.</p>
+        </div>
+        <div class="iteration-item">
+            <div class="iter-label">Final</div>
+            <div class="iter-placeholder">[Screenshot — Double-click to lock with feedback]</div>
+            <div class="iter-title">Double-Click Lock</div>
+            <p>Clear error feedback: single click shows a prompt to click twice. Fits the heuristic of clear guidance.</p>
+        </div>
+    </div>
+
+    <!-- Section 5: Key Features — text left, feature image right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Safe Physical Control</h2>
+            <p>
+                The e-bike's autonomous system detects environmental changes and automatically slows down to prevent collisions. In extreme situations, it alerts the rider for human takeover, ensuring safety and accident prevention. This intelligent response system enhances rider confidence and reliability in semi-autonomous mode.
+            </p>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image / GIF — collision detection alert UI, showing automatic slowdown and rider notification]
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Locking & Notifications — image left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Unique Locking System</h2>
+            <p>
+                The e-bike features a unique start and lock system. If the bike is taken outside the designated parking area, it alerts users with a notification. The iterated version replaced the long-press lock with a double-click operation for a more intuitive experience. Lock-screen notifications inform users when the bike is not in a ridable status.
+            </p>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image / GIF — locking system UI flow: double-click to lock, parking area notification, lock screen status]
+            </div>
+        </div>
+    </div>
+
+    <!-- High-fidelity outcome mockups -->
+    <div class="photo-trio">
+        <div class="placeholder-img" style="min-height:400px;">
+            [Hi-Fi Screen — Riding mode with speed, turn signals, and mode indicator]
+        </div>
+        <div class="placeholder-img" style="min-height:400px;">
+            [Hi-Fi Screen — Lock/unlock interface with double-click prompt]
+        </div>
+        <div class="placeholder-img" style="min-height:400px;">
+            [Hi-Fi Screen — Notification system with exit button and alerts]
+        </div>
+    </div>
+
+    <!-- Section 7: Design System — text left, system right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Design System</h2>
+            <p>
+                The interface follows a cohesive design system built for clarity at speed — large touch targets, high-contrast status indicators, and a minimal color palette optimized for outdoor visibility. Components are designed for glanceability: a rider should understand the bike's state in under one second.
+            </p>
+        </div>
+        <div class="split-image">
+            <div class="placeholder-img">
+                [Image — design system overview: color palette, typography, component library, iconography]
+            </div>
+        </div>
+    </div>
+
+    <!-- Final product showcase -->
+    <div class="photo-duo">
+        <div class="placeholder-img" style="height:400px;">
+            [Image — final high-fidelity prototype in context, or product photography of the e-bike with screen]
+        </div>
+        <div class="placeholder-img" style="height:400px;">
+            [Image — rider using the Campus Cruiser on CMU campus, or final UI on device mockup]
+        </div>
+    </div>
+
+    <!-- Reflection -->
+    <div class="cc-reflection">
+        <h2>Reflection</h2>
+        <p>
+            This project taught me that designing for motion is fundamentally different from designing for screens at rest. Every interaction needs to be completable in seconds, with one hand, while moving. The locking system iteration — from student ID typing to long-press to double-click — is a perfect case study in reducing cognitive load through design.
+        </p>
+        <p>
+            As Fabrication Director, I bridged the gap between digital interface design and physical prototype construction. The biggest challenge was translating screen-based interactions into tangible button layouts that felt natural on handlebars. Usability testing with 5 participants revealed problems we never anticipated — like users confusing "Auto" mode with automatic pedaling — reinforcing that assumption-testing must happen early and often.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026. Designed with intention.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
+</body>
+</html>

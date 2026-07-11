@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JamSesh — Hua Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* === JamSesh — page-specific layout === */
+
+        /* Horizontal split: text left, image right */
+        .split-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .split-row + .split-row { border-top: none; }
+        .split-row.reverse { direction: rtl; }
+        .split-row.reverse > * { direction: ltr; }
+
+        .split-text {
+            padding: 48px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-text h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+        .split-text h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #40C1AC;
+            margin-top: 12px;
+        }
+        .split-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #525252;
+            max-width: 440px;
+        }
+
+        .split-image {
+            overflow: hidden;
+            background: #F5F5F5;
+        }
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .split-image.contain img {
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        /* Full-bleed image band */
+        .image-band {
+            width: 100%;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .image-band img {
+            width: 100%;
+            max-height: 560px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+        }
+
+        /* Horizontal card strip */
+        .card-strip {
+            display: flex;
+            gap: 20px;
+            padding: 48px 64px;
+            overflow-x: auto;
+            border-bottom: 2px solid #E5E5E5;
+            background: #0A0A0A;
+        }
+        .card-strip img {
+            height: 320px;
+            width: auto;
+            flex-shrink: 0;
+            border: 2px solid #333;
+        }
+
+        /* Two-up photo row */
+        .photo-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-duo img {
+            width: 100%;
+            height: 360px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+        }
+        .photo-duo img:first-child {
+            border-right: 1px solid #E5E5E5;
+        }
+        .photo-duo img:last-child {
+            border-left: 1px solid #E5E5E5;
+        }
+
+        /* Three-up photo row */
+        .photo-trio {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-trio img {
+            width: 100%;
+            height: 320px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+            padding: 16px;
+        }
+        .photo-trio img:not(:last-child) {
+            border-right: 1px solid #E5E5E5;
+        }
+
+        /* Intro section */
+        .jamsesh-intro {
+            max-width: 720px;
+            padding: 64px 64px 48px;
+        }
+        .jamsesh-intro .lead {
+            font-size: 20px;
+            line-height: 1.65;
+            margin-bottom: 32px;
+            color: #0A0A0A;
+        }
+        .jamsesh-intro .team-list {
+            font-size: 13px;
+            color: #A3A3A3;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .jamsesh-intro .team-list strong {
+            color: #40C1AC;
+            font-weight: 600;
+        }
+
+        /* Reflection text block */
+        .jamsesh-reflection {
+            max-width: 720px;
+            padding: 64px;
+        }
+        .jamsesh-reflection h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0A0A0A;
+        }
+        .jamsesh-reflection p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .split-row { grid-template-columns: 1fr; }
+            .split-row.reverse { direction: ltr; }
+            .split-text { padding: 32px 24px; }
+            .card-strip { padding: 32px 24px; }
+            .card-strip img { height: 240px; }
+            .photo-duo { grid-template-columns: 1fr; }
+            .photo-duo img:first-child { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .photo-duo img:last-child { border-left: none; }
+            .photo-trio { grid-template-columns: 1fr; }
+            .photo-trio img:not(:last-child) { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .jamsesh-intro { padding: 40px 24px 32px; }
+            .jamsesh-reflection { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-detail-hero">
+        <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+        <h1>JamSesh</h1>
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                Physical Computing &middot; Industrial Design
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                Industrial Design &amp; Sound Engineering
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Context</span>
+                CMU, Spring 2025
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Team</span>
+                Jacqueline, Aimee, <strong style="color:#40C1AC">Hua</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover — annotated product render -->
+    <div class="image-band">
+        <img src="../assets/projects/jamsesh/render-annotated.png" alt="JamSesh instrument — annotated render showing silicone play button, scroll wheel, and tilt interaction">
+    </div>
+
+    <!-- Intro -->
+    <div class="jamsesh-intro">
+        <p class="lead">
+            JamSesh is a collaborative sound-making device designed for teenagers. Inspired by the theremin, it lets players create music through body gestures — tilting to change pitch, pressing to trigger rhythm, and moving closer to friends to adjust volume. No musical training required.
+        </p>
+        <p class="team-list">
+            Team: Jacqueline &middot; Aimee &middot; <strong>Hua</strong>
+        </p>
+    </div>
+
+    <!-- Section 1: Problem Space — text left, theremin image right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Problem Space</h2>
+            <p>
+                Teenagers face a rising sense of loneliness, amplified by the pandemic and social media. Traditional in-person interactions — hanging out at friends' houses, forming high-school bands — have declined. Our research identified a need for off-screen, explorative play that lowers the embarrassment barrier and encourages face-to-face connection in third spaces.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/jamsesh/theremin-ref.png" alt="Theremin reference — explorative instrument inspiring JamSesh's interaction model">
+        </div>
+    </div>
+
+    <!-- Section 2: Concept — user flow left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Why Music?</h2>
+            <p>
+                Face-to-face verbal communication can feel too serious for teens. Inspired by high-school bands, we designed an instrument-speaker system that values fun over skill. Unlike traditional instruments, JamSesh offers a relaxed, explorative way of making sound — where instruments react to each other, encouraging collaboration without requiring everyone to be at the same skill level.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/jamsesh/user-flow.png" alt="User flow storyboard — friends inviting each other to jam">
+        </div>
+    </div>
+
+    <!-- Interaction sketches — full bleed -->
+    <div class="image-band">
+        <img src="../assets/projects/jamsesh/pitch-interaction.png" alt="Pitch interaction sketch — tilting the device changes pitch" style="max-height:420px;">
+    </div>
+
+    <!-- Section 3: Form Exploration — text left, sketches right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Form Exploration</h2>
+            <p>
+                The form needed to suggest tilt — a horizontal reference to the ground. We explored symmetrical shapes with a large, prominent button. Early iterations were too small or suggested incorrect handholds. Through CAD modeling and physical prototyping, we converged on an organic, pebble-like form that fits naturally in the hand.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/jamsesh/sketches-variations.png" alt="Industrial design sketches — form exploration for the handheld instrument">
+        </div>
+    </div>
+
+    <!-- Sketch + CAD strip — dark background -->
+    <div class="card-strip">
+        <img src="../assets/projects/jamsesh/sketches-early.png" alt="Early concept sketches">
+        <img src="../assets/projects/jamsesh/sketches-refined.png" alt="Refined form sketches">
+        <img src="../assets/projects/jamsesh/cad-iteration.png" alt="CAD iteration — too small">
+        <img src="../assets/projects/jamsesh/cad-early.png" alt="CAD early model">
+        <img src="../assets/projects/jamsesh/cad-refined.png" alt="CAD refined model">
+    </div>
+
+    <!-- Section 4: Final Design — renders left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Final Design</h2>
+            <p>
+                The final instrument features a silicone play button, a scroll wheel for instrument selection, and a gyroscope for tilt-based pitch control. The companion speaker doubles as a charging dock, with an on/off switch, microphone, and record button. Instruments charge and store by magnetically attaching to the speaker.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/jamsesh/exploded-view.png" alt="Exploded view of the JamSesh instrument">
+        </div>
+    </div>
+
+    <!-- Product renders — three views -->
+    <div class="photo-trio">
+        <img src="../assets/projects/jamsesh/render-speaker.png" alt="Speaker with instrument indication and scroll wheel">
+        <img src="../assets/projects/jamsesh/render-charging.png" alt="Charging dock with microphone and record button">
+        <img src="../assets/projects/jamsesh/product-closeup.png" alt="Product close-up — scroll wheel and button detail">
+    </div>
+
+    <!-- Section 5: Technical — text left, diagram right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Technical Prototype</h2>
+            <p>
+                Each instrument uses an ESP32-C6 with a gyroscope for pitch, BLE proximity sensing for volume, a button for rhythm, and a rotary potentiometer for instrument selection. Data streams via BLE to a multithreaded Python script that filters inputs and processes output through pydub for real-time pitch remapping.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/jamsesh/tech-input-mapping.png" alt="Input mapping — volume, pitch, rhythm, and instrument selection">
+        </div>
+    </div>
+
+    <!-- Technical diagrams duo -->
+    <div class="photo-duo">
+        <img src="../assets/projects/jamsesh/tech-input-pipeline.png" alt="Technical input processing pipeline">
+        <img src="../assets/projects/jamsesh/tech-output.png" alt="Technical output processing pipeline">
+    </div>
+
+    <!-- Architecture diagrams duo -->
+    <div class="photo-duo">
+        <img src="../assets/projects/jamsesh/tech-redirection.png" alt="Late process redirection — Arduino to ESP32-C6 transition">
+        <img src="../assets/projects/jamsesh/tech-pitch-remap.png" alt="Pitch remapping mechanism using pydub">
+    </div>
+
+    <!-- Reflection -->
+    <div class="jamsesh-reflection">
+        <h2>Reflection</h2>
+        <p>
+            JamSesh taught me that designing for play means designing for vulnerability — teenagers won't engage with something that makes them feel awkward. The key insight was that music, unlike conversation, gives people permission to be imperfect together.
+        </p>
+        <p>
+            From a technical standpoint, transitioning from Arduino to ESP32-C6 mid-project was a major pivot. The multithreading challenges forced us to rethink our entire data pipeline, but the result was a more responsive, scalable system that could handle multiple simultaneous inputs without latency.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026. Designed with intention.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
+</body>
+</html>

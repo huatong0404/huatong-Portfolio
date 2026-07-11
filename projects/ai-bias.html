@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickAudit — Hua Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* === QuickAudit — page-specific layout === */
+
+        .split-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .split-row + .split-row { border-top: none; }
+        .split-row.reverse { direction: rtl; }
+        .split-row.reverse > * { direction: ltr; }
+
+        .split-text {
+            padding: 48px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-text h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+        .split-text h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #40C1AC;
+            margin-top: 12px;
+        }
+        .split-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #525252;
+            max-width: 440px;
+        }
+        .split-text blockquote {
+            margin: 16px 0 0;
+            padding-left: 16px;
+            border-left: 3px solid #40C1AC;
+            font-style: italic;
+            color: #737373;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .split-image {
+            overflow: hidden;
+            background: #F5F5F5;
+        }
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .split-image.contain img {
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        .image-band {
+            width: 100%;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .image-band img {
+            width: 100%;
+            max-height: 560px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+        }
+
+        .photo-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-duo > div,
+        .photo-duo > img {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F5F5F5;
+            object-fit: contain;
+        }
+        .photo-duo > div:first-child,
+        .photo-duo > img:first-child {
+            border-right: 1px solid #E5E5E5;
+        }
+        .photo-duo > div:last-child,
+        .photo-duo > img:last-child {
+            border-left: 1px solid #E5E5E5;
+        }
+
+        /* Insights grid — 2x3 */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .insight-card {
+            padding: 36px 40px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        .insight-card:nth-child(odd) {
+            border-right: 1px solid #E5E5E5;
+        }
+        .insight-card .insight-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #fff;
+            background: #40C1AC;
+            padding: 4px 12px;
+            margin-bottom: 12px;
+        }
+        .insight-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #525252;
+            margin-bottom: 8px;
+        }
+        .insight-card .quote {
+            font-style: italic;
+            font-size: 13px;
+            color: #999;
+            padding-left: 12px;
+            border-left: 2px solid #E5E5E5;
+        }
+
+        /* Methods flow */
+        .methods-flow {
+            padding: 48px 64px;
+            border-bottom: 2px solid #E5E5E5;
+            background: #FAFAFA;
+        }
+        .methods-flow h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+        .methods-flow h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #40C1AC;
+            margin-top: 12px;
+        }
+        .flow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .flow-step {
+            font-size: 13px;
+            padding: 6px 14px;
+            background: #fff;
+            border: 1.5px solid #E5E5E5;
+            color: #525252;
+            white-space: nowrap;
+        }
+        .flow-step.highlight {
+            border-color: #40C1AC;
+            color: #0A0A0A;
+            font-weight: 600;
+        }
+        .flow-arrow {
+            color: #D4D4D4;
+            font-size: 16px;
+        }
+
+        .qa-intro {
+            max-width: 720px;
+            padding: 64px 64px 48px;
+        }
+        .qa-intro .lead {
+            font-size: 20px;
+            line-height: 1.65;
+            margin-bottom: 32px;
+            color: #0A0A0A;
+        }
+        .qa-intro .team-list {
+            font-size: 13px;
+            color: #A3A3A3;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .qa-intro .team-list strong {
+            color: #40C1AC;
+            font-weight: 600;
+        }
+
+        .qa-reflection {
+            max-width: 720px;
+            padding: 64px;
+        }
+        .qa-reflection h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0A0A0A;
+        }
+        .qa-reflection p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            background: #F0F0F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+            text-align: center;
+            padding: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .split-row { grid-template-columns: 1fr; }
+            .split-row.reverse { direction: ltr; }
+            .split-text { padding: 32px 24px; }
+            .insights-grid { grid-template-columns: 1fr; }
+            .insight-card:nth-child(odd) { border-right: none; }
+            .methods-flow { padding: 32px 24px; }
+            .photo-duo { grid-template-columns: 1fr; }
+            .photo-duo > div:first-child,
+            .photo-duo > img:first-child { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .photo-duo > div:last-child,
+            .photo-duo > img:last-child { border-left: none; }
+            .qa-intro { padding: 40px 24px 32px; }
+            .qa-reflection { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-detail-hero">
+        <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+        <h1>QuickAudit</h1>
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                User Experience Research
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                UX Researcher &middot; Problem Framing Lead
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Context</span>
+                CMU 05-410 UCRE, Spring 2025
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Team</span>
+                Samantha, <strong style="color:#40C1AC">Hua</strong>, Bosi, Michele, Hannah
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover -->
+    <div class="image-band">
+        <img src="../assets/projects/ai-bias/m8-img7.png" alt="QuickAudit bias warning popup on ChatGPT — showing upvote/downvote interface when other users flagged bias in a similar prompt">
+    </div>
+
+    <!-- Intro -->
+    <div class="qa-intro">
+        <p class="lead">
+            QuickAudit is a Chrome extension that lowers the barrier to entry for reporting bias in generative AI platforms. When other users have flagged bias in similar prompts, a real-time pop-up appears with upvote and downvote buttons — letting users confirm or dismiss bias warnings in seconds, without disrupting their workflow. The result: shared accountability and increased awareness, one click at a time.
+        </p>
+        <p class="team-list">
+            Team 3: Samantha &middot; <strong>Hua</strong> &middot; Bosi &middot; Michele &middot; Hannah
+        </p>
+    </div>
+
+    <!-- Problem -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Problem Space</h2>
+            <p>
+                How might we empower users to notice and report bias in various generative AI platforms? Our contextual research revealed several baseline barriers: users struggle to identify bias in AI outputs, and even when they do recognize it, they lack motivation to report — either because they don't see the value, don't have time, or assume flaws are inherent to the technology.
+            </p>
+            <blockquote>
+                "I don't expect AI to be perfect; if it's not directly stopping me from completing my assignment, I don't really care."
+            </blockquote>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/ai-bias/m6-img1.png" alt="Card sorting exercise — participant categorizing AI-generated images as Very Accurate, Slightly Accurate, Slightly Inaccurate, or Very Inaccurate">
+        </div>
+    </div>
+
+    <!-- Methods -->
+    <div class="methods-flow">
+        <h2>Research Methods</h2>
+        <div class="flow-steps">
+            <span class="flow-step">Background Research</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Data Analysis</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step highlight">Contextual Inquiry</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Affinity Clustering</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step highlight">Defining Problem Space</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">How Might We?</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Contextual Research</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Affinity Clustering</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Narrowing Solution Scope</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step highlight">Speed Dating</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Modeling</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Assumption Artifacts</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step highlight">Lo-fi Prototype</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step highlight">Usability Testing</span>
+        </div>
+    </div>
+
+    <!-- Insights grid -->
+    <div class="insights-grid">
+        <div class="insight-card">
+            <span class="insight-tag">Education</span>
+            <p>Some participants were indifferent to AI-generated bias, assuming that flaws were inherent to the technology.</p>
+            <p class="quote">"I don't expect AI to be perfect; if it's not directly stopping me from completing my assignment, I don't really care."</p>
+        </div>
+        <div class="insight-card">
+            <span class="insight-tag">Incentive</span>
+            <p>Users find more motivation in incentives that speed up their workflow than incentives that offer prizes or social validation.</p>
+            <p class="quote">"It doesn't make sense to me to turn a serious topic into a game. I also wouldn't care about seeing a ranking of other's reports."</p>
+        </div>
+        <div class="insight-card">
+            <span class="insight-tag">Impact</span>
+            <p>Users value their report making a widespread impact on the platform and seeing evidence of the impact, even if it is delayed gratification.</p>
+            <p class="quote">"I would only report if I believed it would genuinely make an impact and lead to an intentional change."</p>
+        </div>
+        <div class="insight-card">
+            <span class="insight-tag">Peer Influence</span>
+            <p>Seeing that other users have identified the same bias increases users' confidence that bias is present — but users ultimately want to make the final call.</p>
+            <p class="quote">"Seeing other's responses helped indicate that there might be a problem and pushed me to take a second look."</p>
+        </div>
+        <div class="insight-card">
+            <span class="insight-tag">Autonomy</span>
+            <p>Users value autonomy over their workflow and were hesitant about plugins automatically doing things for them.</p>
+            <p class="quote">"I am uncomfortable with an automated bias report system because it would interrupt my workflow. I should approve every interaction."</p>
+        </div>
+        <div class="insight-card" style="background:#FAFAFA;">
+            <span class="insight-tag" style="background:#0A0A0A;">Key Tension</span>
+            <p>The central design challenge: users want to know about bias but don't want to be interrupted. The solution must be <strong>present but not intrusive</strong>, <strong>actionable but not mandatory</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Solution -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Solution</h2>
+            <p>
+                A Chrome extension that provides a reporting interface users can access from their chosen AI platform with minimal workflow disruption. When other users have previously flagged bias in outputs of similar prompts, the plug-in notifies users with an interactive pop-up containing upvote and downvote buttons. Users who agree can upvote with one click, or submit a detailed report explaining the type of bias.
+            </p>
+            <p style="margin-top:12px;">
+                By showing that reports contribute to public warnings, users are more likely to engage. The upvote-downvote system <strong>lowers the barrier to entry</strong> while <strong>creating shared accountability</strong>.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/ai-bias/m7-img1.jpg" alt="Storyboard — Context: user on ChatGPT; Problem: biased output unnoticed; Solution: pop-up alerts user that others flagged bias; Resolution: user is now aware and can decide next steps">
+        </div>
+    </div>
+
+    <!-- Mockup duo — before/after -->
+    <div class="photo-duo">
+        <img src="../assets/projects/ai-bias/m8-img1.png" alt="ChatGPT generating a biased image of romantic partners — output without any bias warning (control condition)">
+        <img src="../assets/projects/ai-bias/m8-img10.png" alt="ChatGPT generating a biased image of a doctor and nurse — showing stereotypical gender and racial representation">
+    </div>
+
+    <!-- My Role -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>My Role</h2>
+            <p>
+                I led the problem framing and research methods presentation. I conducted data analysis on the existing AI auditing landscape, facilitated affinity clustering sessions, and presented the research methodology during our final pitch. The research diagram I designed visualizes two directions: diving down to define the problem, and floating up to solve it — capturing the iterative, non-linear nature of our process.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/ai-bias/m7-img3.png" alt="Research wall — four-panel overview showing problem framing, insights, contextual research findings, and solution development across the full research process">
+        </div>
+    </div>
+
+    <!-- Testing -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Testing &amp; Validation</h2>
+            <p>
+                We validated our solution through speed dating sessions, assumption artifact testing, and usability testing of a lo-fi prototype. Key validations: users preferred the upvote/downvote system over automated reporting; peer influence increased users' confidence in identifying bias; and the non-intrusive pop-up format respected users' desire for autonomy.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/ai-bias/m7-img8.png" alt="Speed dating results — affinity wall showing storyboards, participant feedback notes, and rankings across all tested scenarios">
+        </div>
+    </div>
+
+    <!-- Vote metrics band -->
+    <div class="image-band">
+        <img src="../assets/projects/ai-bias/m8-img14.png" alt="Experimental results — participants in the experimental group were more likely to report bias, rewrite prompts, and take action compared to the control group">
+    </div>
+
+    <!-- Reflection -->
+    <div class="qa-reflection">
+        <h2>Reflection</h2>
+        <p>
+            This project was my deepest dive into user-centered research methodology. The most surprising finding was the tension between awareness and autonomy — users genuinely wanted to know about bias, but resisted anything that felt like it was making decisions for them. This insight fundamentally shaped our solution: instead of an automated system that flags and corrects, we designed a social one that informs and invites.
+        </p>
+        <p>
+            Leading the research methods presentation taught me how to narrate a non-linear research process. Our methodology wasn't a clean pipeline; it doubled back, reframed, and pivoted. Learning to visualize that complexity — the "diving down and floating up" structure — made me a better communicator of design research.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026. Designed with intention.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
+</body>
+</html>

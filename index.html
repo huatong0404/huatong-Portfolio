@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hua Tong — Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260709">
+</head>
+<body class="home-page">
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero — artwork placeholders will be replaced with final illustrations -->
+    <section class="home-hero" id="home">
+        <div class="home-hero-background" aria-label="Placeholder for Hua Tong's forthcoming background illustration">
+            <span>Background artwork in progress</span>
+        </div>
+        <div class="home-hero-wash"></div>
+        <div class="home-hero-content">
+            <span class="home-edition">Portfolio / 2026</span>
+            <h1>HUA<br>TONG</h1>
+            <div class="home-portrait-placeholder" aria-label="Placeholder for Hua Tong's forthcoming portrait illustration">
+                <span>Portrait<br>in progress</span>
+            </div>
+            <div class="home-hero-meta">
+                <span>Architecture + Human-Computer Interaction</span>
+                <span>Carnegie Mellon University</span>
+                <span>Pittsburgh / Shanghai</span>
+            </div>
+        </div>
+    </section>
+
+    <aside class="page-jump-nav" aria-label="Jump to page section">
+        <button class="jump-drag-handle" type="button" aria-label="Move project navigation">&#8942;&#8942;</button>
+        <ul>
+            <li><a href="#sea-monster">Sea Monster</a></li>
+            <li><a href="#radio-rick">Radio Rick</a></li>
+            <li><a href="#jamsesh">JamSesh</a></li>
+            <li><a href="#quickaudit">QuickAudit</a></li>
+            <li><a href="#campus-cruiser">Campus Cruiser</a></li>
+            <li><a href="#trace">Trace</a></li>
+            <li><a href="#pollen-farm">Pollen Farm</a></li>
+        </ul>
+    </aside>
+
+    <!-- Selected work — chronological trail -->
+    <section class="timeline-section" id="projects">
+        <header class="timeline-header">
+            <div>
+                <span class="overline">Selected Work / 09</span>
+                <h2>Projects</h2>
+            </div>
+            <p>Architecture, interaction, objects, research, and fabrication. Arranged from the present downward.</p>
+        </header>
+
+        <div class="project-timeline">
+            <article class="timeline-project timeline-left timeline-placeholder-card animate-in">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Summer 2026</span><h3>Personal Project</h3></div>
+                    <span class="timeline-index">01 / In progress</span>
+                </div>
+                <div class="timeline-image timeline-image-placeholder"><span>Evidence forthcoming</span></div>
+                <div class="timeline-copy">
+                    <p>A self-directed project currently under development.</p>
+                    <span class="timeline-link">Coming soon</span>
+                </div>
+            </article>
+
+            <article class="timeline-project timeline-right timeline-placeholder-card animate-in">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Spring 2026</span><h3>Project in Progress</h3></div>
+                    <span class="timeline-index">02 / Details forthcoming</span>
+                </div>
+                <div class="timeline-image timeline-image-placeholder"><span>Evidence forthcoming</span></div>
+                <div class="timeline-copy">
+                    <p>A second Spring 2026 project reserved for future documentation.</p>
+                    <span class="timeline-link">Coming soon</span>
+                </div>
+            </article>
+
+            <a href="projects/sea-monster.html" class="timeline-project timeline-left animate-in" id="sea-monster">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Spring 2026</span><h3>Sea Monster</h3></div>
+                    <span class="timeline-index">03 / Spatial Installation + Soft Fabrication</span>
+                </div>
+                <div class="timeline-image"><img src="assets/projects/sea-monster/exhibit-wide.jpg" alt="Sea Monster room-scale inflatable installation"></div>
+                <div class="timeline-copy">
+                    <p>An after-human inflatable environment that restores the presence and threat of nature.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+
+            <a href="projects/ricks-radio.html" class="timeline-project timeline-right animate-in" id="radio-rick">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Fall 2025</span><h3>Radio Rick</h3></div>
+                    <span class="timeline-index">04 / Physical Computing + Product Design</span>
+                </div>
+                <div class="timeline-image"><img src="assets/projects/ricks-radio/product-front.png" alt="Radio Rick brick-shaped internet radio"></div>
+                <div class="timeline-copy">
+                    <p>A client project that chose companionship and family geography over unnecessary optimization.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+
+            <a href="projects/jamsesh.html" class="timeline-project timeline-left animate-in" id="jamsesh">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Spring 2025</span><h3>JamSesh</h3></div>
+                    <span class="timeline-index">05 / Physical Computing + Industrial Design</span>
+                </div>
+                <div class="timeline-image"><img src="assets/projects/jamsesh/render-annotated.png" alt="JamSesh collaborative sound-making device"></div>
+                <div class="timeline-copy">
+                    <p>An off-screen instrument that gives teenagers permission to be imperfect together.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+
+            <a href="projects/ai-bias.html" class="timeline-project timeline-right animate-in" id="quickaudit">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Spring 2025</span><h3>QuickAudit</h3></div>
+                    <span class="timeline-index">06 / User Experience Research</span>
+                </div>
+                <div class="timeline-image"><img src="assets/projects/ai-bias/m8-img7.png" alt="QuickAudit browser extension for reporting generative AI bias"></div>
+                <div class="timeline-copy">
+                    <p>A low-friction system for collective accountability that preserves individual autonomy.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+
+            <a href="projects/campus-cruiser.html" class="timeline-project timeline-left animate-in" id="campus-cruiser">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Fall 2024</span><h3>Campus Cruiser</h3></div>
+                    <span class="timeline-index">07 / Interaction Design</span>
+                </div>
+                <div class="timeline-image timeline-image-placeholder"><span>Campus Cruiser evidence forthcoming</span></div>
+                <div class="timeline-copy">
+                    <p>A safer physical and digital control system for shared campus mobility.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+
+            <a href="projects/trace.html" class="timeline-project timeline-right animate-in" id="trace">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Spring 2024</span><h3>Trace</h3></div>
+                    <span class="timeline-index">08 / Archival Research + Game Design</span>
+                </div>
+                <div class="timeline-image"><img src="assets/projects/trace/board-photo-2.jpg" alt="Trace queer feminist history board game"></div>
+                <div class="timeline-copy">
+                    <p>A cooperative investigation of queer feminist survival infrastructure in 1970s Pittsburgh.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+
+            <a href="projects/vertical-garden.html" class="timeline-project timeline-left animate-in" id="pollen-farm">
+                <span class="timeline-node" aria-hidden="true"></span>
+                <div class="timeline-card-head">
+                    <div><span class="timeline-date">Spring 2024</span><h3>Pollen Farm</h3></div>
+                    <span class="timeline-index">09 / Computational Design + Fabrication</span>
+                </div>
+                <div class="timeline-image"><img src="assets/projects/vertical-garden/render-context-1.png" alt="Pollen Farm modular polyhedral vertical garden system"></div>
+                <div class="timeline-copy">
+                    <p>A full-scale geometric system that turns flat plywood into structure, habitat, and public space.</p>
+                    <span class="timeline-link">View project ↗</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026. Designed with intention.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('open');
+        }
+
+        function enableMovableJumpNav(nav) {
+            const handle = nav.querySelector('.jump-drag-handle');
+            if (!handle) return;
+
+            let startX = 0;
+            let startY = 0;
+            let baseX = 0;
+            let baseY = 0;
+            let bounds = null;
+
+            handle.addEventListener('pointerdown', (event) => {
+                if (window.innerWidth <= 900) return;
+                const rect = nav.getBoundingClientRect();
+                startX = event.clientX;
+                startY = event.clientY;
+                baseX = Number(nav.dataset.dragX || 0);
+                baseY = Number(nav.dataset.dragY || 0);
+                bounds = {
+                    minX: 12 - rect.left,
+                    maxX: window.innerWidth - 12 - rect.right,
+                    minY: 12 - rect.top,
+                    maxY: window.innerHeight - 12 - rect.bottom
+                };
+                handle.setPointerCapture(event.pointerId);
+                event.preventDefault();
+            });
+
+            handle.addEventListener('pointermove', (event) => {
+                if (!handle.hasPointerCapture(event.pointerId) || !bounds) return;
+                const deltaX = Math.min(bounds.maxX, Math.max(bounds.minX, event.clientX - startX));
+                const deltaY = Math.min(bounds.maxY, Math.max(bounds.minY, event.clientY - startY));
+                const nextX = baseX + deltaX;
+                const nextY = baseY + deltaY;
+                nav.dataset.dragX = nextX;
+                nav.dataset.dragY = nextY;
+                nav.style.setProperty('--jump-x', `${nextX}px`);
+                nav.style.setProperty('--jump-y', `${nextY}px`);
+            });
+
+            handle.addEventListener('pointerup', (event) => {
+                if (handle.hasPointerCapture(event.pointerId)) handle.releasePointerCapture(event.pointerId);
+                bounds = null;
+            });
+        }
+
+        enableMovableJumpNav(document.querySelector('.page-jump-nav'));
+
+        const projectNavLinks = [...document.querySelectorAll('.page-jump-nav a')];
+        const trackedProjects = projectNavLinks
+            .map((link) => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+        let projectTrackingFrame = null;
+
+        function updateActiveProject() {
+            const readingLine = window.innerHeight * 0.34;
+            let activeProject = null;
+
+            trackedProjects.forEach((project) => {
+                if (project.getBoundingClientRect().top <= readingLine) activeProject = project;
+            });
+
+            projectNavLinks.forEach((link) => {
+                const isActive = activeProject && link.getAttribute('href') === `#${activeProject.id}`;
+                link.classList.toggle('active', Boolean(isActive));
+                if (isActive) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+            });
+            projectTrackingFrame = null;
+        }
+
+        function requestProjectUpdate() {
+            if (projectTrackingFrame === null) {
+                projectTrackingFrame = requestAnimationFrame(updateActiveProject);
+            }
+        }
+
+        window.addEventListener('scroll', requestProjectUpdate, { passive: true });
+        window.addEventListener('resize', requestProjectUpdate);
+        updateActiveProject();
+
+    </script>
+
+</body>
+</html>

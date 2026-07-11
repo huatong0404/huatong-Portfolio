@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground — Hua Tong</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="playground.html" class="active">Playground</a></li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-hero">
+        <h1>Playground</h1>
+        <p>Explorations, side quests, and things made for the joy of making</p>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section">
+        <div class="playground-grid">
+
+            <!-- Mosaic Memories -->
+            <a href="playground/mosaic-memories.html" class="playground-item animate-in"
+               data-images="assets/playground/mosaic-memories/p4.png,assets/playground/mosaic-memories/p1.png,assets/playground/mosaic-memories/p2.png,assets/playground/mosaic-memories/p3.png,assets/playground/mosaic-memories/p5.png">
+                <div class="gallery-image">
+                    <img src="assets/playground/mosaic-memories/p4.png" alt="Mosaic Memories cover">
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="gallery-label">Mosaic Memories</div>
+            </a>
+
+            <!-- Vectora -->
+            <a href="playground/vectora.html" class="playground-item animate-in"
+               data-images="placeholder1.jpg,placeholder2.jpg,placeholder3.jpg">
+                <div class="gallery-image">
+                    <span class="placeholder">Vectora</span>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="gallery-label">Vectora</div>
+            </a>
+
+            <!-- Illustrations -->
+            <a href="playground/illustrations.html" class="playground-item animate-in"
+               data-images="assets/playground/illustrations/IMG_3405.jpg,assets/playground/illustrations/IMG_5831.jpg,assets/playground/illustrations/IMG_0389.jpg,assets/playground/illustrations/artwork_5.png,assets/playground/illustrations/IMG_2903.jpg">
+                <div class="gallery-image">
+                    <img src="assets/playground/illustrations/IMG_3405.jpg" alt="Illustration Collection cover">
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="gallery-label">Illustration Collection</div>
+            </a>
+
+            <!-- Charity Sketches -->
+            <a href="playground/charity-sketches.html" class="playground-item animate-in"
+               data-images="placeholder1.jpg,placeholder2.jpg,placeholder3.jpg">
+                <div class="gallery-image">
+                    <span class="placeholder">$5 Charity Sketches</span>
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="gallery-label">$5 Charity Sketch Commission</div>
+            </a>
+
+            <!-- Echus Nightlight -->
+            <a href="playground/nightlight.html" class="playground-item animate-in"
+               data-images="assets/playground/nightlight/IMG_2345.jpg,assets/playground/nightlight/IMG_2350.jpg,assets/playground/nightlight/IMG_2053.jpg">
+                <div class="gallery-image">
+                    <img src="assets/playground/nightlight/IMG_2345.jpg" alt="Echus Nightlight cover">
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="gallery-label">Echus Nightlight</div>
+            </a>
+
+            <!-- Soft Fabrication -->
+            <a href="playground/soft-fabrication.html" class="playground-item animate-in"
+               data-images="assets/playground/soft-fabrication/DSCF8205.jpg,assets/playground/soft-fabrication/IMG_7126.jpg,assets/playground/soft-fabrication/IMG_7116.jpg,assets/playground/soft-fabrication/IMG_5963.jpg,assets/playground/soft-fabrication/DSCF8147.jpg">
+                <div class="gallery-image">
+                    <img src="assets/playground/soft-fabrication/DSCF8205.jpg" alt="Soft Fabrication cover">
+                    <div class="carousel-dots"></div>
+                </div>
+                <div class="gallery-label">Soft Fabrication</div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Hua Tong. Designed with intention.</p>
+        <p><a href="mailto:hello@huatong.com">hello@huatong.com</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('open');
+        }
+
+        // --- Hover Carousel Logic ---
+        document.querySelectorAll('.playground-item').forEach(item => {
+            const images = (item.dataset.images || '').split(',');
+            const dotsContainer = item.querySelector('.carousel-dots');
+            let currentIndex = 0;
+            let intervalId = null;
+
+            // Generate dots
+            images.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.dot');
+
+            function showImage(index) {
+                const img = item.querySelector('.gallery-image img');
+                if (img && images[index]) {
+                    img.src = images[index];
+                }
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                currentIndex = index;
+            }
+
+            item.addEventListener('mouseenter', () => {
+                currentIndex = 0;
+                showImage(0);
+                intervalId = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    showImage(currentIndex);
+                }, 1200);
+            });
+
+            item.addEventListener('mouseleave', () => {
+                clearInterval(intervalId);
+                intervalId = null;
+                currentIndex = 0;
+                showImage(0);
+            });
+        });
+    </script>
+
+</body>
+</html>

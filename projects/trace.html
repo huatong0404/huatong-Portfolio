@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=20260709">
+    <style>
+        /* === Trace — page-specific layout === */
+
+        body { background: #F5F5F5; }
+
+        .rr-case {
+            width: min(calc(100% - 112px), 1080px);
+            margin-left: auto;
+            margin-right: auto;
+            background: #F5F5F5;
+        }
+
+        figure { margin: 0; }
+        figcaption {
+            width: 100%;
+            padding-top: 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #737373;
+        }
+        .rr-case figure:not(.image-band) {
+            border-top: 2px solid #D4D4D4;
+            padding-top: 14px;
+        }
+
+        .rr-section-title,
+        .split-text h2,
+        .rr-reflection h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .rr-section-title::after,
+        .split-text h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #40C1AC;
+            margin-top: 12px;
+        }
+
+        .rr-intro {
+            padding: 64px 0 52px;
+        }
+        .rr-intro .lead {
+            max-width: 900px;
+            font-size: 20px;
+            line-height: 1.68;
+            margin-bottom: 24px;
+            color: #0A0A0A;
+        }
+        .rr-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+        .rr-summary-item {
+            border-top: 2px solid #D4D4D4;
+            padding-top: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #525252;
+        }
+        .rr-summary-item strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #0A0A0A;
+        }
+
+        .split-row {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 32px;
+            padding: 52px 0;
+            border-top: 2px solid #E5E5E5;
+            align-items: center;
+        }
+        .split-row.reverse { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
+        .split-row.wide-media { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); }
+        .split-text {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-text p,
+        .rr-gallery-section p,
+        .rr-reflection p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #525252;
+            margin-bottom: 16px;
+            max-width: 760px;
+        }
+        .split-text blockquote {
+            margin: 16px 0 0;
+            padding-left: 16px;
+            border-left: 3px solid #40C1AC;
+            font-style: italic;
+            color: #737373;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .split-image {
+            overflow: hidden;
+            background: #F5F5F5;
+        }
+        .split-image img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .split-image.contain img {
+            object-fit: contain;
+            object-position: center;
+        }
+        .split-image.tall img { height: 520px; }
+        .split-image figcaption { background: #F5F5F5; }
+
+        .rr-gallery-section {
+            padding: 52px 0;
+            border-top: 2px solid #E5E5E5;
+        }
+        .rr-product-grid,
+        .rr-use-grid,
+        .rr-outcome-grid,
+        .trace-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            align-items: start;
+            margin-top: 28px;
+        }
+        .rr-product-grid figure,
+        .rr-use-grid figure,
+        .rr-outcome-grid figure,
+        .trace-card-grid figure {
+            background: #F5F5F5;
+        }
+        .rr-product-grid img,
+        .rr-use-grid img,
+        .rr-outcome-grid img,
+        .trace-card-grid img {
+            width: 100%;
+            height: clamp(250px, 23vw, 300px);
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .rr-outcome-grid figure:first-child { grid-column: span 2; }
+        .rr-outcome-grid figure:first-child img {
+            height: auto;
+            max-height: 560px;
+            object-fit: contain;
+            object-position: left top;
+        }
+
+        .trace-card-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+        .trace-card-grid img {
+            height: 320px;
+            object-fit: contain;
+            background: #F5F5F5;
+        }
+        .trace-card-grid .wide {
+            grid-column: span 2;
+        }
+        .trace-card-grid .wide img {
+            object-fit: cover;
+        }
+
+        .trace-card-stage {
+            position: relative;
+            min-height: 560px;
+            margin-top: 32px;
+            border-top: 2px solid #D4D4D4;
+            padding-top: 14px;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+                #F5F5F5;
+            background-size: 48px 48px;
+        }
+        .scatter-card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: clamp(140px, 16vw, 210px);
+            transform:
+                translate(-50%, -50%)
+                translate(var(--x), var(--y))
+                rotate(var(--r));
+            animation: scatterIn 900ms cubic-bezier(.2, .8, .2, 1) both, cardFloat 5s ease-in-out infinite;
+            animation-delay: var(--delay), calc(var(--delay) + 900ms);
+            filter: drop-shadow(0 18px 22px rgba(10, 10, 10, 0.18));
+        }
+        .scatter-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .scatter-card:nth-child(1) { --x: -330px; --y: -150px; --r: -14deg; --delay: 0ms; }
+        .scatter-card:nth-child(2) { --x: -120px; --y: 95px; --r: 9deg; --delay: 120ms; }
+        .scatter-card:nth-child(3) { --x: 105px; --y: -120px; --r: 13deg; --delay: 240ms; }
+        .scatter-card:nth-child(4) { --x: 315px; --y: 70px; --r: -8deg; --delay: 360ms; }
+        .scatter-card:nth-child(5) { --x: 260px; --y: -200px; --r: 20deg; --delay: 480ms; }
+        .trace-card-stage figcaption {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            padding: 12px 0 0;
+            background: #F5F5F5;
+        }
+
+        @keyframes scatterIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform:
+                    translate(-50%, -50%)
+                    translate(var(--x), var(--y))
+                    rotate(var(--r))
+                    scale(1);
+            }
+        }
+        @keyframes cardFloat {
+            0%, 100% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(var(--x), var(--y))
+                    rotate(var(--r));
+            }
+            50% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(var(--x), calc(var(--y) - 8px))
+                    rotate(calc(var(--r) + 1.5deg));
+            }
+        }
+
+        .rr-reflection {
+            max-width: 900px;
+            padding: 52px 0;
+            border-top: 2px solid #E5E5E5;
+        }
+        .rr-reflection h2 {
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0A0A0A;
+        }
+
+        .project-detail-hero {
+            padding: 72px max(var(--page-padding), calc((100vw - 1200px) / 2)) 68px;
+        }
+        .trace-hero-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, 460px);
+            gap: clamp(48px, 7vw, 96px);
+            align-items: end;
+        }
+        .trace-hero-copy {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .trace-hero-copy .back-link {
+            margin-bottom: 44px;
+        }
+        .project-detail-hero h1 {
+            font-size: clamp(42px, 5.5vw, 72px);
+            margin-bottom: 36px;
+        }
+        .project-detail-hero h1::after {
+            margin-top: 22px;
+        }
+        .project-detail-hero .project-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px 40px;
+            max-width: 680px;
+            margin-top: 0;
+        }
+        .trace-hero-image {
+            align-self: end;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .trace-hero-image img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            max-height: 320px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .trace-hero-image figcaption {
+            color: rgba(250, 250, 250, 0.56);
+            padding-top: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .rr-case { width: min(calc(100% - 48px), 1080px); }
+            .project-detail-hero { padding-left: var(--page-padding); padding-right: var(--page-padding); }
+            .trace-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .project-detail-hero .project-meta { max-width: none; }
+            .trace-hero-copy .back-link { margin-bottom: 32px; }
+            .trace-hero-image img { max-height: 360px; aspect-ratio: 16 / 9; }
+            .split-row,
+            .split-row.reverse,
+            .split-row.wide-media,
+            .rr-summary,
+            .rr-product-grid,
+            .rr-use-grid,
+            .rr-outcome-grid,
+            .trace-card-grid { grid-template-columns: 1fr; }
+            .rr-outcome-grid figure:first-child,
+            .trace-card-grid .wide { grid-column: span 1; }
+            .split-row { gap: 28px; padding: 48px 0; }
+            .rr-gallery-section,
+            .rr-reflection { padding: 48px 0; }
+            .rr-intro { padding: 48px 0 40px; }
+            .split-image img,
+            .split-image.tall img { height: 320px; }
+            .rr-product-grid img,
+            .rr-use-grid img,
+            .rr-outcome-grid img,
+            .trace-card-grid img { height: 300px; }
+            .trace-card-stage {
+                min-height: 760px;
+            }
+            .scatter-card { width: clamp(120px, 32vw, 180px); }
+            .scatter-card:nth-child(1) { --x: -95px; --y: -245px; }
+            .scatter-card:nth-child(2) { --x: 82px; --y: -105px; }
+            .scatter-card:nth-child(3) { --x: -78px; --y: 50px; }
+            .scatter-card:nth-child(4) { --x: 92px; --y: 195px; }
+            .scatter-card:nth-child(5) { --x: -32px; --y: 315px; }
+        }
+
+        @media (max-width: 560px) {
+            .rr-case { width: calc(100% - 48px); }
+            .project-detail-hero { padding-top: 48px; padding-bottom: 48px; }
+            .project-detail-hero h1 { font-size: 38px; margin-bottom: 28px; }
+            .project-detail-hero .project-meta { grid-template-columns: 1fr; gap: 18px; }
+            .trace-hero-image img { max-height: 260px; aspect-ratio: 4 / 3; }
+            .rr-intro .lead { font-size: 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scatter-card {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <section class="project-detail-hero">
+        <div class="trace-hero-inner">
+            <div class="trace-hero-copy">
+                <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+                <h1>Trace</h1>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Category</span>
+                        Historical Research &middot; Game Design
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Methods</span>
+                        Archival Research &middot; Game Systems &middot; Visual Design
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Context</span>
+                        CMU Architecture, Spring 2024
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Role</span>
+                        Sole Designer &amp; Researcher
+                    </div>
+                </div>
+            </div>
+            <figure class="trace-hero-image">
+                <img src="../assets/projects/trace/exhibition.jpg" alt="Hua holding the Trace game board next to the exhibition display">
+                <figcaption>Hua holding the Trace game board next to the exhibition display.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <main class="rr-case">
+        <section class="rr-intro">
+            <p class="lead">
+                Trace is a cooperative board game about lesbian feminist networks in Pittsburgh during the 1970s and 1980s. It began as archival research and became a playable system where history is encountered through movement, cards, shared decisions, and mutual support.
+            </p>
+            <p class="lead">
+                The project asks how a game can preserve historical material without turning it into a simple quiz or timeline. Instead of designing a winner and loser, I designed a structure where players have to find one another, respond to events, and move through the city together.
+            </p>
+            <div class="rr-summary" aria-label="Project summary">
+                <div class="rr-summary-item"><strong>Subject</strong>Lesbian feminist communities and activism in Pittsburgh</div>
+                <div class="rr-summary-item"><strong>Material</strong>Archival newspapers, maps, spot cards, event cards, and character cards</div>
+                <div class="rr-summary-item"><strong>Experience</strong>Cooperative play with no winner or loser</div>
+            </div>
+        </section>
+
+        <section class="split-row wide-media">
+            <div class="split-text">
+                <h2>From Archive to Play</h2>
+                <p>
+                    The research started with the question of how lesbian feminist communities made space for themselves in the city. Through literature review and archival research at the University of Pittsburgh, I found materials from <em>Allegheny Feminists</em>, community newsletters, local organizations, meeting places, protest records, and cultural events.
+                </p>
+                <p>
+                    These sources were not only historical references. They became the texture of the game: the language on the cards, the places on the board, and the situations players would have to respond to together.
+                </p>
+                <blockquote>"Our Reality is Eros, Our Desire is Revolution" — Susanna Downie Papers, 1972</blockquote>
+            </div>
+            <figure class="split-image">
+                <img src="../assets/projects/trace/board-overview.png" alt="Collage of Allegheny Feminists archival images, newspaper graphics, and notes">
+                <figcaption>Collage of Allegheny Feminists archival images, newspaper graphics, and notes.</figcaption>
+            </figure>
+        </section>
+
+        <section class="split-row reverse">
+            <figure class="split-image">
+                <img src="../assets/projects/trace/gameplay-cards.png" alt="Hands holding Trace game cards above the printed board">
+                <figcaption>Hands holding Trace game cards above the printed board.</figcaption>
+            </figure>
+            <div class="split-text">
+                <h2>Designing Cooperation</h2>
+                <p>
+                    The first version used a simple path-based board game structure. Players moved across the board, drew event cards, and tried to reunite instead of competing against one another. The mechanic was intentionally direct, because I wanted the first prototype to test the emotional structure of the game before making the system more complex.
+                </p>
+                <p>
+                    The important rule was that progress depended on connection. A player could not simply win alone. The game had to make cooperation feel like part of the historical argument.
+                </p>
+            </div>
+        </section>
+
+        <section class="rr-gallery-section">
+            <h2 class="rr-section-title">System Iteration</h2>
+            <p>
+                In the second iteration, the map became more specific to Pittsburgh. I built the board around historically significant spots and refined the cards into several types: places, events, resources, and people. Each card carried a piece of research, but also had to do something inside the game.
+            </p>
+            <div class="trace-card-grid">
+                <figure class="wide">
+                    <img src="../assets/projects/trace/cards-spread.png" alt="Trace event cards spread across the game board">
+                    <figcaption>Trace event cards spread across the game board.</figcaption>
+                </figure>
+                <figure>
+                    <img src="../assets/projects/trace/rulebook.png" alt="Trace rulebook page explaining the game setup and rules">
+                    <figcaption>Trace rulebook page explaining the game setup and rules.</figcaption>
+                </figure>
+                <figure>
+                    <img src="../assets/projects/trace/cards-detail.png" alt="Printed Trace spot cards arranged across the game board">
+                    <figcaption>Printed Trace spot cards arranged across the game board.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="rr-gallery-section">
+            <h2 class="rr-section-title">Final Cards</h2>
+            <p>
+                The final card deck carries the game through specific historical situations: policies, places, organizers, art, and crime. The cards are designed to feel like fragments from an archive scattered back into play.
+            </p>
+            <figure class="trace-card-stage">
+                <div class="scatter-card">
+                    <img src="../assets/projects/trace/card-policies.png" alt="Trace card titled Policies">
+                </div>
+                <div class="scatter-card">
+                    <img src="../assets/projects/trace/card-place.png" alt="Trace card titled Place">
+                </div>
+                <div class="scatter-card">
+                    <img src="../assets/projects/trace/card-organizer.png" alt="Trace card titled Organizer">
+                </div>
+                <div class="scatter-card">
+                    <img src="../assets/projects/trace/card-art.png" alt="Trace card titled Art">
+                </div>
+                <div class="scatter-card">
+                    <img src="../assets/projects/trace/card-crime.png" alt="Trace card titled Crime">
+                </div>
+                <figcaption>Animated display of final Trace cards scattered across a blank field.</figcaption>
+            </figure>
+        </section>
+
+        <section class="rr-gallery-section">
+            <h2 class="rr-section-title">Final Board</h2>
+            <p>
+                The final board maps Pittsburgh through a hexagonal grid and a network of historical spots. It is not a neutral map. It is a way to show how social infrastructure, bookstores, newspapers, community groups, theaters, and protest sites formed a spatial network.
+            </p>
+            <div class="rr-product-grid">
+                <figure>
+                    <img src="../assets/projects/trace/board-photo-1.jpg" alt="Close view of printed Trace spot cards arranged around the board">
+                    <figcaption>Close view of printed Trace spot cards arranged around the board.</figcaption>
+                </figure>
+                <figure>
+                    <img src="../assets/projects/trace/board-photo-2.jpg" alt="Trace board and cards laid out on a table">
+                    <figcaption>Trace board and cards laid out on a table.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="rr-reflection">
+            <h2>Reflection</h2>
+            <p>
+                Trace became a way to hold archival material in a more physical and social form. The project was not only about explaining a history, but about asking players to move through a version of that history together.
+            </p>
+            <p>
+                I learned that historical preservation can happen through interaction, not only documentation. A game can make research feel active: players read, choose, negotiate, and notice relationships between people, places, and events that might otherwise stay flattened on a page.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026. Designed with intention.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
+</body>
+</html>

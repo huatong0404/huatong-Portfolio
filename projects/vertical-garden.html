@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollen Farm — Hua Tong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* === Vertical Garden — page-specific layout === */
+
+        .split-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .split-row + .split-row { border-top: none; }
+        .split-row.reverse { direction: rtl; }
+        .split-row.reverse > * { direction: ltr; }
+
+        .split-text {
+            padding: 48px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-text h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+        }
+        .split-text h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #40C1AC;
+            margin-top: 12px;
+        }
+        .split-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #525252;
+            max-width: 440px;
+        }
+
+        .split-image {
+            overflow: hidden;
+            background: #F5F5F5;
+        }
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .split-image.contain img {
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        .image-band {
+            width: 100%;
+            border-top: 2px solid #E5E5E5;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .image-band img {
+            width: 100%;
+            max-height: 560px;
+            object-fit: cover;
+            display: block;
+        }
+        .image-band.contain img {
+            object-fit: contain;
+            background: #F5F5F5;
+        }
+
+        .card-strip {
+            display: flex;
+            gap: 20px;
+            padding: 48px 64px;
+            overflow-x: auto;
+            border-bottom: 2px solid #E5E5E5;
+            background: #0A0A0A;
+        }
+        .card-strip img {
+            height: 320px;
+            width: auto;
+            flex-shrink: 0;
+            border: 2px solid #333;
+        }
+
+        .photo-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-duo img {
+            width: 100%;
+            height: 360px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+        }
+        .photo-duo img:first-child {
+            border-right: 1px solid #E5E5E5;
+        }
+        .photo-duo img:last-child {
+            border-left: 1px solid #E5E5E5;
+        }
+
+        .photo-trio {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 2px solid #E5E5E5;
+        }
+        .photo-trio img {
+            width: 100%;
+            height: 320px;
+            object-fit: contain;
+            display: block;
+            background: #F5F5F5;
+            padding: 16px;
+        }
+        .photo-trio img:not(:last-child) {
+            border-right: 1px solid #E5E5E5;
+        }
+
+        .vg-intro {
+            max-width: 720px;
+            padding: 64px 64px 48px;
+        }
+        .vg-intro .lead {
+            font-size: 20px;
+            line-height: 1.65;
+            margin-bottom: 32px;
+            color: #0A0A0A;
+        }
+        .vg-intro .team-list {
+            font-size: 13px;
+            color: #A3A3A3;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .vg-intro .team-list strong {
+            color: #40C1AC;
+            font-weight: 600;
+        }
+
+        .vg-reflection {
+            max-width: 720px;
+            padding: 64px;
+        }
+        .vg-reflection h2 {
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0A0A0A;
+        }
+        .vg-reflection p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .split-row { grid-template-columns: 1fr; }
+            .split-row.reverse { direction: ltr; }
+            .split-text { padding: 32px 24px; }
+            .card-strip { padding: 32px 24px; }
+            .card-strip img { height: 240px; }
+            .photo-duo { grid-template-columns: 1fr; }
+            .photo-duo img:first-child { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .photo-duo img:last-child { border-left: none; }
+            .photo-trio { grid-template-columns: 1fr; }
+            .photo-trio img:not(:last-child) { border-right: none; border-bottom: 1px solid #E5E5E5; }
+            .vg-intro { padding: 40px 24px 32px; }
+            .vg-reflection { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="project-detail-hero">
+        <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+        <h1>Pollen Farm</h1>
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                Product Design &middot; Digital Fabrication
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                Designer &amp; Fabricator
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Context</span>
+                CMU Fundamental of Computer Design, Spring 2024
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Team</span>
+                Lisa, Catalina, Kai, <strong style="color:#40C1AC">Hua</strong>, Bleona
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover — render in context -->
+    <div class="image-band">
+        <img src="../assets/projects/vertical-garden/render-context-1.png" alt="Vertical Garden System — architectural rendering on campus lawn with conservatory">
+    </div>
+
+    <!-- Intro -->
+    <div class="vg-intro">
+        <p class="lead">
+            A modular, full-scale vertical garden system built from polyhedral geometry. Starting from paper icosahedra, the project evolves through a systematic matrix of geometric forms — triangular, quadrilateral, pentagonal, and hexagonal bases — to arrive at a pentagonal bipyramid structure assembled from laser-cut plywood panels joined by custom-designed tab-and-slot connectors.
+        </p>
+        <p class="team-list">
+            Team: Lisa &middot; Catalina &middot; Kai &middot; <strong>Hua</strong> &middot; Bleona
+        </p>
+    </div>
+
+    <!-- Section 1: Geometric Research — text left, matrix right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Geometric Research</h2>
+            <p>
+                The design process began with a systematic exploration of polyhedral forms. A 4&times;4 matrix maps base polygon types (triangular through hexagonal) against construction methods — from flat bases to pyramids and bipyramids. This matrix became the generative ruleset, allowing each form to be evaluated for structural integrity, surface area for planting, and visual complexity.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/vertical-garden/matrix-forms.png" alt="4x4 matrix of geometric forms — triangular to hexagonal bases">
+        </div>
+    </div>
+
+    <!-- Paper prototypes — early geometric studies -->
+    <div class="card-strip">
+        <img src="../assets/projects/vertical-garden/paper-net.png" alt="Icosahedron net — unfolded paper pattern">
+        <img src="../assets/projects/vertical-garden/paper-cluster.png" alt="Paper polyhedral cluster — three modules aggregated">
+        <img src="../assets/projects/vertical-garden/paper-dodeca-flat.png" alt="Dodecahedral nets on table">
+        <img src="../assets/projects/vertical-garden/paper-dodeca-hand.png" alt="Hand-assembled paper dodecahedron">
+    </div>
+
+    <!-- Section 2: Joint System — joints diagram left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Joint System</h2>
+            <p>
+                Five custom joint types (A, AA, B, BB, AB) were designed to connect panels at precise dihedral angles. Joint A connects five triangular pieces into a pentagon. Joint B connects the halves of the bipyramid. The AA and BB variants extend connections between modules, while AB combines both functions at seam intersections. Each joint was computationally derived from the geometry.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/vertical-garden/joints-diagram.png" alt="Joint system diagram — five types with plan and axonometric views">
+        </div>
+    </div>
+
+    <!-- Prototype details — connectors and assembly -->
+    <div class="photo-trio">
+        <img src="../assets/projects/vertical-garden/proto-connectors.png" alt="Six laser-cut connector pieces — custom angular joints">
+        <img src="../assets/projects/vertical-garden/proto-joint-detail.png" alt="Tab-and-slot joint detail — pentagon and hexagon frames">
+        <img src="../assets/projects/vertical-garden/proto-assembled.png" alt="Assembled prototype — multiple panels interlocked">
+    </div>
+
+    <!-- Section 3: Prototyping — text left, model right -->
+    <div class="split-row">
+        <div class="split-text">
+            <h2>Prototyping</h2>
+            <p>
+                Scale models were laser-cut from MDF to test the tab-and-slot connection system. Starting with individual panel joints, the prototypes progressed to multi-module assemblies — validating that flat panels could achieve complex three-dimensional volumes through the custom connector system alone, without adhesive or fasteners.
+            </p>
+        </div>
+        <div class="split-image contain">
+            <img src="../assets/projects/vertical-garden/proto-pentagon.png" alt="Laser-cut MDF prototype — pentagonal panel assembly">
+        </div>
+    </div>
+
+    <!-- Small polyhedra study -->
+    <div class="photo-duo">
+        <img src="../assets/projects/vertical-garden/proto-polyhedra.png" alt="Study models — pentagonal dipyramid and diamond forms">
+        <img src="../assets/projects/vertical-garden/actual-model.png" alt="Full-scale plywood structure — close-up of panel connections">
+    </div>
+
+    <!-- Section 4: Final Installation — image left, text right -->
+    <div class="split-row reverse">
+        <div class="split-text">
+            <h2>Final Installation</h2>
+            <p>
+                The full-scale structure was fabricated from plywood panels on a CNC router and assembled on the Carnegie Mellon campus. Standing at human height, the pentagonal bipyramid form creates interstitial pockets for planting — transforming a geometric exercise into a living vertical garden. The structure demonstrates how computational geometry and digital fabrication can produce complex organic forms from flat sheet material.
+            </p>
+        </div>
+        <div class="split-image">
+            <img src="../assets/projects/vertical-garden/campus-install.jpg" alt="Full-scale plywood vertical garden installed on CMU campus">
+        </div>
+    </div>
+
+    <!-- Second render — alternate context view -->
+    <div class="image-band">
+        <img src="../assets/projects/vertical-garden/render-context-2.png" alt="Vertical Garden System — alternate rendering showing multiple modules on lawn">
+    </div>
+
+    <!-- Context photo -->
+    <div class="image-band">
+        <img src="../assets/projects/vertical-garden/context-photo.png" alt="People relaxing near the vertical garden installation">
+    </div>
+
+    <!-- Reflection -->
+    <div class="vg-reflection">
+        <h2>Reflection</h2>
+        <p>
+            This project bridged the gap between geometric abstraction and physical production. The most valuable lesson was that a rigorous generative system — the matrix of polyhedral forms — doesn't constrain creativity but channels it. Every design decision was traceable back to the ruleset, yet the final structure feels organic and alive.
+        </p>
+        <p>
+            Working at full scale revealed truths that models couldn't: how weight distributes through tab joints, how plywood panels flex under load, and how interstitial spaces between facets naturally collect soil and water — turning structural gaps into planting opportunities.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026. Designed with intention.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
+</body>
+</html>
