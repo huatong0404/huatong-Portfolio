@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Rick — Hua Tong</title>
+    <title>Rick's Radio — Hua Tong</title>
     <link rel="icon" type="image/png" href="../assets/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=20260709">
     <style>
-        /* === Radio Rick — page-specific layout === */
+        /* === Rick's Radio — page-specific layout === */
 
         body { background: #F3F1EA; }
 
@@ -264,11 +264,11 @@
             width: 100%;
             height: 280px;
             object-fit: contain;
-            object-position: left top;
+            object-position: center center;
             display: block;
         }
         .rr-outcome-grid figure:first-child { grid-column: span 2; }
-        .rr-outcome-grid figure:first-child img { height: auto; max-height: 560px; object-fit: contain; object-position: left top; }
+        .rr-outcome-grid figure:first-child img { height: auto; max-height: none; object-fit: cover; object-position: center; }
 
         .rr-narrative,
         .rr-reflection,
@@ -621,7 +621,7 @@
         <div class="rr-hero-inner">
             <div class="rr-hero-copy">
                 <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
-                <h1>Radio Rick</h1>
+                <h1>Rick's Radio</h1>
                 <div class="project-meta">
                     <div class="meta-item">
                         <span class="meta-label">Category</span>
@@ -642,13 +642,13 @@
                 </div>
             </div>
             <figure class="rr-hero-image">
-                <img src="../assets/projects/ricks-radio/product-front.png" alt="Radio Rick front view with LCD screen, volume dial, station dial, Bluetooth button, and power switch on a brick-sized plywood enclosure">
-                <figcaption>Front view of the finished Radio Rick with two dials, an LCD screen, Bluetooth button, and power switch.</figcaption>
+                <img src="../assets/projects/ricks-radio/product-front.png" alt="Rick's Radio front view with LCD screen, volume dial, station dial, Bluetooth button, and power switch on a brick-sized plywood enclosure">
+                <figcaption>Front view of the finished Rick's Radio with two dials, an LCD screen, Bluetooth button, and power switch.</figcaption>
             </figure>
         </div>
     </section>
 
-    <aside class="page-jump-nav" aria-label="Jump to Radio Rick section">
+    <aside class="page-jump-nav" aria-label="Jump to Rick's Radio section">
         <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
         <ul>
             <li><a href="#overview">Overview</a></li>
@@ -665,28 +665,22 @@
     <main class="rr-case">
         <section class="rr-intro" id="overview">
             <p class="lead">
-                We designed Radio Rick for Rick, a mason at Carnegie Mellon who has worked with brick for almost five decades. At the beginning, we thought we were looking for a small assistive device to improve his work process. After talking with him and observing his work environment, we realized the better design opportunity was not efficiency. Rick already knows his craft deeply. What we could support was the long, often solitary time around that craft.
+                We designed the radio for Rick, a mason at Carnegie Mellon who has worked with brick for over five decades. At the beginning, we thought we would end up with a small assistive device to improve his work efficiency. After talking with him and observing his work environment, we realized the better design opportunity was not efficiency, but the long, solitary time Rick has to spend each day doing his work.
             </p>
             <p class="lead">
-                The final object is a brick-shaped radio that streams stations from cities connected to his children, including Paris and Las Vegas. It uses a Raspberry Pi Zero, an LCD screen, a speaker, Bluetooth output, and physical dials inside a laser-cut plywood enclosure sized after a standard brick.
+                The final object is a brick-shaped radio that streams stations from cities connected to his children, including Paris and Las Vegas. It uses a Raspberry Pi Zero, an LCD screen, a speaker, Bluetooth output, and physical dials inside a laser-cut plywood enclosure that is the same size as a real brick.
             </p>
-            <div class="rr-summary" aria-label="Project summary">
-                <div class="rr-summary-item"><strong>Client</strong>Rick, a CMU Facilities Management mason</div>
-                <div class="rr-summary-item"><strong>Design question</strong>How can a small device make his work day feel better without interrupting his work?</div>
-                <div class="rr-summary-item"><strong>Build</strong>Laser-cut enclosure, Pi Zero, LCD, speaker, Bluetooth, two dials, AA battery pack</div>
-            </div>
         </section>
 
         <section class="split-row" id="research">
             <div class="split-text">
                 <h2>From Workflow to Wellbeing</h2>
                 <p>
-                    We first approached the project through contextual inquiry. We followed Rick outside for about an hour, stood with him in the cold wind, watched him lay brick, and asked about his daily routine, his most-used tools, the moments that slowed him down, and the parts of work he enjoyed. While he worked, he also started talking about his family.
+                    It was a chilly morning when we conducted our contextual inquiry. We followed Rick outside for about an hour, stood with him in the cold wind, watched him lay brick, and asked about his daily routine, his most-used tools, the moments that slowed him down, and the parts of work he enjoyed.
                 </p>
                 <p>
-                    He showed us his utility cart and tool bucket. The bucket was messy, and he mentioned that he had scraped his hand before, but he did not seem very concerned about it. It did not slow him down. He could still move through the work fluently, checking whether a brick was level with a spirit level almost immediately and making small adjustments without much hesitation.
+                    As such a skilled mason, his work routine is embodied in his body. He measured the water and powder with hand estimation. When the team was stunned by his craftsmanship, he started talking about his children. He talked about his daughters and sons, some of them still in local college, but some even left the country. He was such a proud father. However, he worked for a few hours alone in the dark, long Pittsburgh winter dawn, to an extent that we genuinely worried about his wellbeing, and felt like this was where we could do something to improve his experience.
                 </p>
-                <blockquote>Rick was already so fluent in his work that there was little for us to improve in the masonry process itself.</blockquote>
             </div>
             <figure class="split-image">
                 <img src="../assets/projects/ricks-radio/rick-meeting.jpg" alt="Hua showing sketches to Rick while the team discusses the radio design at a table">
@@ -697,19 +691,19 @@
         <section class="rr-text-block">
             <h2 class="rr-section-title">Research Insight</h2>
             <p>
-                The unexpected part of the interview was that Rick did not urgently need us to fix his work. He was skilled, comfortable, and proud of what he did. But he also works outdoors, sometimes in difficult weather, and much of that time is spent alone. He is warm and talkative, and he often mentioned his children with a lot of pride.
+                As we switched our direction from efficiency improvement to improving his working experience, especially mentally, we wanted to hear what he already did during his work.
             </p>
             <p>
-                Music was already part of his day. He told us it keeps him company while he works. We started to see music as something that could add a little warmth to his workday. That moved the project away from tool optimization and toward a more personal question: could a device help him feel closer to the people and places he cares about?
+                Music was already part of his day. He told us it keeps him company while he works. We started to see music as something that could add a little warmth to his workday. The realization moved the project towards a more personal question: could a device help him feel closer to the people and places he cares about?
             </p>
             <div class="rr-callout">
                 <div>
                     <h3>What we expected</h3>
-                    <p>A practical problem in masonry that could be improved by an electronic device.</p>
+                    <p>How do we improve Rick's working efficiency?</p>
                 </div>
                 <div>
                     <h3>What we found</h3>
-                    <p>A highly skilled worker whose routine did not need to be disrupted, but whose work day could use more companionship.</p>
+                    <p>How do we improve Rick's working experience?</p>
                 </div>
             </div>
         </section>
@@ -717,14 +711,14 @@
         <section class="rr-text-block" id="concept">
             <h2 class="rr-section-title">Concept</h2>
             <p>
-                We decided to build a radio that could stream stations from the cities where Rick's children live or once lived. Instead of a random playlist, the radio would let him tune into a place. Paris could remind him of his daughter. Las Vegas could remind him of his son. We also added several ad-free Pittsburgh local stations, so he could switch back to music that felt familiar to him.
+                We decided to build a radio that could stream stations from the cities where Rick's children live or once lived. The idea grew out of what Rick chose to share with us: his children's cities, and his habit of listening to music while he worked. Instead of a random playlist, the radio would let him tune into a place. Paris could remind him of his daughter. Las Vegas could remind him of his son. We also added several ad-free Pittsburgh local stations, so he could switch back to music that felt familiar to him.
             </p>
             <p>
                 The brick shape came from Rick's own world. We kept the dimensions close to a standard brick, used laser-cut 1/8 inch plywood for the enclosure, and kept the plywood unadorned because Rick liked the plain wood look. The interface stayed physical: one dial for volume, one dial for station selection, a Bluetooth button, a power switch, and an LCD that shows both the station and output mode.
             </p>
         </section>
 
-        <section class="card-strip" aria-label="Brainstorm sketches for Radio Rick">
+        <section class="card-strip" aria-label="Brainstorm sketches for Rick's Radio">
             <figure>
                 <img src="../assets/projects/ricks-radio/sketch-whiteboard-1.jpg" alt="Whiteboard brainstorm sketch of the radio interface with speaker, knobs, toggle, and labels">
                 <figcaption>Whiteboard sketch showing an early front interface layout with knobs, speaker, and switch labels.</figcaption>
@@ -738,7 +732,7 @@
                 <figcaption>Whiteboard sketch exploring LCD placement.</figcaption>
             </figure>
             <figure>
-                <img src="../assets/projects/ricks-radio/sketch-whiteboard-3.jpg" alt="Whiteboard brainstorm sketch with alternate component placement for Radio Rick">
+                <img src="../assets/projects/ricks-radio/sketch-whiteboard-3.jpg" alt="Whiteboard brainstorm sketch with alternate component placement for Rick's Radio">
                 <figcaption>Whiteboard sketch exploring the dial design.</figcaption>
             </figure>
         </section>
@@ -750,11 +744,11 @@
             </p>
             <div class="rr-use-grid">
                 <figure>
-                    <img src="../assets/projects/ricks-radio/prototype-front.jpg" alt="First plywood prototype of Radio Rick with two dials, LCD screen, blue Bluetooth button, and toggle switch">
+                    <img src="../assets/projects/ricks-radio/prototype-front.jpg" alt="First plywood prototype of Rick's Radio with two dials, LCD screen, blue Bluetooth button, and toggle switch">
                     <figcaption>First plywood appearance prototype with two dials, an LCD screen, blue button, and toggle switch.</figcaption>
                 </figure>
                 <figure>
-                    <img src="../assets/projects/ricks-radio/prototype-use-2.jpg" alt="Hand pressing the blue Bluetooth button on the Radio Rick prototype">
+                    <img src="../assets/projects/ricks-radio/prototype-use-2.jpg" alt="Hand pressing the blue Bluetooth button on the Rick's Radio prototype">
                     <figcaption>Hand pressing the blue button on the plywood prototype.</figcaption>
                 </figure>
             </div>
@@ -770,29 +764,29 @@
             <h2 class="rr-section-title">Final Product</h2>
             <div class="rr-product-grid">
                 <figure>
-                    <img class="crop-front" src="../assets/projects/ricks-radio/front-closeup.png" alt="Close-up of Radio Rick front panel showing LCD text, volume dial pattern, station dial, Bluetooth button, and power switch">
+                    <img class="crop-front" src="../assets/projects/ricks-radio/front-closeup.png" alt="Close-up of Rick's Radio front panel showing LCD text, volume dial pattern, station dial, Bluetooth button, and power switch">
                     <figcaption>Close-up of the front panel with the LCD screen, two dials, Bluetooth button, and power switch.</figcaption>
                 </figure>
                 <figure>
-                    <img class="crop-perspective" src="../assets/projects/ricks-radio/product-perspective.png" alt="Perspective view of Radio Rick showing its brick-like plywood enclosure and finger-jointed edges">
+                    <img class="crop-perspective" src="../assets/projects/ricks-radio/product-perspective.png" alt="Perspective view of Rick's Radio showing its brick-like plywood enclosure and finger-jointed edges">
                     <figcaption>Perspective view of the finished plywood enclosure with finger-jointed edges.</figcaption>
                 </figure>
                 <figure>
-                    <img class="crop-back" src="../assets/projects/ricks-radio/product-back.png" alt="Back view of Radio Rick showing the battery compartment on the plywood enclosure">
+                    <img class="crop-back" src="../assets/projects/ricks-radio/product-back.png" alt="Back view of Rick's Radio showing the battery compartment on the plywood enclosure">
                     <figcaption>Back view of the radio with the battery compartment visible.</figcaption>
                 </figure>
                 <figure>
-                    <img class="crop-inside" src="../assets/projects/ricks-radio/inside structure.jpg" alt="Inside view of Radio Rick showing the speaker, Raspberry Pi, LCD wiring, dials, and battery wiring inside the plywood enclosure">
+                    <img class="crop-inside" src="../assets/projects/ricks-radio/inside structure.jpg" alt="Inside view of Rick's Radio showing the speaker, Raspberry Pi, LCD wiring, dials, and battery wiring inside the plywood enclosure">
                     <figcaption>Inside view of the final radio enclosure with the speaker, Raspberry Pi, wiring, dials, and LCD screen.</figcaption>
                 </figure>
             </div>
             <div class="rr-use-grid">
                 <figure>
-                    <img src="../assets/projects/ricks-radio/product-use.png" alt="Hand turning the volume knob on Radio Rick while the radio rests on a table">
+                    <img src="../assets/projects/ricks-radio/product-use.png" alt="Hand turning the volume knob on Rick's Radio while the radio rests on a table">
                     <figcaption>Hand turning the volume dial on the finished radio.</figcaption>
                 </figure>
                 <figure>
-                    <video controls preload="metadata" aria-label="Demo video showing Radio Rick being used to stream music and change controls">
+                    <video controls preload="metadata" aria-label="Demo video showing Rick's Radio being used to stream music and change controls">
                         <source src="../assets/projects/ricks-radio/C0002-web.m4v" type="video/mp4">
                     </video>
                     <figcaption>Video demo of the finished radio playing a streamed station.</figcaption>
@@ -802,18 +796,19 @@
 
         <section class="rr-narrative">
             <span class="overline">Narrative Sketch</span>
+            <p>The following is an imagined use scenario based on our research.</p>
             <p>
                 <em>Rick gets to work early in the morning and starts his day with the radio on his cart.</em> Instead of turning to a random playlist, he turns the station dial to Paris. The LCD confirms the station, and the sound follows him as he drives to the work site, reminding him of his daughter who once worked there.
             </p>
             <p>
-                Later, when he starts working outside, he presses the Bluetooth button and switches the sound to his earbuds. He turns the volume down so he can still hear his surroundings, then changes the station to Las Vegas, his son's city. The radio stays simple: two dials, one button, one switch, and a small screen that tells him what is happening.
+                Later, when he starts working outside, he presses the Bluetooth button and switches the sound to his earbuds. He turns the volume down so he can still hear his surroundings, then changes the station to Las Vegas, his son's city. The radio stays simple: two dials, one button, one switch, and a small screen showing the city and the station.
             </p>
         </section>
 
         <section class="rr-gallery-section" id="technical">
             <h2 class="rr-section-title">Technical Pivot</h2>
             <p>
-                We originally planned to use a Raspberry Pi Pico 2 W because it was small and seemed convenient. The problem was that the Pico could not handle the kind of Bluetooth audio and live web streaming we needed. That was a major setback because a lot of our schedule had been built around it.
+                We originally planned to use a Raspberry Pi Pico 2 W because it was small and seemed convenient. The problem was that the Pico could not handle the kind of Bluetooth audio and live web streaming we needed, and we didn't have the analog-to-digital converter at that time. That was a major bottleneck because a lot of our schedule had been built around it.
             </p>
             <div class="rr-process-grid">
                 <figure>
@@ -826,17 +821,17 @@
                 </figure>
             </div>
             <p style="margin-top:24px;">
-                We moved to a Raspberry Pi Zero with an Adafruit Speaker Bonnet. This solved the streaming problem, but it also changed the whole build: less space inside the box, different power needs, and software that had to monitor knobs, button presses, Bluetooth state, and radio stations at the same time.
+                We moved to a Raspberry Pi Zero with an Adafruit Speaker Bonnet. This solved the streaming problem, but it also changed the whole build: less space inside the box, different power needs, and the code architecture that manages knob input, button presses, Bluetooth state, and station switching at the same time.
             </p>
             <div class="rr-schematic-grid">
                 <figure class="zoomable-figure">
-                    <img src="../assets/projects/ricks-radio/schematic1.png" alt="Block diagram showing user inputs and audio output flow for Radio Rick">
-                    <button class="zoom-image-button" type="button" aria-label="Enlarge Radio Rick block diagram" data-zoom-src="../assets/projects/ricks-radio/schematic1.png" data-zoom-alt="Block diagram showing user inputs and audio output flow for Radio Rick" data-zoom-caption="Block diagram showing the relationship between user inputs, radio station selection, and audio output."></button>
+                    <img src="../assets/projects/ricks-radio/schematic1.png" alt="Block diagram showing user inputs and audio output flow for Rick's Radio">
+                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick's Radio block diagram" data-zoom-src="../assets/projects/ricks-radio/schematic1.png" data-zoom-alt="Block diagram showing user inputs and audio output flow for Rick's Radio" data-zoom-caption="Block diagram showing the relationship between user inputs, radio station selection, and audio output."></button>
                     <figcaption>Block diagram showing the relationship between user inputs, radio station selection, and audio output.</figcaption>
                 </figure>
                 <figure class="zoomable-figure">
-                    <img src="../assets/projects/ricks-radio/schematic2.png" alt="Circuit schematic for Radio Rick electronics and wiring">
-                    <button class="zoom-image-button" type="button" aria-label="Enlarge Radio Rick circuit schematic" data-zoom-src="../assets/projects/ricks-radio/schematic2.png" data-zoom-alt="Circuit schematic for Radio Rick electronics and wiring" data-zoom-caption="Circuit schematic showing the final wiring layout."></button>
+                    <img src="../assets/projects/ricks-radio/schematic2.png" alt="Circuit schematic for Rick's Radio electronics and wiring">
+                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick's Radio circuit schematic" data-zoom-src="../assets/projects/ricks-radio/schematic2.png" data-zoom-alt="Circuit schematic for Rick's Radio electronics and wiring" data-zoom-caption="Circuit schematic showing the final wiring layout."></button>
                     <figcaption>Circuit schematic showing the final wiring layout.</figcaption>
                 </figure>
             </div>
@@ -844,16 +839,16 @@
 
         <section class="split-row reverse">
             <figure class="split-image">
-                <img src="../assets/projects/ricks-radio/internals.jpg" alt="Open Radio Rick enclosure on a workbench with loose wiring, speaker, LCD, and components during final fitting">
+                <img src="../assets/projects/ricks-radio/internals.jpg" alt="Open Rick's Radio enclosure on a workbench with loose wiring, speaker, LCD, and components during final fitting">
                 <figcaption>Open radio enclosure during final fitting, with the speaker, LCD screen, and wiring exposed.</figcaption>
             </figure>
             <div class="split-text">
-                <h2>Last-Day Accident</h2>
+                <h2>Last day accident</h2>
                 <p>
-                    Near the deadline, the hardware became the bottleneck again. We were still figuring out battery power, speaker clearance, and how to close the enclosure without forcing the parts against each other.
+                    Near the deadline, something we didn't expect happened again. When we were still figuring out battery power, speaker clearance, and how to close the enclosure without forcing the parts against each other, we found that it would not close.
                 </p>
                 <p>
-                    The accident was very literal: the original speaker and the LCD screen physically did not fit in the same closed box. We had hoped to keep a stronger stereo setup, but the final space and wiring made that unrealistic. We switched to a smaller, simpler speaker so the radio could close, power on, and work reliably for the presentation.
+                    The accident was very literal: the original speaker and the LCD screen physically did not fit in the same closed box. We had hoped to keep a stronger stereo setup, but due to the accident, we switched to a smaller, simpler speaker so the radio could close, power on, and work reliably for the presentation.
                 </p>
             </div>
         </section>
@@ -861,12 +856,15 @@
         <section class="rr-gallery-section" id="outcome">
             <h2 class="rr-section-title">Outcome</h2>
             <p>
-                Rick was happy with the final radio. He liked that it was the exact size of a brick, that it kept the natural wood look, and that it turned his family stories into something he could carry through a work day. For us, that was the point of the project: not making masonry faster, but making a familiar work routine feel a little more personal.
+                Rick was happy with the final radio. He liked that it was the exact size of a brick, that it kept the natural wood look, and that it turned his family stories into something he could carry through a work day.
+            </p>
+            <p>
+                What surprised us was what moved him most. We had designed the emotional core around cities and family connections, but Rick, a craftsman himself, was most visibly moved by the fact that someone had built something for him by hand, whether it is the joinery of the enclosure, the hand-soldered circuits, or the care in the physical details.
             </p>
             <div class="rr-outcome-grid">
                 <figure>
-                    <img src="../assets/projects/ricks-radio/team photo with client.jpg" alt="Rick smiling and holding Radio Rick with the project team standing around him in the studio">
-                    <figcaption>Rick holding the finished Radio Rick with the team standing behind him.</figcaption>
+                    <img src="../assets/projects/ricks-radio/team photo with client.jpg" alt="Rick smiling and holding Rick's Radio with the project team standing around him in the studio">
+                    <figcaption>Rick holding the finished Rick's Radio with the team standing behind him.</figcaption>
                 </figure>
             </div>
         </section>
@@ -878,6 +876,9 @@
             </p>
             <p>
                 The design opportunity came from listening to the parts of his day around the work: the music, the long hours alone, the pride in his children, and the places attached to them. On the technical side, we also learned to test hardware limits earlier. The Pico decision cost us time, but the pivot to the Pi Zero made the final radio possible.
+            </p>
+            <p>
+                Looking back, the most impressive aspect of this journey is how different it feels to design for a specific user. In most of our coursework, users are abstracted into personas and journey maps. This time however, the user had a specific face, a specific set of stories, and a specific family. That changed the texture of every decision.
             </p>
         </section>
 
@@ -907,7 +908,7 @@
     <nav class="project-pagination" aria-label="Project navigation">
         <a class="project-prev" href="sea-monster.html">
             <span class="pagination-label">&larr; Previous project</span>
-            <span class="pagination-title">Sea Monster</span>
+            <span class="pagination-title">The Sea Monster</span>
         </a>
         <a class="back-to-top" href="#top">
             <span class="pagination-label">Back to</span>
@@ -923,7 +924,7 @@
     <footer>
         <div class="footer-left">
             <span class="footer-logo">HUA TONG</span>
-            <p>&copy; 2026. Designed with intention.</p>
+            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
         </div>
         <div class="footer-right">
             <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>

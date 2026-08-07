@@ -14,8 +14,8 @@
     <nav>
         <a href="../index.html" class="logo">HUA TONG</a>
         <ul class="nav-links">
-            <li><a href="../index.html#projects">Projects</a></li>
-            <li><a href="../playground.html" class="active">Playground</a></li>
+            <li><a href="../index.html#projects" class="active">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
             <li><a href="../about.html">About Me</a></li>
         </ul>
         <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
@@ -24,7 +24,7 @@
     </nav>
 
     <section class="project-detail-hero">
-        <a href="../playground.html" class="back-link" style="color: rgba(255,255,255,0.8);">← Playground</a>
+        <a href="../index.html#projects" class="back-link" style="color: rgba(255,255,255,0.8);">← Projects</a>
         <h1>Echus Nightlight</h1>
         <div class="project-meta">
             <div class="meta-item">
@@ -52,27 +52,27 @@
         <!-- Front view -->
         <div style="margin-bottom: 6px;">
             <div style="aspect-ratio: 4/3; overflow: hidden;">
-                <img src="../assets/playground/nightlight/IMG_2345.jpg" alt="Front view of the nightlight in pre-sleep mode, showing G-Night with soft green glow" style="width:100%; height:100%; object-fit:cover;">
+                <img src="../assets/projects/nightlight/IMG_2345.jpg" alt="Front view of the nightlight in pre-sleep mode, showing G-Night with soft green glow" style="width:100%; height:100%; object-fit:cover;">
             </div>
         </div>
 
         <!-- Perspective + Acrylic close-up from side -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
             <div style="aspect-ratio: 4/3; overflow: hidden;">
-                <img src="../assets/playground/nightlight/IMG_2350.jpg" alt="Perspective view of the nightlight with soft green glow, showing potentiometers and engraved acrylic" style="width:100%; height:100%; object-fit:cover;">
+                <img src="../assets/projects/nightlight/IMG_2350.jpg" alt="Perspective view of the nightlight with soft green glow, showing potentiometers and engraved acrylic" style="width:100%; height:100%; object-fit:cover;">
             </div>
             <div style="aspect-ratio: 4/3; overflow: hidden;">
-                <img src="../assets/playground/nightlight/IMG_2355.jpg" alt="The inner loop of the nightlight showing Arduino, breadboards, servo motor, and LED heatsink" style="width:100%; height:100%; object-fit:cover;">
+                <img src="../assets/projects/nightlight/IMG_2355.jpg" alt="The inner loop of the nightlight showing Arduino, breadboards, servo motor, and LED heatsink" style="width:100%; height:100%; object-fit:cover;">
             </div>
         </div>
 
         <!-- Acrylic character close-ups -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
             <div style="aspect-ratio: 4/3; overflow: hidden;">
-                <img src="../assets/playground/nightlight/IMG_2053.jpg" alt="Close-up of the character engraved on acrylic, G-Night caption lit in soft green glow" style="width:100%; height:100%; object-fit:cover;">
+                <img src="../assets/projects/nightlight/IMG_2053.jpg" alt="Close-up of the character engraved on acrylic, G-Night caption lit in soft green glow" style="width:100%; height:100%; object-fit:cover;">
             </div>
             <div style="aspect-ratio: 4/3; overflow: hidden;">
-                <img src="../assets/playground/nightlight/IMG_2356.jpg" alt="Close-up of engraved acrylic from the side, character outline lit up in soft teal glow" style="width:100%; height:100%; object-fit:cover;">
+                <img src="../assets/projects/nightlight/IMG_2356.jpg" alt="Close-up of engraved acrylic from the side, character outline lit up in soft teal glow" style="width:100%; height:100%; object-fit:cover;">
             </div>
         </div>
 
@@ -84,29 +84,29 @@
         <h2>Process</h2>
 
         <div style="margin: 2.5rem 0;">
-            <img src="../assets/playground/nightlight/circuit-layout.png" alt="Electronic circuit layout" style="width:100%;">
+            <img src="../assets/projects/nightlight/circuit-layout.png" alt="Electronic circuit layout" style="width:100%;">
         </div>
 
         <p>The electronic part of the project. The LED is wired on three drivers, the potentiometer also shown. And a servo motor. This is the part that used the most effort since it requires 24 points to solder.</p>
 
         <div style="margin: 2.5rem 0;">
-            <img src="../assets/playground/nightlight/prototype.png" alt="Early prototype with transparent plastic lid" style="width:100%;">
+            <img src="../assets/projects/nightlight/prototype.png" alt="Early prototype with transparent plastic lid" style="width:100%;">
         </div>
 
         <p>Because the final outcome of the servo motor-character part is not compatible with the original lid design, I hand cut another lid with wooden sticks and transparent plastic box. It magically works.</p>
 
         <div style="margin: 2.5rem 0;">
-            <img src="../assets/playground/nightlight/vector-file.png" alt="Vector drawing of character in Rhino" style="width:100%;">
+            <img src="../assets/projects/nightlight/vector-file.png" alt="Vector drawing of character in Rhino" style="width:100%;">
         </div>
 
         <p>At first I tried to engrave the character using a pixel-vector transformer. I hand drew the character and then transformed it into SVG. However, it doesn't work on the laser cutter and the engrave looks like dots. I was told that the laser cutter cannot cut short lines and has to cut in loops, so I mouse drew the character again in Rhino, a 3D software, this time using loops instead of lines.</p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2.5rem 0;">
             <div style="overflow: hidden;">
-                <img src="../assets/playground/nightlight/laser-cut-piece.png" alt="Laser-cut acrylic piece" style="width:100%;">
+                <img src="../assets/projects/nightlight/laser-cut-piece.png" alt="Laser-cut acrylic piece" style="width:100%;">
             </div>
             <div style="overflow: hidden;">
-                <img src="../assets/playground/nightlight/acrylic-engravings.png" alt="Two engraved acrylic panels showing happy and angry character faces" style="width:100%;">
+                <img src="../assets/projects/nightlight/acrylic-engravings.png" alt="Two engraved acrylic panels showing happy and angry character faces" style="width:100%;">
             </div>
         </div>
 
@@ -117,7 +117,7 @@
         <h2>System</h2>
 
         <div style="margin: 2.5rem 0;">
-            <img src="../assets/playground/nightlight/system-diagram.png" alt="System diagram: Real Time Clock and two potentiometers to Arduino Uno, controlling High Power RGB LED and Servo Motor" style="width:100%;">
+            <img src="../assets/projects/nightlight/system-diagram.png" alt="System diagram: Real Time Clock and two potentiometers to Arduino Uno, controlling High Power RGB LED and Servo Motor" style="width:100%;">
         </div>
 
         <h2>Discussion</h2>
@@ -129,7 +129,7 @@
     </section>
 
     <footer>
-        <p>© 2026 Hua Tong. Designed with intention.</p>
+        <p>© 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
         <p><a href="mailto:hello@huatong.com">hello@huatong.com</a></p>
     </footer>
 
