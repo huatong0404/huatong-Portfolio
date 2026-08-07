@@ -8,11 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260725-9">
 </head>
-<body>
-
-    <!-- Navigation -->
+<body class="playground-page">
     <nav>
         <a href="index.html" class="logo">HUA TONG</a>
         <ul class="nav-links">
@@ -20,140 +18,82 @@
             <li><a href="playground.html" class="active">Playground</a></li>
             <li><a href="about.html">About Me</a></li>
         </ul>
-        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu(this)">
+            <span></span><span></span><span></span>
         </button>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-hero">
-        <h1>Playground</h1>
-        <p>Explorations, side quests, and things made for the joy of making</p>
-    </section>
+    <main>
+        <header class="playground-hero">
+            <h1><span>PLAY</span>GROUND</h1>
+            <div class="playground-hero-meta">
+                <span>Soft Fabrication + Illustration</span>
+            </div>
+        </header>
 
-    <!-- Gallery -->
-    <section class="section">
-        <div class="playground-grid">
+        <section class="playground-montage" aria-label="Soft fabrication and illustration montage">
+            <div class="montage-cluster montage-cluster-pair" aria-label="Balloon jellyfish wearable">
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/DSCF8205.jpg" alt="Balloon jellyfish wearable in a studio portrait"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/DSCF8147.jpg" alt="Balloon jellyfish wearable presentation"></figure>
+            </div>
 
-            <!-- Mosaic Memories -->
-            <a href="playground/mosaic-memories.html" class="playground-item animate-in"
-               data-images="assets/playground/mosaic-memories/p4.png,assets/playground/mosaic-memories/p1.png,assets/playground/mosaic-memories/p2.png,assets/playground/mosaic-memories/p3.png,assets/playground/mosaic-memories/p5.png">
-                <div class="gallery-image">
-                    <img src="assets/playground/mosaic-memories/p4.png" alt="Mosaic Memories cover">
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="gallery-label">Mosaic Memories</div>
-            </a>
+            <div class="montage-cluster" aria-label="Cat sushi soft sculpture">
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7132.jpg" alt="Cat sushi soft sculpture components"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7126.jpg" alt="Top-down view of cat sushi sculpture"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7129.jpg" alt="Standing cat sushi sculpture"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7127.jpg" alt="Cat sushi sculpture resting in bed"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7131.jpg" alt="Front view of cat sushi sculpture"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7130.jpg" alt="Cat sushi sculpture held close up"></figure>
+            </div>
 
-            <!-- Vectora -->
-            <a href="playground/vectora.html" class="playground-item animate-in"
-               data-images="placeholder1.jpg,placeholder2.jpg,placeholder3.jpg">
-                <div class="gallery-image">
-                    <span class="placeholder">Vectora</span>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="gallery-label">Vectora</div>
-            </a>
+            <div class="montage-cluster" aria-label="Deer head plush sculpture">
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7125.jpg" alt="Side view of deer head plush held in hand"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7117.jpg" alt="Side view of deer head plush"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7121.jpg" alt="Deer head plush held in hand"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7118.jpg" alt="Top detail of deer head plush"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_7116.jpg" alt="Deer head plush sculpture"></figure>
+            </div>
 
-            <!-- Illustrations -->
-            <a href="playground/illustrations.html" class="playground-item animate-in"
-               data-images="assets/playground/illustrations/IMG_3405.jpg,assets/playground/illustrations/IMG_5831.jpg,assets/playground/illustrations/IMG_0389.jpg,assets/playground/illustrations/artwork_5.png,assets/playground/illustrations/IMG_2903.jpg">
-                <div class="gallery-image">
-                    <img src="assets/playground/illustrations/IMG_3405.jpg" alt="Illustration Collection cover">
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="gallery-label">Illustration Collection</div>
-            </a>
+            <div class="montage-cluster" aria-label="Vinyl inflatable sculpture">
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_5961.jpg" alt="Flat vinyl inflatable sculpture"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_5963.jpg" alt="Vinyl inflatable sculpture held in hand"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_5964.jpg" alt="Vinyl inflatable sculpture detail"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_5962.jpg" alt="Vinyl inflatable sculpture from another angle"></figure>
+                <figure class="montage-piece"><img src="assets/playground/soft-fabrication/IMG_5965.jpg" alt="Vinyl inflatable sculpture from another angle"></figure>
+            </div>
 
-            <!-- Charity Sketches -->
-            <a href="playground/charity-sketches.html" class="playground-item animate-in"
-               data-images="placeholder1.jpg,placeholder2.jpg,placeholder3.jpg">
-                <div class="gallery-image">
-                    <span class="placeholder">$5 Charity Sketches</span>
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="gallery-label">$5 Charity Sketch Commission</div>
-            </a>
+            <div class="montage-cluster montage-cluster-illustrations" aria-label="Illustration collection">
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_5831.jpg" alt="Character illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_6293.jpg" alt="Illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_3405.jpg" alt="Portrait-format illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_0389.jpg" alt="Illustration study"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_2903.jpg" alt="Digital illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_1831.jpg" alt="Illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_6512.jpg" alt="Illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_6513.jpg" alt="Illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_0397.jpg" alt="Illustration detail"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_3406.jpg" alt="Wide illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/artwork_5.png" alt="Character artwork"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/artwork_26.png" alt="Character artwork"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_0388.jpg" alt="Illustration study"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_7264_2.jpg" alt="Illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_9639.jpg" alt="Illustration"></figure>
+                <figure class="montage-piece"><img src="assets/playground/illustrations/IMG_6358.jpg" alt="Illustration"></figure>
+            </div>
+        </section>
+    </main>
 
-            <!-- Echus Nightlight -->
-            <a href="playground/nightlight.html" class="playground-item animate-in"
-               data-images="assets/playground/nightlight/IMG_2345.jpg,assets/playground/nightlight/IMG_2350.jpg,assets/playground/nightlight/IMG_2053.jpg">
-                <div class="gallery-image">
-                    <img src="assets/playground/nightlight/IMG_2345.jpg" alt="Echus Nightlight cover">
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="gallery-label">Echus Nightlight</div>
-            </a>
-
-            <!-- Soft Fabrication -->
-            <a href="playground/soft-fabrication.html" class="playground-item animate-in"
-               data-images="assets/playground/soft-fabrication/DSCF8205.jpg,assets/playground/soft-fabrication/IMG_7126.jpg,assets/playground/soft-fabrication/IMG_7116.jpg,assets/playground/soft-fabrication/IMG_5963.jpg,assets/playground/soft-fabrication/DSCF8147.jpg">
-                <div class="gallery-image">
-                    <img src="assets/playground/soft-fabrication/DSCF8205.jpg" alt="Soft Fabrication cover">
-                    <div class="carousel-dots"></div>
-                </div>
-                <div class="gallery-label">Soft Fabrication</div>
-            </a>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Hua Tong. Designed with intention.</p>
-        <p><a href="mailto:hello@huatong.com">hello@huatong.com</a></p>
+    <footer id="contact">
+        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
+        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('open');
+        function toggleMenu(button) {
+            const links = document.querySelector('.nav-links');
+            const isOpen = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(isOpen));
         }
-
-        // --- Hover Carousel Logic ---
-        document.querySelectorAll('.playground-item').forEach(item => {
-            const images = (item.dataset.images || '').split(',');
-            const dotsContainer = item.querySelector('.carousel-dots');
-            let currentIndex = 0;
-            let intervalId = null;
-
-            // Generate dots
-            images.forEach((_, i) => {
-                const dot = document.createElement('span');
-                dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = dotsContainer.querySelectorAll('.dot');
-
-            function showImage(index) {
-                const img = item.querySelector('.gallery-image img');
-                if (img && images[index]) {
-                    img.src = images[index];
-                }
-                dots.forEach((d, i) => d.classList.toggle('active', i === index));
-                currentIndex = index;
-            }
-
-            item.addEventListener('mouseenter', () => {
-                currentIndex = 0;
-                showImage(0);
-                intervalId = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    showImage(currentIndex);
-                }, 1200);
-            });
-
-            item.addEventListener('mouseleave', () => {
-                clearInterval(intervalId);
-                intervalId = null;
-                currentIndex = 0;
-                showImage(0);
-            });
-        });
     </script>
-
 </body>
 </html>

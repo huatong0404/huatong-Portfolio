@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sea Monster — Hua Tong</title>
+    <title>The Sea Monster — Hua Tong</title>
     <link rel="icon" type="image/png" href="../assets/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=20260709">
     <style>
-        /* === Sea Monster — page-specific layout === */
+        /* === The Sea Monster — page-specific layout === */
 
-        body { background: #F5F5F5; }
+        body { background: #F3F1EA; }
 
         .rr-case {
             width: min(calc(100% - 112px), 1080px);
             margin-left: auto;
             margin-right: auto;
-            background: #F5F5F5;
+            background: #F3F1EA;
         }
 
         figure { margin: 0; }
@@ -136,7 +136,7 @@
             object-fit: contain;
             object-position: center;
         }
-        .split-image.tall img { height: 520px; }
+        .split-image.tall img { height: 420px; }
         .split-image figcaption { background: #F5F5F5; }
 
         .rr-text-block {
@@ -310,6 +310,87 @@
             background: #F5F5F5;
         }
 
+        .sm-section-copy {
+            max-width: 780px;
+        }
+        .sm-section-copy p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: #525252;
+            margin-bottom: 16px;
+        }
+        .sm-ocean-grid,
+        .sm-making-grid,
+        .sm-people-grid,
+        .sm-public-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            margin-top: 32px;
+            align-items: start;
+        }
+        .sm-ocean-grid img,
+        .sm-people-grid img,
+        .sm-public-grid img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .sm-ocean-grid figure:first-child {
+            grid-column: 1 / -1;
+        }
+        .sm-ocean-grid figure:first-child img {
+            height: min(58vw, 590px);
+        }
+        .sm-ocean-grid figure:last-child {
+            grid-column: 1 / -1;
+            width: min(76%, 780px);
+            justify-self: center;
+        }
+        .sm-ocean-grid figure:last-child img {
+            height: auto;
+            aspect-ratio: 4 / 3;
+        }
+        .sm-making-grid {
+            row-gap: 36px;
+        }
+        .sm-making-grid img {
+            width: 100%;
+            height: 330px;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+            background: #ECEBE5;
+        }
+        .sm-making-grid .fabric-photo img {
+            object-fit: cover;
+            background: #F5F5F5;
+        }
+        .sm-making-grid .unwrap-image img {
+            height: 410px;
+        }
+        .sm-people-grid figure:first-child,
+        .sm-public-grid .sm-public-wide {
+            grid-column: 1 / -1;
+        }
+        .sm-people-grid figure:first-child img,
+        .sm-public-grid .sm-public-wide img {
+            height: min(54vw, 540px);
+        }
+        .sm-official-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid #40C1AC;
+            color: #0A0A0A;
+            font-weight: 600;
+        }
+        .sm-official-link:hover {
+            color: #40C1AC;
+        }
+
         .sm-uncertainty {
             display: grid;
             grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
@@ -433,6 +514,271 @@
             padding-top: 10px;
         }
 
+        /* Match Rick's Radio's evidence-card image system and interaction rhythm. */
+        .rr-evidence-page .project-detail-hero {
+            border-bottom: 2px solid #0A0A0A;
+        }
+        .rr-evidence-page .rr-hero-image {
+            position: relative;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+            transform: none;
+        }
+        .rr-evidence-page .rr-hero-image figcaption { color: #FAFAFA; }
+        .rr-evidence-page .rr-case { padding: 32px 0 96px; }
+        .rr-evidence-page .rr-case > section { background: transparent; }
+        .rr-evidence-page .rr-case figure:not(.rr-hero-image) {
+            position: relative;
+            padding: 11px 11px 12px;
+            border: 2px solid #0A0A0A;
+            background: #FAFAFA;
+            box-shadow: 5px 7px 0 rgba(10, 10, 10, 0.1);
+            transform-origin: 50% 18px;
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+        .rr-evidence-page .rr-case figure:not(.rr-hero-image)::before {
+            content: '';
+            position: absolute;
+            z-index: 4;
+            top: -13px;
+            left: 50%;
+            width: 22px;
+            height: 22px;
+            transform: translateX(-50%);
+            border: 2px solid #0A0A0A;
+            border-radius: 50%;
+            background: #40C1AC;
+            box-shadow: 2px 3px 0 rgba(10, 10, 10, 0.2);
+        }
+        .rr-evidence-page .rr-case figure:not(.rr-hero-image):nth-of-type(odd) { transform: rotate(-1.2deg); }
+        .rr-evidence-page .rr-case figure:not(.rr-hero-image):nth-of-type(even) { transform: rotate(1.35deg); }
+        .rr-evidence-page .rr-case figure:not(.rr-hero-image):hover {
+            transform: rotate(0deg) translateY(-3px);
+            box-shadow: 9px 10px 0 rgba(64, 193, 172, 0.5);
+        }
+        .rr-evidence-page figure figcaption {
+            position: absolute;
+            z-index: 5;
+            right: 11px;
+            bottom: 11px;
+            left: 11px;
+            width: auto;
+            padding: 10px 12px;
+            color: #FAFAFA;
+            background: rgba(10, 10, 10, 0.84);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(5px);
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+        .rr-evidence-page .rr-hero-image figcaption {
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        .rr-evidence-page figure:hover figcaption,
+        .rr-evidence-page figure:focus-within figcaption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Use the same recurring image proportions as Rick's Radio. */
+        .sm-making-grid img,
+        .sm-making-grid .unwrap-image img,
+        .sm-ocean-grid img,
+        .sm-people-grid img,
+        .sm-public-grid img { height: 340px; }
+        .sm-ocean-grid figure:first-child img,
+        .sm-people-grid figure:first-child img,
+        .sm-public-grid .sm-public-wide img {
+            height: 560px;
+            max-height: 560px;
+            object-fit: cover;
+        }
+        .sm-ocean-grid figure:last-child {
+            width: 100%;
+            justify-self: stretch;
+        }
+        .sm-ocean-grid figure:last-child img {
+            height: 340px;
+            aspect-ratio: auto;
+        }
+
+        /* Sea Monster refinements: smaller media, lighter static galleries. */
+        #why.split-row.wide-media {
+            grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+            align-items: start;
+        }
+        #why .split-image {
+            width: 100%;
+            max-width: 450px;
+            justify-self: end;
+        }
+        #why .split-image.tall img { height: 340px; }
+
+        .sm-ocean-grid figure:first-child img {
+            height: 340px;
+            max-height: 340px;
+        }
+        .sm-ocean-grid {
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            align-items: start;
+        }
+        .sm-ocean-grid figure:first-child,
+        .sm-ocean-grid figure:last-child {
+            grid-column: auto;
+            width: 100%;
+        }
+        .sm-ocean-grid figure:last-child img { height: 340px; }
+
+        .sm-making-grid {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 34px 20px;
+            align-items: start;
+        }
+        .sm-making-grid > figure:nth-child(-n + 4) {
+            width: min(100%, 380px);
+        }
+        .sm-making-grid > figure:nth-child(-n + 2) img {
+            height: 235px;
+            object-fit: contain;
+        }
+        .sm-making-grid > .fabric-photo img {
+            height: 235px;
+            object-fit: cover;
+        }
+        .sm-making-grid > figure:nth-child(1) {
+            grid-column: 1 / span 5;
+            justify-self: start;
+        }
+        .sm-making-grid > figure:nth-child(2) {
+            grid-column: 7 / span 5;
+            justify-self: end;
+            margin-top: 46px;
+        }
+        .sm-making-grid > figure:nth-child(3) {
+            grid-column: 2 / span 5;
+            justify-self: start;
+            margin-top: 8px;
+        }
+        .sm-making-grid > figure:nth-child(4) {
+            grid-column: 8 / span 5;
+            justify-self: end;
+            margin-top: 58px;
+        }
+        .sm-making-grid .unwrap-image {
+            width: min(100%, 340px);
+        }
+        .sm-making-grid > figure:nth-child(5) {
+            grid-column: 1 / span 4;
+            justify-self: start;
+            margin-top: 12px;
+        }
+        .sm-making-grid > figure:nth-child(6) {
+            grid-column: 7 / span 4;
+            justify-self: end;
+            margin-top: 74px;
+        }
+        .sm-making-grid .unwrap-image img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: contain;
+            background: #FAFAFA;
+        }
+
+        .sm-people-grid,
+        .sm-public-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 48px;
+            align-items: start;
+        }
+        .sm-photo-column {
+            display: grid;
+            gap: 38px;
+            min-width: 0;
+        }
+        .sm-photo-column--left { padding-top: 64px; }
+        #public-life .sm-photo-column--right { padding-top: 280px; }
+        .sm-people-grid figure,
+        .sm-public-grid figure,
+        .sm-public-grid .sm-public-wide {
+            display: block;
+            min-width: 0;
+            width: 100%;
+        }
+        .rr-evidence-page .rr-case .sm-people-grid figure,
+        .rr-evidence-page .rr-case .sm-public-grid figure {
+            padding: 10px 10px 12px;
+            border: 2px solid #0A0A0A;
+            background: #FAFAFA;
+            box-shadow: 5px 7px 0 rgba(10, 10, 10, 0.12) !important;
+            transition: none;
+        }
+        .rr-evidence-page .rr-case .sm-photo-column--left figure:nth-child(odd) { transform: rotate(-0.85deg) !important; }
+        .rr-evidence-page .rr-case .sm-photo-column--left figure:nth-child(even) { transform: rotate(0.65deg) !important; }
+        .rr-evidence-page .rr-case .sm-photo-column--right figure:nth-child(odd) { transform: rotate(0.8deg) !important; }
+        .rr-evidence-page .rr-case .sm-photo-column--right figure:nth-child(even) { transform: rotate(-0.65deg) !important; }
+        .rr-evidence-page .rr-case .sm-people-grid figure::before,
+        .rr-evidence-page .rr-case .sm-public-grid figure::before {
+            display: block;
+        }
+        .rr-evidence-page .rr-case .sm-people-grid figure:hover,
+        .rr-evidence-page .rr-case .sm-public-grid figure:hover {
+            box-shadow: 5px 7px 0 rgba(10, 10, 10, 0.12) !important;
+        }
+        .sm-people-grid img,
+        .sm-public-grid img,
+        .sm-people-grid figure:first-child img,
+        .sm-public-grid .sm-public-wide img {
+            height: 255px;
+            max-height: none;
+            object-fit: cover;
+        }
+        .sm-photo-column--left figure:nth-child(1) img { height: 285px; }
+        .sm-photo-column--left figure:nth-child(2) img { height: 310px; }
+        .sm-photo-column--right figure:nth-child(1) img { height: 230px; }
+        .sm-photo-column--right figure:nth-child(2) img { height: 270px; }
+        .sm-photo-column--right figure:nth-child(3) img { height: 245px; }
+        #soft-things .sm-photo-column--left figure:nth-child(2) img {
+            height: 440px;
+            object-position: center;
+        }
+        #soft-things .sm-photo-column--left figure:nth-child(2) {
+            width: min(100%, 360px);
+            justify-self: center;
+        }
+        .rr-evidence-page .sm-people-grid figure figcaption,
+        .rr-evidence-page .sm-public-grid figure figcaption {
+            position: static;
+            width: auto;
+            padding: 10px 2px 0;
+            color: #737373;
+            background: transparent;
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+
+        #acknowledgment .rr-outcome-grid {
+            grid-template-columns: 1fr;
+            width: min(100%, 720px);
+            max-width: none;
+        }
+        #acknowledgment .rr-outcome-grid figure:first-child {
+            grid-column: 1;
+        }
+        #acknowledgment .rr-outcome-grid figure:first-child img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            aspect-ratio: 4 / 3;
+            object-fit: contain;
+            object-position: center;
+        }
+
         @media (max-width: 900px) {
             .rr-case { width: min(calc(100% - 48px), 1080px); }
             .project-detail-hero { padding-left: var(--page-padding); padding-right: var(--page-padding); }
@@ -452,7 +798,11 @@
             .sm-mosaic,
             .sm-uncertainty,
             .sm-concept-gallery,
-            .sm-dye-grid { grid-template-columns: 1fr; }
+            .sm-dye-grid,
+            .sm-ocean-grid,
+            .sm-making-grid,
+            .sm-people-grid,
+            .sm-public-grid { grid-template-columns: 1fr; }
             .rr-outcome-grid figure:first-child { grid-column: span 1; }
             .split-row { gap: 28px; padding: 48px 0; }
             .rr-text-block { display: block; }
@@ -478,6 +828,43 @@
             .sm-process-strip img { height: 180px; }
             .sm-uncertainty { gap: 28px; }
             .sm-uncertainty-feature img { height: 340px; }
+            .sm-ocean-grid figure:first-child,
+            .sm-ocean-grid figure:last-child,
+            .sm-people-grid figure:first-child,
+            .sm-public-grid .sm-public-wide {
+                grid-column: 1;
+                width: 100%;
+            }
+            .sm-ocean-grid figure:first-child img,
+            .sm-ocean-grid figure:last-child img,
+            .sm-people-grid figure:first-child img,
+            .sm-public-grid .sm-public-wide img,
+            .sm-ocean-grid img,
+            .sm-people-grid img,
+            .sm-public-grid img { height: 320px; }
+            .sm-making-grid img,
+            .sm-making-grid .unwrap-image img { height: auto; }
+            .sm-making-grid > figure:nth-child(n) {
+                grid-column: 1;
+                width: min(100%, 420px);
+                margin-top: 0;
+                justify-self: center;
+            }
+            .rr-evidence-page .rr-case { padding-bottom: 72px; }
+            #why.split-row.wide-media { grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr); }
+            #why .split-image.tall img { height: 300px; }
+            .sm-people-grid,
+            .sm-public-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+            .sm-photo-column { gap: 28px; }
+            .sm-photo-column--left { padding-top: 40px; }
+            #public-life .sm-photo-column--right { padding-top: 180px; }
+            .sm-people-grid figure,
+            .sm-public-grid figure,
+            .sm-public-grid .sm-public-wide { display: block; }
+            .sm-making-grid > figure:nth-child(-n + 2) img { height: 210px; }
+            .sm-making-grid > .fabric-photo img { height: 210px; }
+            #soft-things .sm-photo-column--left figure:nth-child(2) { width: 100%; }
+            #acknowledgment .rr-outcome-grid figure:first-child img { height: auto; }
         }
 
         @media (max-width: 560px) {
@@ -487,10 +874,28 @@
             .project-detail-hero .project-meta { grid-template-columns: 1fr; gap: 18px; }
             .rr-hero-image img { max-height: 260px; aspect-ratio: 4 / 3; }
             .rr-intro .lead { font-size: 18px; }
+            .rr-evidence-page .rr-case figure:not(.rr-hero-image) { padding: 8px; }
+            #why.split-row.wide-media { grid-template-columns: 1fr; }
+            #why .split-image { max-width: none; }
+            #why .split-image.tall img { height: 260px; }
+            .sm-people-grid,
+            .sm-public-grid { grid-template-columns: 1fr; }
+            .sm-photo-column--left { padding-top: 0; }
+            #public-life .sm-photo-column--right { padding-top: 0; }
+            .sm-people-grid figure,
+            .sm-public-grid figure,
+            .sm-public-grid .sm-public-wide {
+                display: block;
+            }
+            .sm-people-grid img,
+            .sm-public-grid img,
+            .sm-photo-column figure:nth-child(n) img { height: 220px; }
+            .sm-making-grid > figure:nth-child(-n + 2) img { height: 190px; }
+            #acknowledgment .rr-outcome-grid figure:first-child img { height: auto; }
         }
     </style>
 </head>
-<body>
+<body class="rr-evidence-page">
 
     <nav>
         <a href="../index.html" class="logo">HUA TONG</a>
@@ -505,11 +910,11 @@
     </nav>
 
     <!-- Hero -->
-    <section class="project-detail-hero">
+    <section class="project-detail-hero" id="top">
         <div class="rr-hero-inner">
             <div class="rr-hero-copy">
                 <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
-                <h1>Sea Monster</h1>
+                <h1>The Sea Monster</h1>
                 <div class="project-meta">
                     <div class="meta-item">
                         <span class="meta-label">Category</span>
@@ -534,223 +939,330 @@
                 </div>
             </div>
             <figure class="rr-hero-image">
-                <img src="../assets/projects/sea-monster/exhibit-wide.jpg" alt="Wide view of the Sea Monster inflatable installation with visitors, glowing tentacles, and an open mouth in a dark studio">
-                <figcaption>Wide view of the Sea Monster installation with visitors, glowing tentacles, and the open mouth.</figcaption>
+                <img src="../assets/projects/sea-monster/exhibit-wide-web.jpg" alt="Wide view of The Sea Monster inflatable installation with visitors, glowing tentacles, and an open mouth in a dark studio">
+                <figcaption>Wide view of The Sea Monster installation with visitors, glowing tentacles, and the open mouth.</figcaption>
             </figure>
         </div>
     </section>
 
+    <aside class="page-jump-nav" aria-label="Jump to The Sea Monster section">
+        <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#why">Why</a></li>
+            <li><a href="#ocean">Ocean</a></li>
+            <li><a href="#fabrication">Fabrication</a></li>
+            <li><a href="#soft-things">Soft Things</a></li>
+            <li><a href="#public-life">Public Life</a></li>
+            <li><a href="#acknowledgment">Acknowledgment</a></li>
+        </ul>
+    </aside>
+
     <main class="rr-case">
-        <section class="rr-intro">
+        <section class="rr-intro" id="overview">
             <p class="lead">
-                Sea Monster explored how a few inflatable fragments could make an entire room feel occupied by one enormous, unseen creature. We treated the floor of WQED Studio A as the surface of the sea. An open mouth became a passage, and illuminated tentacles emerged elsewhere to suggest the body hidden below.
+                On show night, children ran into its mouth and pretended to be swallowed. Adults stood between its teeth and posed for photos. No one kept a careful distance. No one treated it like a student project.
             </p>
             <p class="lead">
-                We planned the work collectively across concept development, engineering, fabrication, and sewing. Once installed, however, the creature no longer belonged only to its makers. Visitors stepped between its teeth, posed inside its mouth, and turned a carefully fabricated student project into a public stage for play.
+                The Sea Monster is a room-scale inflatable installation composed of nylon, costume fans, and stage lighting. Two halves of an open head and five illuminated tentacles sit across WQED Studio A as fragments of a much larger creature, with the gallery floor standing in for the surface of the sea.
             </p>
-            <div class="rr-summary" aria-label="Project summary">
-                <div class="rr-summary-item"><strong>Design Question</strong>How can separate inflatable fragments suggest one unseen body at the scale of a room?</div>
-                <div class="rr-summary-item"><strong>Material System</strong>Ripstop nylon, sewn seams, continuous air pressure, costume fans, and stage lighting</div>
-                <div class="rr-summary-item"><strong>Public Life</strong>Visitors walked through the mouth, moved beneath tentacles, and used the creature as a setting for performance</div>
-            </div>
         </section>
 
-        <section class="split-row wide-media">
+        <section class="split-row wide-media" id="why">
             <div class="split-text">
-                <h2>Designing an Unseen Body</h2>
+                <h2>Why the Sea Monster</h2>
                 <p>
-                    Our early conversations considered several directions, and the sea monster stood out because it offered a spatial idea with room to grow. It could occupy the entire studio through a few visible fragments and use the room itself to establish the creature's scale.
+                    The design question of the installation is a difficult one to answer. The theme of the exhibition is “a fixed world”, after global warming, the AI bubble, the wars, the sixth extinction and even the Anthropocene itself. When everything is fixed from humans and back to normal, what are we expecting?
                 </p>
                 <p>
-                    We showed only enough of the creature for visitors to imagine the rest. The floor marked the surface between its visible fragments and the body hidden below. Its open mouth invited people in, and the tentacles carried the creature's presence into the rest of the room.
+                    Our early ideas were gentle. Bioluminescent flowers, fireflies, things that glow and comfort. Then someone suggested the ocean, and I started thinking about Moby-Dick and Vingt mille lieues sous les mers. Sea Monsters, I said.
                 </p>
-                <blockquote>The creature was never only the fabric we built. Studio A became its ocean, and the unseen space beneath the floor became its body.</blockquote>
+                <p>
+                    In the 19th century, slaying the sea monster was once the highest proof of courage. Now, we have gone too far. The only creature we could fear now is ourselves. Instead of presenting something non-threatening and comforting to humans, what about just exhibiting something… in the wild? A symbol of the untamed nature that we have drifted too far from?
+                </p>
+                <p>
+                    The group liked the idea. We started imagining a hybrid: the head of a whale, the teeth of a shark, the tentacles of an octopus. It does not please, does not have the intent to hurt people, just exists in its own right.
+                </p>
             </div>
-            <figure class="split-image">
-                <img src="../assets/projects/sea-monster/preliminary sketch.png" alt="Preliminary sketch page showing a sea monster mouth, tentacles, and body parts">
-                <figcaption>Preliminary sketch page showing a sea monster mouth, tentacles, and body parts.</figcaption>
-            </figure>
-            <figure class="sm-group-figure">
-                <div class="sm-concept-gallery">
-                    <img src="../assets/projects/sea-monster/colored sketch1.png" alt="Colored sketch page showing multiple sea monster head designs">
-                    <img src="../assets/projects/sea-monster/colored sketch2.png" alt="Colored sketch page showing multiple sea monster head designs">
-                    <img src="../assets/projects/sea-monster/colored sketch3.png" alt="Colored sketch page showing multiple sea monster head designs">
-                </div>
-                <figcaption>Colored sketch pages exploring possible sea monster heads, mouths, teeth, and body forms.</figcaption>
+            <figure class="split-image contain tall">
+                <img src="../assets/projects/sea-monster/preliminary sketch.png" alt="Pencil sketches exploring The Sea Monster's mouth, tentacles, and hybrid anatomy">
+                <figcaption>Early pencil sketches of the head, mouth, and tentacles.</figcaption>
             </figure>
         </section>
 
-        <section class="rr-gallery-section">
-            <h2 class="rr-section-title">From Surface to Volume</h2>
-            <p>
-                Our five-person team worked through a deliberately shared process. We developed the concept together and moved fluidly between engineering, fabrication, and sewing. Within that structure, I modeled all of the tentacles, dyed the blue and pink fabric for the head, joined the team in sewing, and later worked throughout the installation with our faculty advisor, Olivia Robinson.
-            </p>
-            <p>
-                The head and tentacles began as digital surfaces before being unwrapped into flat panels, cut from ripstop nylon, sewn, and inflated back into volume. Precise seams allowed the fabric to recover the modeled curves and helped the separate pieces read as parts of the same body.
-            </p>
-            <figure class="sm-strip-figure">
-                <div class="sm-render-strip" aria-label="Render of model">
-                    <img src="../assets/projects/sea-monster/render1.png" alt="Digital render of the Sea Monster head with two rounded sides and rows of triangular teeth">
-                    <img src="../assets/projects/sea-monster/render2.png" alt="Digital render of the Sea Monster head and teeth">
-                    <img src="../assets/projects/sea-monster/tentacle render1.png" alt="Blender render of a vertical tentacle model">
-                    <img src="../assets/projects/sea-monster/tentacle render2.png" alt="Blender render of two tentacle models on a grid background">
-                    <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Blender render of two tentacle models connected at the base">
-                    <img src="../assets/projects/sea-monster/tentacle render4.png" alt="Blender render of a curved tentacle model">
-                    <img src="../assets/projects/sea-monster/tentacle render5.png" alt="Blender render of a curved tentacle model selected in orange">
-                </div>
-                <figcaption>Digital renders of the Sea Monster head and tentacle models.</figcaption>
-            </figure>
-        </section>
-
-        <section class="rr-gallery-section">
-            <h2 class="rr-section-title">Color, Light, and Fabrication</h2>
-            <p>
-                The ripstop nylon began white, so color had to be built into the visible surfaces before assembly. I dyed the fabric for the blue exterior of the head and the pink interior of the mouth. The internal baffles and teeth remained white. The dyed color needed to work both as a surface in daylight and as a translucent membrane under theatrical lighting.
-            </p>
-            <p>
-                Fabrication moved between small dye recipes, large sheets of material, and repeated panel layouts. These quiet steps shaped how the creature held light, where its seams remained visible, and how faithfully each digital curve returned once air replaced the modeling grid.
-            </p>
-            <figure class="sm-group-figure">
-                <div class="sm-dye-grid">
-                    <img src="../assets/projects/sea-monster/dyeing1.png" alt="Blue dyed fabric panels drying on a folding rack">
-                    <img src="../assets/projects/sea-monster/dyeing2.png" alt="Blue dyed fabric panels drying on a folding rack">
-                    <img src="../assets/projects/sea-monster/dyeing3.png" alt="Pink dyed fabric panels drying on a folding rack">
-                </div>
-                <figcaption>Dyed fabric panels drying on folding racks.</figcaption>
-            </figure>
-            <figure class="sm-strip-figure">
-                <div class="sm-render-strip" aria-label="Soft fabrication process">
-                    <img src="../assets/projects/sea-monster/wrapup.png" alt="Fabric pattern pieces for the Sea Monster head, including perforated white internal baffles">
-                    <img src="../assets/projects/sea-monster/tentacle wrapup1.png" alt="Fabric pattern pieces for a Sea Monster tentacle">
-                    <img src="../assets/projects/sea-monster/tentacle wrapup2.png" alt="Fabric pattern pieces for a Sea Monster tentacle">
-                    <img src="../assets/projects/sea-monster/tentacle wrapup3.png" alt="Fabric pattern pieces for a Sea Monster tentacle">
-                    <img src="../assets/projects/sea-monster/tentacle wrapup4.png" alt="Fabric pattern pieces for a Sea Monster tentacle">
-                    <img src="../assets/projects/sea-monster/tentacle wrapup5.png" alt="Fabric pattern pieces for a Sea Monster tentacle">
-                </div>
-                <figcaption>Panel layouts for the head and tentacles. In the leftmost image, the solid pieces form the head's outer skin, while the white pieces with openings are internal baffles that control its inflated shape.</figcaption>
-            </figure>
-        </section>
-
-        <section class="rr-gallery-section">
-            <div class="sm-uncertainty">
-                <div class="split-text">
-                    <h2>Preparing for Uncertainty</h2>
-                    <p>
-                        Soft fabrication carries a degree of uncertainty, so we built several safeguards into the design. Internal baffles helped the head preserve its intended volume and kept its two sides from expanding into undefined forms. We were also prepared to complete fewer tentacles if fabrication took longer than expected.
-                    </p>
-                    <p>
-                        The nearly horizontal tentacle raised a different concern. We were unsure whether a single base could support its reach, so we kept the overhead structure available as a backup suspension point. In the end, every tentacle was completed and the horizontal form held itself without additional support. Continuous air pressure, the sewn skin, and the curve of the form worked together with a structural confidence that felt almost magical.
-                    </p>
-                    <p>
-                        During installation, we added zippers to make the tentacles easier to access and placed stage lights inside them, turning their fabric skins into glowing volumes. Working throughout the installation with Olivia Robinson, I helped tune the mouth, tentacles, lighting, cables, and visitor paths within a studio shared by many other projects.
-                    </p>
-                </div>
-                <figure class="sm-uncertainty-feature">
-                    <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Digital model of the nearly horizontal inflatable tentacle extending from a single base">
-                    <figcaption>The nearly horizontal tentacle raised our main structural concern because its reach depended on a single inflated base.</figcaption>
-                </figure>
+        <section class="rr-gallery-section" id="ocean">
+            <div class="sm-section-copy">
+                <h2 class="rr-section-title">The Ocean in the Room</h2>
+                <p>
+                    We treated the gallery floor as the surface of the sea. If we only showed the tips of the tentacles and the top of the head, visitors would have to imagine the rest of the body underneath. The creature would feel larger than anything we actually built. It was a good strategy for one month of working time.
+                </p>
+                <p>
+                    We planned two halves of an open head and five tentacles, placed across WQED Studio A so the fragments occupied the room without filling it. The mouth faced an entrance, so people would realize they were walking between its teeth. On the other side, another group's project, a giant glowing snail, waited like a place to escape into.
+                </p>
             </div>
-            <figure class="sm-strip-figure">
-                <div class="sm-process-strip" aria-label="Installation process">
-                    <img src="../assets/projects/sea-monster/trying to decide the location.png" alt="Two people holding fabric parts of the Sea Monster installation while standing in the studio">
-                    <img src="../assets/projects/sea-monster/Hua holding the light.png" alt="Person holding a blue light next to an inflated tentacle in the studio">
-                    <img src="../assets/projects/sea-monster/deciding on the size.png" alt="Two people holding the pink mouth fabric of the Sea Monster in the studio">
-                    <img src="../assets/projects/sea-monster/projector test1.png" alt="Projection test on the studio wall near the Sea Monster installation">
-                    <img src="../assets/projects/sea-monster/projector test2.png" alt="Projection test on the studio wall near the Sea Monster installation">
-                    <img src="../assets/projects/sea-monster/before exhibition.png" alt="Inflated Sea Monster head and mouth resting on the studio floor before the exhibition">
-                </div>
-                <figcaption>Installation tests in the studio.</figcaption>
-            </figure>
-        </section>
-
-        <section class="rr-gallery-section">
-            <h2 class="rr-section-title">Final Installation</h2>
-            <p>
-                In the final arrangement, the mouth acted as both the recognizable face of the creature and a passage through it. Illuminated tentacles marked the reach of a much larger body, while the dark room allowed separate inflatable pieces to merge into one atmosphere. Neighboring work, available light, circulation, and the bodies expected to enter all shaped the final spatial composition.
-            </p>
-            <figure class="sm-wide-figure">
-                <img src="../assets/projects/sea-monster/exhibit-wide-2.jpg" alt="Wide view of the Sea Monster installation with visitors, glowing tentacles, and the open mouth in the center">
-                <figcaption>Wide view of the installation with visitors, glowing tentacles, and the open mouth in the center.</figcaption>
-            </figure>
-            <div class="rr-product-grid">
+            <div class="sm-ocean-grid">
                 <figure>
-                    <img class="crop-mouth" src="../assets/projects/sea-monster/exhibit-mouth-open.jpg" alt="Visitor standing between the two sides of the Sea Monster mouth">
-                    <figcaption>Visitor standing between the two sides of the open inflatable mouth.</figcaption>
+                    <img src="../assets/projects/sea-monster/exhibit-wide-2-web.jpg" alt="Exhibition-wide view of The Sea Monster fragments occupying WQED Studio A">
+                    <figcaption>The head and tentacles occupy the studio as fragments of a much larger unseen body.</figcaption>
                 </figure>
                 <figure>
-                    <img class="crop-detail" src="../assets/projects/sea-monster/exhibit-tentacle-detail.jpg" alt="Visitor crouching beneath an illuminated horizontal inflatable tentacle">
-                    <figcaption>A visitor crouching beneath the illuminated horizontal tentacle.</figcaption>
-                </figure>
-                <figure>
-                    <img class="crop-inside" src="../assets/projects/sea-monster/exhibit-head-side.jpg" alt="Panoramic view of the studio with Sea Monster and surrounding projects">
-                    <figcaption>Panoramic view of the studio with Sea Monster and surrounding projects.</figcaption>
-                </figure>
-                <figure>
-                    <img src="../assets/projects/sea-monster/final-15.jpg" alt="View through the inflatable teeth toward another inflatable installation">
-                    <figcaption>View through the inflatable teeth toward another inflatable installation.</figcaption>
+                    <img src="../assets/projects/sea-monster/final-15.jpg" alt="View through The Sea Monster's teeth toward the neighboring glowing inflatable">
+                    <figcaption>The open mouth frames the neighboring inflatable on the other side of the room.</figcaption>
                 </figure>
             </div>
         </section>
 
-        <section class="rr-gallery-section">
-            <h2 class="rr-section-title">Permission to Play</h2>
-            <p>
-                As an architecture student, I was accustomed to people observing models carefully and rarely touching them. I expected visitors to approach Sea Monster with a similar sense of caution. Instead, they immediately walked into the mouth, looked through the teeth, and posed as if they were being swallowed.
-            </p>
-            <p>
-                Its polished, highly legible appearance may have made it feel closer to a public attraction than a fragile student artifact. That familiarity communicated something valuable without instructions. The creature felt safe to enter and ready for the body. Visitors moved beyond simply completing the installation through movement and gave themselves permission to perform with it.
-            </p>
-            <div class="rr-product-grid">
+        <section class="rr-gallery-section" id="fabrication">
+            <div class="sm-section-copy">
+                <h2 class="rr-section-title">From Flat to Full</h2>
+                <p>
+                    The head and tentacles began as digital models, then got unwrapped into flat panels, cut from nylon, and sewn back into volume. In this part, I modeled all five tentacles. The seams had to be precise enough for the fabric to recover the modeled curves once air filled it, so the tentacles would not leak air or shift their shape. To keep the head in shape, we added inner baffles, structures that control the air flow speed in an inflatable.
+                </p>
+                <p>
+                    I also dyed the fabric one color at a time since they were white. Blue for the exterior of the head, pink for the inside of the mouth. The teeth and internal baffles stayed white.
+                </p>
+                <p>
+                    Some parts of the creature were far larger than a person, which meant we could not sew them alone. Laying out, pinning, and stitching the larger panels was a two to three person task every time. The work was slow, but when a tentacle inflated for the first time and stood up on its own, the whole team applauded.
+                </p>
+            </div>
+            <div class="sm-making-grid">
                 <figure>
-                    <img src="../assets/projects/sea-monster/exhibit-kids.jpg" alt="Children moving through the open inflatable mouth">
-                    <figcaption>Children moving through the open inflatable mouth.</figcaption>
+                    <img src="../assets/projects/sea-monster/render1.png" alt="Digital model of The Sea Monster head">
+                    <figcaption>Head model before its surfaces were unwrapped.</figcaption>
                 </figure>
                 <figure>
-                    <img src="../assets/projects/sea-monster/exhibit-inside.jpg" alt="Visitors sitting in another inflatable installation, framed through the open mouth of Sea Monster">
-                    <figcaption>The mouth frames visitors sitting inside a neighboring inflatable installation, turning the overlap between two projects into a photograph.</figcaption>
+                    <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Digital model of the nearly horizontal tentacle extending from a single base">
+                    <figcaption>The nearly horizontal tentacle model.</figcaption>
                 </figure>
-                <figure>
-                    <img src="../assets/projects/sea-monster/exhibit-visitors-peek.jpg" alt="Team member Ella and a visitor looking through the inflatable teeth">
-                    <figcaption>Team member Ella and a visitor looking through the inflatable teeth.</figcaption>
+                <figure class="fabric-photo">
+                    <img src="../assets/projects/sea-monster/dyeing1.png" alt="Blue nylon panels drying on a rack">
+                    <figcaption>Blue-dyed nylon for the exterior of the head.</figcaption>
                 </figure>
-                <figure>
-                    <img src="../assets/projects/sea-monster/exhibit-visitor.jpg" alt="Visitor looking through the inflatable teeth">
-                    <figcaption>Visitor looking through the inflatable teeth.</figcaption>
+                <figure class="fabric-photo">
+                    <img src="../assets/projects/sea-monster/dyeing3.png" alt="Pink nylon panels drying on a rack">
+                    <figcaption>Pink-dyed nylon for the inside of the mouth.</figcaption>
+                </figure>
+                <figure class="unwrap-image">
+                    <img src="../assets/projects/sea-monster/wrapup.png" alt="Unwrapped panel layout for The Sea Monster head, including internal baffles with openings">
+                    <figcaption>Head panel layout. The pieces with openings are the white internal baffles; the teeth also remained white.</figcaption>
+                </figure>
+                <figure class="unwrap-image">
+                    <img src="../assets/projects/sea-monster/tentacle wrapup2.png" alt="Unwrapped flat panel layout for one tentacle">
+                    <figcaption>Unwrapped panel layout for one of the tentacles.</figcaption>
                 </figure>
             </div>
         </section>
 
-        <section class="rr-gallery-section">
-            <h2 class="rr-section-title">Reflection &amp; Acknowledgment</h2>
-            <p>
-                Sea Monster changed my understanding of where uncertainty can enter a project. We expected unpredictability from the soft material, yet the fabricated forms reproduced our digital models with surprising precision. The more consequential uncertainty arrived after installation, when the work entered public life and visitors used it more freely than I had imagined.
-            </p>
-            <p>
-                The project taught me that an immersive environment does not require a complete world. Carefully chosen fragments can be enough, and a soft structure can invite forms of trust and participation that a rigid architectural model rarely receives. Its success was not that visitors treated the object carefully, but that the object made careful distance feel unnecessary.
-            </p>
-            <p>
-                We are deeply grateful to our faculty advisor, <strong>Olivia Robinson</strong>, whose teaching, material knowledge, and sustained presence throughout installation helped us carry an ambitious collective idea into the room with confidence and care.
-            </p>
+        <section class="rr-gallery-section" id="soft-things">
+            <div class="sm-section-copy">
+                <h2 class="rr-section-title">Soft Things</h2>
+                <p>
+                    In architecture, people observe models from a careful distance and almost never touch them. Soft fabrication inverts that. Inflated fabric gives people the impression that it will not break, so they do not hesitate. Everyone has been inside a bouncy castle. The material carries that memory before you say a word.
+                </p>
+                <p>
+                    The installation asked for our bodies too. We stood inside the studio to decide where each piece should go, then one of us walked back to see if the placement looked right from a distance. We crouched to install lights, crawled under fabric to find fan connections, held panels above our heads during inflation. There was no way to build this from a desk. Every decision was made at full scale, with our own bodies as the reference.
+                </p>
+                <p>
+                    There is also something disarming about an object this large being this temporary. The entire creature compresses into a few bags. It fills a room and then it disappears. A week later it can fill a different room and become something else entirely.
+                </p>
+                <p>
+                    Most of what we live in does not work like that. The buildings around us stay where they are, bound to their sites and to the investments that put them there. This creature has no site. It borrows a room, transforms it, and gives it back.
+                </p>
+            </div>
+            <div class="sm-people-grid">
+                <div class="sm-photo-column sm-photo-column--left">
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/trying to decide the location.png" alt="Team members using their bodies to test the placement of inflatable parts in the studio">
+                        <figcaption>Placement decisions were tested at full scale in the studio.</figcaption>
+                    </figure>
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/Hua holding the light.png" alt="Hua holding a stage light beside an inflated tentacle">
+                        <figcaption>Testing how stage light traveled through the inflated nylon.</figcaption>
+                    </figure>
+                </div>
+                <div class="sm-photo-column sm-photo-column--right">
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/deciding on the size.png" alt="Team members holding the mouth fabric above their heads during installation">
+                        <figcaption>The scale of the mouth required several bodies to position and assess it.</figcaption>
+                    </figure>
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-tentacle-detail-web.jpg" alt="Visitor crouching beneath the illuminated horizontal tentacle">
+                        <figcaption>A visitor crouching beneath the illuminated horizontal tentacle.</figcaption>
+                    </figure>
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-inside-web.jpg" alt="Visitors inside a neighboring inflatable, framed by The Sea Monster's open mouth">
+                        <figcaption>The mouth frames visitors sitting inside a neighboring inflatable installation.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="rr-gallery-section" id="public-life">
+            <div class="sm-section-copy">
+                <h2 class="rr-section-title">Public Life</h2>
+                <p>
+                    On show night, the music and drama students projected waves and deep-water footage onto the surrounding screens. The studio went dark. With stage lights glowing inside the tentacles and the mouth lit from within, the room stopped feeling like a gallery and started feeling like the bottom of something.
+                </p>
+                <p>
+                    Children were the first to test it. They ran straight into the mouth and pretended to be swallowed. Adults followed, standing between the teeth, waving at cameras, sitting inside as if it were a place that had always been there. No one asked if they were allowed to enter. No one treated it like something that might break.
+                </p>
+                <p>
+                    We had designed the creature around an idea about coexistence. It’s something that simply exists in its own right, not for us. But once it entered the room, it stopped being ours. People brought their own readings, their own play, their own reasons for walking in. That is how public work operates. The intention travels with the object, but it does not get to decide what happens next.
+                </p>
+                <p>
+                    <a class="sm-official-link" href="https://ideate.cmu.edu/news-and-announcements/2026/05_may/meet-me-%40-spring-26.html" target="_blank" rel="noopener noreferrer">The Sea Monster was shown again at Ideate's 2026 Meet Me@ exhibition.</a>
+                </p>
+            </div>
+            <div class="sm-public-grid">
+                <div class="sm-photo-column sm-photo-column--left">
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-kids-web.jpg" alt="Children running through The Sea Monster's open mouth">
+                        <figcaption>Children running into the mouth and pretending to be swallowed.</figcaption>
+                    </figure>
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-mouth-open-web.jpg" alt="Visitor standing between the two sides of the open mouth">
+                        <figcaption>A visitor posing between the two sides of the open mouth.</figcaption>
+                    </figure>
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-visitors-peek-web.jpg" alt="Team member Ella and a visitor looking through the inflatable teeth">
+                        <figcaption>Team member Ella and a visitor looking through the teeth.</figcaption>
+                    </figure>
+                </div>
+                <div class="sm-photo-column sm-photo-column--right">
+                    <figure>
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-visitor-web.jpg" alt="Visitor looking through the inflatable teeth">
+                        <figcaption>A visitor using the teeth as a frame.</figcaption>
+                    </figure>
+                    <figure class="sm-public-wide">
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/Meet Me@.png" alt="Overhead view of The Sea Monster at CMU IDeATe's Spring 2026 Meet Me @ exhibition">
+                        <figcaption>The Sea Monster shown again at CMU IDeATe's Spring 2026 “Meet Me @” exhibition.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="rr-gallery-section" id="acknowledgment">
+            <div class="sm-section-copy">
+                <h2 class="rr-section-title">Acknowledgment</h2>
+                <p>
+                    This was a five-person collaboration, and every part of it was shared. We are grateful to our faculty advisor Olivia Robinson, whose material knowledge and sustained presence throughout installation helped carry an ambitious idea into the room.
+                </p>
+            </div>
             <div class="rr-outcome-grid">
                 <figure>
-                    <img src="../assets/projects/sea-monster/team-group.jpg" alt="Project team members with faculty advisor Olivia Robinson and two course teaching assistants inside the open inflatable mouth">
+                    <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/team-group.jpg" alt="Project team members with faculty advisor Olivia Robinson and two course teaching assistants inside the open inflatable mouth">
                     <figcaption>Project team members with faculty advisor Olivia Robinson and two course TAs inside the open mouth.</figcaption>
                 </figure>
             </div>
         </section>
     </main>
 
+    <nav class="project-pagination" aria-label="Project navigation">
+        <a class="project-prev" href="vertical-garden.html">
+            <span class="pagination-label">&larr; Previous project</span>
+            <span class="pagination-title">Pollen Farm</span>
+        </a>
+        <a class="back-to-top" href="#top">
+            <span class="pagination-label">Back to</span>
+            <span class="pagination-title">Top &uarr;</span>
+        </a>
+        <a class="project-next" href="ricks-radio.html">
+            <span class="pagination-label">Next project &rarr;</span>
+            <span class="pagination-title">Rick's Radio</span>
+        </a>
+    </nav>
+
     <!-- Footer -->
     <footer>
         <div class="footer-left">
             <span class="footer-logo">HUA TONG</span>
-            <p>&copy; 2026. Designed with intention.</p>
+            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
         </div>
         <div class="footer-right">
             <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
         </div>
     </footer>
 
-    <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+
+        function enableMovableJumpNav(nav) {
+            const handle = nav.querySelector('.jump-drag-handle');
+            if (!handle) return;
+
+            let startX = 0;
+            let startY = 0;
+            let baseX = 0;
+            let baseY = 0;
+            let bounds = null;
+
+            handle.addEventListener('pointerdown', (event) => {
+                if (window.innerWidth <= 900) return;
+                const rect = nav.getBoundingClientRect();
+                startX = event.clientX;
+                startY = event.clientY;
+                baseX = Number(nav.dataset.dragX || 0);
+                baseY = Number(nav.dataset.dragY || 0);
+                bounds = {
+                    minX: 12 - rect.left,
+                    maxX: window.innerWidth - 12 - rect.right,
+                    minY: 12 - rect.top,
+                    maxY: window.innerHeight - 12 - rect.bottom
+                };
+                handle.setPointerCapture(event.pointerId);
+                event.preventDefault();
+            });
+
+            handle.addEventListener('pointermove', (event) => {
+                if (!handle.hasPointerCapture(event.pointerId) || !bounds) return;
+                const deltaX = Math.min(bounds.maxX, Math.max(bounds.minX, event.clientX - startX));
+                const deltaY = Math.min(bounds.maxY, Math.max(bounds.minY, event.clientY - startY));
+                const nextX = baseX + deltaX;
+                const nextY = baseY + deltaY;
+                nav.dataset.dragX = nextX;
+                nav.dataset.dragY = nextY;
+                nav.style.setProperty('--jump-x', `${nextX}px`);
+                nav.style.setProperty('--jump-y', `${nextY}px`);
+            });
+
+            handle.addEventListener('pointerup', (event) => {
+                if (handle.hasPointerCapture(event.pointerId)) handle.releasePointerCapture(event.pointerId);
+                bounds = null;
+            });
+        }
+
+        enableMovableJumpNav(document.querySelector('.page-jump-nav'));
+
+        const sectionNavLinks = [...document.querySelectorAll('.page-jump-nav a')];
+        const trackedSections = sectionNavLinks
+            .map((link) => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+        let sectionTrackingFrame = null;
+
+        function updateActiveSection() {
+            const readingLine = window.innerHeight * 0.34;
+            let activeSection = trackedSections[0];
+
+            trackedSections.forEach((section) => {
+                if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
+            });
+
+            sectionNavLinks.forEach((link) => {
+                const isActive = link.getAttribute('href') === `#${activeSection.id}`;
+                link.classList.toggle('active', isActive);
+                if (isActive) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+            });
+            sectionTrackingFrame = null;
+        }
+
+        function requestSectionUpdate() {
+            if (sectionTrackingFrame === null) sectionTrackingFrame = requestAnimationFrame(updateActiveSection);
+        }
+
+        window.addEventListener('scroll', requestSectionUpdate, { passive: true });
+        window.addEventListener('resize', requestSectionUpdate);
+        updateActiveSection();
+    </script>
 </body>
 </html>

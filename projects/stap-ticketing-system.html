@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAP Ticketing System — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=20260709">
+    <style>
+        :root {
+            --stap: #40C1AC;
+            --stap-dark: #287F71;
+            --paper: #F3F1EA;
+            --ink: #0A0A0A;
+            --muted: #525252;
+            --line: #D4D4D4;
+        }
+
+        body { background: var(--paper); }
+        figure { margin: 0; }
+
+        .stap-case {
+            width: min(calc(100% - 112px), 1080px);
+            margin: 0 auto;
+            padding: 32px 0 96px;
+        }
+
+        .project-detail-hero {
+            padding: 72px max(var(--page-padding), calc((100vw - 1200px) / 2)) 68px;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .stap-hero-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(380px, 500px);
+            gap: clamp(48px, 7vw, 96px);
+            align-items: end;
+        }
+
+        .stap-hero-copy .back-link { margin-bottom: 44px; }
+        .project-detail-hero h1 {
+            max-width: 680px;
+            margin-bottom: 36px;
+            font-size: clamp(42px, 5.5vw, 72px);
+        }
+        .project-detail-hero h1::after {
+            margin-top: 22px;
+            background: var(--stap);
+        }
+        .project-detail-hero .project-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px 40px;
+            max-width: 700px;
+            margin-top: 0;
+        }
+
+        .stap-hero-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: contain;
+            object-position: center;
+            background: #fff;
+        }
+
+        figcaption {
+            width: 100%;
+            padding-top: 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #737373;
+        }
+        .stap-hero-image figcaption { color: rgba(250, 250, 250, 0.62); }
+
+        .stap-intro { padding: 64px 0 52px; }
+        .stap-intro .lead {
+            max-width: 930px;
+            margin-bottom: 24px;
+            color: var(--ink);
+            font-size: 20px;
+            line-height: 1.68;
+        }
+        .stap-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 34px;
+        }
+        .stap-summary div {
+            padding-top: 12px;
+            border-top: 2px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .stap-summary strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--ink);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section-title,
+        .split-copy h2 {
+            margin-bottom: 16px;
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+        .section-title::after,
+        .split-copy h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            margin-top: 12px;
+            background: var(--stap);
+        }
+
+        .split-row {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 32px;
+            align-items: center;
+            padding: 52px 0;
+            border-top: 2px solid #E5E5E5;
+        }
+        .split-row.reverse { grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); }
+        .split-copy p,
+        .text-block p,
+        .gallery-section p,
+        .reflection p {
+            max-width: 760px;
+            margin-bottom: 16px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.75;
+        }
+        .split-copy blockquote {
+            margin: 20px 0 0;
+            padding-left: 16px;
+            border-left: 3px solid var(--stap);
+            color: #737373;
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.65;
+        }
+        .split-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: contain;
+            background: #fff;
+        }
+        .split-media.contain img { object-fit: contain; }
+
+        .text-block {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            column-gap: 56px;
+            align-items: start;
+            padding: 52px 0;
+            border-top: 2px solid #E5E5E5;
+        }
+        .text-block .section-title {
+            grid-column: 1;
+            grid-row: 1 / span 5;
+            position: sticky;
+            top: calc(var(--nav-height) + 24px);
+        }
+        .text-block > p,
+        .text-block > .insight-list,
+        .text-block > .research-counts { grid-column: 2; }
+
+        .research-counts,
+        .insight-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .research-counts div,
+        .insight-list article {
+            padding-top: 14px;
+            border-top: 2px solid var(--line);
+        }
+        .research-counts strong {
+            display: block;
+            color: var(--stap);
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1;
+        }
+        .research-counts span {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+        .insight-list .number {
+            color: var(--stap);
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: 30px;
+            line-height: 1;
+        }
+        .insight-list h3 {
+            margin: 12px 0 8px;
+            font-size: 15px;
+            line-height: 1.35;
+        }
+        .insight-list p { margin: 0; font-size: 14px; line-height: 1.6; }
+
+        .gallery-section,
+        .reflection {
+            padding: 52px 0;
+            border-top: 2px solid #E5E5E5;
+        }
+        .gallery-copy { max-width: 790px; }
+
+        .two-grid,
+        .three-grid,
+        .iteration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            align-items: start;
+            margin-top: 28px;
+        }
+        .three-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .iteration-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 34px 20px; }
+        .iteration-grid figure:nth-child(1) { grid-column: 1 / span 5; }
+        .iteration-grid figure:nth-child(2) { grid-column: 7 / span 6; margin-top: 60px; }
+        .iteration-grid figure:nth-child(3) { grid-column: 2 / span 6; }
+        .iteration-grid figure:nth-child(4) { grid-column: 8 / span 5; margin-top: 70px; }
+
+        .two-grid img,
+        .three-grid img,
+        .iteration-grid img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: contain;
+            background: #fff;
+        }
+        .three-grid img,
+        .iteration-grid img { height: auto; object-fit: contain; }
+        .two-grid .wide { grid-column: 1 / -1; }
+        .two-grid .wide img,
+        .two-grid .portrait img,
+        .deployment-grid img { height: auto; max-height: none; object-fit: contain; }
+
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            margin: 30px 0 10px;
+        }
+        .workflow article {
+            position: relative;
+            padding: 22px 18px 18px;
+            border-top: 2px solid var(--ink);
+        }
+        .workflow article:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            top: 18px;
+            right: -22px;
+            color: var(--stap);
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .workflow span {
+            color: var(--stap);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .workflow h3 { margin: 9px 0 8px; font-size: 17px; }
+        .workflow p { margin: 0; font-size: 14px; line-height: 1.55; }
+
+        .outcome-line {
+            max-width: 900px;
+            color: var(--ink);
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: 600;
+            letter-spacing: -0.035em;
+            line-height: 1.18;
+        }
+        .outcome-line em { color: var(--stap); font-style: normal; }
+
+        /* Evidence-board image treatment shared with Rick's Radio and The Sea Monster. */
+        .stap-case figure:not(.stap-hero-image) {
+            position: relative;
+            padding: 11px 11px 12px;
+            border: 2px solid var(--ink);
+            background: #FAFAFA;
+            box-shadow: 5px 7px 0 rgba(10, 10, 10, 0.1);
+            transform-origin: 50% 18px;
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+        .stap-case figure:not(.stap-hero-image)::before {
+            content: '';
+            position: absolute;
+            z-index: 4;
+            top: -13px;
+            left: 50%;
+            width: 22px;
+            height: 22px;
+            transform: translateX(-50%);
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+            background: var(--stap);
+            box-shadow: 2px 3px 0 rgba(10, 10, 10, 0.2);
+        }
+        .stap-case figure:not(.stap-hero-image):nth-of-type(odd) { transform: rotate(-1deg); }
+        .stap-case figure:not(.stap-hero-image):nth-of-type(even) { transform: rotate(1.1deg); }
+        .stap-case figure:not(.stap-hero-image):hover {
+            transform: rotate(0) translateY(-3px);
+            box-shadow: 9px 10px 0 rgba(64, 193, 172, 0.5);
+        }
+        .stap-case figure figcaption {
+            position: absolute;
+            z-index: 5;
+            right: 11px;
+            bottom: 11px;
+            left: 11px;
+            width: auto;
+            padding: 10px 12px;
+            color: #FAFAFA;
+            background: rgba(10, 10, 10, 0.86);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(5px);
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+        .stap-case figure:hover figcaption,
+        .stap-case figure:focus-within figcaption { opacity: 1; transform: translateY(0); }
+
+        .zoomable-figure { cursor: zoom-in; }
+        .zoom-image-button {
+            position: absolute;
+            z-index: 6;
+            top: 18px;
+            right: 18px;
+            width: 46px;
+            height: 46px;
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+            background: var(--stap);
+            cursor: zoom-in;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+        .zoomable-figure:hover .zoom-image-button,
+        .zoom-image-button:focus-visible { opacity: 1; transform: none; }
+        .zoom-image-button::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+        .zoom-image-button::after {
+            content: '';
+            position: absolute;
+            top: 27px;
+            left: 27px;
+            width: 10px;
+            height: 2px;
+            background: #fff;
+            transform: rotate(45deg);
+            transform-origin: left center;
+        }
+        .image-lightbox {
+            position: fixed;
+            z-index: 3000;
+            inset: 0;
+            display: none;
+            place-items: center;
+            padding: 64px;
+            background: rgba(0, 0, 0, 0.92);
+        }
+        .image-lightbox.open { display: grid; }
+        .image-lightbox img { max-width: min(94vw, 1800px); max-height: 84vh; object-fit: contain; background: #fff; }
+        .image-lightbox p { margin-top: 14px; color: rgba(255,255,255,.78); font-size: 12px; text-align: center; }
+        .lightbox-close {
+            position: absolute;
+            top: 22px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255,255,255,.7);
+            border-radius: 50%;
+            color: #fff;
+            background: rgba(0,0,0,.4);
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .stap-case { width: min(calc(100% - 48px), 1080px); }
+            .project-detail-hero { padding-right: var(--page-padding); padding-left: var(--page-padding); }
+            .stap-hero-inner,
+            .split-row,
+            .split-row.reverse,
+            .stap-summary,
+            .research-counts,
+            .insight-list,
+            .workflow { grid-template-columns: 1fr; }
+            .stap-hero-copy .back-link { margin-bottom: 32px; }
+            .stap-hero-image img { height: auto; max-height: none; }
+            .text-block { display: block; }
+            .text-block .section-title { position: static; }
+            .workflow article:not(:last-child)::after { content: '↓'; top: auto; right: 18px; bottom: -24px; }
+            .iteration-grid { display: grid; grid-template-columns: 1fr 1fr; }
+            .iteration-grid figure:nth-child(n) { grid-column: auto; margin-top: 0; }
+        }
+
+        @media (max-width: 560px) {
+            .stap-case { width: calc(100% - 48px); }
+            .project-detail-hero { padding-top: 48px; padding-bottom: 48px; }
+            .project-detail-hero h1 { font-size: 38px; }
+            .project-detail-hero .project-meta,
+            .two-grid,
+            .three-grid,
+            .iteration-grid { grid-template-columns: 1fr; }
+            .stap-intro .lead { font-size: 18px; }
+            .split-media img,
+            .two-grid img,
+            .three-grid img,
+            .iteration-grid img,
+            .deployment-grid img,
+            .two-grid .portrait img { height: auto; max-height: none; object-fit: contain; }
+            .image-lightbox { padding: 52px 16px 24px; }
+            .zoom-image-button { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <section class="project-detail-hero" id="top">
+        <div class="stap-hero-inner">
+            <div class="stap-hero-copy">
+                <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+                <h1>STAP Ticketing System</h1>
+                <div class="project-meta">
+                    <div class="meta-item"><span class="meta-label">Category</span>HCI &middot; Service Design</div>
+                    <div class="meta-item"><span class="meta-label">Role</span>User Research &middot; UX/UI Design &middot; Prototyping</div>
+                    <div class="meta-item"><span class="meta-label">Context</span>CMU BHCI Capstone, Spring 2026</div>
+                    <div class="meta-item"><span class="meta-label">Client</span>Student Technology Assistive Program (STAP) &middot; Beaver Area School District</div>
+                    <div class="meta-item"><span class="meta-label">Team</span>Kayla, Evelynn, <strong style="color:#40C1AC">Hua</strong>, Alice</div>
+                </div>
+            </div>
+            <figure class="stap-hero-image">
+                <img src="../assets/projects/stap-ticketing-system/final-dashboard.png" alt="Final STAP ticket dashboard separating unassigned and assigned requests">
+                <figcaption>The final dashboard makes unassigned requests visible before they disappear into the queue.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <aside class="page-jump-nav" aria-label="Jump to STAP Ticketing System section">
+        <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#reframe">Reframe</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#iterations">Iterations</a></li>
+            <li><a href="#system">System</a></li>
+            <li><a href="#launch">Launch</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+        </ul>
+    </aside>
+
+    <main class="stap-case">
+        <section class="stap-intro" id="overview">
+            <p class="lead">The client asked for a ticketing suite. Research showed that the harder problem was not the absence of software, but the absence of a shared practice.</p>
+            <p class="lead">We designed a lightweight workflow around tools the students already knew: a Google Form for requests, a custom Google Sheets interface for managing tickets, and a structured Google Drive for documenting solutions. Together, they turn each request into both a task to resolve now and knowledge the next student can inherit.</p>
+            <div class="stap-summary">
+                <div><strong>Program</strong>About 80 student technicians serving a K–12 district</div>
+                <div><strong>Design direction</strong>Communication, ticket management, and documentation in one workflow</div>
+                <div><strong>Delivery</strong>Three components placed into live use during the project</div>
+            </div>
+        </section>
+
+        <section class="split-row" id="context">
+            <div class="split-copy">
+                <h2>A Student-Run IT Department</h2>
+                <p>STAP—the Student Technology Assistive Program—helps support the entire Beaver Area School District. Freshmen through seniors work across more than ten departments, from iPads and networking to teacher training and front-desk support, with only two adult supervisors.</p>
+                <p>That structure gives students real responsibility. It also makes continuity difficult: members graduate, leadership changes, and new technicians have to learn a system that mostly lives in people’s heads.</p>
+            </div>
+            <figure class="split-media">
+                <img src="../assets/projects/stap-ticketing-system/stap-students.png" alt="STAP students collaborating around desktop computers">
+                <figcaption>STAP is a student-run IT program serving the Beaver Area School District.</figcaption>
+            </figure>
+        </section>
+
+        <section class="text-block" id="research">
+            <h2 class="section-title">Learning the System</h2>
+            <p>We began by mapping how teachers ask for help, how requests reach students, how technicians divide work, and what happens after a problem is fixed. The official workflow looked simple. The lived workflow was spread across private group chats, direct messages, email, hallway conversations, spreadsheets, and memory.</p>
+            <p>Interviews with students and staff made one tension clear: the tools could not become another system to learn. They had to feel familiar enough to use immediately and structured enough to survive turnover.</p>
+            <div class="research-counts" aria-label="Research activities">
+                <div><strong>4</strong><span>competitive analyses</span></div>
+                <div><strong>13</strong><span>interviews</span></div>
+                <div><strong>5</strong><span>survey responses</span></div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-copy">
+                <h2 class="section-title">Where Work Was Getting Lost</h2>
+                <p>The research artifacts revealed two parallel systems: an external path for teachers requesting help and an internal path for students assigning, resolving, and passing on that work. Neither path had one reliable source of truth.</p>
+            </div>
+            <div class="two-grid">
+                <figure class="wide zoomable-figure">
+                    <img src="../assets/projects/stap-ticketing-system/ecosystem-map.png" alt="Ecosystem map showing relationships between BASD staff, students, STAP supervisors, and technicians">
+                    <figcaption>The ecosystem map connected district requesters with the student-run STAP organization.</figcaption>
+                </figure>
+                <figure class="zoomable-figure">
+                    <img src="../assets/projects/stap-ticketing-system/affinity-map.png" alt="Affinity map of interview notes grouped by communication, documentation, workload, and STAP benefits">
+                    <figcaption>Interview evidence grouped around communication, documentation, workload, and the value students found in STAP.</figcaption>
+                </figure>
+                <figure>
+                    <img src="../assets/projects/stap-ticketing-system/tribal-knowledge.jpg" alt="Sticky notes attached around a workstation monitor with informal technical procedures">
+                    <figcaption>Important procedures were often preserved as sticky notes and personal experience.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="text-block" id="reframe">
+            <h2 class="section-title">Three Research Insights</h2>
+            <p>The design brief expanded from tracking requests to supporting the students who would maintain the service.</p>
+            <div class="insight-list">
+                <article><span class="number">1</span><h3>Student needs come first.</h3><p>The system had to relieve internal friction before it could improve service outside STAP.</p></article>
+                <article><span class="number">2</span><h3>Communication needs one center.</h3><p>Requests and updates scattered across channels created confusion and frustration.</p></article>
+                <article><span class="number">3</span><h3>Documentation is sustainability.</h3><p>When solutions stay as tribal knowledge, every graduating class takes part of the system with it.</p></article>
+            </div>
+        </section>
+
+        <section class="split-row reverse">
+            <figure class="split-media">
+                <img src="../assets/projects/stap-ticketing-system/stap-whiteboard.jpg" alt="STAP whiteboard listing student names and department assignments">
+                <figcaption>The program’s structure was visible on the wall, but the work itself was scattered across channels.</figcaption>
+            </figure>
+            <div class="split-copy">
+                <h2>The Client’s Want Was Not the Whole Need</h2>
+                <p>A ticket suite could record requests, but it would not automatically teach new members what to do, make handoffs consistent, or preserve solutions after experienced students graduated.</p>
+                <p>We revised the goal: build a platform usable by high school students, integrate documentation into the act of closing a ticket, and create an organized workspace that students could manage themselves.</p>
+                <blockquote>The design question became: how might a ticket system also serve as the program’s memory?</blockquote>
+            </div>
+        </section>
+
+        <section class="gallery-section" id="workflow">
+            <div class="gallery-copy">
+                <h2 class="section-title">A Workflow Built from Familiar Tools</h2>
+                <p>Instead of introducing a complex enterprise platform, we connected three tools already available in the district’s Google ecosystem.</p>
+            </div>
+            <div class="workflow">
+                <article><span>01 &middot; Request</span><h3>Google Form</h3><p>A teacher scans a QR code, describes the problem, and submits a request from any device.</p></article>
+                <article><span>02 &middot; Manage</span><h3>Sheets + custom UI</h3><p>Students see new tickets, assign ownership, communicate progress, and close work through a guided checklist.</p></article>
+                <article><span>03 &middot; Remember</span><h3>Google Drive</h3><p>Reusable solutions and templates give current technicians a reference and future students a starting point.</p></article>
+            </div>
+            <div class="two-grid">
+                <figure>
+                    <img src="../assets/projects/stap-ticketing-system/form-storyboard.png" alt="Storyboard showing a teacher scanning a QR code to request projector help and receiving an email update">
+                    <figcaption>The request storyboard follows a teacher from a broken projector to a confirmed repair.</figcaption>
+                </figure>
+                <figure>
+                    <img src="../assets/projects/stap-ticketing-system/documentation-storyboard.png" alt="Storyboard showing a new STAP member learning from shared documentation and later teaching others">
+                    <figcaption>The documentation storyboard follows knowledge from one student cohort to the next.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="gallery-section" id="iterations">
+            <div class="gallery-copy">
+                <h2 class="section-title">The Dashboard Had to Teach Itself</h2>
+                <p>Across paper sketches, a mid-fidelity prototype, and four dashboard iterations, the interface moved away from a conventional data table. Testing showed that students needed an immediate answer to one question: what is waiting for someone to take it?</p>
+                <p>We separated unassigned and assigned tickets, reduced hidden actions, and made the completion checklist part of each expanded ticket. The final hierarchy privileges action over analytics.</p>
+            </div>
+            <div class="iteration-grid">
+                <figure><img src="../assets/projects/stap-ticketing-system/paper-dashboard.png" alt="Paper sketch of a STAP request form and ticket dashboard"><figcaption>Early paper model combining request detail, task ownership, and a completion checklist.</figcaption></figure>
+                <figure><img src="../assets/projects/stap-ticketing-system/midfi-dashboard.png" alt="Mid-fidelity STAP dashboard shown inside an iPad frame"><figcaption>The mid-fidelity version introduced expandable tickets and a step-by-step close flow.</figcaption></figure>
+                <figure><img src="../assets/projects/stap-ticketing-system/first-hifi-dashboard.png" alt="First high-fidelity dashboard showing one long table of tickets"><figcaption>The first high-fidelity table made unassigned work too difficult to notice.</figcaption></figure>
+                <figure><img src="../assets/projects/stap-ticketing-system/final-dashboard.png" alt="Final dashboard separating unassigned and assigned tickets"><figcaption>The final hierarchy brings unassigned tickets to the top and groups the rest below.</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="gallery-section" id="system">
+            <div class="gallery-copy">
+                <h2 class="section-title">Communication Becomes Part of the Ticket</h2>
+                <p>Assigning a technician prompts a confirmation and notifies both the requester and the student taking the work. Closing a ticket requires technicians to confirm that the issue is resolved and update documentation when needed. Progress is no longer a separate conversation that can disappear into a private chat.</p>
+            </div>
+            <div class="three-grid">
+                <figure><img src="../assets/projects/stap-ticketing-system/request-form.png" alt="Google Form used to submit a STAP support request"><figcaption>The request form standardizes the information entering the queue.</figcaption></figure>
+                <figure><img src="../assets/projects/stap-ticketing-system/assignment-confirmation.png" alt="Confirmation dialog explaining that ticket assignment will email the requester and technician"><figcaption>Assignment is explicit and creates a shared notification.</figcaption></figure>
+                <figure><img src="../assets/projects/stap-ticketing-system/completion-notification.png" alt="Ticket completion checklist and email notification shown in the final interface"><figcaption>Resolution, documentation, and requester notification close the loop.</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-copy">
+                <h2 class="section-title">Documentation at the Point of Action</h2>
+                <p>The shared Drive mirrors STAP’s departments and provides a uniform home for instructions. Templates lower the effort of writing a new guide, while the completion checklist links documentation to the moment a technician already has the solution in mind.</p>
+            </div>
+            <div class="two-grid">
+                <figure class="wide"><img src="../assets/projects/stap-ticketing-system/documentation-drive.png" alt="Google Drive folder structure organized by STAP department"><figcaption>A shared departmental structure makes documentation accessible and predictable.</figcaption></figure>
+                <figure class="portrait"><img src="../assets/projects/stap-ticketing-system/document-template.png" alt="STAP documentation template with title, headings, body text, links, and image guidance"><figcaption>The template gives student authors a clear minimum structure.</figcaption></figure>
+                <figure class="portrait"><img src="../assets/projects/stap-ticketing-system/document-example.png" alt="Example step-by-step documentation page for making a grilled cheese sandwich"><figcaption>A sample page demonstrates how step-by-step instructions and images work together.</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="gallery-section" id="launch">
+            <div class="gallery-copy">
+                <h2 class="section-title">From Prototype to the Hallway</h2>
+                <p>The form entered live use through QR posters placed near the STAP office. Teachers could submit a request where the need occurred; student technicians received a structured ticket rather than another message to translate.</p>
+            </div>
+            <div class="two-grid deployment-grid">
+                <figure><img src="../assets/projects/stap-ticketing-system/qr-poster-close.png" alt="Need Tech Help QR poster installed outside the STAP office"><figcaption>The live QR entry point outside the STAP office.</figcaption></figure>
+                <figure><img src="../assets/projects/stap-ticketing-system/qr-poster-hall.png" alt="Need Tech Help QR poster seen from a school hallway"><figcaption>The request path placed in the environment where support begins.</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="reflection" id="reflection">
+            <h2 class="section-title">Reflection</h2>
+            <p class="outcome-line">A sustainable service is not only one that handles today’s request. It is one that helps the <em>next student</em> know what to do.</p>
+            <p>Our biggest shift was learning to push back on the initial scope without abandoning it. The ticket interface remained essential, but its value came from the surrounding practice: centralized communication, visible ownership, and documentation built into completion.</p>
+            <p>The next work is organizational rather than cosmetic—establishing who maintains the workflow, deciding what information should remain confidential, and making the system durable as student leadership changes.</p>
+            <div class="two-grid">
+                <figure class="wide"><img src="../assets/projects/stap-ticketing-system/team-and-client.jpg" alt="The project team standing with Beaver Area School District partners"><figcaption>The design team with partners from Beaver Area School District.</figcaption></figure>
+            </div>
+        </section>
+    </main>
+
+    <nav class="project-pagination" aria-label="Project navigation">
+        <a class="project-prev" href="ai-bias.html"><span class="pagination-label">&larr; Previous project</span><span class="pagination-title">QuickAudit</span></a>
+        <a class="back-to-top" href="#top"><span class="pagination-label">Back to</span><span class="pagination-title">Top &uarr;</span></a>
+        <a class="project-next" href="sea-monster.html"><span class="pagination-label">Next project &rarr;</span><span class="pagination-title">The Sea Monster</span></a>
+    </nav>
+
+    <footer>
+        <div class="footer-left">
+            <span class="footer-logo">HUA TONG</span>
+            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
+        </div>
+        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
+    </footer>
+
+    <div class="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded image" aria-hidden="true">
+        <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+        <div><img src="../assets/projects/stap-ticketing-system/final-dashboard.png" alt=""><p></p></div>
+    </div>
+
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+
+        function enableMovableJumpNav(nav) {
+            if (!nav) return;
+            const handle = nav.querySelector('.jump-drag-handle');
+            let dragging = false;
+            let startX = 0;
+            let startY = 0;
+            let baseX = 0;
+            let baseY = 0;
+            handle.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                startX = event.clientX;
+                startY = event.clientY;
+                baseX = Number(nav.dataset.dragX || 0);
+                baseY = Number(nav.dataset.dragY || 0);
+                handle.setPointerCapture(event.pointerId);
+            });
+            handle.addEventListener('pointermove', (event) => {
+                if (!dragging) return;
+                const nextX = baseX + event.clientX - startX;
+                const nextY = baseY + event.clientY - startY;
+                nav.dataset.dragX = nextX;
+                nav.dataset.dragY = nextY;
+                nav.style.setProperty('--jump-x', `${nextX}px`);
+                nav.style.setProperty('--jump-y', `${nextY}px`);
+            });
+            const stop = () => { dragging = false; };
+            handle.addEventListener('pointerup', stop);
+            handle.addEventListener('pointercancel', stop);
+        }
+        enableMovableJumpNav(document.querySelector('.page-jump-nav'));
+
+        const sectionLinks = [...document.querySelectorAll('.page-jump-nav a')];
+        const sections = sectionLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                sectionLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+        sections.forEach(section => observer.observe(section));
+
+        const lightbox = document.querySelector('.image-lightbox');
+        const lightboxImage = lightbox.querySelector('img');
+        const lightboxCaption = lightbox.querySelector('p');
+        const closeLightbox = () => {
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+        document.querySelectorAll('.zoomable-figure').forEach(figure => {
+            const button = document.createElement('button');
+            button.className = 'zoom-image-button';
+            button.type = 'button';
+            button.setAttribute('aria-label', 'Expand image');
+            figure.appendChild(button);
+            const open = () => {
+                const image = figure.querySelector('img');
+                const caption = figure.querySelector('figcaption');
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                lightboxCaption.textContent = caption ? caption.textContent : '';
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            };
+            button.addEventListener('click', open);
+            figure.addEventListener('dblclick', open);
+        });
+        lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+</html>
