@@ -57,6 +57,119 @@
         .research-quote::before { content: '“'; color: var(--stap); }
         .research-quote .quote-attribution { display: block; margin-top: 30px; color: var(--stap); font-family: 'Work Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: .12em; text-align: right; text-transform: uppercase; }
 
+        .map-module { margin: 58px 0 64px; border: 2px solid var(--ink); background: #FAFAFA; box-shadow: 8px 8px 0 rgba(10,10,10,.1); }
+        .map-header { display: flex; justify-content: space-between; gap: 32px; padding: 25px 28px; border-bottom: 2px solid var(--ink); }
+        .map-kicker { display: block; margin-bottom: 7px; color: var(--stap-dark); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+        .map-header h3 { margin: 0; font-family: 'Archivo Black', Impact, sans-serif; font-size: clamp(22px, 3vw, 34px); font-weight: 400; line-height: 1.08; }
+        .map-instruction { max-width: 290px; margin: 2px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+        .stakeholder-explorer { display: grid; grid-template-columns: minmax(430px, 1.08fr) minmax(300px, .92fr); min-height: 540px; }
+        .stakeholder-stage { position: relative; min-height: 540px; overflow: hidden; border-right: 2px solid var(--ink); background: #E7F5F2; }
+        .stakeholder-rings { position: absolute; top: 50%; left: 48%; width: 430px; aspect-ratio: 1; transform: translate(-50%,-50%); border: 2px solid rgba(40,127,113,.35); border-radius: 50%; background: rgba(255,255,255,.58); box-shadow: 0 8px 28px rgba(40,127,113,.08); }
+        .stakeholder-rings::before, .stakeholder-rings::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; }
+        .stakeholder-rings::before { width: 68%; height: 68%; background: rgba(64,193,172,.16); }
+        .stakeholder-rings::after { width: 38%; height: 38%; background: rgba(64,193,172,.26); }
+        .ring-label { position: absolute; z-index: 2; left: 50%; transform: translateX(-50%); color: var(--stap-dark); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+        .ring-label.informed { top: 5%; }
+        .ring-label.involved { top: 22%; }
+        .ring-label.core { top: 39%; }
+        .stakeholder-lines { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+        .stakeholder-lines line { stroke: var(--stap-dark); stroke-width: 1.5; opacity: .22; transition: opacity 180ms ease, stroke-width 180ms ease; }
+        .stakeholder-stage[data-active="students"] .line-students,
+        .stakeholder-stage[data-active="teachers"] .line-teachers,
+        .stakeholder-stage[data-active="technicians"] .line-technicians,
+        .stakeholder-stage[data-active="advisors"] .line-advisors,
+        .stakeholder-stage[data-active="admins"] .line-admins { opacity: .95; stroke-width: 2.8; }
+        .stakeholder-node { position: absolute; z-index: 3; display: grid; width: 104px; justify-items: center; gap: 6px; border: 0; color: var(--ink); background: transparent; font: inherit; cursor: pointer; transform: translate(-50%,-50%); }
+        .stakeholder-node .node-icon { display: grid; width: 58px; height: 58px; place-items: center; border: 2px solid var(--ink); border-radius: 50%; background: #FAFAFA; box-shadow: 4px 4px 0 rgba(10,10,10,.12); color: var(--stap-dark); font-family: 'Archivo Black', Impact, sans-serif; font-size: 15px; transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+        .stakeholder-node .node-name { padding: 3px 5px; background: rgba(231,245,242,.86); font-size: 10px; font-weight: 700; line-height: 1.15; }
+        .stakeholder-node:hover .node-icon, .stakeholder-node:focus-visible .node-icon, .stakeholder-node.active .node-icon { transform: translateY(-3px) scale(1.08); background: var(--stap); box-shadow: 5px 6px 0 var(--ink); color: var(--ink); }
+        .stakeholder-node:focus-visible { outline: 2px dashed var(--ink); outline-offset: 5px; }
+        .stakeholder-node.students { top: 22%; left: 66%; }
+        .stakeholder-node.teachers { top: 31%; left: 30%; }
+        .stakeholder-node.technicians { top: 51%; left: 62%; }
+        .stakeholder-node.advisors { top: 54%; left: 42%; }
+        .stakeholder-node.admins { top: 82%; left: 34%; }
+        .stakeholder-detail { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; padding: clamp(28px,4vw,46px); background: var(--ink); color: #FAFAFA; }
+        .detail-index { color: var(--stap); font-family: 'Archivo Black', Impact, sans-serif; font-size: 52px; line-height: 1; }
+        .stakeholder-detail h4 { margin: 20px 0 12px; font-family: 'Archivo Black', Impact, sans-serif; font-size: clamp(25px,3vw,38px); font-weight: 400; line-height: 1.05; }
+        .stakeholder-detail p { margin: 0; color: rgba(250,250,250,.74); font-size: 14px; line-height: 1.7; }
+        .detail-status { display: inline-flex; width: fit-content; margin-top: 26px; padding: 8px 11px; border: 1px solid var(--stap); color: var(--stap); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .map-progress { display: grid; grid-template-columns: repeat(5,1fr); gap: 7px; margin-top: 36px; }
+        .map-progress span { height: 4px; background: rgba(255,255,255,.18); transition: background 180ms ease; }
+        .map-progress span.active { background: var(--stap); }
+
+        .journey-explorer { padding: 0 28px 30px; }
+        .journey-scenario-bar { display: flex; align-items: center; justify-content: flex-end; padding: 18px 0; }
+        .scenario-switch { display: inline-flex; flex: 0 0 auto; border: 2px solid var(--ink); }
+        .scenario-button { padding: 9px 13px; border: 0; color: var(--ink); background: #FAFAFA; font: inherit; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+        .scenario-button + .scenario-button { border-left: 2px solid var(--ink); }
+        .scenario-button[data-scenario="best"].active { background: var(--stap); }
+        .scenario-button[data-scenario="worst"].active { color: #fff; background: #D94B45; }
+        .scenario-button:focus-visible { outline: 3px solid #1769E0; outline-offset: 2px; }
+        .journey-tabs { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); border-right: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+        .journey-tab { min-height: 76px; padding: 12px 10px; border: 0; border-right: 1px solid var(--ink); border-bottom: 2px solid var(--ink); color: var(--ink); background: #FAFAFA; font: inherit; font-size: 11px; font-weight: 700; line-height: 1.25; cursor: pointer; transition: color 180ms ease, background 180ms ease; }
+        .journey-tab:last-child { border-right: 0; }
+        .journey-tab:hover, .journey-tab:focus-visible { background: #DDF3EF; }
+        .journey-tab.active { color: var(--ink); background: var(--stap); }
+        .journey-map[data-scenario="worst"] .journey-tab:hover, .journey-map[data-scenario="worst"] .journey-tab:focus-visible { background: #F8DEDC; }
+        .journey-map[data-scenario="worst"] .journey-tab.active { color: #fff; background: #D94B45; }
+        .journey-tab .phase-number { display: block; margin-bottom: 7px; font-size: 9px; letter-spacing: .12em; opacity: .65; }
+        .journey-body { display: grid; grid-template-columns: minmax(0,1fr) minmax(310px,.75fr); border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+        .journey-details { display: grid; grid-template-columns: 92px minmax(0,1fr); align-content: start; min-height: 290px; border-right: 1px solid var(--ink); }
+        .journey-label { padding: 22px 12px; border-bottom: 1px solid var(--line); color: var(--stap-dark); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .journey-value { padding: 19px 22px; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; line-height: 1.55; }
+        .journey-value:last-child, .journey-label:nth-last-child(2) { border-bottom: 0; }
+        .journey-actor { display: inline-flex; align-items: center; gap: 9px; }
+        .actor-dot { display: grid; width: 30px; height: 30px; place-items: center; border: 1.5px solid var(--ink); border-radius: 50%; background: #DDF3EF; color: var(--stap-dark); font-size: 9px; font-weight: 800; }
+        .journey-mood { position: relative; min-height: 290px; overflow: hidden; background: linear-gradient(180deg,#E7F5F2,#C9EEE7); }
+        .journey-mood::before { content: 'EMOTIONAL ARC'; position: absolute; z-index: 2; top: 18px; left: 20px; color: var(--stap-dark); font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+        .journey-mood svg { position: absolute; inset: 42px 14px 12px; width: calc(100% - 28px); height: calc(100% - 54px); overflow: visible; }
+        .mood-path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+        .best-teacher-path { stroke: #fff; stroke-width: 4; filter: drop-shadow(0 0 1px rgba(10,10,10,.75)); }
+        .best-advisor-path { stroke: #159E91; }
+        .best-technician-path { stroke: #62D8C8; }
+        .worst-mood-path { stroke: #C83D38; stroke-dasharray: 7 5; }
+        .journey-map[data-scenario="best"] .worst-mood-path { opacity: .14; filter: saturate(.18); }
+        .journey-map[data-scenario="worst"] .best-mood-path { opacity: .24; }
+        .mood-guide { stroke: rgba(10,10,10,.11); stroke-width: 1; stroke-dasharray: 4 5; }
+        .mood-point { position: absolute; z-index: 2; width: 16px; height: 16px; border: 3px solid var(--ink); border-radius: 50%; background: #FAFAFA; transform: translate(-50%,-50%); transition: width 180ms ease, height 180ms ease, background 180ms ease; }
+        .mood-point.active { width: 24px; height: 24px; background: var(--stap); }
+        .teacher-mood-point { background: #fff; }
+        .advisor-mood-point { border-color: #117C72; background: #159E91; }
+        .technician-mood-point { border-color: #287F71; background: #62D8C8; }
+        .teacher-mood-point[data-stage="0"] { top: calc(63.636% + 7.636px); left: calc(7.692% + 11.846px); }
+        .teacher-mood-point[data-stage="1"] { top: calc(29.545% + 26.045px); left: calc(28.846% + 5.923px); }
+        .teacher-mood-point[data-stage="2"] { top: calc(70.455% + 3.955px); left: 50%; }
+        .teacher-mood-point[data-stage="3"] { top: calc(27.273% + 27.273px); left: calc(71.154% - 5.923px); }
+        .teacher-mood-point[data-stage="4"] { top: calc(11.364% + 35.455px); left: calc(92.308% - 11.846px); }
+        .advisor-mood-point[data-stage="1"] { top: calc(50% + 15px); left: calc(28.846% + 5.923px); }
+        .advisor-mood-point[data-stage="2"] { top: calc(59.091% + 10.091px); left: 50%; }
+        .advisor-mood-point[data-stage="3"] { top: calc(38.636% + 21.136px); left: calc(71.154% - 5.923px); }
+        .advisor-mood-point[data-stage="4"] { top: calc(20.455% + 30.545px); left: calc(92.308% - 11.846px); }
+        .technician-mood-point[data-stage="2"] { top: calc(54.545% + 12.545px); left: 50%; }
+        .technician-mood-point[data-stage="3"] { top: calc(34.091% + 23.591px); left: calc(71.154% - 5.923px); }
+        .technician-mood-point[data-stage="4"] { top: calc(15.909% + 32.409px); left: calc(92.308% - 11.846px); }
+        .worst-mood-point { border-color: #C83D38; opacity: .42; }
+        .worst-mood-point[data-stage="0"] { top: calc(63.636% + 7.636px); left: calc(7.692% + 11.846px); }
+        .worst-mood-point[data-stage="1"] { top: calc(31.818% + 24.818px); left: calc(28.846% + 5.923px); }
+        .worst-mood-point[data-stage="2"] { top: calc(52.273% + 13.773px); left: 50%; }
+        .worst-mood-point[data-stage="3"] { top: calc(68.182% + 5.182px); left: calc(71.154% - 5.923px); }
+        .worst-mood-point[data-stage="4"] { top: calc(86.364% - 4.636px); left: calc(92.308% - 11.846px); }
+        .journey-map[data-scenario="worst"] .mood-point:not(.worst-mood-point) { opacity: .42; }
+        .journey-map[data-scenario="best"] .worst-mood-point { opacity: .12; filter: saturate(.12); }
+        .journey-map[data-scenario="worst"] .worst-mood-point { opacity: 1; }
+        .worst-mood-point.active { background: #D94B45; }
+        .journey-map[data-scenario="worst"] .mood-readout { color: #B8322D; }
+        .curve-legend { position: absolute; z-index: 3; top: 15px; right: 15px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px 12px; max-width: 230px; }
+        .curve-legend span { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); font-size: 8px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+        .curve-legend i { display: inline-block; width: 17px; height: 4px; border: 1px solid rgba(10,10,10,.28); background: var(--legend-color); }
+        .worst-legend { display: none !important; }
+        .journey-map[data-scenario="worst"] .best-legend { display: none; }
+        .journey-map[data-scenario="worst"] .worst-legend { display: inline-flex !important; }
+        .mood-readout { position: absolute; right: 18px; bottom: 14px; color: var(--ink); font-family: 'Archivo Black', Impact, sans-serif; font-size: 30px; line-height: 1; }
+        .mood-readout small { display: block; margin-top: 5px; font-family: 'Work Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-align: right; text-transform: uppercase; }
+
         .twist-layout { display: block; margin-top: 20px; }
         .research-bridge { margin-top: 48px; }
         .research-bridge-headings, .research-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -123,6 +236,12 @@
             .start-layout .photo-wall { width: min(100%, 680px); margin: 28px auto 0; }
             .live-grid { grid-template-columns: minmax(180px, 250px) minmax(0, 1fr); }
             .workflow article:not(:last-child)::after { content: '↓'; top: auto; right: 22px; bottom: -35px; transform: none; }
+            .stakeholder-explorer { grid-template-columns: 1fr; }
+            .stakeholder-stage { border-right: 0; border-bottom: 2px solid var(--ink); }
+            .stakeholder-detail { min-height: 320px; }
+            .journey-body { grid-template-columns: 1fr; }
+            .journey-details { border-right: 0; border-bottom: 1px solid var(--ink); }
+            .journey-mood { min-height: 240px; }
         }
         @media (max-width: 620px) {
             .stap-case { width: calc(100% - 40px); }
@@ -144,6 +263,26 @@
             .timeline-copy { padding: 18px 0 0; }
             .image-lightbox { padding: 52px 16px 24px; }
             .zoom-image-button { opacity: 1; }
+            .map-module { margin: 42px 0 50px; box-shadow: 5px 5px 0 rgba(10,10,10,.1); }
+            .map-header { display: block; padding: 21px 20px; }
+            .map-instruction { margin-top: 12px; }
+            .stakeholder-stage { min-height: 420px; }
+            .stakeholder-rings { left: 50%; width: 350px; }
+            .stakeholder-node { width: 88px; }
+            .stakeholder-node .node-icon { width: 48px; height: 48px; font-size: 12px; }
+            .stakeholder-node .node-name { font-size: 9px; }
+            .stakeholder-detail { min-height: 300px; padding: 28px 24px; }
+            .journey-explorer { padding: 0 14px 16px; }
+            .journey-tabs { grid-template-columns: 1fr; border-top: 1px solid var(--ink); }
+            .journey-tab { min-height: 48px; border-top: 0; border-right: 0; border-bottom-width: 1px; text-align: left; }
+            .journey-tab .phase-number { display: inline; margin-right: 9px; }
+            .journey-body { border-top: 1px solid var(--ink); }
+            .journey-details { grid-template-columns: 76px minmax(0,1fr); min-height: 0; }
+            .journey-label { padding: 17px 10px; }
+            .journey-value { padding: 15px 16px; font-size: 13px; }
+            .journey-scenario-bar { align-items: flex-start; flex-direction: column; }
+            .scenario-switch { width: 100%; }
+            .scenario-button { flex: 1; }
         }
     </style>
 </head>
@@ -226,6 +365,36 @@
                 <div><strong>5</strong><span>Survey Responses</span></div>
                 <div><strong>13</strong><span>Interviews</span></div>
             </div>
+
+            <section class="map-module stakeholder-map" aria-labelledby="stakeholder-map-title">
+                <header class="map-header">
+                    <div><span class="map-kicker">Research lens 01</span><h3 id="stakeholder-map-title">Who keeps STAP moving?</h3></div>
+                    <p class="map-instruction">Select a stakeholder to see their role and where they sit in the system.</p>
+                </header>
+                <div class="stakeholder-explorer">
+                    <div class="stakeholder-stage" data-active="advisors" aria-label="Interactive stakeholder relationship map">
+                        <div class="stakeholder-rings" aria-hidden="true"><span class="ring-label informed">Informed</span><span class="ring-label involved">Involved</span><span class="ring-label core">Core</span></div>
+                        <svg class="stakeholder-lines" viewBox="0 0 600 540" preserveAspectRatio="none" aria-hidden="true">
+                            <line class="line-teachers line-students" x1="180" y1="167" x2="396" y2="119"/>
+                            <line class="line-teachers line-technicians" x1="180" y1="167" x2="372" y2="275"/>
+                            <line class="line-teachers line-advisors" x1="180" y1="167" x2="252" y2="292"/>
+                            <line class="line-teachers line-admins" x1="180" y1="167" x2="204" y2="443"/>
+                            <line class="line-advisors line-technicians" x1="252" y1="292" x2="372" y2="275"/>
+                            <line class="line-advisors line-admins" x1="252" y1="292" x2="204" y2="443"/>
+                            <line class="line-students line-technicians" x1="396" y1="119" x2="372" y2="275"/>
+                        </svg>
+                        <button class="stakeholder-node students" type="button" data-stakeholder="students"><span class="node-icon">ST</span><span class="node-name">Students</span></button>
+                        <button class="stakeholder-node teachers" type="button" data-stakeholder="teachers"><span class="node-icon">TE</span><span class="node-name">Teachers</span></button>
+                        <button class="stakeholder-node technicians" type="button" data-stakeholder="technicians"><span class="node-icon">TC</span><span class="node-name">Student Technicians</span></button>
+                        <button class="stakeholder-node advisors active" type="button" data-stakeholder="advisors" aria-pressed="true"><span class="node-icon">FA</span><span class="node-name">Faculty Advisors</span></button>
+                        <button class="stakeholder-node admins" type="button" data-stakeholder="admins"><span class="node-icon">SA</span><span class="node-name">School Admins</span></button>
+                    </div>
+                    <aside class="stakeholder-detail" aria-live="polite">
+                        <div><span class="detail-index">01</span><h4>Faculty Advisors</h4><p>Jim and Joe are the core of STAP. They run the program, support students, and sometimes solve requests that are too difficult for student technicians.</p><span class="detail-status">Core · Directly involved</span></div>
+                        <div class="map-progress" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+                    </aside>
+                </div>
+            </section>
             <blockquote class="research-quote">A teacher [told us their] projector was broken, [and a STAP technician] fixed it but didn’t tell anyone.<br>… [the] teacher didn’t use [their] projector for weeks.<cite class="quote-attribution">Participant S.5</cite></blockquote>
 
             <div class="twist-layout">
@@ -235,6 +404,50 @@
                     <p>Their documentation of work procedures was hardly any better. In 7th and 8th grade, middle school students could join an elective to learn about the technology and communication skills they would need to join STAP. However, the only requirement for them to join STAP was actually to pass an interview in high school. After joining the program, they did have meetings organized by the higher administration group in the organization from time to time, but there were no procedure documents of how to perform certain tasks, such as fixing a projector or resetting a password. The new members had to learn from the older members about their tasks.</p>
                 </div>
             </div>
+
+            <section class="map-module journey-map" data-scenario="best" aria-labelledby="journey-map-title">
+                <header class="map-header">
+                    <div><span class="map-kicker">Research lens 02</span><h3 id="journey-map-title">One request, two possible journeys</h3></div>
+                    <p class="map-instruction">Intended vs. worst-case scenario.</p>
+                </header>
+                <div class="journey-explorer">
+                    <div class="journey-scenario-bar">
+                        <div class="scenario-switch" role="group" aria-label="Choose journey scenario">
+                            <button class="scenario-button active" type="button" data-scenario="best" aria-pressed="true">Best</button>
+                            <button class="scenario-button" type="button" data-scenario="worst" aria-pressed="false">Worst</button>
+                        </div>
+                    </div>
+                    <div class="journey-tabs" role="tablist" aria-label="User journey stages">
+                        <button class="journey-tab active" type="button" role="tab" aria-selected="true" data-stage="0"><span class="phase-number">01</span>Spotting the issue</button>
+                        <button class="journey-tab" type="button" role="tab" aria-selected="false" data-stage="1"><span class="phase-number">02</span>Requesting STAP</button>
+                        <button class="journey-tab" type="button" role="tab" aria-selected="false" data-stage="2"><span class="phase-number">03</span>Waiting for help</button>
+                        <button class="journey-tab" type="button" role="tab" aria-selected="false" data-stage="3"><span class="phase-number">04</span>Solving the issue</button>
+                        <button class="journey-tab" type="button" role="tab" aria-selected="false" data-stage="4"><span class="phase-number">05</span>Confirmation</button>
+                    </div>
+                    <div class="journey-body" role="tabpanel" aria-live="polite">
+                        <div class="journey-details">
+                            <span class="journey-label">Action</span><p class="journey-value journey-action">Realizes there is an issue with a device they are trying to use.</p>
+                            <span class="journey-label">Thought</span><p class="journey-value journey-thought">“Oh no! My projector is broken. I need someone to fix it for me.”</p>
+                            <span class="journey-label">Actors</span><div class="journey-value"><span class="journey-actor"><span class="actor-dot">TE</span><span class="journey-actor-name">Teacher</span></span></div>
+                        </div>
+                        <div class="journey-mood">
+                            <svg viewBox="0 0 260 220" preserveAspectRatio="none" aria-hidden="true">
+                                <line class="mood-guide" x1="20" y1="28" x2="20" y2="205"/><line class="mood-guide" x1="75" y1="28" x2="75" y2="205"/><line class="mood-guide" x1="130" y1="28" x2="130" y2="205"/><line class="mood-guide" x1="185" y1="28" x2="185" y2="205"/><line class="mood-guide" x1="240" y1="28" x2="240" y2="205"/>
+                                <path class="mood-path best-mood-path best-teacher-path" d="M20 140 C40 110 58 65 75 65 S110 150 130 155 S165 75 185 60 S220 30 240 25"/>
+                                <path class="mood-path best-mood-path best-advisor-path" d="M75 110 C93 112 112 130 130 130 S167 95 185 85 S222 52 240 45"/>
+                                <path class="mood-path best-mood-path best-technician-path" d="M130 120 C150 115 167 85 185 75 S220 42 240 35"/>
+                                <path class="mood-path worst-mood-path" d="M20 140 C39 110 57 74 75 70 S108 99 130 115 S163 138 185 150 S220 182 240 190"/>
+                            </svg>
+                            <span class="mood-point best-mood-point teacher-mood-point active" data-stage="0" aria-hidden="true"></span><span class="mood-point best-mood-point teacher-mood-point" data-stage="1" aria-hidden="true"></span><span class="mood-point best-mood-point teacher-mood-point" data-stage="2" aria-hidden="true"></span><span class="mood-point best-mood-point teacher-mood-point" data-stage="3" aria-hidden="true"></span><span class="mood-point best-mood-point teacher-mood-point" data-stage="4" aria-hidden="true"></span>
+                            <span class="mood-point best-mood-point advisor-mood-point" data-stage="1" aria-hidden="true"></span><span class="mood-point best-mood-point advisor-mood-point" data-stage="2" aria-hidden="true"></span><span class="mood-point best-mood-point advisor-mood-point" data-stage="3" aria-hidden="true"></span><span class="mood-point best-mood-point advisor-mood-point" data-stage="4" aria-hidden="true"></span>
+                            <span class="mood-point best-mood-point technician-mood-point" data-stage="2" aria-hidden="true"></span><span class="mood-point best-mood-point technician-mood-point" data-stage="3" aria-hidden="true"></span><span class="mood-point best-mood-point technician-mood-point" data-stage="4" aria-hidden="true"></span>
+                            <span class="mood-point worst-mood-point" data-stage="0" aria-hidden="true"></span><span class="mood-point worst-mood-point" data-stage="1" aria-hidden="true"></span><span class="mood-point worst-mood-point" data-stage="2" aria-hidden="true"></span><span class="mood-point worst-mood-point" data-stage="3" aria-hidden="true"></span><span class="mood-point worst-mood-point" data-stage="4" aria-hidden="true"></span>
+                            <div class="curve-legend" aria-label="Mood curve legend"><span class="best-legend"><i style="--legend-color:#fff"></i>Teacher</span><span class="best-legend"><i style="--legend-color:#159E91"></i>Faculty advisor</span><span class="best-legend"><i style="--legend-color:#62D8C8"></i>Student technician</span><span class="worst-legend"><i style="--legend-color:#C83D38"></i>Teacher · worst case</span></div>
+                            <div class="mood-readout">LOW<small>Frustrated</small></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <div class="research-bridge" aria-label="Current operations connected to research insights">
                 <div class="research-bridge-headings"><h3>STAP’s Current Operations</h3><h3>Research Insights</h3></div>
@@ -375,6 +588,86 @@
         const sections = sectionLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
         const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (!entry.isIntersecting) return; sectionLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`)); }); }, { rootMargin: '-30% 0px -60% 0px' });
         sections.forEach(section => observer.observe(section));
+
+        const stakeholderData = {
+            advisors: { index: '01', name: 'Faculty Advisors', description: 'Jim and Joe are the core of STAP. They run the program, support students, and sometimes solve requests that are too difficult for student technicians.', status: 'Core · Directly involved' },
+            technicians: { index: '02', name: 'Student Technicians', description: 'Student technicians are the majority of STAP. They organize themselves, pick up tickets, and try to solve issues with support from peers and advisors.', status: 'Core · Directly involved' },
+            teachers: { index: '03', name: 'Teachers', description: 'Teachers are the main service users. They submit requests by email, wait for a technician, and ultimately depend on STAP to keep classroom technology working.', status: 'Involved · Service users' },
+            students: { index: '04', name: 'Students', description: 'Students rarely submit a ticket themselves, but frequently visit the front desk for smaller requests such as password resets.', status: 'Involved · Service users' },
+            admins: { index: '05', name: 'School Admins', description: 'School administrators know about STAP but step in only for exceptional cases—for example, when repeated requests need escalation.', status: 'Informed · Occasional escalation' }
+        };
+        const stakeholderStage = document.querySelector('.stakeholder-stage');
+        const stakeholderDetail = document.querySelector('.stakeholder-detail');
+        const setStakeholder = key => {
+            const item = stakeholderData[key];
+            if (!item || !stakeholderStage || !stakeholderDetail) return;
+            stakeholderStage.dataset.active = key;
+            stakeholderStage.querySelectorAll('.stakeholder-node').forEach(node => { const active = node.dataset.stakeholder === key; node.classList.toggle('active', active); node.setAttribute('aria-pressed', active ? 'true' : 'false'); });
+            stakeholderDetail.querySelector('.detail-index').textContent = item.index;
+            stakeholderDetail.querySelector('h4').textContent = item.name;
+            stakeholderDetail.querySelector('p').textContent = item.description;
+            stakeholderDetail.querySelector('.detail-status').textContent = item.status;
+            stakeholderDetail.querySelectorAll('.map-progress span').forEach((bar, index) => bar.classList.toggle('active', index === Number(item.index) - 1));
+        };
+        document.querySelectorAll('.stakeholder-node').forEach(node => {
+            node.addEventListener('click', () => setStakeholder(node.dataset.stakeholder));
+            node.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') setStakeholder(node.dataset.stakeholder); });
+            node.addEventListener('focus', () => setStakeholder(node.dataset.stakeholder));
+        });
+
+        const journeyScenarios = {
+            best: [
+                { stage: 'Spotting the issue', action: 'The teacher realizes there is an issue with a device they are trying to use.', thought: 'Teacher — “Oh no! My projector is broken. I need someone to fix it for me.”', actor: 'Teacher', code: 'TE', mood: 'LOW', moodLabel: 'Teacher · frustrated' },
+                { stage: 'Requesting STAP', action: 'The teacher reaches STAP through email or word of mouth, and an advisor receives the request.', thought: 'Teacher — “STAP can help me.” · Advisor — “Another request came in; we can route it.”', actor: 'Teacher + Faculty Advisor', code: '2×', mood: 'UP', moodLabel: 'Teacher · hopeful' },
+                { stage: 'Waiting for help', action: 'The advisor finds an available student technician while the teacher waits for an update.', thought: 'Teacher — “Who is going to help me?” · Advisor — “Who is available?” · Technician — “I can take this one.”', actor: 'Teacher + Advisor + Technician', code: '3×', mood: 'DOWN', moodLabel: 'Teacher · uncertain' },
+                { stage: 'Solving the issue', action: 'The student technician works on the projector while the teacher sees that help has arrived.', thought: 'Teacher — “Great, they are taking care of it.” · Technician — “I know how to fix this.”', actor: 'Teacher + Technician', code: '2×', mood: 'UP', moodLabel: 'Teacher · relieved' },
+                { stage: 'Confirmation', action: 'The fix is confirmed and the technician reports completion back to the program.', thought: 'Teacher — “My problem is solved.” · Technician — “Let’s tell Jim that we finished.”', actor: 'Teacher + Technician', code: '2×', mood: 'HIGH', moodLabel: 'Teacher · resolved' }
+            ],
+            worst: [
+                { stage: 'Projector breaks', action: 'A teacher discovers that their classroom projector is not working.', thought: '“I need someone to fix this projector.”', actor: 'Teacher', code: 'TE', mood: 'LOW', moodLabel: 'Frustrated' },
+                { stage: 'Emails a student', action: 'Instead of using the STAP channel, the teacher finds a student’s school email and contacts them directly.', thought: '“Great—I found someone who can fix it directly.”', actor: 'Teacher + Student', code: '2×', mood: 'UP', moodLabel: 'False hope' },
+                { stage: 'Escalates to Jim', action: 'The student reports the direct email to Jim. Jim asks the teacher not to contact students this way.', thought: '“Why has this become an issue? I just need help.”', actor: 'Teacher + Student + Jim', code: '3×', mood: 'DROP', moodLabel: 'Escalated' },
+                { stage: 'Silent weekend fix', action: 'The student repairs the projector over the weekend, but no update reaches the teacher.', thought: '“I’m still waiting. Is anyone working on it?”', actor: 'Student Technician', code: 'TC', mood: 'LOW', moodLabel: 'No feedback' },
+                { stage: 'A month without it', action: 'The teacher never learns that the projector was fixed and does not use it for an entire month.', thought: '“I thought the projector was still broken.”', actor: 'Teacher', code: 'TE', mood: 'FAILURE', moodLabel: 'Avoidable loss' }
+            ]
+        };
+        const journeyTabs = [...document.querySelectorAll('.journey-tab')];
+        const journeyPanel = document.querySelector('.journey-body');
+        const journeyMap = document.querySelector('.journey-map');
+        const scenarioButtons = [...document.querySelectorAll('.scenario-button')];
+        let activeJourneyScenario = 'best';
+        const setJourneyStage = index => {
+            const item = journeyScenarios[activeJourneyScenario][index];
+            if (!item || !journeyPanel) return;
+            journeyTabs.forEach((tab, tabIndex) => { const active = tabIndex === index; tab.classList.toggle('active', active); tab.setAttribute('aria-selected', active ? 'true' : 'false'); tab.innerHTML = `<span class="phase-number">0${tabIndex + 1}</span>${journeyScenarios[activeJourneyScenario][tabIndex].stage}`; });
+            journeyPanel.querySelector('.journey-action').textContent = item.action;
+            journeyPanel.querySelector('.journey-thought').textContent = item.thought;
+            journeyPanel.querySelector('.journey-actor-name').textContent = item.actor;
+            journeyPanel.querySelector('.actor-dot').textContent = item.code;
+            journeyPanel.querySelectorAll('.mood-point').forEach(point => point.classList.remove('active'));
+            const pointSelector = activeJourneyScenario === 'best' ? `.best-mood-point[data-stage="${index}"]` : `.worst-mood-point[data-stage="${index}"]`;
+            journeyPanel.querySelectorAll(pointSelector).forEach(point => point.classList.add('active'));
+            journeyPanel.querySelector('.mood-readout').innerHTML = `${item.mood}<small>${item.moodLabel}</small>`;
+        };
+        const setJourneyScenario = scenario => {
+            if (!journeyScenarios[scenario] || !journeyMap) return;
+            activeJourneyScenario = scenario;
+            journeyMap.dataset.scenario = scenario;
+            scenarioButtons.forEach(button => { const active = button.dataset.scenario === scenario; button.classList.toggle('active', active); button.setAttribute('aria-pressed', active ? 'true' : 'false'); });
+            setJourneyStage(0);
+        };
+        scenarioButtons.forEach(button => button.addEventListener('click', () => setJourneyScenario(button.dataset.scenario)));
+        journeyTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => setJourneyStage(index));
+            tab.addEventListener('keydown', event => {
+                if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+                event.preventDefault();
+                const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+                const nextIndex = (index + direction + journeyTabs.length) % journeyTabs.length;
+                journeyTabs[nextIndex].focus(); setJourneyStage(nextIndex);
+            });
+        });
+
         const lightbox = document.querySelector('.image-lightbox');
         const lightboxImage = lightbox.querySelector('img');
         const lightboxCaption = lightbox.querySelector('p');
