@@ -4,190 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pollen Farm — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=20260709">
     <style>
-        /* === Vertical Garden — page-specific layout === */
+        body { background: #F3F1EA; }
+        .vg-case { width: min(calc(100% - 112px), 1080px); margin: 0 auto; }
+        figure { margin: 0; }
+        figcaption { padding-top: 10px; font-size: 12px; line-height: 1.5; color: #737373; }
+        .project-detail-hero { padding: 72px max(var(--page-padding), calc((100vw - 1200px) / 2)) 68px; border-bottom: 2px solid #0A0A0A; }
+        .vg-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 460px); gap: clamp(48px, 7vw, 96px); align-items: end; }
+        .vg-hero-copy { min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+        .vg-hero-copy .back-link { margin-bottom: 44px; }
+        .project-detail-hero h1 { font-size: clamp(42px, 5.5vw, 72px); margin-bottom: 36px; }
+        .project-detail-hero h1::after { margin-top: 22px; }
+        .project-detail-hero .project-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 40px; max-width: 680px; margin-top: 0; }
 
-        .split-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-top: 2px solid #E5E5E5;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .split-row + .split-row { border-top: none; }
-        .split-row.reverse { direction: rtl; }
-        .split-row.reverse > * { direction: ltr; }
-
-        .split-text {
-            padding: 48px 64px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .split-text h2 {
+        .section-title, .split-text h2, .reflection h2 {
             font-family: 'Archivo Black', Impact, sans-serif;
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            margin-bottom: 16px;
+            font-size: 24px; font-weight: 400; line-height: 1.2;
+            letter-spacing: -0.01em; margin-bottom: 16px;
         }
-        .split-text h2::after {
+        .section-title::after, .split-text h2::after {
+            content: ''; display: block; width: 40px; height: 3px;
+            margin-top: 12px; background: #40C1AC;
+        }
+
+        .vg-hero-image { position: relative; align-self: end; display: flex; flex-direction: column; justify-content: flex-end; }
+        .vg-hero-image img { width: 100%; aspect-ratio: 4 / 3; max-height: 320px; object-fit: cover; object-position: center; display: block; }
+        .vg-hero-image figcaption { color: rgba(250, 250, 250, .62); padding-top: 10px; }
+
+        /* Same pinned evidence-card frame used by Sea Monster and Rick's Radio. */
+        .vg-evidence-page .vg-case { padding: 32px 0 96px; }
+        .vg-evidence-page .vg-case > section { background: transparent; }
+        .vg-evidence-page .vg-case figure {
+            position: relative;
+            padding: 11px 11px 12px;
+            border: 2px solid #0A0A0A;
+            background: #FAFAFA;
+            box-shadow: 5px 7px 0 rgba(10, 10, 10, .1);
+            transform-origin: 50% 18px;
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+        .vg-evidence-page .vg-case figure::before {
             content: '';
-            display: block;
-            width: 40px;
-            height: 3px;
+            position: absolute;
+            z-index: 4;
+            top: -13px;
+            left: 50%;
+            width: 22px;
+            height: 22px;
+            transform: translateX(-50%);
+            border: 2px solid #0A0A0A;
+            border-radius: 50%;
             background: #40C1AC;
-            margin-top: 12px;
+            box-shadow: 2px 3px 0 rgba(10, 10, 10, .2);
         }
-        .split-text p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #525252;
-            max-width: 440px;
+        .vg-evidence-page .vg-case figure:nth-of-type(odd) { transform: rotate(-1.2deg); }
+        .vg-evidence-page .vg-case figure:nth-of-type(even) { transform: rotate(1.35deg); }
+        .vg-evidence-page .vg-case figure:hover {
+            z-index: 6;
+            transform: rotate(0deg) translateY(-3px);
+            box-shadow: 9px 10px 0 rgba(64, 193, 172, .5);
         }
-
-        .split-image {
-            overflow: hidden;
-            background: #F5F5F5;
-        }
-        .split-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .split-image.contain img {
-            object-fit: contain;
-            padding: 24px;
-        }
-
-        .image-band {
-            width: 100%;
-            border-top: 2px solid #E5E5E5;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .image-band img {
-            width: 100%;
-            max-height: 560px;
-            object-fit: cover;
-            display: block;
-        }
-        .image-band.contain img {
-            object-fit: contain;
-            background: #F5F5F5;
-        }
-
-        .card-strip {
-            display: flex;
-            gap: 20px;
-            padding: 48px 64px;
-            overflow-x: auto;
-            border-bottom: 2px solid #E5E5E5;
-            background: #0A0A0A;
-        }
-        .card-strip img {
-            height: 320px;
+        .vg-evidence-page .vg-case figure figcaption {
+            position: absolute;
+            z-index: 5;
+            right: 11px;
+            bottom: 11px;
+            left: 11px;
             width: auto;
-            flex-shrink: 0;
-            border: 2px solid #333;
+            padding: 10px 12px;
+            color: #FAFAFA;
+            background: rgba(10, 10, 10, .84);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(5px);
+            transition: opacity 180ms ease, transform 180ms ease;
         }
+        .vg-evidence-page .vg-case figure:hover figcaption,
+        .vg-evidence-page .vg-case figure:focus-within figcaption { opacity: 1; transform: translateY(0); }
 
-        .photo-duo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .photo-duo img {
-            width: 100%;
-            height: 360px;
-            object-fit: contain;
-            display: block;
-            background: #F5F5F5;
-        }
-        .photo-duo img:first-child {
-            border-right: 1px solid #E5E5E5;
-        }
-        .photo-duo img:last-child {
-            border-left: 1px solid #E5E5E5;
-        }
+        .intro { padding: 64px 0 52px; }
+        .intro .lead { max-width: 900px; font-size: 20px; line-height: 1.68; margin-bottom: 24px; }
+        .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
+        .summary-item { border-top: 2px solid #D4D4D4; padding-top: 12px; font-size: 13px; line-height: 1.5; color: #525252; }
+        .summary-item strong { display: block; margin-bottom: 4px; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: #0A0A0A; }
 
-        .photo-trio {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .photo-trio img {
-            width: 100%;
-            height: 320px;
-            object-fit: contain;
-            display: block;
-            background: #F5F5F5;
-            padding: 16px;
-        }
-        .photo-trio img:not(:last-child) {
-            border-right: 1px solid #E5E5E5;
-        }
+        .text-block { display: grid; grid-template-columns: 260px minmax(0, 1fr); column-gap: 56px; padding: 52px 0; border-top: 2px solid #E5E5E5; align-items: start; }
+        .text-block .section-title { grid-column: 1; grid-row: 1 / span 4; position: sticky; top: calc(var(--nav-height) + 24px); }
+        .text-block > p, .text-block > .callout { grid-column: 2; }
+        .text-block p, .split-text p, .gallery-section > p, .reflection p { max-width: 760px; margin-bottom: 16px; font-size: 16px; line-height: 1.75; color: #525252; }
+        .callout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 24px; }
+        .callout div { border-top: 2px solid #D4D4D4; padding-top: 14px; }
+        .callout h3 { margin-bottom: 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; }
+        .callout p { margin: 0; font-size: 14px; }
 
-        .vg-intro {
-            max-width: 720px;
-            padding: 64px 64px 48px;
-        }
-        .vg-intro .lead {
-            font-size: 20px;
-            line-height: 1.65;
-            margin-bottom: 32px;
-            color: #0A0A0A;
-        }
-        .vg-intro .team-list {
-            font-size: 13px;
-            color: #A3A3A3;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-        .vg-intro .team-list strong {
-            color: #40C1AC;
-            font-weight: 600;
-        }
+        .split-row { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 32px; padding: 52px 0; border-top: 2px solid #E5E5E5; align-items: center; }
+        .split-row.reverse { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+        .split-image { background: #F5F5F5; }
+        .split-image img { width: 100%; height: 440px; object-fit: contain; display: block; }
+        .split-image.portrait img { height: 580px; }
 
-        .vg-reflection {
-            max-width: 720px;
-            padding: 64px;
-        }
-        .vg-reflection h2 {
-            font-family: 'Archivo Black', Impact, sans-serif;
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #0A0A0A;
-        }
-        .vg-reflection p {
-            font-size: 16px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
+        .gallery-section { padding: 52px 0; border-top: 2px solid #E5E5E5; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 28px; align-items: start; }
+        .gallery-grid img { width: 100%; height: 340px; object-fit: contain; display: block; background: #F5F5F5; }
+        .gallery-grid .wide { grid-column: 1 / -1; }
+        .gallery-grid .wide img { height: auto; max-height: 620px; }
+        .gallery-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .gallery-grid.three img { height: 280px; object-fit: cover; }
 
-        @media (max-width: 768px) {
-            .split-row { grid-template-columns: 1fr; }
-            .split-row.reverse { direction: ltr; }
-            .split-text { padding: 32px 24px; }
-            .card-strip { padding: 32px 24px; }
-            .card-strip img { height: 240px; }
-            .photo-duo { grid-template-columns: 1fr; }
-            .photo-duo img:first-child { border-right: none; border-bottom: 1px solid #E5E5E5; }
-            .photo-duo img:last-child { border-left: none; }
-            .photo-trio { grid-template-columns: 1fr; }
-            .photo-trio img:not(:last-child) { border-right: none; border-bottom: 1px solid #E5E5E5; }
-            .vg-intro { padding: 40px 24px 32px; }
-            .vg-reflection { padding: 40px 24px; }
+        .drawing-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+        .drawing-grid img { width: 100%; height: 220px; object-fit: contain; display: block; background: #F5F5F5; }
+
+        .reflection { max-width: 900px; padding: 52px 0 72px; border-top: 2px solid #E5E5E5; }
+        .reflection h2 { padding-bottom: 10px; border-bottom: 2px solid #0A0A0A; }
+
+        @media (max-width: 900px) {
+            .vg-case { width: min(calc(100% - 48px), 1080px); }
+            .vg-hero-inner { grid-template-columns: 1fr; }
+            .vg-hero-image { max-width: 620px; }
+            .text-block { grid-template-columns: 1fr; row-gap: 16px; }
+            .text-block .section-title { grid-column: 1; grid-row: auto; position: static; }
+            .text-block > p, .text-block > .callout { grid-column: 1; }
+            .drawing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 680px) {
+            .vg-case { width: calc(100% - 40px); }
+            .project-detail-hero { padding-top: 48px; padding-bottom: 48px; }
+            .project-detail-hero .project-meta { grid-template-columns: 1fr; }
+            .intro { padding: 40px 0; }
+            .intro .lead { font-size: 18px; }
+            .summary, .callout, .split-row, .split-row.reverse, .gallery-grid, .gallery-grid.three { grid-template-columns: 1fr; }
+            .split-row { padding: 40px 0; }
+            .split-text { order: -1; }
+            .split-image img, .split-image.portrait img { height: auto; max-height: 560px; }
+            .gallery-grid .wide { grid-column: auto; }
+            .gallery-grid img, .gallery-grid.three img { height: auto; max-height: 480px; }
+            .drawing-grid { grid-template-columns: 1fr; }
+            .drawing-grid img { height: auto; max-height: 440px; }
+        }
+        @media (hover: none) {
+            .vg-evidence-page .vg-case figure figcaption {
+                position: static;
+                margin-top: 0;
+                color: #525252;
+                background: transparent;
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
-<body>
-
+<body class="vg-evidence-page">
     <nav>
         <a href="../index.html" class="logo">HUA TONG</a>
         <ul class="nav-links">
@@ -195,155 +166,126 @@
             <li><a href="../playground.html">Playground</a></li>
             <li><a href="../about.html">About Me</a></li>
         </ul>
-        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- Hero -->
     <section class="project-detail-hero">
-        <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
-        <h1>Pollen Farm</h1>
-        <div class="project-meta">
-            <div class="meta-item">
-                <span class="meta-label">Category</span>
-                Product Design &middot; Digital Fabrication
+        <div class="vg-hero-inner">
+            <div class="vg-hero-copy">
+                <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+                <h1>Pollen Farm</h1>
+                <div class="project-meta">
+                    <div class="meta-item"><span class="meta-label">Category</span>Product Design &middot; Digital Fabrication</div>
+                    <div class="meta-item"><span class="meta-label">Role</span>Designer &amp; Fabricator</div>
+                    <div class="meta-item"><span class="meta-label">Context</span>CMU Fundamentals of Computational Design, Spring 2024</div>
+                    <div class="meta-item"><span class="meta-label">Team</span>Lisa, Catalina, Kai, <strong style="color:#40C1AC">Hua</strong>, Bleona</div>
+                </div>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Role</span>
-                Designer &amp; Fabricator
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Context</span>
-                CMU Fundamental of Computer Design, Spring 2024
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Team</span>
-                Lisa, Catalina, Kai, <strong style="color:#40C1AC">Hua</strong>, Bleona
-            </div>
+            <figure class="vg-hero-image">
+                <img src="../assets/projects/vertical-garden/render-context-1-web.jpg" alt="Pollen Farm installed in a campus landscape" fetchpriority="high" decoding="async">
+                <figcaption>A modular vertical garden designed as a small piece of habitat within the campus landscape.</figcaption>
+            </figure>
         </div>
     </section>
 
-    <!-- Cover — render in context -->
-    <div class="image-band">
-        <img src="../assets/projects/vertical-garden/render-context-1.png" alt="Vertical Garden System — architectural rendering on campus lawn with conservatory">
-    </div>
+    <main class="vg-case">
+        <section class="intro">
+            <p class="lead">How can a flat sheet become a living, spatial system? Pollen Farm turns one repeatable polyhedral module into a human-scale vertical garden. A rule-based geometry, custom joints, and digital fabrication allow the structure to grow without hiding how it is made.</p>
+            <div class="summary">
+                <div class="summary-item"><strong>Design question</strong>Make a modular garden that can aggregate in multiple directions.</div>
+                <div class="summary-item"><strong>System</strong>Triangular plywood panels, five connector types, and mirrored modules.</div>
+                <div class="summary-item"><strong>Outcome</strong>A 3′9″-tall prototype with planting pockets and room to expand.</div>
+            </div>
+        </section>
 
-    <!-- Intro -->
-    <div class="vg-intro">
-        <p class="lead">
-            A modular, full-scale vertical garden system built from polyhedral geometry. Starting from paper icosahedra, the project evolves through a systematic matrix of geometric forms — triangular, quadrilateral, pentagonal, and hexagonal bases — to arrive at a pentagonal bipyramid structure assembled from laser-cut plywood panels joined by custom-designed tab-and-slot connectors.
-        </p>
-        <p class="team-list">
-            Team: Lisa &middot; Catalina &middot; Kai &middot; <strong>Hua</strong> &middot; Bleona
-        </p>
-    </div>
+        <section class="text-block">
+            <h2 class="section-title">From Form to Rule</h2>
+            <p>We began with paper polyhedra rather than a fixed silhouette. By comparing triangular, quadrilateral, pentagonal, and hexagonal bases, we could test how each family balanced enclosure, stability, and the surface area available for planting.</p>
+            <p>The selected module could be mirrored along an edge and folded over another face. That simple operation produced a repeatable grammar: the garden could become taller, wider, or denser while preserving the same construction logic.</p>
+            <div class="callout">
+                <div><h3>Unit</h3><p>A faceted module built from flat triangular panels.</p></div>
+                <div><h3>Operation</h3><p>Mirror, fold, connect, and repeat along shared faces.</p></div>
+            </div>
+        </section>
 
-    <!-- Section 1: Geometric Research — text left, matrix right -->
-    <div class="split-row">
-        <div class="split-text">
-            <h2>Geometric Research</h2>
-            <p>
-                The design process began with a systematic exploration of polyhedral forms. A 4&times;4 matrix maps base polygon types (triangular through hexagonal) against construction methods — from flat bases to pyramids and bipyramids. This matrix became the generative ruleset, allowing each form to be evaluated for structural integrity, surface area for planting, and visual complexity.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/vertical-garden/matrix-forms.png" alt="4x4 matrix of geometric forms — triangular to hexagonal bases">
-        </div>
-    </div>
+        <section class="gallery-section">
+            <h2 class="section-title">Geometry Studies</h2>
+            <p>Physical studies made the aggregation rules tangible before we committed to full-scale material.</p>
+            <div class="gallery-grid three">
+                <figure><img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="Unfolded paper polyhedron net" loading="lazy" decoding="async"><figcaption>Unfolding the volume into a cut-and-fold net.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/paper-cluster-web.jpg" alt="Cluster of paper polyhedral modules" loading="lazy" decoding="async"><figcaption>Testing how identical units meet in a cluster.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="Hand holding a paper polyhedron" loading="lazy" decoding="async"><figcaption>Evaluating scale, enclosure, and assembly by hand.</figcaption></figure>
+            </div>
+            <div class="gallery-grid">
+                <figure class="wide"><img src="../assets/projects/vertical-garden/spatial-matrix.png" alt="Matrix of possible polyhedral configurations" loading="lazy" decoding="async"><figcaption>Configuration matrix showing how a single family can generate multiple spatial arrangements.</figcaption></figure>
+                <figure class="wide"><img src="../assets/projects/vertical-garden/diagram-system.png" alt="Diagram explaining how modules mirror and fold across edges" loading="lazy" decoding="async"><figcaption>The final aggregation rule: mirror a module along an edge, then fold it across a shared face.</figcaption></figure>
+            </div>
+        </section>
 
-    <!-- Paper prototypes — early geometric studies -->
-    <div class="card-strip">
-        <img src="../assets/projects/vertical-garden/paper-net.png" alt="Icosahedron net — unfolded paper pattern">
-        <img src="../assets/projects/vertical-garden/paper-cluster.png" alt="Paper polyhedral cluster — three modules aggregated">
-        <img src="../assets/projects/vertical-garden/paper-dodeca-flat.png" alt="Dodecahedral nets on table">
-        <img src="../assets/projects/vertical-garden/paper-dodeca-hand.png" alt="Hand-assembled paper dodecahedron">
-    </div>
+        <section class="split-row">
+            <div class="split-text">
+                <h2>Designing the Joint</h2>
+                <p>The form only works if the connection system can absorb several meeting angles. Instead of relying on glue or a hidden frame, we designed four legible tab connectors. Each one corresponds to a specific edge condition, turning geometric relationships into parts that can be cut, sorted, and assembled.</p>
+                <p>The joint system keeps the panels removable and lets the construction remain visible as part of the object’s character.</p>
+            </div>
+            <figure class="split-image portrait"><img src="../assets/projects/vertical-garden/joint-details.png" alt="Joint types, panel dimensions, and assembled module" loading="lazy" decoding="async"><figcaption>Joint families and the dimensional logic of the triangular panel.</figcaption></figure>
+        </section>
 
-    <!-- Section 2: Joint System — joints diagram left, text right -->
-    <div class="split-row reverse">
-        <div class="split-text">
-            <h2>Joint System</h2>
-            <p>
-                Five custom joint types (A, AA, B, BB, AB) were designed to connect panels at precise dihedral angles. Joint A connects five triangular pieces into a pentagon. Joint B connects the halves of the bipyramid. The AA and BB variants extend connections between modules, while AB combines both functions at seam intersections. Each joint was computationally derived from the geometry.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/vertical-garden/joints-diagram.png" alt="Joint system diagram — five types with plan and axonometric views">
-        </div>
-    </div>
+        <section class="gallery-section">
+            <h2 class="section-title">Prototype, Test, Refine</h2>
+            <p>Laser-cut models moved the project from diagram to assembly. We tested connector tolerances at individual seams, then increased the number of panels until the modules could support one another as a larger structure.</p>
+            <div class="gallery-grid three">
+                <figure><img src="../assets/projects/vertical-garden/proto-connectors-web.jpg" alt="Laser-cut connector variations" loading="lazy" decoding="async"><figcaption>Connector families cut as separate, replaceable parts.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-joint-detail-web.jpg" alt="Close-up of a tab-and-slot connection" loading="lazy" decoding="async"><figcaption>Testing fit and angle at the panel seam.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-assembled-web.jpg" alt="Assembled multi-panel prototype" loading="lazy" decoding="async"><figcaption>Validating the connection logic across a full cluster.</figcaption></figure>
+            </div>
+        </section>
 
-    <!-- Prototype details — connectors and assembly -->
-    <div class="photo-trio">
-        <img src="../assets/projects/vertical-garden/proto-connectors.png" alt="Six laser-cut connector pieces — custom angular joints">
-        <img src="../assets/projects/vertical-garden/proto-joint-detail.png" alt="Tab-and-slot joint detail — pentagon and hexagon frames">
-        <img src="../assets/projects/vertical-garden/proto-assembled.png" alt="Assembled prototype — multiple panels interlocked">
-    </div>
+        <section class="split-row reverse">
+            <figure class="split-image portrait"><img src="../assets/projects/vertical-garden/exploded-axonometric.png" alt="Exploded axonometric showing the assembly sequence" loading="lazy" decoding="async"><figcaption>Exploded assembly: panels become modules, then modules become the garden.</figcaption></figure>
+            <div class="split-text">
+                <h2>Assembly as a Sequence</h2>
+                <p>The exploded axonometric clarified the build order. Individual panels first close into a module; finished modules then meet at shared edges. Separating these two scales of assembly reduced ambiguity and gave the team a common guide during fabrication.</p>
+                <p>Color-coded joints in the assembled axonometric make each connection type easy to locate and audit.</p>
+            </div>
+        </section>
 
-    <!-- Section 3: Prototyping — text left, model right -->
-    <div class="split-row">
-        <div class="split-text">
-            <h2>Prototyping</h2>
-            <p>
-                Scale models were laser-cut from MDF to test the tab-and-slot connection system. Starting with individual panel joints, the prototypes progressed to multi-module assemblies — validating that flat panels could achieve complex three-dimensional volumes through the custom connector system alone, without adhesive or fasteners.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/vertical-garden/proto-pentagon.png" alt="Laser-cut MDF prototype — pentagonal panel assembly">
-        </div>
-    </div>
+        <section class="gallery-section">
+            <h2 class="section-title">The Full-Scale Proposal</h2>
+            <p>The final form stacks three clusters into a porous vertical landscape. Openings hold flowering plants while the changing orientation of each face creates pockets of shade, exposure, and visual depth.</p>
+            <div class="gallery-grid">
+                <figure><img src="../assets/projects/vertical-garden/axonometric.png" alt="Color-coded axonometric of the complete garden" loading="lazy" decoding="async"><figcaption>Assembled axonometric with connector types differentiated by color.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/final-plan.png" alt="Plan view of the planted structure" loading="lazy" decoding="async"><figcaption>Plan view showing planting density and the structure’s footprint.</figcaption></figure>
+                <figure class="wide"><img src="../assets/projects/vertical-garden/final-front.png" alt="Front elevation of the full-scale planted structure" loading="lazy" decoding="async"><figcaption>Front elevation and human scale; the proposal reaches approximately 3′9″.</figcaption></figure>
+            </div>
+            <div class="drawing-grid">
+                <figure><img src="../assets/projects/vertical-garden/final-left.png" alt="Left elevation of the garden" loading="lazy" decoding="async"><figcaption>Left elevation</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/final-right.png" alt="Right elevation of the garden" loading="lazy" decoding="async"><figcaption>Right elevation</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/actual-model-web.jpg" alt="Built plywood model" loading="lazy" decoding="async"><figcaption>Fabricated plywood assembly</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="Garden structure installed on campus" loading="lazy" decoding="async"><figcaption>Full-scale installation on campus</figcaption></figure>
+            </div>
+        </section>
 
-    <!-- Small polyhedra study -->
-    <div class="photo-duo">
-        <img src="../assets/projects/vertical-garden/proto-polyhedra.png" alt="Study models — pentagonal dipyramid and diamond forms">
-        <img src="../assets/projects/vertical-garden/actual-model.png" alt="Full-scale plywood structure — close-up of panel connections">
-    </div>
+        <section class="gallery-section">
+            <h2 class="section-title">In Context</h2>
+            <p>Placed on campus, the object reads differently from every approach: as a marker at a distance, a layered geometric body up close, and a planted micro-landscape when viewed through its openings.</p>
+            <div class="gallery-grid">
+                <figure class="wide"><img src="../assets/projects/vertical-garden/render-context-2-web.jpg" alt="Pollen Farm modules in a campus lawn" loading="lazy" decoding="async"><figcaption>A family of modules can expand across the landscape rather than remain one fixed object.</figcaption></figure>
+                <figure class="wide"><img src="../assets/projects/vertical-garden/context-photo-web.jpg" alt="People resting near the garden installation" loading="lazy" decoding="async"><figcaption>The structure introduces planting and visual texture at the scale of everyday campus life.</figcaption></figure>
+            </div>
+        </section>
 
-    <!-- Section 4: Final Installation — image left, text right -->
-    <div class="split-row reverse">
-        <div class="split-text">
-            <h2>Final Installation</h2>
-            <p>
-                The full-scale structure was fabricated from plywood panels on a CNC router and assembled on the Carnegie Mellon campus. Standing at human height, the pentagonal bipyramid form creates interstitial pockets for planting — transforming a geometric exercise into a living vertical garden. The structure demonstrates how computational geometry and digital fabrication can produce complex organic forms from flat sheet material.
-            </p>
-        </div>
-        <div class="split-image">
-            <img src="../assets/projects/vertical-garden/campus-install.jpg" alt="Full-scale plywood vertical garden installed on CMU campus">
-        </div>
-    </div>
+        <section class="reflection">
+            <h2>Reflection</h2>
+            <p>This project changed my understanding of computational design: the strongest outcome was not one complicated form, but a clear system capable of producing many forms. The matrix, mirroring rule, and joint families made every decision traceable while leaving room for variation.</p>
+            <p>Building at full scale also exposed what drawings could not—plywood flex, tolerance at repeated joints, assembly order, and the way gaps between panels naturally become planting pockets. Those discoveries turned geometric constraints into the most useful features of the garden.</p>
+        </section>
+    </main>
 
-    <!-- Second render — alternate context view -->
-    <div class="image-band">
-        <img src="../assets/projects/vertical-garden/render-context-2.png" alt="Vertical Garden System — alternate rendering showing multiple modules on lawn">
-    </div>
-
-    <!-- Context photo -->
-    <div class="image-band">
-        <img src="../assets/projects/vertical-garden/context-photo.png" alt="People relaxing near the vertical garden installation">
-    </div>
-
-    <!-- Reflection -->
-    <div class="vg-reflection">
-        <h2>Reflection</h2>
-        <p>
-            This project bridged the gap between geometric abstraction and physical production. The most valuable lesson was that a rigorous generative system — the matrix of polyhedral forms — doesn't constrain creativity but channels it. Every design decision was traceable back to the ruleset, yet the final structure feels organic and alive.
-        </p>
-        <p>
-            Working at full scale revealed truths that models couldn't: how weight distributes through tab joints, how plywood panels flex under load, and how interstitial spaces between facets naturally collect soil and water — turning structural gaps into planting opportunities.
-        </p>
-    </div>
-
-    <!-- Footer -->
     <footer>
-        <div class="footer-left">
-            <span class="footer-logo">HUA TONG</span>
-            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
-        </div>
-        <div class="footer-right">
-            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
-        </div>
+        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
+        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
     </footer>
-
     <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>
 </body>
 </html>
