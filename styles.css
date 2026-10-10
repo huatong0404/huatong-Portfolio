@@ -2305,7 +2305,6 @@ footer > p:last-child:not(:first-child) {
 
 .evidence-card:is(
     [data-node="coming"],
-    [data-node="quickaudit"],
     [data-node="sea"],
     [data-node="magician"],
     [data-node="letter"],
@@ -2319,7 +2318,6 @@ footer > p:last-child:not(:first-child) {
 
 .evidence-card:is(
     [data-node="coming"],
-    [data-node="quickaudit"],
     [data-node="sea"],
     [data-node="magician"],
     [data-node="letter"],
@@ -2397,13 +2395,11 @@ footer > p:last-child:not(:first-child) {
 
 @media (min-width: 781px) {
     .evidence-card[data-node="pollen"],
-    .evidence-card[data-node="nightlight"],
     .evidence-card[data-node="rick"] {
         --active-lift: clamp(48px, 6svh, 72px);
     }
 
     .evidence-card[data-node="pollen"]:is(.is-active, :hover, :focus-visible)::after,
-    .evidence-card[data-node="nightlight"]:is(.is-active, :hover, :focus-visible)::after,
     .evidence-card[data-node="rick"]:is(.is-active, :hover, :focus-visible)::after {
         content: '';
         position: absolute;
