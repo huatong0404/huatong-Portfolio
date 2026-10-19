@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+    <meta name="description" content="Explore Pittsburgh's feminist networks through Trace, a digital board game for one to four players by Hua Tong.">
+    <title>Play Trace — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon_black.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="trace-game.css">
+</head>
+<body>
+    <div class="game-shell">
+        <header class="game-header">
+            <div class="game-brand"><a href="../index.html" aria-label="Hua Tong portfolio">HUA TONG</a><span class="brand-slash">/</span><strong>TRACE</strong><span class="edition">DIGITAL FIELD EDITION</span></div>
+            <div class="header-actions">
+                <button id="helpButton" class="text-button" type="button">How to play <span aria-hidden="true">↗</span></button>
+                <a class="learn-link" href="trace.html">Learn more about Trace <span aria-hidden="true">↗</span></a>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <section class="field-panel" aria-label="Trace game board">
+                <div class="field-heading">
+                    <div><p class="eyebrow">PITTSBURGH / 1970s–1980s</p><h1>Trace the network.</h1></div>
+                    <div class="field-heading-side"><span id="roundLabel">ROUND 00</span><button id="soundButton" class="icon-button" type="button" aria-label="Mute game sounds" aria-pressed="false">◖))</button></div>
+                </div>
+
+                <div class="player-strip" id="playerStrip" role="status" aria-label="Players and current turn" aria-live="polite" hidden></div>
+
+                <div class="board-window" id="boardWindow">
+                    <div class="board-transform" id="boardTransform">
+                        <img class="board-art" src="../assets/projects/trace/trace-board-digital.png" alt="" draggable="false">
+                        <svg class="board-grid" id="boardGrid" viewBox="0 0 1440 1440" role="img" aria-label="Interactive hexagonal map of Pittsburgh"></svg>
+                    </div>
+                    <div class="board-instruction" id="boardInstruction" aria-live="polite">Choose any illuminated hexagon to begin.</div>
+                    <div class="map-tools" aria-label="Map zoom controls">
+                        <button id="zoomIn" type="button" aria-label="Zoom in">+</button>
+                        <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
+                        <button id="zoomReset" type="button" aria-label="Fit map">⌖</button>
+                    </div>
+                    <div class="map-key" aria-label="Map legend">
+                        <span><i class="key-address"></i> Address</span><span><i class="key-person"></i> Connection</span><span><i class="key-justice"></i> Justice</span><span><i class="key-expression"></i> Expression</span><span><i class="key-community"></i> Community</span><span><i class="key-resources"></i> Resources</span>
+                    </div>
+                </div>
+
+                <div class="control-deck">
+                    <div class="control-copy"><span class="control-index" id="controlIndex">01 / START</span><strong id="controlTitle">Find your starting point</strong><p id="controlHint">Select a hexagon on the map. There is no finish line.</p></div>
+                    <div class="movement-choice" id="movementChoice" hidden><label for="firstLeg">First move <output id="firstLegOutput">1</output> steps</label><input type="range" id="firstLeg" min="1" max="5" value="1"><small>The remaining steps turn once.</small></div>
+                    <div class="dice-control"><div class="die" id="die" aria-label="Six-sided die"><span id="dieFace">·</span><b class="die-bonus" id="dieBonus" hidden>+0</b></div><div class="turn-buttons"><button id="rollButton" class="roll-button" type="button" disabled><span id="rollButtonLabel">ROLL THE DIE</span><span class="button-arrow" aria-hidden="true">↗</span></button><button id="skipTurnButton" class="skip-turn-button" type="button" hidden>SKIP THIS TURN <span aria-hidden="true">↗</span></button></div></div>
+                </div>
+            </section>
+
+            <aside class="archive-panel" aria-label="Collected cards and abilities">
+                <section class="shared-progress" aria-label="Shared map progress">
+                    <div class="shared-progress-head"><div><span class="eyebrow">ALL PLAYERS / MAP</span><h2>Shared discoveries</h2></div><strong id="globalCardCount">00</strong></div>
+                    <div class="shared-progress-stats">
+                        <div><strong id="globalAddressCount">00<span>/20</span></strong><small>addresses found</small></div>
+                        <div><strong id="globalPeopleCount">00<span>/11</span></strong><small>connections met</small></div>
+                        <div><strong id="globalVisitedCount">00</strong><small>hexagons explored</small></div>
+                        <div><strong id="globalEventCount">00</strong><small>events drawn</small></div>
+                    </div>
+                </section>
+                <div class="archive-head"><div><span class="eyebrow" id="archivePlayerLabel">YOUR FIELD NOTES</span><h2>Collected traces</h2></div><span class="archive-total" id="archiveTotal">00</span></div>
+                <div class="archive-owner-picker"><label for="fieldNotesPlayer">VIEW FIELD NOTES</label><select id="fieldNotesPlayer" aria-label="Choose whose field notes to view"><option value="0">Player 1</option></select></div>
+                <div class="archive-stats"><div><strong id="addressCount">00<span>/20</span></strong><small>addresses</small></div><div><strong id="peopleCount">00<span>/11</span></strong><small>connections</small></div><div><strong id="eventCount">00</strong><small>events drawn</small></div></div>
+                <div class="archive-section active-effects"><div class="section-label"><span>ACTIVE EFFECTS</span><span id="effectCount">0</span></div><div id="effectList" class="effect-list"><p class="empty-note">The cards you meet will change what happens next.</p></div></div>
+                <div class="archive-section"><div class="section-label"><span>CARDS IN HAND</span><button id="archiveFilter" type="button" aria-label="Filter cards by type">ALL ▾</button></div><div class="archive-hand-picker"><label for="cardHandOwner">VIEW HAND</label><select id="cardHandOwner" aria-label="Choose whose cards to view"><option value="player:0">Player 1</option><option value="global">All players / shared</option></select></div><div id="cardCollection" class="card-collection"><p class="empty-note">Your discoveries will gather here.</p></div></div>
+                <div class="archive-foot"><button id="newGameButton" class="quiet-button" type="button">Start a new journey ↺</button><span>Explore at your own pace.</span></div>
+            </aside>
+        </main>
+    </div>
+
+    <div class="toast-stack" id="toastStack" role="status" aria-live="polite"></div>
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+        <section class="modal-card" id="modalCard" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+            <div id="modalContents"></div>
+        </section>
+    </div>
+    <div class="choice-bar" id="choiceBar" hidden><div><small>CHOOSE A HEXAGON</small><strong id="choiceTitle">Choose a destination</strong><p id="choiceHint">Available spaces are highlighted on the map.</p></div><button id="choiceCancel" type="button">Cancel</button></div>
+
+    <div class="setup-overlay" id="setupOverlay" role="dialog" aria-modal="true" aria-labelledby="setupTitle" aria-describedby="setupDescription">
+        <section class="setup-card">
+            <div class="setup-topline"><span>TRACE / DIGITAL FIELD EDITION</span><span>01—04 PLAYERS</span></div>
+            <div class="setup-intro">
+                <p class="eyebrow">BEFORE YOU EXPLORE</p>
+                <h2 id="setupTitle">Gather your people.</h2>
+                <p id="setupDescription">Choose how many players will share this journey. Each player chooses a starting hexagon. Turns then move in order, from Player 1 onward.</p>
+            </div>
+            <div class="setup-options" id="playerCountOptions" role="group" aria-label="Number of players">
+                <button class="setup-option is-selected" type="button" data-player-count="1" aria-pressed="true"><span class="setup-option-number">01</span><span class="setup-option-label">Solo</span></button>
+                <button class="setup-option" type="button" data-player-count="2" aria-pressed="false"><span class="setup-option-number">02</span><span class="setup-option-label">Players</span></button>
+                <button class="setup-option" type="button" data-player-count="3" aria-pressed="false"><span class="setup-option-number">03</span><span class="setup-option-label">Players</span></button>
+                <button class="setup-option" type="button" data-player-count="4" aria-pressed="false"><span class="setup-option-number">04</span><span class="setup-option-label">Players</span></button>
+            </div>
+            <div class="setup-bottomline"><span>ONE MAP. SHARED STORIES. NO FINISH LINE.</span><button id="startJourneyButton" type="button">ENTER THE MAP <span aria-hidden="true">↗</span></button></div>
+        </section>
+    </div>
+
+    <script src="trace-map.js"></script>
+    <script src="trace-map-extended.js"></script>
+    <script src="trace-game.js"></script>
+</body>
+</html>
