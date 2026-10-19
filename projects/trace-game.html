@@ -33,8 +33,7 @@
 
                 <div class="board-window" id="boardWindow">
                     <div class="board-transform" id="boardTransform">
-                        <img class="board-art" src="../assets/projects/trace/contour-game.jpg" alt="" draggable="false">
-                        <img class="board-repair" src="../assets/projects/trace/contour-patch-4-0.png" alt="" draggable="false">
+                        <img class="board-art" src="../assets/projects/trace/trace-board-digital.png" alt="" draggable="false">
                         <svg class="board-grid" id="boardGrid" viewBox="0 0 1440 1440" role="img" aria-label="Interactive hexagonal map of Pittsburgh"></svg>
                     </div>
                     <div class="board-instruction" id="boardInstruction" aria-live="polite">Choose any illuminated hexagon to begin.</div>
@@ -51,7 +50,7 @@
                 <div class="control-deck">
                     <div class="control-copy"><span class="control-index" id="controlIndex">01 / START</span><strong id="controlTitle">Find your starting point</strong><p id="controlHint">Select a hexagon on the map. There is no finish line.</p></div>
                     <div class="movement-choice" id="movementChoice" hidden><label for="firstLeg">First move <output id="firstLegOutput">1</output> steps</label><input type="range" id="firstLeg" min="1" max="5" value="1"><small>The remaining steps turn once.</small></div>
-                    <div class="dice-control"><div class="die" id="die" aria-label="Six-sided die"><span id="dieFace">·</span><b class="die-bonus" id="dieBonus" hidden>+0</b></div><button id="rollButton" class="roll-button" type="button" disabled><span>ROLL THE DIE</span><span class="button-arrow" aria-hidden="true">↗</span></button></div>
+                    <div class="dice-control"><div class="die" id="die" aria-label="Six-sided die"><span id="dieFace">·</span><b class="die-bonus" id="dieBonus" hidden>+0</b></div><div class="turn-buttons"><button id="rollButton" class="roll-button" type="button" disabled><span id="rollButtonLabel">ROLL THE DIE</span><span class="button-arrow" aria-hidden="true">↗</span></button><button id="skipTurnButton" class="skip-turn-button" type="button" hidden>SKIP THIS TURN <span aria-hidden="true">↗</span></button></div></div>
                 </div>
             </section>
 
@@ -66,9 +65,10 @@
                     </div>
                 </section>
                 <div class="archive-head"><div><span class="eyebrow" id="archivePlayerLabel">YOUR FIELD NOTES</span><h2>Collected traces</h2></div><span class="archive-total" id="archiveTotal">00</span></div>
+                <div class="archive-owner-picker"><label for="fieldNotesPlayer">VIEW FIELD NOTES</label><select id="fieldNotesPlayer" aria-label="Choose whose field notes to view"><option value="0">Player 1</option></select></div>
                 <div class="archive-stats"><div><strong id="addressCount">00<span>/20</span></strong><small>addresses</small></div><div><strong id="peopleCount">00<span>/11</span></strong><small>connections</small></div><div><strong id="eventCount">00</strong><small>events drawn</small></div></div>
                 <div class="archive-section active-effects"><div class="section-label"><span>ACTIVE EFFECTS</span><span id="effectCount">0</span></div><div id="effectList" class="effect-list"><p class="empty-note">The cards you meet will change what happens next.</p></div></div>
-                <div class="archive-section"><div class="section-label"><span>CARDS IN HAND</span><button id="archiveFilter" type="button">ALL ▾</button></div><div id="cardCollection" class="card-collection"><p class="empty-note">Your discoveries will gather here.</p></div></div>
+                <div class="archive-section"><div class="section-label"><span>CARDS IN HAND</span><button id="archiveFilter" type="button" aria-label="Filter cards by type">ALL ▾</button></div><div class="archive-hand-picker"><label for="cardHandOwner">VIEW HAND</label><select id="cardHandOwner" aria-label="Choose whose cards to view"><option value="player:0">Player 1</option><option value="global">All players / shared</option></select></div><div id="cardCollection" class="card-collection"><p class="empty-note">Your discoveries will gather here.</p></div></div>
                 <div class="archive-foot"><button id="newGameButton" class="quiet-button" type="button">Start a new journey ↺</button><span>Explore at your own pace.</span></div>
             </aside>
         </main>
@@ -102,6 +102,7 @@
     </div>
 
     <script src="trace-map.js"></script>
+    <script src="trace-map-extended.js"></script>
     <script src="trace-game.js"></script>
 </body>
 </html>
