@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lumilo case study in progress: research into how teachers decide whom to help next and how a recommendation can make its reasons visible.">
+    <title>Lumilo — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=20260820-1">
+    <link rel="stylesheet" href="lumilo.css">
+</head>
+<body class="lumilo-page">
+    <nav>
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu(this)">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <header class="project-detail-hero lm-hero" id="top">
+        <div class="lm-hero-inner">
+            <div class="lm-hero-copy">
+                <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+                <span class="lm-eyebrow">Case study in progress</span>
+                <h1>Lumilo</h1>
+                <p class="lm-hero-question">When a system suggests whom to help next, how can a teacher know why?</p>
+                <div class="project-meta">
+                    <div class="meta-item"><span class="meta-label">Category</span>Human-Computer Interaction &middot; Learning Technology</div>
+                    <div class="meta-item"><span class="meta-label">My focus</span>Teacher decision research &middot; Affinity mapping &middot; Recommendation framework</div>
+                    <div class="meta-item"><span class="meta-label">Context</span>Collaborative research project, 2025&ndash;Present</div>
+                </div>
+            </div>
+            <figure class="lm-hero-figure">
+                <img src="../assets/projects/lumilo/Q4-multi&amp;counterfactor.png" alt="Illustrative Lumilo prototype over a staged classroom scene: several students show different activity signals and one recommendation displays its reasons">
+                <figcaption>Prototype illustration over an iStock classroom photograph. The scene and student names are simulated.</figcaption>
+            </figure>
+        </div>
+    </header>
+
+    <nav class="lm-chapter-nav" aria-label="Lumilo case study sections">
+        <a href="#question">The question</a>
+        <a href="#research">Teacher decisions</a>
+        <a href="#framework">Decision framework</a>
+        <a href="#design">Design direction</a>
+    </nav>
+
+    <main class="lm-case">
+        <section class="lm-section lm-opening" id="question" aria-labelledby="question-title">
+            <span class="lm-index">01 / The classroom choice</span>
+            <div class="lm-opening-grid">
+                <h2 id="question-title">Several students need help. The teacher can visit one first.</h2>
+                <div class="lm-copy">
+                    <p>In a team storyboard, a teacher sees several signs of difficulty at once. One student raises a hand. Another has been struggling quietly. Someone else might recover with a quick nudge. Lumilo can draw attention to these signals; the next choice still takes judgment.</p>
+                    <p>Our team explored possible classroom supports through interviews, feature priorities, and storyboards. The question I followed was smaller and harder: what makes one student the next person to help?</p>
+                </div>
+            </div>
+            <div class="lm-placeholder lm-placeholder-wide" role="note" aria-label="Visual evidence needed: classroom decision storyboard">
+                <span class="lm-placeholder-label">Visual evidence to add / 01</span>
+                <strong>A classroom moment with competing needs</strong>
+                <p>Redraw a short sequence from the team storyboard: several students need attention, the teacher has limited time, and the recommendation creates a decision point. Label it as a proposed scenario.</p>
+            </div>
+        </section>
+
+        <section class="lm-section" id="research" aria-labelledby="research-title">
+            <span class="lm-index">02 / Returning to the evidence</span>
+            <div class="lm-split">
+                <div class="lm-copy">
+                    <h2 id="research-title">A signal does not explain the whole situation</h2>
+                    <p>I returned to two earlier studies and reorganized the existing teacher interviews into an affinity diagram. Teachers described students who never raise their hands, and moments when several alerts appear at once. They also drew on what they knew about a student, a task, and the room before deciding where to go.</p>
+                    <p>A raised hand, a long pause, and unproductive struggle do not lead to one universal visiting order. The recommendation needs a reason that a teacher can check against their own reading of the class.</p>
+                </div>
+                <div class="lm-placeholder" role="note" aria-label="Visual evidence needed: revised affinity diagram">
+                    <span class="lm-placeholder-label">Visual evidence to add / 02</span>
+                    <strong>How teachers make the choice</strong>
+                    <p>Rework the affinity diagram into a legible set of evidence clusters. Show a few anonymized source excerpts beside the themes; identify what came from prior papers and what came from interview records.</p>
+                </div>
+            </div>
+            <div class="lm-factor-strip" aria-label="Factors found in the research">
+                <div><span>Student &amp; task</span><p>Prior knowledge, task difficulty, recent work</p></div>
+                <div><span>Classroom</span><p>Distance, other students, recent visits</p></div>
+                <div><span>Intervention</span><p>Urgency, likely benefit, time needed</p></div>
+            </div>
+        </section>
+
+        <section class="lm-section" id="framework" aria-labelledby="framework-title">
+            <span class="lm-index">03 / My contribution</span>
+            <div class="lm-heading-row">
+                <h2 id="framework-title">From scattered cues to a proposed priority</h2>
+                <p>I translated the patterns into a decision model and a tree. They organize observable signals, student and task context, and the trade-offs a teacher makes before a possible recommendation appears. This is a design framework; its ranking has not been validated as a prediction of who needs help most.</p>
+            </div>
+            <div class="lm-logic" aria-label="Conceptual path from evidence to a recommendation">
+                <div><span>01 / Inputs</span><strong>What is happening?</strong><p>Activity signals, help requests, task history</p></div>
+                <div><span>02 / Context</span><strong>What changes their meaning?</strong><p>Student history, workspace difficulty, classroom conditions</p></div>
+                <div><span>03 / Judgment factors</span><strong>What matters now?</strong><p>Urgency, expected benefit, effort, fairness</p></div>
+                <div><span>04 / Suggestion</span><strong>Who might be next?</strong><p>A priority with inspectable reasons</p></div>
+            </div>
+            <div class="lm-placeholder-pair">
+                <div class="lm-placeholder" role="note" aria-label="Visual evidence needed: refined decision model">
+                    <span class="lm-placeholder-label">Visual evidence to add / 03</span>
+                    <strong>Decision model</strong>
+                    <p>Redraw the multi-factor model so the relation between indicators, context, and teacher judgment is readable at page width.</p>
+                </div>
+                <div class="lm-placeholder" role="note" aria-label="Visual evidence needed: refined priority tree">
+                    <span class="lm-placeholder-label">Visual evidence to add / 04</span>
+                    <strong>Priority tree, with one worked example</strong>
+                    <p>Show how one hypothetical student's signals pass through the factors and become a tentative priority. Keep the reasoning visible without implying tested accuracy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="lm-section lm-design" id="design" aria-labelledby="design-title">
+            <span class="lm-index">04 / Design direction</span>
+            <div class="lm-split lm-design-split">
+                <div class="lm-copy">
+                    <h2 id="design-title">The recommendation shows its work</h2>
+                    <p>The final design lets a teacher see why a student was suggested. The explanation connects a recommendation to the signals behind it, so the teacher can compare those reasons with what they know about the student and the classroom.</p>
+                    <p>That is the question I want this work to leave open: what counts as a student's need, when is it time to intervene, and where might the system's reading be wrong? The teacher keeps the authority to answer in the room.</p>
+                </div>
+                <div class="lm-placeholder" role="note" aria-label="Visual evidence needed: final recommendation interface">
+                    <span class="lm-placeholder-label">Visual evidence to add / 05</span>
+                    <strong>Recommendation, opened to “Why?”</strong>
+                    <p>Add a clear crop or short sequence of the final interface: who is suggested, the reasons shown, and any teacher controls that were actually designed or built.</p>
+                </div>
+            </div>
+            <p class="lm-status-note">This page is a narrative and visual placeholder. The staged hero image illustrates a concept; the framework and interface evidence will be added as the case study is developed.</p>
+        </section>
+    </main>
+
+    <nav class="project-pagination" aria-label="Project navigation">
+        <a class="project-prev" href="stap-ticketing-system.html"><span class="pagination-label">Related project &larr;</span><span class="pagination-title">STAP</span></a>
+        <a class="back-to-top" href="#top"><span class="pagination-label">Back to</span><span class="pagination-title">Top &uarr;</span></a>
+        <a class="project-next" href="ricks-radio.html"><span class="pagination-label">Related project &rarr;</span><span class="pagination-title">Rick's Radio</span></a>
+    </nav>
+
+    <footer>
+        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
+        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
+    </footer>
+
+    <script>
+        function toggleMenu(button) {
+            const links = document.querySelector('.nav-links');
+            const open = links.classList.toggle('open');
+            button.setAttribute('aria-expanded', String(open));
+        }
+    </script>
+</body>
+</html>

@@ -3,196 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JamSesh is a shared sound-making concept for teenagers, pairing handheld instruments with a speaker so friends can explore music together through movement.">
     <title>JamSesh — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=20260709">
     <style>
-        /* === JamSesh — page-specific layout === */
+        body { background: #F3F1EA; }
+        figure { margin: 0; }
+        figcaption { padding-top: 10px; color: #676767; font-size: 12px; line-height: 1.55; }
+        .project-detail-hero { padding: 72px max(var(--page-padding), calc((100vw - 1200px) / 2)) 68px; border-bottom: 2px solid #0A0A0A; }
+        .js-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(350px, 480px); gap: clamp(40px, 6vw, 88px); align-items: end; }
+        .js-hero-copy { min-width: 0; }
+        .js-hero-copy .back-link { margin-bottom: 42px; }
+        .project-detail-hero h1 { margin-bottom: 18px; font-size: clamp(42px, 5.5vw, 72px); }
+        .project-detail-hero h1::after { margin-top: 20px; }
+        .js-hero-dek { max-width: 550px; margin: 0 0 34px; color: rgba(250,250,250,.88); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.48; }
+        .project-detail-hero .project-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 34px; margin-top: 0; }
+        .js-hero-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 53%; background: #E1E0DE; }
+        .js-hero-image figcaption { color: rgba(250,250,250,.62); }
 
-        /* Horizontal split: text left, image right */
-        .split-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-top: 2px solid #E5E5E5;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .split-row + .split-row { border-top: none; }
-        .split-row.reverse { direction: rtl; }
-        .split-row.reverse > * { direction: ltr; }
+        .js-chapter-nav { display: flex; gap: clamp(18px, 2.5vw, 36px); width: min(calc(100% - 112px), 1080px); margin: 0 auto; padding: 18px 0; overflow-x: auto; border-bottom: 2px solid #0A0A0A; white-space: nowrap; }
+        .js-chapter-nav a { flex: none; color: #525252; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .js-chapter-nav a:hover, .js-chapter-nav a:focus-visible { color: #167568; }
+        .js-case { width: min(calc(100% - 112px), 1080px); margin: 0 auto; padding-bottom: 96px; }
+        .js-case section { padding: 64px 0; border-bottom: 2px solid #D4D4D4; }
+        .js-case section:last-child { border-bottom: 0; }
+        .js-kicker { display: block; margin-bottom: 18px; color: #167568; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+        .js-case h2 { max-width: 800px; margin: 0 0 22px; font-family: 'Archivo Black', Impact, sans-serif; font-size: clamp(27px, 3.25vw, 42px); font-weight: 400; letter-spacing: -.025em; line-height: 1.16; }
+        .js-case h2::after { content: ''; display: block; width: 42px; height: 3px; margin-top: 18px; background: #40C1AC; }
+        .js-case p { max-width: 760px; margin: 0 0 16px; color: #525252; font-size: 16px; line-height: 1.75; }
+        .js-case p:last-child { margin-bottom: 0; }
 
-        .split-text {
-            padding: 48px 64px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .split-text h2 {
-            font-family: 'Archivo Black', Impact, sans-serif;
-            font-size: 24px;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            margin-bottom: 16px;
-        }
-        .split-text h2::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 3px;
-            background: #40C1AC;
-            margin-top: 12px;
-        }
-        .split-text p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #525252;
-            max-width: 440px;
-        }
+        .js-opening-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(38px, 6vw, 88px); align-items: start; margin-bottom: 36px; }
+        .js-case .js-lead { color: #0A0A0A; font-size: clamp(23px, 2.5vw, 32px); line-height: 1.4; }
+        .js-opening-copy { padding-top: 4px; }
+        .js-opening-copy .js-scenario-note { margin-top: 20px; font-size: 13px; color: #777; }
+        .js-pin { position: relative; padding: 12px 12px 14px; border: 2px solid #0A0A0A; background: #FAFAFA; box-shadow: 5px 7px 0 rgba(10,10,10,.1); }
+        .js-pin::before { content: ''; position: absolute; z-index: 2; top: -13px; left: 50%; width: 22px; height: 22px; border: 2px solid #0A0A0A; border-radius: 50%; background: #40C1AC; box-shadow: 2px 3px 0 rgba(10,10,10,.16); transform: translateX(-50%); }
+        .js-pin img { display: block; width: 100%; height: auto; background: #F2F2F1; }
+        .js-pin figcaption { padding: 10px 4px 0; }
+        .js-storyboard { max-width: 940px; margin: 0 auto; transform: rotate(-.5deg); }
 
-        .split-image {
-            overflow: hidden;
-            background: #F5F5F5;
-        }
-        .split-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .split-image.contain img {
-            object-fit: contain;
-            padding: 24px;
-        }
+        .js-split { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); gap: clamp(38px, 5vw, 72px); align-items: center; }
+        .js-reference { max-width: 480px; justify-self: end; transform: rotate(.6deg); }
+        .js-reference img { aspect-ratio: 4 / 3; object-fit: contain; }
+        .js-section-intro { max-width: 760px; margin-bottom: 32px; }
+        .js-gestures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 42px 0 38px; }
+        .js-gesture { padding-top: 16px; border-top: 2px solid #0A0A0A; }
+        .js-gesture span { display: block; margin-bottom: 12px; color: #167568; font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+        .js-gesture h3 { margin-bottom: 8px; font-family: 'Archivo Black', Impact, sans-serif; font-size: 20px; font-weight: 400; line-height: 1.2; }
+        .js-gesture p { margin: 0; font-size: 14px; line-height: 1.6; }
+        .js-flat-figure { margin-top: 32px; }
+        .js-flat-figure img { display: block; width: 100%; height: auto; background: #E5E5E5; }
+        .js-flat-figure figcaption { border-top: 1px solid #D4D4D4; }
+        .js-zoom { margin-left: 6px; color: #167568; font-weight: 700; white-space: nowrap; }
+        .js-zoom:hover, .js-zoom:focus-visible { text-decoration: underline; }
 
-        /* Full-bleed image band */
-        .image-band {
-            width: 100%;
-            border-top: 2px solid #E5E5E5;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .image-band img {
-            width: 100%;
-            max-height: 560px;
-            object-fit: contain;
-            display: block;
-            background: #F5F5F5;
-        }
+        .js-process-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; align-items: start; margin-top: 40px; }
+        .js-process-grid figure:nth-child(2) { transform: rotate(.55deg); }
+        .js-process-grid img { aspect-ratio: 4 / 3; object-fit: contain; }
+        .js-process-note { max-width: 760px; margin-top: 42px !important; padding-left: 18px; border-left: 3px solid #40C1AC; color: #0A0A0A !important; font-size: 18px !important; }
+        .js-product-intro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: start; }
+        .js-product-intro p { padding-top: 4px; }
+        .js-product-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 30px; }
+        .js-product-grid img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #E1E0DE; }
+        .js-product-grid figure:first-child { grid-column: 1 / -1; }
+        .js-product-grid figure:first-child img { max-height: 560px; object-fit: contain; }
+        .js-product-grid .js-product-detail img { object-fit: contain; }
+        .js-technical-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 52px; align-items: start; }
+        .js-technical-layout figure { margin-top: 12px; }
+        .js-technical-layout figure img { display: block; width: 100%; height: auto; }
+        .js-technical-followup { margin-top: 38px; }
+        .js-reflection-grid { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 70px; }
+        .js-reflection-grid h2 { max-width: 360px; }
+        .js-reflection-copy { padding-top: 20px; }
+        .js-end-note { margin-top: 26px; padding-top: 16px; border-top: 2px solid #0A0A0A; color: #0A0A0A; font-size: 14px; line-height: 1.6; }
 
-        /* Horizontal card strip */
-        .card-strip {
-            display: flex;
-            gap: 20px;
-            padding: 48px 64px;
-            overflow-x: auto;
-            border-bottom: 2px solid #E5E5E5;
-            background: #0A0A0A;
+        @media (max-width: 980px) {
+            .project-detail-hero { padding-left: var(--page-padding); padding-right: var(--page-padding); }
+            .js-hero-inner { grid-template-columns: 1fr; gap: 36px; }
+            .js-hero-image { max-width: 680px; }
+            .js-chapter-nav, .js-case { width: min(calc(100% - 48px), 1080px); }
         }
-        .card-strip img {
-            height: 320px;
-            width: auto;
-            flex-shrink: 0;
-            border: 2px solid #333;
-        }
-
-        /* Two-up photo row */
-        .photo-duo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .photo-duo img {
-            width: 100%;
-            height: 360px;
-            object-fit: contain;
-            display: block;
-            background: #F5F5F5;
-        }
-        .photo-duo img:first-child {
-            border-right: 1px solid #E5E5E5;
-        }
-        .photo-duo img:last-child {
-            border-left: 1px solid #E5E5E5;
-        }
-
-        /* Three-up photo row */
-        .photo-trio {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            border-bottom: 2px solid #E5E5E5;
-        }
-        .photo-trio img {
-            width: 100%;
-            height: 320px;
-            object-fit: contain;
-            display: block;
-            background: #F5F5F5;
-            padding: 16px;
-        }
-        .photo-trio img:not(:last-child) {
-            border-right: 1px solid #E5E5E5;
-        }
-
-        /* Intro section */
-        .jamsesh-intro {
-            max-width: 720px;
-            padding: 64px 64px 48px;
-        }
-        .jamsesh-intro .lead {
-            font-size: 20px;
-            line-height: 1.65;
-            margin-bottom: 32px;
-            color: #0A0A0A;
-        }
-        .jamsesh-intro .team-list {
-            font-size: 13px;
-            color: #A3A3A3;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-        .jamsesh-intro .team-list strong {
-            color: #40C1AC;
-            font-weight: 600;
-        }
-
-        /* Reflection text block */
-        .jamsesh-reflection {
-            max-width: 720px;
-            padding: 64px;
-        }
-        .jamsesh-reflection h2 {
-            font-family: 'Archivo Black', Impact, sans-serif;
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #0A0A0A;
-        }
-        .jamsesh-reflection p {
-            font-size: 16px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .split-row { grid-template-columns: 1fr; }
-            .split-row.reverse { direction: ltr; }
-            .split-text { padding: 32px 24px; }
-            .card-strip { padding: 32px 24px; }
-            .card-strip img { height: 240px; }
-            .photo-duo { grid-template-columns: 1fr; }
-            .photo-duo img:first-child { border-right: none; border-bottom: 1px solid #E5E5E5; }
-            .photo-duo img:last-child { border-left: none; }
-            .photo-trio { grid-template-columns: 1fr; }
-            .photo-trio img:not(:last-child) { border-right: none; border-bottom: 1px solid #E5E5E5; }
-            .jamsesh-intro { padding: 40px 24px 32px; }
-            .jamsesh-reflection { padding: 40px 24px; }
+        @media (max-width: 700px) {
+            .project-detail-hero { padding-top: 48px; padding-bottom: 48px; }
+            .project-detail-hero h1 { font-size: 38px; }
+            .project-detail-hero .project-meta { grid-template-columns: 1fr; gap: 16px; }
+            .js-hero-copy .back-link { margin-bottom: 30px; }
+            .js-hero-image img { aspect-ratio: 16 / 9; }
+            .js-chapter-nav { gap: 22px; }
+            .js-case section { padding: 48px 0; }
+            .js-opening-grid, .js-split, .js-product-intro, .js-technical-layout, .js-reflection-grid { grid-template-columns: 1fr; gap: 24px; }
+            .js-reference { justify-self: stretch; max-width: none; }
+            .js-gestures, .js-process-grid, .js-product-grid { grid-template-columns: 1fr; gap: 24px; }
+            .js-gestures { margin: 34px 0; }
+            .js-product-grid figure:first-child { grid-column: auto; }
+            .js-product-grid img { aspect-ratio: auto; }
+            .js-technical-layout figure { margin-top: 0; }
+            .js-reflection-copy { padding-top: 0; }
         }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="../index.html" class="logo">HUA TONG</a>
         <ul class="nav-links">
@@ -200,168 +115,166 @@
             <li><a href="../playground.html">Playground</a></li>
             <li><a href="../about.html">About Me</a></li>
         </ul>
-        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- Hero -->
-    <section class="project-detail-hero">
-        <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
-        <h1>JamSesh</h1>
-        <div class="project-meta">
-            <div class="meta-item">
-                <span class="meta-label">Category</span>
-                Physical Computing &middot; Industrial Design
+    <header class="project-detail-hero" id="top">
+        <div class="js-hero-inner">
+            <div class="js-hero-copy">
+                <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
+                <h1>JamSesh</h1>
+                <p class="js-hero-dek">A shared sound-making system for teenagers, designed to make joining in feel easier.</p>
+                <div class="project-meta">
+                    <div class="meta-item"><span class="meta-label">Category</span>Physical Computing &middot; Industrial Design</div>
+                    <div class="meta-item"><span class="meta-label">Role</span>Industrial Design &middot; Sound Prototyping</div>
+                    <div class="meta-item"><span class="meta-label">Context</span>CMU, Spring 2025</div>
+                    <div class="meta-item"><span class="meta-label">Team</span>Goon Squad: Jacqueline, Aimee, <strong style="color:#40C1AC">Hua</strong></div>
+                </div>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Role</span>
-                Industrial Design &amp; Sound Engineering
+            <figure class="js-hero-image">
+                <img src="../assets/projects/jamsesh/product-side.png" alt="Side profile of the rounded JamSesh handheld instrument with its large silicone button">
+                <figcaption>Handheld instrument, shown as a concept render.</figcaption>
+            </figure>
+        </div>
+    </header>
+
+    <div class="js-chapter-nav" role="navigation" aria-label="JamSesh sections">
+        <a href="#overview">The invitation</a>
+        <a href="#intent">Design intent</a>
+        <a href="#interaction">Interaction</a>
+        <a href="#form">Form</a>
+        <a href="#product">Product</a>
+        <a href="#prototype">Prototype</a>
+        <a href="#reflection">Reflection</a>
+    </div>
+
+    <main class="js-case">
+        <section id="overview" aria-labelledby="overview-title">
+            <span class="js-kicker">00 / The invitation</span>
+            <div class="js-opening-grid">
+                <p class="js-lead" id="overview-title">Two friends are already jamming. A third arrives, picks up an instrument, and joins the sound before the conversation has to begin.</p>
+                <div class="js-opening-copy">
+                    <p>JamSesh pairs several handheld instruments with a shared speaker. Friends can make sound through movement and proximity, without needing to know how to play a conventional instrument.</p>
+                    <p class="js-scenario-note">This opening is an imagined use scenario from the team's storyboard.</p>
+                </div>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Context</span>
-                CMU, Spring 2025
+            <figure class="js-pin js-storyboard">
+                <img src="../assets/projects/jamsesh/user-flow.png" alt="Three-panel storyboard of two friends inviting a third friend into a group music session">
+                <figcaption>The storyboard follows an invitation after school, a newcomer joining, and the group making sound together. <a class="js-zoom" href="../assets/projects/jamsesh/user-flow.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+            </figure>
+        </section>
+
+        <section id="intent" aria-labelledby="intent-title">
+            <div class="js-split">
+                <div>
+                    <span class="js-kicker">01 / Design intent</span>
+                    <h2 id="intent-title">Make the first note easier than the first conversation</h2>
+                    <p>We began with the awkwardness of joining an in-person hangout. We wanted an off-screen activity that gave teenagers something to explore together, while keeping the stakes of performing low.</p>
+                    <p>The theremin suggested a way in: the body can shape sound without a familiar keyboard or fretboard. JamSesh takes that openness into a group setting, where playing together matters more than getting a note right.</p>
+                </div>
+                <figure class="js-pin js-reference">
+                    <img loading="lazy" src="../assets/projects/jamsesh/theremin-ref.png" alt="Theremin reference image used while exploring body-driven sound interaction">
+                    <figcaption>The theremin was an early reference for exploratory, body-driven sound.</figcaption>
+                </figure>
             </div>
-            <div class="meta-item">
-                <span class="meta-label">Team</span>
-                Jacqueline, Aimee, <strong style="color:#40C1AC">Hua</strong>
+        </section>
+
+        <section id="interaction" aria-labelledby="interaction-title">
+            <span class="js-kicker">02 / Playing together</span>
+            <h2 id="interaction-title">The sound changes as people move</h2>
+            <p class="js-section-intro">Each handheld offers a few gestures that can be discovered quickly. The proposed system lets the instruments respond to one another, so a change in distance becomes part of the music.</p>
+            <div class="js-gestures" aria-label="JamSesh interaction gestures">
+                <div class="js-gesture"><span>01 / TILT</span><h3>Find a pitch</h3><p>Tilting the instrument changes the note.</p></div>
+                <div class="js-gesture"><span>02 / PRESS</span><h3>Enter the rhythm</h3><p>The large silicone button triggers sound and gives the hand a clear place to start.</p></div>
+                <div class="js-gesture"><span>03 / APPROACH</span><h3>Change the mix</h3><p>Moving closer to another instrument changes volume. A scroll wheel selects the instrument sound.</p></div>
             </div>
-        </div>
-    </section>
+            <figure class="js-flat-figure">
+                <img loading="lazy" src="../assets/projects/jamsesh/render-annotated.png" alt="Annotated render identifying the silicone play button, instrument-selection wheel, and tilt interaction">
+                <figcaption>The handheld concept brings pitch, a play button, and sound selection into one rounded form. <a class="js-zoom" href="../assets/projects/jamsesh/render-annotated.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+            </figure>
+        </section>
 
-    <!-- Cover — annotated product render -->
-    <div class="image-band">
-        <img src="../assets/projects/jamsesh/render-annotated.png" alt="JamSesh instrument — annotated render showing silicone play button, scroll wheel, and tilt interaction">
-    </div>
+        <section id="form" aria-labelledby="form-title">
+            <span class="js-kicker">03 / Form exploration</span>
+            <h2 id="form-title">A shape that asks to be tilted</h2>
+            <p>The object needed a horizontal reference so tilting would feel deliberate. Early sketches tested symmetrical forms and a prominent button. In CAD, some versions felt too small or suggested the wrong grip. The refined form kept the button visible while giving the hand a broader, softer shape to hold.</p>
+            <div class="js-process-grid">
+                <figure class="js-pin">
+                    <img loading="lazy" src="../assets/projects/jamsesh/sketches-variations.png" alt="JamSesh sketches comparing several rounded handheld forms and button positions">
+                    <figcaption>Sketches explored the silhouette, grip, and position of the play button. <a class="js-zoom" href="../assets/projects/jamsesh/sketches-variations.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+                </figure>
+                <figure class="js-pin">
+                    <img loading="lazy" src="../assets/projects/jamsesh/cad-iteration.png" alt="Early JamSesh CAD iterations comparing different sizes and grips">
+                    <figcaption>Early CAD made the size and handhold problems easier to see. <a class="js-zoom" href="../assets/projects/jamsesh/cad-iteration.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+                </figure>
+            </div>
+            <p class="js-process-note">The final proposal reads as a small object for play, with the top surface acting as both a button and a cue to tilt.</p>
+        </section>
 
-    <!-- Intro -->
-    <div class="jamsesh-intro">
-        <p class="lead">
-            JamSesh is a collaborative sound-making device designed for teenagers. Inspired by the theremin, it lets players create music through body gestures — tilting to change pitch, pressing to trigger rhythm, and moving closer to friends to adjust volume. No musical training required.
-        </p>
-        <p class="team-list">
-            Team: Jacqueline &middot; Aimee &middot; <strong>Hua</strong>
-        </p>
-    </div>
+        <section id="product" aria-labelledby="product-title">
+            <div class="js-product-intro">
+                <div>
+                    <span class="js-kicker">04 / Product proposal</span>
+                    <h2 id="product-title">The handhelds return to a shared speaker</h2>
+                </div>
+                <p>The speaker gives the group a common sound source and visual feedback for the selected instrument. The handhelds attach to it for storage and charging. The renders below describe the proposed product form and controls.</p>
+            </div>
+            <div class="js-product-grid">
+                <figure>
+                    <img loading="lazy" src="../assets/projects/jamsesh/render-speaker.png" alt="Concept render of the round shared speaker with a handheld instrument attached and instrument indication">
+                    <figcaption>Speaker and handheld system, with visual indication of the selected sound. <a class="js-zoom" href="../assets/projects/jamsesh/render-speaker.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+                </figure>
+                <figure>
+                    <img loading="lazy" src="../assets/projects/jamsesh/render-charging.png" alt="Concept render showing the underside controls of a JamSesh handheld beside the speaker">
+                    <figcaption>The proposed dock stores and charges the handhelds; the render also shows the record and power controls. <a class="js-zoom" href="../assets/projects/jamsesh/render-charging.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+                </figure>
+                <figure class="js-product-detail">
+                    <img loading="lazy" src="../assets/projects/jamsesh/exploded-view.png" alt="Exploded concept render showing the JamSesh handheld's outer shell, button, and internal space">
+                    <figcaption>An exploded concept render shows how the rounded shell and button could fit together.</figcaption>
+                </figure>
+            </div>
+        </section>
 
-    <!-- Section 1: Problem Space — text left, theremin image right -->
-    <div class="split-row">
-        <div class="split-text">
-            <h2>Problem Space</h2>
-            <p>
-                Teenagers face a rising sense of loneliness, amplified by the pandemic and social media. Traditional in-person interactions — hanging out at friends' houses, forming high-school bands — have declined. Our research identified a need for off-screen, explorative play that lowers the embarrassment barrier and encourages face-to-face connection in third spaces.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/jamsesh/theremin-ref.png" alt="Theremin reference — explorative instrument inspiring JamSesh's interaction model">
-        </div>
-    </div>
+        <section id="prototype" aria-labelledby="prototype-title">
+            <div class="js-technical-layout">
+                <div>
+                    <span class="js-kicker">05 / Technical prototype</span>
+                    <h2 id="prototype-title">Bluetooth timing forced a rethink</h2>
+                    <p>Our early plan used Arduino. We changed to ESP32-C6 to handle the sensing and Bluetooth connection. The prototype maps gyroscope tilt to pitch, a button to played notes, a wheel to sound selection, and proximity to volume.</p>
+                    <p>The presentation records a BLE scan delay of at least one second during development. We then got the multithreaded Python program working and used pydub for pitch remapping. The slides do not establish the latency of a finished, fully integrated device.</p>
+                </div>
+                <figure class="js-flat-figure">
+                    <img loading="lazy" src="../assets/projects/jamsesh/tech-redirection.png" alt="Presentation diagram documenting the move from an Arduino plan to an ESP32-C6-based prototype">
+                    <figcaption>The technical direction changed as the team tested the input and Bluetooth path. <a class="js-zoom" href="../assets/projects/jamsesh/tech-redirection.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+                </figure>
+            </div>
+            <figure class="js-flat-figure js-technical-followup">
+                <img loading="lazy" src="../assets/projects/jamsesh/tech-input-mapping.png" alt="Diagram mapping JamSesh's tilt, button, proximity, and wheel inputs to sound controls">
+                <figcaption>The prototype input map connects each physical gesture to one sound parameter. <a class="js-zoom" href="../assets/projects/jamsesh/tech-input-mapping.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+            </figure>
+        </section>
 
-    <!-- Section 2: Concept — user flow left, text right -->
-    <div class="split-row reverse">
-        <div class="split-text">
-            <h2>Why Music?</h2>
-            <p>
-                Face-to-face verbal communication can feel too serious for teens. Inspired by high-school bands, we designed an instrument-speaker system that values fun over skill. Unlike traditional instruments, JamSesh offers a relaxed, explorative way of making sound — where instruments react to each other, encouraging collaboration without requiring everyone to be at the same skill level.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/jamsesh/user-flow.png" alt="User flow storyboard — friends inviting each other to jam">
-        </div>
-    </div>
+        <section id="reflection" aria-labelledby="reflection-title">
+            <div class="js-reflection-grid">
+                <div>
+                    <span class="js-kicker">06 / Looking ahead</span>
+                    <h2 id="reflection-title">The next test is the invitation</h2>
+                </div>
+                <div class="js-reflection-copy">
+                    <p>We designed JamSesh around exploration instead of musical skill. The form, gesture mapping, and shared speaker all serve the same hope: that someone can join by trying one small action and hearing it become part of a group sound.</p>
+                    <p>The presentation shows the product proposal and technical prototype. It does not document testing with teenagers in a real hangout. That is the next question for the project: whether the interaction feels welcoming to a newcomer, and whether the sound responds quickly enough to support playing together.</p>
+                    <div class="js-end-note">Concept design and technical prototype · CMU, Spring 2025</div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Interaction sketches — full bleed -->
-    <div class="image-band">
-        <img src="../assets/projects/jamsesh/pitch-interaction.png" alt="Pitch interaction sketch — tilting the device changes pitch" style="max-height:420px;">
-    </div>
-
-    <!-- Section 3: Form Exploration — text left, sketches right -->
-    <div class="split-row">
-        <div class="split-text">
-            <h2>Form Exploration</h2>
-            <p>
-                The form needed to suggest tilt — a horizontal reference to the ground. We explored symmetrical shapes with a large, prominent button. Early iterations were too small or suggested incorrect handholds. Through CAD modeling and physical prototyping, we converged on an organic, pebble-like form that fits naturally in the hand.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/jamsesh/sketches-variations.png" alt="Industrial design sketches — form exploration for the handheld instrument">
-        </div>
-    </div>
-
-    <!-- Sketch + CAD strip — dark background -->
-    <div class="card-strip">
-        <img src="../assets/projects/jamsesh/sketches-early.png" alt="Early concept sketches">
-        <img src="../assets/projects/jamsesh/sketches-refined.png" alt="Refined form sketches">
-        <img src="../assets/projects/jamsesh/cad-iteration.png" alt="CAD iteration — too small">
-        <img src="../assets/projects/jamsesh/cad-early.png" alt="CAD early model">
-        <img src="../assets/projects/jamsesh/cad-refined.png" alt="CAD refined model">
-    </div>
-
-    <!-- Section 4: Final Design — renders left, text right -->
-    <div class="split-row reverse">
-        <div class="split-text">
-            <h2>Final Design</h2>
-            <p>
-                The final instrument features a silicone play button, a scroll wheel for instrument selection, and a gyroscope for tilt-based pitch control. The companion speaker doubles as a charging dock, with an on/off switch, microphone, and record button. Instruments charge and store by magnetically attaching to the speaker.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/jamsesh/exploded-view.png" alt="Exploded view of the JamSesh instrument">
-        </div>
-    </div>
-
-    <!-- Product renders — three views -->
-    <div class="photo-trio">
-        <img src="../assets/projects/jamsesh/render-speaker.png" alt="Speaker with instrument indication and scroll wheel">
-        <img src="../assets/projects/jamsesh/render-charging.png" alt="Charging dock with microphone and record button">
-        <img src="../assets/projects/jamsesh/product-closeup.png" alt="Product close-up — scroll wheel and button detail">
-    </div>
-
-    <!-- Section 5: Technical — text left, diagram right -->
-    <div class="split-row">
-        <div class="split-text">
-            <h2>Technical Prototype</h2>
-            <p>
-                Each instrument uses an ESP32-C6 with a gyroscope for pitch, BLE proximity sensing for volume, a button for rhythm, and a rotary potentiometer for instrument selection. Data streams via BLE to a multithreaded Python script that filters inputs and processes output through pydub for real-time pitch remapping.
-            </p>
-        </div>
-        <div class="split-image contain">
-            <img src="../assets/projects/jamsesh/tech-input-mapping.png" alt="Input mapping — volume, pitch, rhythm, and instrument selection">
-        </div>
-    </div>
-
-    <!-- Technical diagrams duo -->
-    <div class="photo-duo">
-        <img src="../assets/projects/jamsesh/tech-input-pipeline.png" alt="Technical input processing pipeline">
-        <img src="../assets/projects/jamsesh/tech-output.png" alt="Technical output processing pipeline">
-    </div>
-
-    <!-- Architecture diagrams duo -->
-    <div class="photo-duo">
-        <img src="../assets/projects/jamsesh/tech-redirection.png" alt="Late process redirection — Arduino to ESP32-C6 transition">
-        <img src="../assets/projects/jamsesh/tech-pitch-remap.png" alt="Pitch remapping mechanism using pydub">
-    </div>
-
-    <!-- Reflection -->
-    <div class="jamsesh-reflection">
-        <h2>Reflection</h2>
-        <p>
-            JamSesh taught me that designing for play means designing for vulnerability — teenagers won't engage with something that makes them feel awkward. The key insight was that music, unlike conversation, gives people permission to be imperfect together.
-        </p>
-        <p>
-            From a technical standpoint, transitioning from Arduino to ESP32-C6 mid-project was a major pivot. The multithreading challenges forced us to rethink our entire data pipeline, but the result was a more responsive, scalable system that could handle multiple simultaneous inputs without latency.
-        </p>
-    </div>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-left">
             <span class="footer-logo">HUA TONG</span>
             <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
         </div>
-        <div class="footer-right">
-            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
-        </div>
+        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
     </footer>
 
     <script>function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }</script>

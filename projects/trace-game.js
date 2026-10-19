@@ -42,14 +42,15 @@
     const NEGATIVE_EVENTS = new Set(['community-4', 'expression-4', 'justice-3', 'resources-4']);
     const SVG_NS = 'http://www.w3.org/2000/svg';
     const DIE_FACES = ['·', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-    const PLAYER_COLORS = ['#f6ae20', '#40c1ac', '#ec0c91', '#6774db'];
+    const PLAYER_COLORS = ['#40c1ac', '#f6ae20', '#ec0c91', '#6774db'];
     const EL = id => document.getElementById(id);
     const dom = {
         boardWindow: EL('boardWindow'), boardTransform: EL('boardTransform'), boardGrid: EL('boardGrid'), boardInstruction: EL('boardInstruction'),
         controlIndex: EL('controlIndex'), controlTitle: EL('controlTitle'), controlHint: EL('controlHint'), roundLabel: EL('roundLabel'),
-        rollButton: EL('rollButton'), die: EL('die'), dieFace: EL('dieFace'), dieBonus: EL('dieBonus'), movementChoice: EL('movementChoice'), firstLeg: EL('firstLeg'), firstLegOutput: EL('firstLegOutput'),
+        rollButton: EL('rollButton'), rollButtonLabel: EL('rollButtonLabel'), skipTurnButton: EL('skipTurnButton'), die: EL('die'), dieFace: EL('dieFace'), dieBonus: EL('dieBonus'), movementChoice: EL('movementChoice'), firstLeg: EL('firstLeg'), firstLegOutput: EL('firstLegOutput'),
         addressCount: EL('addressCount'), peopleCount: EL('peopleCount'), eventCount: EL('eventCount'), archiveTotal: EL('archiveTotal'),
         effectCount: EL('effectCount'), effectList: EL('effectList'), cardCollection: EL('cardCollection'), archiveFilter: EL('archiveFilter'),
+        fieldNotesPlayer: EL('fieldNotesPlayer'), cardHandOwner: EL('cardHandOwner'),
         modalBackdrop: EL('modalBackdrop'), modalContents: EL('modalContents'), modalClose: EL('modalClose'), modalCard: EL('modalCard'),
         toastStack: EL('toastStack'), choiceBar: EL('choiceBar'), choiceTitle: EL('choiceTitle'), choiceHint: EL('choiceHint'), choiceCancel: EL('choiceCancel')
     };
@@ -68,9 +69,10 @@
     let state = newState();
     let mode = 'setup';
     let pendingRoll = null;
-    let rollingBonus = 0;
+    let rollingEffects = null;
     let pendingChoice = null;
     let archiveFilter = 'all';
+    const archiveOwners = { notes: 0, hand: 'player:0', turn: -1, playerCount: -1 };
     let routePoints = [];
     let chainDepth = 0;
     let audioContext = null;
@@ -78,6 +80,8 @@
     let lastFocus = null;
     let view = { scale: 1, x: 0, y: 0, fitted: false };
     const polygons = new Map();
+    const statePolygons = new Map();
+    let boardMapLayer = null;
     const player = index => state.players[index];
     const teammateIndices = () => state.players.map((_, index) => index).filter(index => index !== state.activePlayer);
     const playerLabel = index => `Player ${index + 1}`;
@@ -129,14 +133,36 @@
 
     function makeMap() {
         dom.boardGrid.innerHTML = '';
+        polygons.clear();
+        statePolygons.clear();
+        // The 36 × 36 artwork centers the original board at 56% of its former size.
+        // Keep the game coordinates unchanged so every archival place retains its route.
+        boardMapLayer = svg('g', { class: 'board-map-layer', transform: 'translate(316.8 316.8) scale(0.56)' });
+        const featureLayer = svg('g', { class: 'board-feature-layer', 'aria-hidden': 'true' });
+        const stateLayer = svg('g', { class: 'board-state-layer', 'aria-hidden': 'true' });
+        const actionLayer = svg('g', { class: 'board-action-layer' });
+        boardMapLayer.appendChild(featureLayer);
+        dom.boardGrid.appendChild(boardMapLayer);
         for (const tile of TILES) {
+            if (CATEGORIES[tile.kind]) {
+                featureLayer.appendChild(svg('polygon', { points: pointyHex(tile), class: 'hex-event', style: `--event-color:${CATEGORIES[tile.kind].color}` }));
+            } else if (tile.kind === 'person') {
+                featureLayer.appendChild(svg('polygon', { points: pointyHex(tile), class: 'hex-connection' }));
+            }
+            const statePolygon = svg('polygon', { points: pointyHex(tile), class: 'hex-state', 'data-id': tile.id });
+            stateLayer.appendChild(statePolygon);
+            statePolygons.set(tile.id, statePolygon);
             const polygon = svg('polygon', { points: pointyHex(tile), class: 'hex-hit', 'data-id': tile.id, tabindex: '0', role: 'button' });
             polygon.setAttribute('aria-label', tile.address ? `Address ${tile.address}: ${ADDRESS_NAMES[tile.address]}` : `${effectiveKind(tile)} hexagon`);
             polygon.addEventListener('click', event => { event.stopPropagation(); handleTileClick(tile); });
             polygon.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleTileClick(tile); } });
-            dom.boardGrid.appendChild(polygon);
+            actionLayer.appendChild(polygon);
             polygons.set(tile.id, polygon);
         }
+        // The supplied transparent PNG contains all eight connection emblems and
+        // their linking lines. Its artwork is cropped 264 × 323 from the old board.
+        boardMapLayer.appendChild(svg('image', { class: 'connection-network', x: -264, y: -323, width: 1964, height: 2002, href: '../assets/projects/trace/connection.png', 'pointer-events': 'none', 'aria-hidden': 'true' }));
+        boardMapLayer.append(stateLayer, actionLayer);
         renderMap();
     }
     function renderMap() {
@@ -149,23 +175,22 @@
         const choiceTargets = new Set(pendingChoice?.targets.map(tile => tile.id) || []);
         for (const tile of TILES) {
             const polygon = polygons.get(tile.id); if (!polygon) continue;
+            const statePolygon = statePolygons.get(tile.id);
+            const collected = Boolean(tile.address && state.claimedAddresses.includes(tile.address));
+            const modifiedKind = state.modified[tile.id];
+            statePolygon.classList.toggle('is-collected', collected);
+            statePolygon.classList.toggle('is-modified', Boolean(modifiedKind));
+            if (modifiedKind) statePolygon.style.setProperty('--modified-color', CATEGORIES[modifiedKind]?.color || '#fff');
             polygon.classList.toggle('is-startable', mode === 'start');
             polygon.classList.toggle('is-target', moveTargets.has(tile.id));
             polygon.classList.toggle('is-choice', choiceTargets.has(tile.id));
             polygon.classList.toggle('is-current', state.position === tile.id);
-            polygon.classList.toggle('is-collected', Boolean(tile.address && state.claimedAddresses.includes(tile.address)));
-            polygon.classList.toggle('is-modified', Boolean(state.modified[tile.id]));
             polygon.setAttribute('aria-disabled', mode === 'start' || moveTargets.has(tile.id) || choiceTargets.has(tile.id) ? 'false' : 'true');
         }
-        dom.boardGrid.querySelectorAll('.route-line,.player-marker,.modified-tint').forEach(element => element.remove());
-        for (const [id, kind] of Object.entries(state.modified)) {
-            const tile = TILE_BY_ID.get(id); if (!tile) continue;
-            const tint = svg('polygon', { points: pointyHex(tile, 46), class: 'modified-tint', fill: CATEGORIES[kind]?.color || '#fff', opacity: '.40' });
-            tint.style.pointerEvents = 'none'; dom.boardGrid.insertBefore(tint, dom.boardGrid.firstChild);
-        }
+        dom.boardGrid.querySelectorAll('.route-line,.player-marker').forEach(element => element.remove());
         if (routePoints.length > 1) {
             const line = svg('polyline', { points: routePoints.map(tile => `${tile.x},${tile.y}`).join(' '), class: 'route-line', style: `--player-color:${activeColor}` });
-            dom.boardGrid.appendChild(line);
+            boardMapLayer.appendChild(line);
         }
         state.players.forEach((entry, index) => {
             const tile = TILE_BY_ID.get(entry.position);
@@ -175,18 +200,43 @@
             const marker = svg('g', { class: `player-marker ${index === state.activePlayer ? 'is-active' : ''}`, transform: `translate(${tile.x + offset} ${tile.y})`, style: `--player-color:${PLAYER_COLORS[index]}` });
             marker.append(svg('circle', { class: 'pulse', r: '20' }), svg('circle', { class: 'outer', r: '20' }), svg('circle', { class: 'inner', r: '13' }), svg('text', { class: 'player-number', y: '1' }));
             marker.querySelector('.player-number').textContent = String(index + 1);
-            dom.boardGrid.appendChild(marker);
+            boardMapLayer.appendChild(marker);
         });
     }
 
+    function previewDieEffects(next, queuedBonus = 0, queuedSplit = false) {
+        if (next.skip) return { label: 'NO MOVE', detail: 'No movement is allowed this turn.', kind: 'blocked' };
+        if (next.returnToEvent && state.lastEventSpot) return { label: 'RETURN', detail: 'Return to the last event space this turn.', kind: 'return' };
+        const bonus = next.bonus + queuedBonus;
+        const parts = [], details = [];
+        if (next.twoDice) { parts.push('2D6'); details.push('roll two dice'); }
+        if (bonus > 0) { parts.push(`+${bonus}`); details.push(`${bonus} extra ${bonus === 1 ? 'step' : 'steps'}`); }
+        if (next.double) { parts.push('×2'); details.push('double the total'); }
+        if (next.half) { parts.push('÷2'); details.push('halve the total, rounding down to at least one'); }
+        if (next.split || queuedSplit) { parts.push('SPLIT'); details.push('split the movement into two routes'); }
+        if (next.forcedDirection) { parts.push('AUTO'); details.push('the die chooses the direction'); }
+        return { label: parts.join(' '), detail: details.length ? `This turn: ${details.join('; ')}.` : 'A normal six-sided roll.', kind: 'preview' };
+    }
     function renderControls() {
         dom.roundLabel.textContent = `ROUND ${String(state.playerCount ? state.cycle : 0).padStart(2, '0')}`;
         dom.rollButton.disabled = mode !== 'ready';
-        const queuedBonus = state.pendingGrants.filter(grant => grant.kind === 'bonus' && grant.availableCycle <= state.cycle).reduce((total, grant) => total + grant.amount, 0);
-        const bonus = mode === 'ready' ? state.next.bonus + queuedBonus : mode === 'rolling' ? rollingBonus : mode === 'move' ? pendingRoll?.bonus || 0 : 0;
-        dom.dieBonus.hidden = bonus <= 0;
-        dom.dieBonus.textContent = `+${bonus}`;
-        dom.die.setAttribute('aria-label', bonus > 0 ? `Six-sided die with ${bonus} bonus ${bonus === 1 ? 'point' : 'points'}` : 'Six-sided die');
+        dom.skipTurnButton.hidden = !['ready', 'move'].includes(mode);
+        dom.rollButtonLabel.textContent = mode === 'ready' && state.next.skip ? 'END TURN' : mode === 'ready' && state.next.returnToEvent && state.lastEventSpot ? 'RETURN TO EVENT' : 'ROLL THE DIE';
+        const dueGrants = state.pendingGrants.filter(grant => grant.availableCycle <= state.cycle);
+        const queuedBonus = dueGrants.filter(grant => grant.kind === 'bonus').reduce((total, grant) => total + grant.amount, 0);
+        const queuedSplit = dueGrants.some(grant => grant.kind === 'split');
+        let dieStatus = { label: '', detail: 'Six-sided die.', kind: 'preview' };
+        if (mode === 'ready') dieStatus = previewDieEffects(state.next, queuedBonus, queuedSplit);
+        if (mode === 'rolling' && rollingEffects) dieStatus = previewDieEffects(rollingEffects);
+        if (mode === 'move' && pendingRoll) {
+            const steps = pendingRoll.remaining;
+            dieStatus = { label: `${steps} ${pendingRoll.split && pendingRoll.leg === 2 ? 'LEFT' : steps === 1 ? 'STEP' : 'STEPS'}`, detail: `${steps} actual ${steps === 1 ? 'step' : 'steps'} ${pendingRoll.split && pendingRoll.leg === 2 ? 'remaining' : 'to move'} before choosing a direction.`, kind: 'total' };
+        }
+        dom.dieBonus.hidden = !dieStatus.label;
+        dom.dieBonus.textContent = dieStatus.label;
+        dom.dieBonus.classList.toggle('is-blocked', dieStatus.kind === 'blocked');
+        dom.dieBonus.classList.toggle('is-total', dieStatus.kind === 'total');
+        dom.die.setAttribute('aria-label', `Six-sided die. ${dieStatus.detail}`);
         dom.movementChoice.hidden = !(mode === 'move' && pendingRoll?.split && pendingRoll.leg === 1);
         if (!dom.movementChoice.hidden) {
             dom.firstLeg.max = String(Math.max(1, pendingRoll.remaining - 1));
@@ -195,7 +245,9 @@
         }
         let index = `${playerLabel(state.activePlayer).toUpperCase()} / START`, title = `${playerLabel(state.activePlayer)}, choose a starting hexagon`, hint = 'Select any hexagon on the map.', instruction = `${playerLabel(state.activePlayer)}: choose any illuminated hexagon to begin.`;
         if (mode === 'setup') { index = 'TRACE / SETUP'; title = 'Choose the number of players'; hint = 'One to four people can explore together.'; instruction = 'Choose a player count to begin.'; }
-        if (mode === 'ready') { index = `${playerLabel(state.activePlayer).toUpperCase()} / MOVE`; title = 'Roll into the city'; hint = 'Choose one direction after the die lands.'; instruction = `${playerLabel(state.activePlayer)}: roll the die, then choose a highlighted neighboring hexagon.`; }
+        if (mode === 'ready') { index = `${playerLabel(state.activePlayer).toUpperCase()} / MOVE`; title = 'Roll into the city'; hint = 'The die badge shows this turn’s movement effects.'; instruction = `${playerLabel(state.activePlayer)}: roll the die, then choose a highlighted neighboring hexagon.`; }
+        if (mode === 'ready' && state.next.skip) { title = 'No movement this turn'; hint = 'Security Issue blocks movement. End this turn to continue.'; instruction = `${playerLabel(state.activePlayer)} cannot move this turn.`; }
+        if (mode === 'ready' && !state.next.skip && state.next.returnToEvent && state.lastEventSpot) { title = 'Return to the last event'; hint = 'This turn returns you to the last event space you passed.'; instruction = `${playerLabel(state.activePlayer)}: return to your last event space.`; }
         if (mode === 'rolling') { index = 'D6 / ROLLING'; title = 'The die is in motion'; hint = 'Your next route is about to appear.'; instruction = 'Rolling…'; }
         if (mode === 'move') { index = pendingRoll?.split ? `MOVE / ${pendingRoll.leg} OF 2` : 'MOVE / CHOOSE'; title = `${pendingRoll.remaining} ${pendingRoll.remaining === 1 ? 'step' : 'steps'} to travel`; hint = pendingRoll?.split && pendingRoll.leg === 1 ? 'Choose the first move length, then pick a highlighted direction.' : 'Choose one highlighted adjacent hexagon to set your direction.'; instruction = 'Select a highlighted neighbor. Your piece will follow that direction.'; }
         if (mode === 'choice') { index = 'CARD / EFFECT'; title = 'Choose a destination'; hint = 'Highlighted hexagons can receive this card’s effect.'; instruction = 'Choose one highlighted hexagon.'; }
@@ -203,10 +255,26 @@
         dom.controlIndex.textContent = index; dom.controlTitle.textContent = title; dom.controlHint.textContent = hint; dom.boardInstruction.textContent = instruction;
         const strip = EL('playerStrip');
         if (strip) { strip.hidden = !state.playerCount; strip.innerHTML = state.playerCount ? state.players.map((entry, index) => `<span class="player-seat ${index === state.activePlayer ? 'is-active' : ''}" style="--player-color:${PLAYER_COLORS[index]}" aria-current="${index === state.activePlayer ? 'true' : 'false'}"><i class="player-seat-dot"></i><span class="player-seat-copy"><b class="player-seat-name">${playerLabel(index)}</b><small class="player-seat-state">${entry.position ? `${entry.addresses.length + entry.people.length} cards` : 'choose start'}</small></span></span>`).join('') : ''; }
-        const archivePlayerLabel = EL('archivePlayerLabel');
-        if (archivePlayerLabel) archivePlayerLabel.textContent = state.playerCount ? `${playerLabel(state.activePlayer).toUpperCase()} / FIELD NOTES` : 'YOUR FIELD NOTES';
     }
     function renderArchive() {
+        const playerCount = state.playerCount || 1;
+        if (archiveOwners.turn !== state.activePlayer || archiveOwners.playerCount !== state.playerCount) {
+            archiveOwners.notes = state.activePlayer;
+            archiveOwners.hand = `player:${state.activePlayer}`;
+            archiveOwners.turn = state.activePlayer;
+            archiveOwners.playerCount = state.playerCount;
+            archiveFilter = 'all';
+            dom.archiveFilter.textContent = 'ALL ▾';
+        }
+        if (dom.fieldNotesPlayer.options.length !== playerCount) dom.fieldNotesPlayer.innerHTML = Array.from({ length: playerCount }, (_, index) => `<option value="${index}">${playerLabel(index)}</option>`).join('');
+        if (dom.cardHandOwner.options.length !== playerCount + 1) dom.cardHandOwner.innerHTML = `${Array.from({ length: playerCount }, (_, index) => `<option value="player:${index}">${playerLabel(index)}</option>`).join('')}<option value="global">All players / shared</option>`;
+        dom.fieldNotesPlayer.value = String(archiveOwners.notes);
+        dom.cardHandOwner.value = archiveOwners.hand;
+        dom.fieldNotesPlayer.style.setProperty('--view-color', PLAYER_COLORS[archiveOwners.notes]);
+        dom.cardHandOwner.style.setProperty('--view-color', archiveOwners.hand === 'global' ? 'var(--accent)' : PLAYER_COLORS[Number(archiveOwners.hand.split(':')[1])]);
+        EL('archivePlayerLabel').textContent = state.playerCount ? `${playerLabel(archiveOwners.notes).toUpperCase()} / FIELD NOTES` : 'YOUR FIELD NOTES';
+        const notes = player(archiveOwners.notes);
+        const notesReadOnly = archiveOwners.notes !== state.activePlayer;
         const globalEvents = state.players.reduce((total, entry) => total + Object.values(entry.eventCounts).reduce((sum, count) => sum + count, 0), 0);
         const globalVisited = new Set(state.players.flatMap(entry => entry.visited)).size;
         EL('globalAddressCount').innerHTML = `${String(state.claimedAddresses.length).padStart(2, '0')}<span>/20</span>`;
@@ -214,13 +282,13 @@
         EL('globalVisitedCount').textContent = String(globalVisited).padStart(2, '0');
         EL('globalEventCount').textContent = String(globalEvents).padStart(2, '0');
         EL('globalCardCount').textContent = String(state.claimedAddresses.length + state.drawnPeople.length + globalEvents).padStart(2, '0');
-        const eventTotal = Object.values(state.eventCounts).reduce((sum, count) => sum + count, 0);
-        dom.addressCount.innerHTML = `${String(state.addresses.length).padStart(2, '0')}<span>/20</span>`;
-        dom.peopleCount.innerHTML = `${String(state.people.length).padStart(2, '0')}<span>/11</span>`;
+        const eventTotal = Object.values(notes.eventCounts).reduce((sum, count) => sum + count, 0);
+        dom.addressCount.innerHTML = `${String(notes.addresses.length).padStart(2, '0')}<span>/20</span>`;
+        dom.peopleCount.innerHTML = `${String(notes.people.length).padStart(2, '0')}<span>/11</span>`;
         dom.eventCount.textContent = String(eventTotal).padStart(2, '0');
-        dom.archiveTotal.textContent = String(state.addresses.length + state.people.length + eventTotal).padStart(2, '0');
+        dom.archiveTotal.textContent = String(notes.addresses.length + notes.people.length + eventTotal).padStart(2, '0');
         const effects = [];
-        const next = state.next;
+        const next = notes.next;
         if (next.bonus) effects.push([`NEXT ROLL +${next.bonus}`]);
         if (next.double) effects.push(['NEXT ROLL ×2']);
         if (next.half) effects.push(['NEXT ROLL ÷2']);
@@ -229,28 +297,29 @@
         if (next.skip) effects.push(['SKIP NEXT MOVE']);
         if (next.forcedDirection) effects.push(['DIE CHOOSES DIRECTION']);
         if (next.returnToEvent) effects.push(['RETURN TO LAST EVENT']);
-        if (state.ignoreNextSpecial) effects.push(['NEXT SPECIAL: NO CARD']);
-        if (state.shields) effects.push([`NEGATIVE EVENT SHIELD ×${state.shields}`]);
-        for (const grant of state.pendingGrants) effects.push([`${grant.kind === 'bonus' ? `TEAM STEPS +${grant.amount}` : 'TEAM SPLIT MOVE'} / ROUND ${String(grant.availableCycle).padStart(2, '0')}`]);
-        if (state.people.includes(3) && state.abilityUses[3] > 0) effects.push([`DOREEN: RESOURCE WARP ×${state.abilityUses[3]}`, 3]);
-        if (state.people.includes(4)) effects.push(['FLORANCE: BOOKSTORE WARP', 4]);
-        if (state.people.includes(6) && state.abilityUses[6] > 0) effects.push(['KELLY: EXTRA EXPRESSION', 6]);
-        if (state.people.includes(7)) effects.push(['LE VERA: COMMUNITY TRAVEL', 7]);
-        if (state.people.includes(8)) effects.push(['MARY: WILDSISTERS WARP', 8]);
-        if (state.people.includes(11)) effects.push(['SWEET HONEY: EXPRESSION TRAVEL', 11]);
-        if (state.people.includes(5)) effects.push(['JO ANN: REROLL LOW DICE']);
-        if (state.people.includes(9)) effects.push(['ROSANNA: LOW ROLL +1']);
-        if (state.people.includes(2)) effects.push(['BRENDA: SHARE HIGH ROLLS']);
-        if (state.people.includes(10) && state.abilityUses[10] > 0) effects.push([`SUE: PROTECT TEAMMATE ×${state.abilityUses[10]}`]);
+        if (notes.ignoreNextSpecial) effects.push(['NEXT SPECIAL: NO CARD']);
+        if (notes.shields) effects.push([`NEGATIVE EVENT SHIELD ×${notes.shields}`]);
+        for (const grant of notes.pendingGrants) effects.push([`${grant.kind === 'bonus' ? `TEAM STEPS +${grant.amount}` : 'TEAM SPLIT MOVE'} / ROUND ${String(grant.availableCycle).padStart(2, '0')}`]);
+        if (notes.people.includes(3) && notes.abilityUses[3] > 0) effects.push([`DOREEN: RESOURCE WARP ×${notes.abilityUses[3]}`, 3]);
+        if (notes.people.includes(4)) effects.push(['FLORANCE: BOOKSTORE WARP', 4]);
+        if (notes.people.includes(6) && notes.abilityUses[6] > 0) effects.push([`KELLY: EXTRA EXPRESSION`, 6]);
+        if (notes.people.includes(7)) effects.push(['LE VERA: COMMUNITY TRAVEL', 7]);
+        if (notes.people.includes(8)) effects.push(['MARY: WILDSISTERS WARP', 8]);
+        if (notes.people.includes(11)) effects.push(['SWEET HONEY: EXPRESSION TRAVEL', 11]);
+        if (notes.people.includes(5)) effects.push(['JO ANN: REROLL LOW DICE']);
+        if (notes.people.includes(9)) effects.push(['ROSANNA: LOW ROLL +1']);
+        if (notes.people.includes(2)) effects.push(['BRENDA: SHARE HIGH ROLLS']);
+        if (notes.people.includes(10) && notes.abilityUses[10] > 0) effects.push([`SUE: PROTECT TEAMMATE ×${notes.abilityUses[10]}`]);
         dom.effectCount.textContent = String(effects.length);
-        dom.effectList.innerHTML = effects.length ? effects.map(([label, ability]) => ability ? `<button class="effect-chip ability" type="button" data-ability="${ability}" title="Use this connection">${label} ↗</button>` : `<span class="effect-chip">${label}</span>`).join('') : '<p class="empty-note">The cards you meet will change what happens next.</p>';
+        dom.effectList.innerHTML = effects.length ? effects.map(([label, ability]) => ability ? `<button class="effect-chip ability${notesReadOnly ? ' disabled' : ''}" type="button" data-ability="${ability}" title="${notesReadOnly ? `Available on ${playerLabel(archiveOwners.notes)}’s turn` : 'Use this connection'}" ${notesReadOnly ? 'disabled' : ''}>${label} ↗</button>` : `<span class="effect-chip">${label}</span>`).join('') : '<p class="empty-note">The cards you meet will change what happens next.</p>';
         dom.effectList.querySelectorAll('[data-ability]').forEach(button => button.addEventListener('click', () => useAbility(Number(button.dataset.ability))));
-        const unique = [...new Set(state.cardOrder)].reverse();
+        const handPlayers = archiveOwners.hand === 'global' ? state.players : [player(Number(archiveOwners.hand.split(':')[1]))];
+        const unique = [...new Set(handPlayers.flatMap(entry => entry.cardOrder))].reverse();
         const visible = unique.filter(key => archiveFilter === 'all' || key.startsWith(archiveFilter + ':'));
         dom.cardCollection.innerHTML = visible.length ? visible.map(key => {
-            const card = cardFromKey(key), count = card.type === 'event' ? state.eventCounts[`${card.category}-${card.number}`] : 1;
+            const card = cardFromKey(key), count = card.type === 'event' ? handPlayers.reduce((total, entry) => total + (entry.eventCounts[`${card.category}-${card.number}`] || 0), 0) : 1;
             return `<button type="button" class="card-thumb ${card.type}" data-card="${key}" aria-label="View ${card.name}"><img src="${card.image}" loading="lazy" alt=""><span class="count">${count}</span></button>`;
-        }).join('') : '<p class="empty-note">Your discoveries will gather here.</p>';
+        }).join('') : `<p class="empty-note">${archiveOwners.hand === 'global' ? 'No cards have been discovered yet.' : `${playerLabel(Number(archiveOwners.hand.split(':')[1]))} has no cards in this view yet.`}</p>`;
         dom.cardCollection.querySelectorAll('[data-card]').forEach(button => button.addEventListener('click', () => showCard(cardFromKey(button.dataset.card), true, () => {})));
     }
     function render() { renderMap(); renderControls(); renderArchive(); }
@@ -311,7 +380,7 @@
         if (!eligible.length) { toast('There is no teammate for this card.'); callback(null); return; }
         if (eligible.length === 1) { callback(eligible[0]); return; }
         lastFocus = document.activeElement;
-        dom.modalContents.innerHTML = `<div class="plain-modal"><span class="reveal-type">TRACE / TEAM CHOICE</span><h2 id="modalTitle">${title}</h2><p>${body}</p><div class="teammate-options">${eligible.map(index => `<button type="button" data-teammate="${index}" style="--player-color:${['#f6ae20','#40c1ac','#ec0c91','#6774db'][index]}">${playerLabel(index)}</button>`).join('')}</div>${required ? '' : '<button type="button" class="secondary-action" id="teamSkip">KEEP EXPLORING</button>'}</div>`;
+        dom.modalContents.innerHTML = `<div class="plain-modal"><span class="reveal-type">TRACE / TEAM CHOICE</span><h2 id="modalTitle">${title}</h2><p>${body}</p><div class="teammate-options">${eligible.map(index => `<button type="button" data-teammate="${index}" style="--player-color:${PLAYER_COLORS[index]}">${playerLabel(index)}</button>`).join('')}</div>${required ? '' : '<button type="button" class="secondary-action" id="teamSkip">KEEP EXPLORING</button>'}</div>`;
         dom.modalBackdrop.hidden = false;
         dom.modalClose.hidden = required;
         modalAction = required ? () => dom.modalContents.querySelector('[data-teammate]')?.focus() : () => { hideModal(); callback(null); };
@@ -400,7 +469,7 @@
     }
 
     function finishAction(advance = true) {
-        pendingRoll = null; rollingBonus = 0; routePoints = []; chainDepth = 0;
+        pendingRoll = null; rollingEffects = null; pendingChoice = null; dom.choiceBar.hidden = true; routePoints = []; chainDepth = 0;
         if (advance && state.playerCount) {
             if (state.playerCount > 1) {
                 state.activePlayer = (state.activePlayer + 1) % state.playerCount;
@@ -410,6 +479,16 @@
         }
         mode = state.position ? 'ready' : 'start';
         render();
+    }
+    function skipTurn() {
+        if (!['ready', 'move'].includes(mode) || !state.playerCount) return;
+        const currentPlayer = playerLabel(state.activePlayer);
+        if (mode === 'ready') {
+            state.round++;
+            state.next.skip = false;
+        }
+        toast(`${currentPlayer} skips the rest of this turn.`);
+        finishAction();
     }
     const finishAbility = () => finishAction(false);
     async function animateDie(value) {
@@ -433,10 +512,10 @@
         chainDepth = 0;
         activateTeamGrants();
         const next = { ...state.next };
-        rollingBonus = next.bonus;
+        rollingEffects = next;
         state.round += 1;
         mode = 'rolling'; render();
-        if (next.skip) { state.next.skip = false; render(); toast('Security issue: no movement this round.', 'negative'); await sleep(350); finishAction(); return; }
+        if (next.skip) { state.next.skip = false; toast('Security issue: no movement this round.', 'negative'); finishAction(); return; }
         if (next.returnToEvent && state.lastEventSpot) {
             state.next.returnToEvent = false; render();
             toast('Returning to the last event space you passed.');
@@ -666,7 +745,8 @@
 
     function fitBoard() {
         const rect = dom.boardWindow.getBoundingClientRect();
-        view.scale = Math.min(rect.width, rect.height) / 1440;
+        // Fit the visible hexagon field, not the black 36 × 36 artboard margins.
+        view.scale = Math.min(rect.width, rect.height) / 1100;
         view.x = (rect.width - 1440 * view.scale) / 2;
         view.y = (rect.height - 1440 * view.scale) / 2;
         view.fitted = true; applyView();
@@ -700,13 +780,13 @@
     }
     function showHelp() {
         lastFocus = document.activeElement;
-        dom.modalContents.innerHTML = `<div class="plain-modal"><span class="reveal-type">TRACE / FIELD GUIDE</span><h2 id="modalTitle">Explore the network</h2><p>Choose one to four players. Each player selects a starting hexagon, then Player 1 begins. Take turns in number order. Roll a six-sided die, then choose one neighboring hexagon to set your direction. Your piece travels straight for the rolled number of steps, stopping at the edge of the map. A split-move card lets you turn once.</p><ul><li><strong>Colored hexagons:</strong> green Community, blue Expression, pink Justice, and yellow Resources. Landing on one draws a matching event card. Event cards can repeat.</li><li><strong>Brown symbols:</strong> meet a randomly selected connection. Each person or collective can be drawn only once across the group.</li><li><strong>Numbered blue hexagons:</strong> collect the corresponding address card once across the group. Its number disappears after collection.</li><li><strong>Card effects:</strong> each player's cards, abilities, and future-roll effects appear when it is their turn. Changes to the map are shared. Cards that affect a teammate let you choose who receives the effect.</li><li><strong>Solo play:</strong> teammate-only effects have no target. Any printed solo alternative still applies. Half steps round down to at least one; “roll twice” adds two dice. Cards trigger at the final landing space, and teleports can trigger another card.</li><li>Refreshing the page starts a new journey. You can also use “Start a new journey” without leaving the page.</li></ul><button class="modal-action" id="helpClose" type="button">BACK TO THE MAP</button></div>`;
+        dom.modalContents.innerHTML = `<div class="plain-modal"><span class="reveal-type">TRACE / FIELD GUIDE</span><h2 id="modalTitle">Explore the network</h2><p>Choose one to four players. Each player selects a starting hexagon, then Player 1 begins. Take turns in number order. Roll a six-sided die, then choose one neighboring hexagon to set your direction. Your piece travels straight for the rolled number of steps, stopping at the edge of the map. A split-move card lets you turn once. The die badge previews card effects and shows your exact step count before you choose a direction.</p><ul><li><strong>Colored hexagons:</strong> green Community, blue Expression, pink Justice, and yellow Resources. Landing on one draws a matching event card. Event cards can repeat.</li><li><strong>Brown symbols:</strong> meet a randomly selected connection. Each person or collective can be drawn only once across the group.</li><li><strong>Numbered teal hexagons:</strong> collect the corresponding address card once across the group. Its number disappears after collection.</li><li><strong>Card effects:</strong> each player's cards, abilities, and future-roll effects appear when it is their turn. Changes to the map are shared. Cards that affect a teammate let you choose who receives the effect.</li><li><strong>Skip a turn:</strong> choose “Skip this turn” before rolling or while choosing a direction. Card effects that have already begun must still be resolved.</li><li><strong>Field notes:</strong> use the two selectors on the right to inspect any player’s progress and hand, or see all collected cards together. Viewing does not change whose turn it is.</li><li><strong>Solo play:</strong> teammate-only effects have no target. Any printed solo alternative still applies. Half steps round down to at least one; “roll twice” adds two dice. Cards trigger at the final landing space, and teleports can trigger another card.</li><li>Refreshing the page starts a new journey. You can also use “Start a new journey” without leaving the page.</li></ul><button class="modal-action" id="helpClose" type="button">BACK TO THE MAP</button></div>`;
         dom.modalBackdrop.hidden = false; modalAction = hideModal; EL('helpClose').addEventListener('click', hideModal); dom.modalClose.focus();
     }
     function resetGame() {
         showDecision('Begin again?', 'This clears every player’s cards, positions, and map changes.', ['START AGAIN', 'KEEP EXPLORING'], index => {
             if (index !== 0) return;
-            state = newState(); mode = 'setup'; pendingRoll = null; rollingBonus = 0; pendingChoice = null; routePoints = [];
+            state = newState(); mode = 'setup'; pendingRoll = null; rollingEffects = null; pendingChoice = null; routePoints = [];
             archiveFilter = 'all'; dom.archiveFilter.textContent = 'ALL ▾';
             const setup = EL('setupOverlay'); if (setup) setup.hidden = false;
             syncSoundButton();
@@ -720,7 +800,7 @@
         state.playerCount = Math.max(1, Math.min(4, count));
         state.players = Array.from({ length: state.playerCount }, newPlayer);
         state.activePlayer = 0;
-        mode = 'start'; pendingRoll = null; rollingBonus = 0; pendingChoice = null; routePoints = [];
+        mode = 'start'; pendingRoll = null; rollingEffects = null; pendingChoice = null; routePoints = [];
         const setup = EL('setupOverlay'); if (setup) setup.hidden = true;
         syncSoundButton();
         render();
@@ -738,6 +818,7 @@
         if (!TILES.length) { dom.boardInstruction.textContent = 'The map could not load.'; return; }
         makeMap(); renderControls(); renderArchive(); wireMapPan(); fitBoard();
         dom.rollButton.addEventListener('click', beginRoll);
+        dom.skipTurnButton.addEventListener('click', skipTurn);
         dom.firstLeg.addEventListener('input', () => { dom.firstLegOutput.textContent = dom.firstLeg.value; });
         dom.modalClose.addEventListener('click', () => modalAction?.());
         dom.modalBackdrop.addEventListener('click', event => { if (event.target === dom.modalBackdrop) modalAction?.(); });
@@ -754,6 +835,8 @@
         if (startButton) startButton.addEventListener('click', () => beginJourney(Number(countOptions?.querySelector('[aria-pressed="true"]')?.dataset.playerCount || 1)));
         EL('soundButton').addEventListener('click', () => { state.soundMuted = !state.soundMuted; syncSoundButton(); });
         syncSoundButton();
+        dom.fieldNotesPlayer.addEventListener('change', () => { archiveOwners.notes = Number(dom.fieldNotesPlayer.value); renderArchive(); });
+        dom.cardHandOwner.addEventListener('change', () => { archiveOwners.hand = dom.cardHandOwner.value; archiveFilter = 'all'; dom.archiveFilter.textContent = 'ALL ▾'; renderArchive(); });
         dom.archiveFilter.addEventListener('click', () => { const choices = ['all','address','person','event']; archiveFilter = choices[(choices.indexOf(archiveFilter) + 1) % choices.length]; dom.archiveFilter.textContent = `${archiveFilter.toUpperCase()} ▾`; renderArchive(); });
     }
     init();
