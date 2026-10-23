@@ -1,0 +1,400 @@
+/* Pollen Farm / alternate spatial story */
+.pf2-page {
+    --pf-paper: #F3F1EA;
+    --pf-ink: #0A0A0A;
+    --pf-teal: #40C1AC;
+    --pf-white: #FAFAFA;
+    background: var(--pf-paper);
+    color: var(--pf-ink);
+}
+
+.pf2-page button { font: inherit; }
+.pf2-page figure { min-width: 0; }
+.pf2-page p { line-height: 1.67; }
+.pf2-page :focus-visible { outline: 3px solid var(--pf-teal); outline-offset: 4px; }
+.pf2-page [id] { scroll-margin-top: 94px; }
+
+.pf2-site-nav {
+    position: sticky;
+    background: var(--pf-paper);
+    border-bottom: 1px solid var(--pf-ink);
+}
+
+.pf2-wrap {
+    width: min(1260px, calc(100% - 230px));
+    margin-left: max(170px, calc((100% - 1260px) / 2));
+    margin-right: auto;
+}
+
+/* A small reading index keeps the long story navigable. */
+.pf2-index {
+    position: fixed;
+    z-index: 60;
+    left: clamp(18px, 2.7vw, 48px);
+    top: 50%;
+    transform: translateY(-44%);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 120px;
+    padding: 7px 6px;
+    border: 1px solid rgba(10,10,10,.6);
+    background: rgba(243,241,234,.94);
+    backdrop-filter: blur(8px);
+}
+
+.pf2-index a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-height: 32px;
+    padding: 6px 4px 6px 11px;
+    border-left: 2px solid rgba(10, 10, 10, .25);
+    font-size: 9px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    opacity: .58;
+    transition: border-color .2s, opacity .2s, color .2s;
+}
+.pf2-index a span { font-family: var(--font-display); font-size: 10px; }
+.pf2-index a em { font-style: normal; }
+.pf2-index a:hover,
+.pf2-index a.is-active { border-color: var(--pf-teal); opacity: 1; }
+.pf2-index a.is-active { color: var(--pf-ink); }
+.pf2-page.pf2-on-dark .pf2-index a { color: var(--pf-white); border-left-color: rgba(250, 250, 250, .3); }
+.pf2-page.pf2-on-dark .pf2-index a.is-active { border-left-color: var(--pf-teal); }
+.pf2-page.pf2-on-dark .pf2-index { background: rgba(10,10,10,.94); border-color: rgba(250,250,250,.55); }
+
+/* The image is the first room in the story. */
+.pf2-hero {
+    position: relative;
+    min-height: min(790px, calc(100svh - 64px));
+    background: #d8d7c9;
+    overflow: hidden;
+}
+.pf2-hero-image,
+.pf2-hero-image > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pf2-hero-image > img { object-fit: cover; object-position: center 52%; }
+.pf2-hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10,10,10,.1), transparent 52%);
+    pointer-events: none;
+}
+.pf2-scene-tag,
+.pf2-hero-count {
+    position: absolute;
+    z-index: 1;
+    color: var(--pf-ink);
+    background: var(--pf-paper);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.pf2-scene-tag { top: 24px; left: clamp(24px, 4vw, 68px); padding: 9px 12px; }
+.pf2-hero-count { right: clamp(24px, 4vw, 68px); top: 24px; padding: 9px 12px; }
+.pf2-hero-card {
+    position: absolute;
+    z-index: 2;
+    right: clamp(38px, 6vw, 112px);
+    bottom: 0;
+    width: min(560px, 43vw);
+    padding: clamp(30px, 3.7vw, 58px);
+    border-top: 10px solid var(--pf-teal);
+    background: var(--pf-paper);
+    box-shadow: -16px -16px 0 rgba(10,10,10,.07);
+}
+.pf2-kicker,
+.pf2-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+}
+.pf2-hero-card h1 {
+    margin: 19px 0 11px;
+    font: clamp(66px, 6.5vw, 118px)/.84 var(--font-display);
+    letter-spacing: -.075em;
+}
+.pf2-title-dot { color: var(--pf-teal); }
+.pf2-hero-card p { font-size: clamp(14px, 1.3vw, 19px); font-weight: 600; }
+.pf2-hero-actions { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 50px; }
+.pf2-text-link,
+.pf2-version-link { font-size: 10px; font-weight: 700; letter-spacing: .04em; border-bottom: 1px solid currentColor; }
+.pf2-text-link { font-family: var(--font-display); font-size: 12px; }
+.pf2-text-link span { color: var(--pf-teal); font-size: 18px; vertical-align: -1px; }
+.pf2-version-link { color: #525252; }
+.pf2-text-link:hover,
+.pf2-version-link:hover { color: var(--color-teal-active); }
+
+.pf2-overview {
+    display: grid;
+    grid-template-columns: minmax(110px, .23fr) minmax(0, 1fr);
+    gap: 26px 5vw;
+    padding-block: clamp(100px, 12vw, 190px) 120px;
+}
+.pf2-overview-label { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding-top: 11px; }
+.pf2-overview-label .pf2-line { width: 80px; height: 2px; background: var(--pf-teal); }
+.pf2-overview-body { max-width: 900px; }
+.pf2-overview-body h2 { max-width: 820px; margin-bottom: 38px; font: clamp(40px, 5.4vw, 84px)/.99 var(--font-display); letter-spacing: -.052em; }
+.pf2-overview-body p { max-width: 740px; font-size: clamp(19px, 1.85vw, 26px); line-height: 1.47; }
+.pf2-meta {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 27px 40px;
+    max-width: 820px;
+    margin-top: 68px;
+    padding-top: 32px;
+    border-top: 1px solid var(--pf-ink);
+}
+.pf2-meta dt { margin-bottom: 5px; font-size: 9px; text-transform: uppercase; font-weight: 700; letter-spacing: .12em; color: #62615b; }
+.pf2-meta dd { font-size: 12px; line-height: 1.35; }
+.pf2-meta strong { font-weight: 700; }
+
+.pf2-chapter { position: relative; padding-block: clamp(105px, 12vw, 185px); }
+.pf2-chapter-head { position: relative; display: flex; align-items: end; gap: 16px; min-height: 120px; margin-bottom: 90px; border-top: 2px solid currentColor; }
+.pf2-chapter-head h2 { position: relative; z-index: 1; font: clamp(36px, 4.8vw, 68px)/1 var(--font-display); letter-spacing: -.06em; }
+.pf2-chapter-no { position: absolute; top: -23px; right: 4px; font: clamp(96px, 14vw, 190px)/1 var(--font-display); letter-spacing: -.09em; color: rgba(10,10,10,.065); pointer-events: none; }
+.pf2-chapter-side { position: relative; z-index: 1; margin: 0 0 4px auto; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+.pf2-page figcaption { font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; line-height: 1.45; }
+.pf2-zoom { cursor: zoom-in; }
+.pf2-zoom img { transition: filter .25s ease; }
+.pf2-zoom:hover img { filter: contrast(1.05); }
+
+/* 01 — a specimen and then a spatial sequence. */
+.pf2-prototypes { background: var(--pf-paper); }
+.pf2-proto-row { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); align-items: center; gap: clamp(36px, 7vw, 120px); }
+.pf2-proto-row + .pf2-proto-row { margin-top: 150px; }
+.pf2-proto-hand { width: 100%; max-width: 620px; }
+.pf2-proto-hand img { width: 100%; max-height: 690px; object-fit: cover; object-position: center; }
+.pf2-proto-row figure figcaption { padding-top: 11px; border-top: 1px solid var(--pf-ink); margin-top: 8px; }
+.pf2-proto-text { max-width: 540px; }
+.pf2-proto-text p { margin-top: 27px; font-size: clamp(15px, 1.22vw, 18px); }
+.pf2-specimen { display: flex; align-items: end; gap: 9px; color: var(--pf-teal); font: clamp(106px, 13vw, 180px)/.78 var(--font-display); letter-spacing: -.1em; }
+.pf2-specimen small { margin-bottom: 12px; color: var(--pf-ink); font: 700 10px/1.15 var(--font-body); text-transform: uppercase; letter-spacing: .1em; writing-mode: vertical-rl; }
+.pf2-proto-row-next { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: end; }
+.pf2-proto-pair { display: grid; grid-template-columns: .8fr 1.2fr; align-items: end; gap: 18px; }
+.pf2-proto-pair figure:first-child { margin-bottom: 55px; }
+.pf2-proto-pair img { width: 100%; height: auto; object-fit: contain; background: var(--pf-white); }
+
+/* 02 — the words hold while the rule unfolds beside them. */
+.pf2-rule { border-top: 1px solid var(--pf-ink); background: #e8e6dd; }
+.pf2-rule-layout { display: grid; grid-template-columns: minmax(0, .68fr) minmax(0, 1.32fr); gap: clamp(35px, 7vw, 110px); align-items: start; }
+.pf2-rule-text { position: sticky; top: 105px; }
+.pf2-rule-text > p { max-width: 470px; font-size: clamp(17px, 1.4vw, 21px); }
+.pf2-rule-notation { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-top: 46px; padding-top: 16px; border-top: 1px solid var(--pf-ink); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.pf2-rule-notation b { color: var(--color-teal-active); font-size: 17px; }
+.pf2-rule-drawings { display: grid; gap: 82px; }
+.pf2-rule-drawings figure,
+.pf2-rule-matrix { background: var(--pf-white); padding: clamp(12px, 2vw, 28px); box-shadow: 9px 11px 0 rgba(10,10,10,.08); }
+.pf2-rule-drawings img,
+.pf2-rule-matrix img { width: 100%; object-fit: contain; }
+.pf2-rule-drawings figcaption,
+.pf2-rule-matrix figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--pf-ink); }
+.pf2-rule-drawings figcaption span,
+.pf2-rule-matrix figcaption span { color: var(--color-teal-active); }
+.pf2-rule-matrix { width: 85%; margin: 100px 0 0 auto; }
+
+/* 03 — a technical pause that turns a drawing into something to inspect. */
+.pf2-gaps { background: var(--pf-ink); color: var(--pf-white); }
+.pf2-gaps .pf2-chapter-no { color: rgba(250,250,250,.09); }
+.pf2-gaps-lead { max-width: 840px; margin: -9px 0 70px auto; font-size: clamp(18px, 1.65vw, 24px); }
+.pf2-joint-reader { background: var(--pf-white); color: var(--pf-ink); border: 1px solid var(--pf-white); }
+.pf2-joint-top,
+.pf2-joint-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 16px 23px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.pf2-joint-top { border-bottom: 1px solid var(--pf-ink); }
+.pf2-joint-top span:last-child { color: #666; }
+.pf2-joint-tabs { display: flex; border-bottom: 1px solid var(--pf-ink); overflow-x: auto; }
+.pf2-joint-tabs button { flex: 1; min-width: 72px; padding: 15px 18px; border: 0; border-right: 1px solid var(--pf-ink); background: transparent; color: var(--pf-ink); font-family: var(--font-display); font-size: clamp(20px, 2.1vw, 34px); cursor: pointer; }
+.pf2-joint-tabs button:last-child { border-right: 0; }
+.pf2-joint-tabs button:hover,
+.pf2-joint-tabs button[aria-selected="true"] { background: var(--pf-teal); }
+.pf2-joint-panel { min-height: 365px; display: grid; place-items: center; overflow: hidden; }
+.pf2-joint-scroll { width: 100%; padding: 30px clamp(15px, 3vw, 45px); }
+.pf2-joint-scroll svg { display: block; width: 100%; max-height: 580px; margin-inline: auto; }
+.pf2-joint-bottom { border-top: 1px solid var(--pf-ink); }
+.pf2-joint-bottom span { text-transform: none; font-size: 12px; letter-spacing: 0; }
+.pf2-joint-bottom button { padding: 4px 0; border: 0; border-bottom: 1px solid var(--pf-ink); background: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; cursor: pointer; }
+.pf2-joint-bottom button:hover { color: var(--color-teal-active); }
+.pf2-chipboard { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); gap: clamp(42px, 8vw, 140px); align-items: start; margin-top: 160px; }
+.pf2-chipboard-copy { position: sticky; top: 100px; }
+.pf2-chipboard-copy .pf2-eyebrow { color: var(--pf-teal); }
+.pf2-chipboard-copy p { margin-top: 30px; font-size: clamp(16px, 1.2vw, 20px); }
+.pf2-chipboard-images { display: grid; grid-template-columns: 1fr 1fr; gap: 55px 16px; }
+.pf2-chipboard-images figure:nth-child(1) { grid-column: 1 / -1; width: 77%; margin-left: auto; }
+.pf2-chipboard-images figure:nth-child(2) { margin-top: 70px; }
+.pf2-chipboard-images img { width: 100%; height: auto; }
+.pf2-chipboard-images figcaption { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(250,250,250,.6); }
+
+/* 04 — visualise the room, then read it in plan and elevation. */
+.pf2-concept { padding-bottom: 145px; }
+.pf2-concept-lead { max-width: 790px; margin: -8px 0 100px auto; font-size: clamp(18px, 1.6vw, 23px); }
+.pf2-concept-scene { position: relative; width: 100%; margin: 0 0 160px; }
+.pf2-concept-scene img { width: 100%; max-height: 780px; object-fit: cover; object-position: center; }
+.pf2-concept-scene figcaption { position: absolute; bottom: 16px; left: clamp(24px, 8vw, 140px); padding: 9px 12px; background: var(--pf-paper); }
+.pf2-view-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 25px; padding-bottom: 16px; border-bottom: 2px solid var(--pf-ink); }
+.pf2-view-heading h3 { max-width: 680px; font: clamp(30px, 4.2vw, 58px)/1 var(--font-display); letter-spacing: -.05em; }
+.pf2-view-heading p { max-width: 210px; font-size: 11px; }
+.pf2-view-explorer { --pf-view-height: clamp(450px, 47vw, 700px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, 220px); gap: 20px; }
+.pf2-view-stage { position: relative; min-width: 0; height: var(--pf-view-height); overflow: hidden; background: var(--pf-white); border: 1px solid var(--pf-ink); }
+.pf2-view-stage > img { position: absolute; top: 48px; left: 24px; display: block; width: calc(100% - 48px); height: calc(100% - 103px); object-fit: contain; }
+.pf2-view-counter { position: absolute; top: 16px; left: 19px; font: 700 10px var(--font-body); letter-spacing: .1em; }
+.pf2-view-enlarge { position: absolute; bottom: 16px; right: 19px; padding: 4px 0; border: 0; border-bottom: 1px solid var(--pf-ink); background: var(--pf-white); font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+.pf2-view-enlarge:hover { color: var(--color-teal-active); }
+.pf2-view-tabs { display: grid; grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 11px; height: var(--pf-view-height); min-height: 0; }
+.pf2-view-tabs button { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; min-height: 0; padding: 8px; border: 1px solid var(--pf-ink); background: var(--pf-white); color: var(--pf-ink); text-align: left; cursor: pointer; transition: background .2s, transform .2s; }
+.pf2-view-tabs button:hover { transform: translateX(-4px); }
+.pf2-view-tabs button[aria-selected="true"] { background: var(--pf-teal); }
+.pf2-view-tabs img { width: 100%; height: 100%; min-height: 0; object-fit: contain; background: var(--pf-white); }
+.pf2-view-tabs span { display: flex; align-items: center; gap: 8px; padding-top: 5px; font-size: 10px; font-weight: 700; line-height: 1.1; }
+.pf2-view-tabs b { font: 10px var(--font-display); }
+.pf2-concept-cutout { width: min(72%, 900px); margin: 170px auto 0; }
+.pf2-concept-cutout img { width: 100%; object-fit: contain; }
+.pf2-concept-cutout figcaption { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--pf-ink); }
+
+/* 05 — the model resolves into plywood at full scale. */
+.pf2-fabrication { padding-bottom: 0; border-top: 1px solid var(--pf-ink); }
+.pf2-fab-lead { max-width: 820px; margin: -8px 0 92px auto; font-size: clamp(18px, 1.6vw, 23px); }
+.pf2-fab-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.07fr); align-items: end; gap: 25px; margin-bottom: 170px; }
+.pf2-fab-pair figure:first-child { align-self: start; }
+.pf2-fab-pair img { display: block; width: 100%; max-height: 680px; object-fit: contain; background: var(--pf-white); }
+.pf2-fab-pair figure:last-child { margin-top: 100px; }
+.pf2-fab-pair figcaption { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--pf-ink); }
+.pf2-final-photo { position: relative; width: 100%; background: #c6c9ba; }
+.pf2-final-photo img { width: 100%; max-height: 900px; object-fit: cover; object-position: center; }
+.pf2-final-photo figcaption { position: absolute; bottom: 30px; left: clamp(24px, 8vw, 140px); max-width: 390px; padding: 18px 20px; background: var(--pf-paper); font-size: 13px; line-height: 1.3; letter-spacing: 0; text-transform: none; }
+.pf2-ending { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 43px 66px; font: 10px var(--font-display); text-transform: uppercase; letter-spacing: .05em; }
+.pf2-ending a { border-bottom: 2px solid var(--pf-teal); }
+.pf2-ending a:hover { color: var(--color-teal-active); }
+.pf2-page .project-pagination { width: min(1260px, calc(100% - 230px)); margin-left: max(170px, calc((100% - 1260px) / 2)); margin-right: auto; background: var(--pf-paper); }
+
+/* Shared enlargement for photographs and drawings. */
+.pf2-lightbox { position: fixed; z-index: 3000; inset: 0; display: none; align-items: center; justify-content: center; padding: 65px 5vw 55px; background: rgba(10,10,10,.95); color: var(--pf-white); }
+.pf2-lightbox.is-open { display: flex; }
+.pf2-lightbox-close { position: absolute; top: 13px; right: max(20px, 3vw); width: 42px; height: 42px; border: 1px solid var(--pf-white); background: transparent; color: var(--pf-white); font: 30px/1 var(--font-body); cursor: pointer; }
+.pf2-lightbox-close:hover { background: var(--pf-teal); color: var(--pf-ink); border-color: var(--pf-teal); }
+.pf2-lightbox-content { max-width: 100%; max-height: 100%; overflow: auto; text-align: center; }
+.pf2-lightbox-content img { display: block; width: auto; max-width: min(100%, 1350px); max-height: calc(100svh - 130px); margin-inline: auto; object-fit: contain; }
+.pf2-lightbox-content p { margin-top: 11px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.pf2-lightbox.is-sheet .pf2-lightbox-content img { max-height: none; max-width: min(100%, 1100px); }
+.pf2-page.pf2-lock { overflow: hidden; }
+
+@media (max-width: 1100px) {
+    .pf2-wrap, .pf2-page .project-pagination { width: calc(100% - 180px); margin-left: 150px; margin-right: 30px; }
+    .pf2-index { left: 14px; width: 105px; }
+    .pf2-hero-card { width: min(510px, 53vw); }
+    .pf2-chapter-side { display: none; }
+}
+
+@media (max-width: 900px) {
+    .pf2-wrap, .pf2-page .project-pagination { width: calc(100% - 64px); margin-inline: 32px; }
+    .pf2-index { position: sticky; z-index: 90; top: 64px; left: 0; transform: none; width: 100%; height: 38px; padding: 0; flex-direction: row; align-items: stretch; justify-content: center; gap: 0; overflow-x: auto; border: 0; border-bottom: 1px solid var(--pf-ink); background: var(--pf-paper); }
+    .pf2-page.pf2-on-dark .pf2-index { background: var(--pf-paper); border-color: var(--pf-ink); }
+    .pf2-index a { min-width: 104px; min-height: 38px; padding: 8px 10px; border-left: 0; border-bottom: 3px solid transparent; white-space: nowrap; }
+    .pf2-index a.is-active, .pf2-index a:hover { border-bottom-color: var(--pf-teal); }
+    .pf2-page.pf2-on-dark .pf2-index a { color: var(--pf-ink); border-left-color: transparent; }
+    .pf2-page.pf2-on-dark .pf2-index a.is-active { border-bottom-color: var(--pf-teal); }
+    .pf2-page [id] { scroll-margin-top: 123px; }
+    .pf2-hero { min-height: 650px; }
+    .pf2-hero-card { right: 32px; width: min(520px, 56vw); }
+    .pf2-overview { padding-block: 100px; }
+    .pf2-proto-row, .pf2-proto-row-next { gap: 35px; }
+    .pf2-rule-layout, .pf2-chipboard { gap: 35px; }
+    .pf2-view-explorer { grid-template-columns: minmax(0, 1fr) 145px; }
+}
+
+@media (max-width: 768px) {
+    .pf2-site-nav .nav-links { z-index: 1001; }
+    .pf2-hero { display: flex; flex-direction: column; min-height: 0; overflow: visible; }
+    .pf2-hero-image { position: relative; height: min(72vw, 520px); }
+    .pf2-hero-image > img { position: absolute; object-position: center; }
+    .pf2-hero-card { position: relative; width: calc(100% - 48px); right: auto; bottom: auto; margin: -75px 24px 0 auto; padding: 32px; }
+    .pf2-hero-card h1 { font-size: clamp(60px, 12vw, 90px); }
+    .pf2-hero-actions { margin-top: 30px; }
+    .pf2-overview { display: block; }
+    .pf2-overview-label { flex-direction: row; align-items: center; margin-bottom: 35px; }
+    .pf2-overview-body h2 { font-size: clamp(42px, 8vw, 65px); }
+    .pf2-meta { margin-top: 55px; }
+    .pf2-chapter-head { min-height: 100px; margin-bottom: 65px; }
+    .pf2-chapter-head h2 { font-size: clamp(36px, 6.8vw, 56px); }
+    .pf2-proto-row, .pf2-proto-row-next { grid-template-columns: 1fr; gap: 28px; }
+    .pf2-proto-row + .pf2-proto-row { margin-top: 115px; }
+    .pf2-proto-hand { max-width: 560px; }
+    .pf2-proto-row-next .pf2-proto-text { order: 0; }
+    .pf2-rule-layout { grid-template-columns: 1fr; }
+    .pf2-rule-text { position: static; margin-bottom: 25px; }
+    .pf2-rule-drawings { grid-template-columns: 1fr 1fr; align-items: start; gap: 18px; }
+    .pf2-rule-matrix { width: 100%; margin-top: 70px; }
+    .pf2-gaps-lead, .pf2-concept-lead, .pf2-fab-lead { margin-left: 0; }
+    .pf2-chipboard { grid-template-columns: 1fr; margin-top: 110px; }
+    .pf2-chipboard-copy { position: static; max-width: 630px; }
+    .pf2-concept-scene { margin-bottom: 105px; }
+    .pf2-concept-cutout { margin-top: 110px; width: 85%; }
+    .pf2-fab-pair { margin-bottom: 110px; }
+}
+
+@media (max-width: 600px) {
+    .pf2-wrap, .pf2-page .project-pagination { width: calc(100% - 40px); margin-inline: 20px; }
+    .pf2-index { justify-content: start; }
+    .pf2-index a { min-width: auto; flex: 1 0 auto; justify-content: center; padding: 10px 14px; }
+    .pf2-index a em { display: none; }
+    .pf2-scene-tag { top: 12px; left: 12px; font-size: 7px; }
+    .pf2-hero-count { top: 12px; right: 12px; font-size: 7px; }
+    .pf2-hero-image { height: 85vw; }
+    .pf2-hero-card { width: calc(100% - 20px); margin: -45px 10px 0 auto; padding: 26px 24px; box-shadow: -8px -8px 0 rgba(10,10,10,.07); }
+    .pf2-hero-card h1 { font-size: clamp(65px, 17vw, 88px); }
+    .pf2-hero-actions { align-items: start; gap: 15px; }
+    .pf2-version-link { text-align: right; }
+    .pf2-overview { padding-block: 85px 80px; }
+    .pf2-overview-body h2 { margin-bottom: 26px; font-size: clamp(43px, 10vw, 60px); }
+    .pf2-overview-body p { font-size: 18px; }
+    .pf2-meta { grid-template-columns: 1fr 1fr; gap: 22px 13px; }
+    .pf2-chapter { padding-block: 80px; }
+    .pf2-chapter-head { align-items: center; min-height: 80px; margin-bottom: 55px; }
+    .pf2-chapter-head h2 { font-size: clamp(33px, 8.4vw, 45px); }
+    .pf2-chapter-no { top: -8px; font-size: 105px; }
+    .pf2-proto-text p { font-size: 16px; }
+    .pf2-proto-pair { gap: 10px; }
+    .pf2-proto-pair figure:first-child { margin-bottom: 36px; }
+    .pf2-rule-drawings { grid-template-columns: 1fr; }
+    .pf2-rule-drawings figure { max-width: 530px; }
+    .pf2-rule-drawings figure:nth-child(2) { width: 86%; margin-left: auto; }
+    .pf2-gaps-lead, .pf2-concept-lead, .pf2-fab-lead { font-size: 17px; margin-bottom: 55px; }
+    .pf2-joint-top { padding: 11px 13px; font-size: 8px; }
+    .pf2-joint-top span:last-child { display: none; }
+    .pf2-joint-tabs button { padding: 10px; min-width: 0; font-size: 21px; }
+    .pf2-joint-panel { min-height: 190px; }
+    .pf2-joint-scroll { padding: 16px 10px; }
+    .pf2-joint-bottom { align-items: start; flex-direction: column; padding: 12px 13px; }
+    .pf2-chipboard-images { gap: 35px 10px; }
+    .pf2-chipboard-images figure:nth-child(1) { width: 100%; }
+    .pf2-concept-scene { margin-bottom: 80px; }
+    .pf2-concept-scene img { min-height: 280px; object-fit: cover; }
+    .pf2-concept-scene figcaption { bottom: 8px; left: 10px; font-size: 7px; }
+    .pf2-view-heading { display: block; }
+    .pf2-view-heading h3 { margin-bottom: 10px; }
+    .pf2-view-heading p { max-width: none; }
+    .pf2-view-explorer { --pf-view-height: min(105vw, 510px); display: flex; flex-direction: column; gap: 10px; }
+    .pf2-view-stage > img { top: 35px; left: 8px; width: calc(100% - 16px); height: calc(100% - 75px); }
+    .pf2-view-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 95px; height: auto; gap: 5px; }
+    .pf2-view-tabs button { padding: 4px; }
+    .pf2-view-tabs span { gap: 3px; padding-top: 3px; font-size: 7px; }
+    .pf2-view-tabs b { font-size: 7px; }
+    .pf2-concept-cutout { width: 100%; margin-top: 90px; }
+    .pf2-fab-pair { grid-template-columns: 1fr; gap: 45px; }
+    .pf2-fab-pair figure:last-child { margin-top: 0; }
+    .pf2-final-photo img { min-height: 370px; object-fit: cover; }
+    .pf2-final-photo figcaption { bottom: 10px; left: 10px; max-width: 230px; padding: 12px; font-size: 10px; }
+    .pf2-ending { padding-block: 35px 55px; }
+    .pf2-lightbox { padding: 60px 12px 30px; }
+    .pf2-lightbox-content img { max-height: calc(100svh - 115px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf2-page *, .pf2-page *::before, .pf2-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

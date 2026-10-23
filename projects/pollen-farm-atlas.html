@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F3F1EA">
+    <meta name="description" content="Pollen Farm — a computational design and digital fabrication project by Hua Tong.">
+    <title>Pollen Farm — Spatial Story — Hua Tong</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=20260709">
+    <link rel="stylesheet" href="pollen-farm-atlas.css?v=20261022c">
+    <script src="pollen-farm-atlas.js?v=20261022" defer></script>
+</head>
+<body class="pf2-page">
+    <nav class="pf2-site-nav">
+        <a href="../index.html" class="logo">HUA TONG</a>
+        <ul class="nav-links" id="site-links">
+            <li><a href="../index.html#projects">Projects</a></li>
+            <li><a href="../playground.html">Playground</a></li>
+            <li><a href="../about.html">About Me</a></li>
+        </ul>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-links"><span></span><span></span><span></span></button>
+    </nav>
+
+    <aside class="pf2-index" aria-label="Pollen Farm chapters">
+        <a href="#overview" class="is-active"><span>00</span><em>Question</em></a>
+        <a href="#prototypes"><span>01</span><em>Prototypes</em></a>
+        <a href="#rule"><span>02</span><em>Rule</em></a>
+        <a href="#gaps"><span>03</span><em>Gaps</em></a>
+        <a href="#concept"><span>04</span><em>Concept</em></a>
+        <a href="#fabrication"><span>05</span><em>Fabrication</em></a>
+    </aside>
+
+    <header class="pf2-hero" id="top">
+        <div class="pf2-hero-image">
+            <img src="../assets/projects/vertical-garden/render-context-1-web.jpg" alt="Illustrated Pollen Farm proposal with planted rooms and people in front of a greenhouse" fetchpriority="high" decoding="async">
+            <span class="pf2-scene-tag">Illustrated proposal / Spring 2024</span>
+        </div>
+        <div class="pf2-hero-card">
+            <span class="pf2-kicker">Computational Design · Digital Fabrication · Architecture</span>
+            <h1>Pollen<br>Farm<span class="pf2-title-dot">.</span></h1>
+            <p>From 2D elements to 3D space</p>
+            <div class="pf2-hero-actions">
+                <a href="#overview" class="pf2-text-link">Enter the story <span aria-hidden="true">↘</span></a>
+                <a href="vertical-garden.html" class="pf2-version-link">View original layout ↗</a>
+            </div>
+        </div>
+        <span class="pf2-hero-count" aria-hidden="true">01 / 05</span>
+    </header>
+
+    <main>
+        <section class="pf2-overview pf2-wrap" id="overview">
+            <div class="pf2-overview-label"><span class="pf2-eyebrow">The question</span><span class="pf2-line"></span></div>
+            <div class="pf2-overview-body">
+                <h2>From 2D elements to 3D space</h2>
+                <p>Pollen farm is a curious but morphic name for the piece of furniture. Throughout the project, our question has always been: How can we use a simple set of transformative rules to duplicate and perform 2D geometric shapes into usable space for farming? In the end, our answer is composed only of flat pieces of CNC-routed plywood boards, solely depending on the different angles and connectors to form delicate, complicated, and ultimately usable rooms.</p>
+            </div>
+            <dl class="pf2-meta">
+                <div><dt>Category</dt><dd>Computational Design · Digital Fabrication · Architecture</dd></div>
+                <div><dt>My Contributions</dt><dd>Design · Fabrication</dd></div>
+                <div><dt>Context</dt><dd>CMU Fundamentals of Computational Design, Spring 2024</dd></div>
+                <div><dt>Team</dt><dd>Lisa, Catalina, Kai, <strong>Hua</strong>, Bleona</dd></div>
+            </dl>
+        </section>
+
+        <section class="pf2-chapter pf2-prototypes" id="prototypes">
+            <div class="pf2-wrap">
+                <header class="pf2-chapter-head">
+                    <span class="pf2-chapter-no">01</span>
+                    <h2>01 / The Prototypes</h2>
+                    <span class="pf2-chapter-side">From pollen to a room</span>
+                </header>
+                <div class="pf2-proto-row">
+                    <figure class="pf2-proto-hand pf2-zoom" data-zoom>
+                        <img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="Hand holding a paper model made from connected pentagonal rooms" loading="lazy" decoding="async">
+                        <figcaption>01 / A first paper structure</figcaption>
+                    </figure>
+                    <div class="pf2-proto-text">
+                        <span class="pf2-specimen">12 <small>pentagons</small></span>
+                        <p>Like its name, the module of the piece of furniture’s inspiration comes from the microscopic structure in plant pollen. One of them is <em>Stellaria holostea</em>, whose pollen is roughly dodecahedral, which means the object is composed of 12 regular pentagons. Finding its structure interesting, we decided to utilize the shape of it to generate the room of a single module.</p>
+                    </div>
+                </div>
+                <div class="pf2-proto-row pf2-proto-row-next">
+                    <div class="pf2-proto-text">
+                        <span class="pf2-specimen">10 <small>triangular facets</small></span>
+                        <p>However, after our experiments with pentagon structures, we realized that geometric shapes with fewer edges work even better. For example, a pentagonal bipyramid is composed of 10 triangular facets, and is far more flexible in the sense of creating space. Using different angles and connecting methods, we are able to fold and develop the shape towards different directions, thus having the structure organically grow into a natural but cohesive cluster of rooms.</p>
+                    </div>
+                    <div class="pf2-proto-pair">
+                        <figure class="pf2-zoom" data-zoom>
+                            <img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="A flat paper net of triangular faces" loading="lazy" decoding="async">
+                            <figcaption>02 / Flat pieces</figcaption>
+                        </figure>
+                        <figure class="pf2-zoom" data-zoom>
+                            <img src="../assets/projects/vertical-garden/paper-cluster-web.jpg" alt="A cluster of folded paper spatial prototypes" loading="lazy" decoding="async">
+                            <figcaption>03 / Spatial cluster</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pf2-chapter pf2-rule" id="rule">
+            <div class="pf2-wrap">
+                <header class="pf2-chapter-head">
+                    <span class="pf2-chapter-no">02</span>
+                    <h2>02 / The Rule</h2>
+                    <span class="pf2-chapter-side">One form, many directions</span>
+                </header>
+                <div class="pf2-rule-layout">
+                    <div class="pf2-rule-text">
+                        <p>Now we know that the prototype&#x20;would be a pentagonal bipyramid. Its five-sided logic still recalled the pollen reference, while its triangular facets gave us different directions in which to repeat it. We mirrored one module along an edge and folded the copy over that edge. Repeating this simple operation allowed the rooms to grow upward, outward, or around one another without losing their shared geometry.</p>
+                        <div class="pf2-rule-notation" aria-hidden="true"><span>one module</span><b>→</b><span>mirror</span><b>→</b><span>fold</span><b>→</b><span>grow</span></div>
+                    </div>
+                    <div class="pf2-rule-drawings">
+                        <figure class="pf2-zoom" data-zoom>
+                            <img src="../assets/projects/vertical-garden/matrix-forms.png" alt="Comparison matrix of geometric module families" loading="lazy" decoding="async">
+                            <figcaption><span>01 / Compare</span>Form studies</figcaption>
+                        </figure>
+                        <figure class="pf2-zoom pf2-rule-feature" data-zoom>
+                            <img src="../assets/projects/vertical-garden/diagram-system.png" alt="Diagram showing a module mirrored along an edge and folded into another direction" loading="lazy" decoding="async">
+                            <figcaption><span>02 / Repeat</span>Transformation rule</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <figure class="pf2-rule-matrix pf2-zoom" data-zoom>
+                    <img src="../assets/projects/vertical-garden/spatial-matrix.png" alt="Matrix of possible spatial arrangements made by repeating the module" loading="lazy" decoding="async">
+                    <figcaption><span>03 / Grow</span>Potential spatial configurations</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="pf2-chapter pf2-gaps" id="gaps">
+            <div class="pf2-wrap">
+                <header class="pf2-chapter-head">
+                    <span class="pf2-chapter-no">03</span>
+                    <h2>03/ The Gaps</h2>
+                    <span class="pf2-chapter-side">The angles become joints</span>
+                </header>
+                <p class="pf2-gaps-lead">The pentagonal bipyramid gives us two different dihedral angles, which we translated into two basic gap conditions. The A joint connects five triangular pieces into a pentagon, while the B joint connects the two halves of the bipyramid. As the structure extends beyond one module, these joints also become AA, BB, and AB, allowing the same pieces to meet at different angles.</p>
+                <div class="pf2-joint-reader">
+                    <div class="pf2-joint-top">
+                        <span>Connector study</span>
+                        <span>Choose a joint to inspect ↘</span>
+                    </div>
+                    <div class="pf2-joint-tabs" role="tablist" aria-label="Connector types">
+                        <button type="button" role="tab" aria-selected="true" aria-controls="pf2-joint-panel" id="pf2-joint-a" data-joint="0">A</button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-joint-panel" id="pf2-joint-aa" data-joint="1" tabindex="-1">AA</button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-joint-panel" id="pf2-joint-b" data-joint="2" tabindex="-1">B</button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-joint-panel" id="pf2-joint-bb" data-joint="3" tabindex="-1">BB</button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-joint-panel" id="pf2-joint-ab" data-joint="4" tabindex="-1">AB</button>
+                    </div>
+                    <div class="pf2-joint-panel" id="pf2-joint-panel" role="tabpanel" aria-labelledby="pf2-joint-a">
+                        <div class="pf2-joint-scroll">
+                            <svg id="pf2-joint-crop" viewBox="95 338 1360 560" role="img" aria-label="Connector A plan and axonometric drawing"><image href="../assets/projects/vertical-garden/joints-diagram.png" x="0" y="0" width="2880" height="4320"></image></svg>
+                        </div>
+                    </div>
+                    <div class="pf2-joint-bottom">
+                        <span id="pf2-joint-caption">Five triangular pieces become a pentagonal half.</span>
+                        <button type="button" id="pf2-joint-sheet">View complete sheet ↗</button>
+                    </div>
+                </div>
+                <div class="pf2-chipboard">
+                    <div class="pf2-chipboard-copy">
+                        <span class="pf2-eyebrow">From paper to material</span>
+                        <p>After the paper concept prototypes of the connected structures, we decided to introduce a connective method inspired by building flakes. By cutting slots at different positions and angles of the shape, connecting them through joints of specific angles, we are able to turn laser-cutted materials with thickness into the same shape as the concept prototypes.</p>
+                    </div>
+                    <div class="pf2-chipboard-images">
+                        <figure class="pf2-zoom" data-zoom>
+                            <img src="../assets/projects/vertical-garden/proto-connectors-web.jpg" alt="Laser-cut chipboard connector pieces" loading="lazy" decoding="async">
+                            <figcaption>01 / Cut connectors</figcaption>
+                        </figure>
+                        <figure class="pf2-zoom" data-zoom>
+                            <img src="../assets/projects/vertical-garden/proto-joint-detail-web.jpg" alt="Chipboard panels joined with slotted connectors" loading="lazy" decoding="async">
+                            <figcaption>02 / Test the gaps</figcaption>
+                        </figure>
+                        <figure class="pf2-zoom" data-zoom>
+                            <img src="../assets/projects/vertical-garden/proto-assembled-web.jpg" alt="Assembled chipboard structure prototype" loading="lazy" decoding="async">
+                            <figcaption>03 / Build a room</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pf2-chapter pf2-concept" id="concept">
+            <div class="pf2-wrap">
+                <header class="pf2-chapter-head">
+                    <span class="pf2-chapter-no">04</span>
+                    <h2>04/ The Concept</h2>
+                    <span class="pf2-chapter-side">The cluster at human scale</span>
+                </header>
+                <p class="pf2-concept-lead">After deciding how the units connect, we arranged the cluster as a piece of furniture for farming. In plan, the openings turn toward different directions; the front and side elevations reveal how the rooms rise and lean across the structure. In the renderings, plants and people suggest how these spaces could be used.</p>
+            </div>
+            <figure class="pf2-concept-scene pf2-zoom" data-zoom>
+                <img src="../assets/projects/vertical-garden/render-context-2-web.jpg" alt="Illustrated planted Pollen Farm structures with people by a greenhouse" loading="lazy" decoding="async">
+                <figcaption>Illustrated proposal / Rooms for plants and people</figcaption>
+            </figure>
+            <div class="pf2-wrap">
+                <div class="pf2-view-heading">
+                    <h3>One cluster, four views.</h3>
+                    <p>Choose a view to read its openings and changing height.</p>
+                </div>
+                <div class="pf2-view-explorer">
+                    <div class="pf2-view-stage" id="pf2-view-panel" role="tabpanel" aria-labelledby="pf2-view-plan">
+                        <span class="pf2-view-counter" id="pf2-view-counter">01 / 04</span>
+                        <img id="pf2-view-image" src="../assets/projects/vertical-garden/final-plan.png" alt="Pollen Farm plan showing the directions of its planting openings" decoding="async">
+                        <button type="button" class="pf2-view-enlarge" id="pf2-view-enlarge" aria-label="Enlarge plan drawing">Enlarge view ↗</button>
+                    </div>
+                    <div class="pf2-view-tabs" role="tablist" aria-label="Architectural views">
+                        <button type="button" role="tab" aria-selected="true" aria-controls="pf2-view-panel" id="pf2-view-plan" data-view="0">
+                            <img src="../assets/projects/vertical-garden/final-plan.png" alt="" loading="lazy" decoding="async"><span><b>01</b>Plan</span>
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-view-panel" id="pf2-view-front" data-view="1" tabindex="-1">
+                            <img src="../assets/projects/vertical-garden/final-front.png" alt="" loading="lazy" decoding="async"><span><b>02</b>Front elevation</span>
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-view-panel" id="pf2-view-left" data-view="2" tabindex="-1">
+                            <img src="../assets/projects/vertical-garden/final-left.png" alt="" loading="lazy" decoding="async"><span><b>03</b>Left elevation</span>
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="pf2-view-panel" id="pf2-view-right" data-view="3" tabindex="-1">
+                            <img src="../assets/projects/vertical-garden/final-right.png" alt="" loading="lazy" decoding="async"><span><b>04</b>Right elevation</span>
+                        </button>
+                    </div>
+                </div>
+                <figure class="pf2-concept-cutout pf2-zoom" data-zoom>
+                    <img src="../assets/projects/vertical-garden/context-photo-web.jpg" alt="Illustrated planted Pollen Farm structure with people on a white background" loading="lazy" decoding="async">
+                    <figcaption>Illustrated proposal / The planted structure in use</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="pf2-chapter pf2-fabrication" id="fabrication">
+            <div class="pf2-wrap">
+                <header class="pf2-chapter-head">
+                    <span class="pf2-chapter-no">05</span>
+                    <h2>05/ The Fabrication</h2>
+                    <span class="pf2-chapter-side">Flat pieces, full scale</span>
+                </header>
+                <p class="pf2-fab-lead">To make the final piece, we translated the triangular faces and connectors back into flat outlines for CNC routing. We cut them from plywood boards and assembled the parts through the same slotting logic tested in chipboard. At full scale on campus, their angles began to define rooms between the panels, making the passage from 2D elements to 3D space tangible.</p>
+                <div class="pf2-fab-pair">
+                    <figure class="pf2-zoom" data-zoom>
+                        <img src="../assets/projects/vertical-garden/exploded-axonometric.png" alt="Exploded axonometric drawing showing separate plywood parts and joints" loading="lazy" decoding="async">
+                        <figcaption>01 / Assembly drawing</figcaption>
+                    </figure>
+                    <figure class="pf2-zoom" data-zoom>
+                        <img src="../assets/projects/vertical-garden/actual-model-web.jpg" alt="Close view of the built plywood Pollen Farm structure and its connectors" loading="lazy" decoding="async">
+                        <figcaption>02 / Built structure</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <figure class="pf2-final-photo pf2-zoom" data-zoom>
+                <img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The unplanted plywood Pollen Farm structure standing on campus" loading="lazy" decoding="async">
+                <figcaption>The CNC routing built plywood structure on campus.</figcaption>
+            </figure>
+        </section>
+    </main>
+
+    <div class="pf2-ending pf2-wrap">
+        <span>End of Pollen Farm</span>
+        <a href="vertical-garden.html">Compare the original layout ↗</a>
+    </div>
+
+    <nav class="project-pagination" aria-label="Project navigation">
+        <a class="project-prev" href="stap-ticketing-system.html"><span class="pagination-label">&larr; Previous project</span><span class="pagination-title">STAP Ticketing System</span></a>
+        <a class="back-to-top" href="#top"><span class="pagination-label">Back to</span><span class="pagination-title">Top &uarr;</span></a>
+        <a class="project-next" href="sea-monster.html"><span class="pagination-label">Next project &rarr;</span><span class="pagination-title">The Sea Monster</span></a>
+    </nav>
+
+    <footer>
+        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
+        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
+    </footer>
+
+    <div class="pf2-lightbox" id="pf2-lightbox" role="dialog" aria-modal="true" aria-label="Expanded Pollen Farm image" aria-hidden="true">
+        <button class="pf2-lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+        <div class="pf2-lightbox-content"><img alt=""><p></p></div>
+    </div>
+</body>
+</html>
