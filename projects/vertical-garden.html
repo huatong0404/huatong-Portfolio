@@ -209,7 +209,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="vertical-garden-story.css?v=20261015">
+    <link rel="stylesheet" href="vertical-garden-story.css?v=20261022">
 </head>
 <body class="vg-evidence-page">
     <nav>
@@ -228,7 +228,7 @@
                 <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
                 <h1>Pollen Farm</h1>
                 <div class="project-meta">
-                    <div class="meta-item"><span class="meta-label">Category</span>Product Design &middot; Digital Fabrication</div>
+                    <div class="meta-item"><span class="meta-label">Category</span>Computational Design &middot; Digital Fabrication &middot; Architecture</div>
                     <div class="meta-item"><span class="meta-label">My Contributions</span>Design &middot; Fabrication</div>
                     <div class="meta-item"><span class="meta-label">Context</span>CMU Fundamentals of Computational Design, Spring 2024</div>
                     <div class="meta-item"><span class="meta-label">Team</span>Lisa, Catalina, Kai, <strong style="color:#40C1AC">Hua</strong>, Bleona</div>
@@ -236,7 +236,7 @@
             </div>
             <figure class="vg-hero-image">
                 <img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The unplanted plywood Pollen Farm structure standing beside a campus lawn" fetchpriority="high" decoding="async">
-                <figcaption>The built plywood structure on campus, before planting.</figcaption>
+                <figcaption>The CNC routing built plywood structure on campus.</figcaption>
             </figure>
         </div>
     </section>
@@ -245,162 +245,91 @@
         <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
         <ul>
             <li><a href="#overview">Overview</a></li>
-            <li><a href="#paper">Paper</a></li>
+            <li><a href="#prototypes">Prototypes</a></li>
             <li><a href="#rule">Rule</a></li>
-            <li><a href="#joints">Joints</a></li>
-            <li><a href="#assembly">Assembly</a></li>
-            <li><a href="#outcome">Built / Imagined</a></li>
-            <li><a href="#reflection">Reflection</a></li>
+            <li><a href="#gaps">Gaps</a></li>
+            <li><a href="#concept">Concept</a></li>
+            <li><a href="#fabrication">Fabrication</a></li>
         </ul>
     </aside>
 
-    <main class="vg-case">
-        <section class="intro" id="overview">
-            <span class="vg-eyebrow">An experiment in making room to grow</span>
-            <p class="lead">On campus, we set an unplanted plywood structure beside the lawn. From a distance, its triangular faces turned as one shape. Up close, the slots and connectors made its construction plain.</p>
-            <p class="lead">Pollen Farm began with a question: how could flat-cut pieces become a garden that grows in more than one direction? We built one full-scale configuration to test the geometry and assembly. The garden in the drawings remains a proposal.</p>
+    <main class="vg-case pf-draft">
+        <section class="pf-intro" id="overview">
+            <h2>From 2D elements to 3D space</h2>
+            <p>Pollen farm is a curious but morphic name for the piece of furniture. Throughout the project, our question has always been: How can we use a simple set of transformative rules to duplicate and perform 2D geometric shapes into usable space for farming? In the end, our answer is composed only of flat pieces of CNC-routed plywood boards, solely depending on the different angles and connectors to form delicate, complicated, and ultimately usable rooms.</p>
         </section>
 
-        <section class="vg-chapter vg-paper" id="paper">
-            <div class="vg-chapter-head">
-                <span class="vg-eyebrow">01 / Paper studies</span>
-                <h2>What if the gap mattered as much as the solid?</h2>
-                <p>We began with paper because a small form could be folded, held, and rearranged. The empty spaces between its faces were easier to notice in a hand than in a flat drawing.</p>
+        <section class="pf-section" id="prototypes">
+            <header class="pf-section-head"><h2>01 / The Prototypes</h2></header>
+            <div class="pf-prose-pair">
+                <p>Like its name, the module of the piece of furniture’s inspiration comes from the microscopic structure in plant pollen. One of them is <em>Stellaria holostea</em>, whose pollen is roughly dodecahedral, which means the object is composed of 12 regular pentagons. Finding its structure interesting, we decided to utilize the shape of it to generate the room of a single module.</p>
+                <p>However, after our experiments with pentagon structures, we realized that geometric shapes with fewer edges work even better. For example, a pentagonal bipyramid is composed of 10 triangular facets, and is far more flexible in the sense of creating space. Using different angles and connecting methods, we are able to fold and develop the shape towards different directions, thus having the structure organically grow into a natural but cohesive cluster of rooms.</p>
             </div>
-            <div class="paper-layout">
-                <figure class="paper-lead evidence-card">
-                    <img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="Paper polyhedral studies held in one hand, showing openings between their faces" loading="lazy" decoding="async">
-                    <figcaption>Held at hand scale, the paper studies made the openings tangible.</figcaption>
-                </figure>
-                <div class="paper-aside">
-                    <div class="paper-insight"><span>What we noticed</span><p>A repeatable unit would need to keep making room, rather than closing into one fixed mass.</p></div>
-                    <div class="paper-note">
-                        <figure class="evidence-card"><img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="A flat paper net made from connected triangular faces" loading="lazy" decoding="async"><figcaption>A flat net before folding.</figcaption></figure>
-                        <div><span>From flat</span><p>The net showed the faces as cuttable parts, before they occupied space.</p></div>
-                    </div>
-                    <div class="paper-note">
-                        <figure class="evidence-card"><img src="../assets/projects/vertical-garden/paper-cluster-web.jpg" alt="Several folded paper units arranged together" loading="lazy" decoding="async"><figcaption>Folded units arranged as a cluster.</figcaption></figure>
-                        <div><span>To cluster</span><p>Moving units together changed the outline and the gaps at the same time.</p></div>
-                    </div>
-                </div>
+            <div class="pf-paper-grid" aria-label="Series of paper-cut spatial prototypes">
+                <figure class="pf-paper-main"><img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="Hand holding a series of folded paper spatial prototypes" loading="lazy" decoding="async"></figure>
+                <figure><img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="Flat paper net of connected faces" loading="lazy" decoding="async"></figure>
+                <figure><img src="../assets/projects/vertical-garden/paper-cluster-web.jpg" alt="Paper spatial prototypes arranged into a cluster" loading="lazy" decoding="async"></figure>
             </div>
         </section>
 
-        <section class="vg-chapter" id="rule">
-            <div class="vg-chapter-head">
-                <span class="vg-eyebrow">02 / The growth rule</span>
-                <h2>The form could change because the rule stayed clear.</h2>
-                <p>Paper gave us a question about space. The drawings helped us choose a family of modules and describe the move that lets one become many.</p>
+        <section class="pf-section" id="rule">
+            <header class="pf-section-head"><h2>02 / The Rule</h2></header>
+            <p class="pf-rule-fragment">Now we know that the prototype&#x20;would be a pentagonal bipyramid. Its five-sided logic still recalled the pollen reference, while its triangular facets gave us different directions in which to repeat it. We mirrored one module along an edge and folded the copy over that edge. Repeating this simple operation allowed the rooms to grow upward, outward, or around one another without losing their shared geometry.</p>
+            <div class="pf-rule-grid">
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/matrix-forms.png" alt="Comparison matrix of geometric module families" loading="lazy" decoding="async"><figcaption>01 / Form studies</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/diagram-system.png" alt="Diagram of the module's mirroring and folding rule" loading="lazy" decoding="async"><figcaption>02 / Transformation rule</figcaption></figure>
             </div>
-            <div class="vg-module rule-module">
-                <div class="vg-module-top"><span>Read the drawings</span><p>Select a step to see what each drawing helped us understand.</p></div>
-                <div class="rule-tabs" role="tablist" aria-label="Steps in the growth rule">
-                    <button type="button" role="tab" id="rule-tab-0" aria-controls="rule-panel" aria-selected="false" tabindex="-1" data-rule="0"><span>01</span> Compare the bases</button>
-                    <button type="button" role="tab" id="rule-tab-1" aria-controls="rule-panel" aria-selected="true" tabindex="0" data-rule="1"><span>02</span> Mirror &amp; fold</button>
-                    <button type="button" role="tab" id="rule-tab-2" aria-controls="rule-panel" aria-selected="false" tabindex="-1" data-rule="2"><span>03</span> Follow the branch</button>
+            <figure class="pf-flat pf-rule-variations zoomable-figure"><img src="../assets/projects/vertical-garden/spatial-matrix.png" alt="Possible spatial arrangements developed from the repeated module" loading="lazy" decoding="async"><figcaption>03 / Spatial variations</figcaption></figure>
+        </section>
+
+        <section class="pf-section" id="gaps">
+            <header class="pf-section-head"><h2>03/ The Gaps</h2></header>
+            <p class="pf-section-copy">The pentagonal bipyramid gives us two different dihedral angles, which we translated into two basic gap conditions. The A joint connects five triangular pieces into a pentagon, while the B joint connects the two halves of the bipyramid. As the structure extends beyond one module, these joints also become AA, BB, and AB, allowing the same pieces to meet at different angles.</p>
+            <div class="pf-joint-module">
+                <div class="pf-module-bar"><span>Connector study</span><span>A / AA / B / BB / AB</span></div>
+                <div class="pf-joint-tabs" role="group" aria-label="Connector types">
+                    <button type="button" class="active" aria-pressed="true" data-joint="0">A</button>
+                    <button type="button" aria-pressed="false" data-joint="1">AA</button>
+                    <button type="button" aria-pressed="false" data-joint="2">B</button>
+                    <button type="button" aria-pressed="false" data-joint="3">BB</button>
+                    <button type="button" aria-pressed="false" data-joint="4">AB</button>
                 </div>
-                <div class="rule-body" id="rule-panel" role="tabpanel" aria-labelledby="rule-tab-1">
-                    <figure class="vg-flat-figure rule-figure zoomable-figure">
-                        <div class="rule-image-scroll"><img id="rule-image" src="../assets/projects/vertical-garden/diagram-system.png" alt="Growth diagram: one module is mirrored along an edge and folded to make another connection" loading="lazy" decoding="async"></div>
-                        <span class="diagram-scroll-hint">Swipe across the drawing or enlarge it to read the details.</span>
-                        <figcaption id="rule-caption">The colored faces mark the edge that lets the next module turn.</figcaption>
-                    </figure>
-                    <aside class="rule-detail" aria-live="polite">
-                        <span class="vg-detail-index" id="rule-index">02 / 03 — the move</span>
-                        <h3 id="rule-title">Mirror, then fold.</h3>
-                        <p id="rule-copy">The diagram begins with one module. We mirror it along an edge and fold it over that edge, making a connection that can be repeated.</p>
-                        <div class="vg-detail-takeaway"><span>Why it mattered</span><p id="rule-takeaway">A simple local move can produce a changing overall silhouette.</p></div>
-                    </aside>
-                </div>
+                <div class="pf-joint-sheet"><div class="pf-joint-scroll"><svg id="joint-crop" viewBox="95 338 1360 560" role="img" aria-label="Close view of connector A from the final drawing"><image href="../assets/projects/vertical-garden/joints-diagram.png" x="0" y="0" width="2880" height="4320"></image></svg></div></div>
+                <div class="pf-module-foot"><span>Scroll the drawing to inspect the connection.</span><button type="button" id="joint-full-button">View full diagram ↗</button></div>
+            </div>
+            <p class="pf-prototype-copy">After the paper concept prototypes of the connected structures, we decided to introduce a connective method inspired by building flakes. By cutting slots at different positions and angles of the shape, connecting them through joints of specific angles, we are able to turn laser-cutted materials with thickness into the same shape as the concept prototypes.</p>
+            <div class="pf-chipboard-grid" aria-label="Chipboard prototypes">
+                <figure><img src="../assets/projects/vertical-garden/proto-connectors-web.jpg" alt="Early laser-cut chipboard connector pieces" loading="lazy" decoding="async"></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-joint-detail-web.jpg" alt="Chipboard panels joined with slotted connectors" loading="lazy" decoding="async"></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-assembled-web.jpg" alt="Assembled chipboard structure prototype" loading="lazy" decoding="async"></figure>
             </div>
         </section>
 
-        <section class="vg-chapter" id="joints">
-            <div class="vg-chapter-head">
-                <span class="vg-eyebrow">03 / Connections</span>
-                <h2>On paper, two edges simply touch. Plywood asks how.</h2>
-                <p>At full size, each meeting has a thickness and an angle. Five connector types translate the growth rule into pieces that can be cut and assembled. Select one to read its shape and job in the final diagram.</p>
+        <section class="pf-section" id="concept">
+            <header class="pf-section-head"><h2>04/ The Concept</h2></header>
+            <p class="pf-section-copy">After deciding how the units connect, we arranged the cluster as a piece of furniture for farming. In plan, the openings turn toward different directions; the front and side elevations reveal how the rooms rise and lean across the structure. In the renderings, plants and people suggest how these spaces could be used.</p>
+            <figure class="pf-flat pf-render-wide zoomable-figure"><span class="pf-image-label">Illustrated proposal</span><img src="../assets/projects/vertical-garden/render-context-1-web.jpg" alt="Illustrated Pollen Farm proposal with several planted modules and people in front of a greenhouse" loading="lazy" decoding="async"></figure>
+            <div class="pf-drawing-heading"><span>Architectural views</span><span>Plan &amp; elevations · enlarge any view ↗</span></div>
+            <div class="pf-drawing-grid" aria-label="Pollen Farm plan and elevations">
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-plan.png" alt="Pollen Farm plan showing the directions of its planting openings" loading="lazy" decoding="async"><figcaption>01 / Plan — The openings turn in different directions.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-front.png" alt="Pollen Farm front elevation showing the height of the clustered rooms" loading="lazy" decoding="async"><figcaption>02 / Front elevation — The rooms rise from the ground.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-left.png" alt="Pollen Farm left elevation showing the stacked modules and planting openings" loading="lazy" decoding="async"><figcaption>03 / Left elevation — The modules lean and open.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-right.png" alt="Pollen Farm right elevation showing the changing silhouette and planted rooms" loading="lazy" decoding="async"><figcaption>04 / Right elevation — Another side of the same cluster.</figcaption></figure>
             </div>
-            <div class="vg-module joint-module">
-                <div class="vg-module-top"><span>Connector atlas</span><p>Choose a connector to inspect its row in the original drawing.</p></div>
-                <div class="joint-tabs" role="group" aria-label="Connector types">
-                    <button type="button" class="active" aria-pressed="true" data-joint="0"><span class="joint-swatch joint-a"></span>A</button>
-                    <button type="button" aria-pressed="false" data-joint="1"><span class="joint-swatch joint-aa"></span>AA</button>
-                    <button type="button" aria-pressed="false" data-joint="2"><span class="joint-swatch joint-b"></span>B</button>
-                    <button type="button" aria-pressed="false" data-joint="3"><span class="joint-swatch joint-bb"></span>BB</button>
-                    <button type="button" aria-pressed="false" data-joint="4"><span class="joint-swatch joint-ab"></span>AB</button>
-                </div>
-                <div class="joint-body">
-                    <div class="joint-drawing">
-                        <div class="joint-image-scroll"><svg id="joint-crop" viewBox="95 338 1360 560" role="img" aria-label="Close view of connector A: plan and axonometric drawings"><image href="../assets/projects/vertical-garden/joints-diagram.png" x="0" y="0" width="2880" height="4320"></image></svg></div>
-                        <span class="diagram-scroll-hint">Swipe across this row; open the full diagram for every connection.</span>
-                        <div class="joint-drawing-footer"><span>Plan and axonometric views from the final connector diagram</span><button type="button" id="joint-full-button">View full diagram ↗</button></div>
-                    </div>
-                    <aside class="joint-detail" aria-live="polite">
-                        <span class="vg-detail-index" id="joint-index">01 / 05 — connector type</span>
-                        <strong class="joint-letter" id="joint-letter">A</strong>
-                        <h3 id="joint-title">Five triangles become one face.</h3>
-                        <p id="joint-copy">This small clip brings five triangular pieces together around a pentagonal center.</p>
-                        <div class="vg-detail-takeaway"><span>The larger question</span><p id="joint-takeaway">If a unit is assembled from triangles, the seams must remain repeatable too.</p></div>
-                    </aside>
-                </div>
-            </div>
-            <div class="joint-proof-heading"><span>Before the final diagram</span><p>Small laser-cut trials let us check a seam on the table, then try that same joining logic across a cluster.</p></div>
-            <div class="joint-proof">
-                <div class="proof-step"><figure class="evidence-card"><img src="../assets/projects/vertical-garden/proto-joint-detail-web.jpg" alt="Early laser-cut panels connected with small tabs" loading="lazy" decoding="async"><figcaption>An early tab-and-slot seam.</figcaption></figure><div><span>01 / Fit a seam</span><p>Would the cut slots and tabs hold adjacent faces together?</p></div></div>
-                <div class="proof-step"><figure class="evidence-card"><img src="../assets/projects/vertical-garden/proto-assembled-web.jpg" alt="An early cluster assembled from laser-cut panels" loading="lazy" decoding="async"><figcaption>A small cluster made from connected panels.</figcaption></figure><div><span>02 / Repeat it</span><p>What changed when the same connection continued into another unit?</p></div></div>
+            <div class="pf-concept-pair">
+                <figure class="pf-flat pf-render-pair zoomable-figure"><span class="pf-image-label">Illustrated proposal</span><img src="../assets/projects/vertical-garden/render-context-2-web.jpg" alt="Second illustrated proposal showing planted structures near a greenhouse" loading="lazy" decoding="async"></figure>
+                <figure class="pf-flat pf-concept-cutout zoomable-figure"><span class="pf-image-label">Illustrated proposal</span><img src="../assets/projects/vertical-garden/context-photo-web.jpg" alt="Illustrated planted structure with people on a white background" loading="lazy" decoding="async"></figure>
             </div>
         </section>
 
-        <section class="vg-chapter" id="assembly">
-            <div class="vg-chapter-head">
-                <span class="vg-eyebrow">04 / Assembly</span>
-                <h2>The drawing became a set of decisions about build order.</h2>
-                <p>When the joints worked at small scale, we needed to understand how separate panels would become modules, then how those modules would meet.</p>
+        <section class="pf-section pf-fabrication" id="fabrication">
+            <header class="pf-section-head"><h2>05/ The Fabrication</h2></header>
+            <p class="pf-section-copy">To make the final piece, we translated the triangular faces and connectors back into flat outlines for CNC routing. We cut them from plywood boards and assembled the parts through the same slotting logic tested in chipboard. At full scale on campus, their angles began to define rooms between the panels, making the passage from 2D elements to 3D space tangible.</p>
+            <div class="pf-fabrication-grid">
+                <figure class="pf-flat pf-fabrication-drawing zoomable-figure"><img src="../assets/projects/vertical-garden/exploded-axonometric.png" alt="Exploded axonometric drawing of the separate plywood parts" loading="lazy" decoding="async"><figcaption>Assembly drawing</figcaption></figure>
+                <figure class="pf-flat pf-built-detail zoomable-figure"><span class="pf-image-label">Built structure</span><img src="../assets/projects/vertical-garden/actual-model-web.jpg" alt="Close view of the built unplanted plywood structure and its connectors" loading="lazy" decoding="async"></figure>
             </div>
-            <div class="assembly-layout">
-                <figure class="vg-flat-figure assembly-figure zoomable-figure"><img src="../assets/projects/vertical-garden/exploded-axonometric.png" alt="Exploded axonometric separating Pollen Farm's triangular panels, a completed module, and the joined structure" loading="lazy" decoding="async"><figcaption>The exploded drawing makes the parts and their relationships visible.</figcaption></figure>
-                <div class="assembly-copy">
-                    <ol class="assembly-steps">
-                        <li><span>01</span><div><strong>Cut the panels</strong><p>Each triangular face starts as a flat plywood piece with openings and slots.</p></div></li>
-                        <li><span>02</span><div><strong>Make a module</strong><p>Connectors hold the faces at the angles the paper could only suggest.</p></div></li>
-                        <li><span>03</span><div><strong>Join modules</strong><p>Other connectors carry the rule from one volume into the next.</p></div></li>
-                    </ol>
-                    <div class="assembly-transition"><span>From drawing to site</span><p>The diagram organized the parts. The full-size build would show whether those relationships still made sense at the scale of a person.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="vg-chapter" id="outcome">
-            <div class="vg-chapter-head">
-                <span class="vg-eyebrow">05 / Built and imagined</span>
-                <h2>We built the structure. The garden still needs a living test.</h2>
-                <p>The finished plywood form let us check the geometry, the joints, and its presence on campus. Planting remained an invitation in the drawings and composite scenes.</p>
-            </div>
-            <div class="vg-module outcome-module">
-                <div class="vg-module-top"><span>Built record / imagined use</span><p>Switch views to see what we made and what we proposed.</p></div>
-                <div class="outcome-tabs" role="group" aria-label="Built and proposed views">
-                    <button type="button" class="active" aria-pressed="true" data-outcome="built"><span>01</span> Built, unplanted</button>
-                    <button type="button" aria-pressed="false" data-outcome="proposal"><span>02</span> Illustrated proposal</button>
-                </div>
-                <div class="outcome-body">
-                    <figure class="vg-flat-figure outcome-stage zoomable-figure"><img id="outcome-image" src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The built plywood structure standing beside a campus lawn without plants" loading="lazy" decoding="async"><span class="outcome-stamp" id="outcome-stamp">Built / unplanted</span><figcaption id="outcome-caption">A photograph of the actual structure placed on campus.</figcaption></figure>
-                    <aside class="outcome-detail" aria-live="polite">
-                        <span class="vg-detail-index" id="outcome-index">01 / 02 — what we tested</span>
-                        <h3 id="outcome-title">The rule stood at full scale.</h3>
-                        <p id="outcome-copy">The plywood parts were assembled into one configuration and placed beside the lawn. Here we could inspect its turning profile and visible joints at the scale of a person.</p>
-                        <div class="outcome-inset"><button type="button" id="outcome-inset-zoom" aria-label="Enlarge close view of the built structure"><img id="outcome-inset-image" src="../assets/projects/vertical-garden/actual-model-web.jpg" alt="Close view of the unplanted plywood model and its exposed connectors" loading="lazy" decoding="async"><span aria-hidden="true">↗</span></button><p id="outcome-inset-copy">Look closer: the slots and small connectors remain visible.</p></div>
-                    </aside>
-                </div>
-            </div>
-            <div class="unresolved-note"><span>What the next version must answer</span><p>Where would soil sit? How would water drain? Which plants belong here, and who would care for them through changing weather? Those questions need plants and time, not another rendering.</p></div>
-        </section>
-
-        <section class="reflection" id="reflection">
-            <span class="vg-eyebrow">06 / Reflection</span>
-            <h2>From a rule to a responsibility</h2>
-            <p>I began by treating computational design as a way to generate form. By the end, I cared more about whether a rule could survive translation: from paper to drawing, from drawing to joint, from joint to plywood, and from plywood into a place people would pass.</p>
-            <p>We assembled one configuration, not the ecology promised by the name Pollen Farm. To become a garden, the project would need another kind of collaboration—with plants, water, weather, pollinators, and whoever keeps it alive.</p>
+            <figure class="pf-flat pf-built-wide zoomable-figure"><span class="pf-image-label">Built on campus</span><img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The built unplanted Pollen Farm plywood structure on campus" loading="lazy" decoding="async"></figure>
         </section>
     </main>
 
@@ -418,7 +347,7 @@
         <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
         <div><img alt=""><p></p></div>
     </div>
-    <script src="vertical-garden-story.js?v=20261015" defer></script>
+    <script src="vertical-garden-story.js?v=20261022" defer></script>
     <script>
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
 
