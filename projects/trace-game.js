@@ -43,6 +43,13 @@
     const SVG_NS = 'http://www.w3.org/2000/svg';
     const DIE_FACES = ['·', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
     const PLAYER_COLORS = ['#40c1ac', '#f6ae20', '#ec0c91', '#6774db'];
+    const BOARD_SIZE = 1440;
+    const MAP_SCALE = 0.56;
+    const MAP_OFFSET = 316.8;
+    const cursorUrl = (svg, x, y, fallback) => `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${x} ${y}, ${fallback}`;
+    const mapCursor = color => cursorUrl(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="36" viewBox="0 0 24 36"><circle cx="12" cy="6.5" r="5.8" fill="${color}" stroke="#080808" stroke-width="1"/><path d="M3 15H21L12 34Z" fill="${color}" stroke="#080808" stroke-width="1" stroke-linejoin="miter"/></svg>`, 12, 34, 'crosshair');
+    const lensCursor = color => cursorUrl(`<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path d="m17.7 17.7 7.2 7.2" fill="none" stroke="#111" stroke-width="5" stroke-linecap="square"/><path d="m17.7 17.7 7.2 7.2" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="square"/><circle cx="11.5" cy="11.5" r="7.5" fill="none" stroke="#111" stroke-width="3"/><circle cx="11.5" cy="11.5" r="7.5" fill="none" stroke="${color}" stroke-width="1.5"/></svg>`, 12, 12, 'pointer');
+    const rollCursor = color => cursorUrl(`<svg xmlns="http://www.w3.org/2000/svg" width="44" height="19" viewBox="0 0 105 45"><path d="M1 13 17 9 25 40 9 44Z" fill="${color}" stroke="#080808" stroke-width="2" stroke-linejoin="miter"/><path d="M17 16 27 14 39 7 47 5 56 7 70 3 79 1 85 5 86 10 83 14 73 18 61 21 58 24 58 27 67 30 75 28 83 23 91 8 98 2 104 5 104 12 98 26 89 36 79 41 67 44 55 42 40 37 26 35Z" fill="${color}" stroke="#080808" stroke-width="2" stroke-linejoin="miter"/></svg>`, 43, 2, 'pointer');
     const EL = id => document.getElementById(id);
     const dom = {
         boardWindow: EL('boardWindow'), boardTransform: EL('boardTransform'), boardGrid: EL('boardGrid'), boardInstruction: EL('boardInstruction'),
@@ -79,12 +86,24 @@
     let modalAction = null;
     let lastFocus = null;
     let view = { scale: 1, x: 0, y: 0, fitted: false };
+    let cameraMode = 'overview';
+    let themeColor = null;
     const polygons = new Map();
     const statePolygons = new Map();
     let boardMapLayer = null;
     const player = index => state.players[index];
     const teammateIndices = () => state.players.map((_, index) => index).filter(index => index !== state.activePlayer);
     const playerLabel = index => `Player ${index + 1}`;
+
+    function syncPlayerTheme(color) {
+        if (themeColor === color) return;
+        themeColor = color;
+        const root = document.documentElement;
+        root.style.setProperty('--accent', color);
+        root.style.setProperty('--trace-cursor-map', mapCursor(color));
+        root.style.setProperty('--trace-cursor-lens', lensCursor(color));
+        root.style.setProperty('--trace-cursor-roll', rollCursor(color));
+    }
 
     function randomInt(max) {
         if (window.crypto?.getRandomValues) { const numbers = new Uint32Array(1); crypto.getRandomValues(numbers); return numbers[0] % max; }
@@ -129,6 +148,7 @@
         if (eventTile(tile)) recipient.lastEventSpot = tile.id;
         if (tile.address) recipient.lastAddressSpot = tile.id;
         renderMap();
+        if (cameraMode === 'follow' && index === state.activePlayer) focusOnPlayer(index, true, '180ms');
     }
 
     function makeMap() {
@@ -137,7 +157,7 @@
         statePolygons.clear();
         // The 36 × 36 artwork centers the original board at 56% of its former size.
         // Keep the game coordinates unchanged so every archival place retains its route.
-        boardMapLayer = svg('g', { class: 'board-map-layer', transform: 'translate(316.8 316.8) scale(0.56)' });
+        boardMapLayer = svg('g', { class: 'board-map-layer', transform: `translate(${MAP_OFFSET} ${MAP_OFFSET}) scale(${MAP_SCALE})` });
         const featureLayer = svg('g', { class: 'board-feature-layer', 'aria-hidden': 'true' });
         const stateLayer = svg('g', { class: 'board-state-layer', 'aria-hidden': 'true' });
         const actionLayer = svg('g', { class: 'board-action-layer' });
@@ -167,6 +187,7 @@
     }
     function renderMap() {
         const activeColor = PLAYER_COLORS[state.activePlayer] || PLAYER_COLORS[0];
+        syncPlayerTheme(activeColor);
         dom.boardGrid.style.setProperty('--player-color', activeColor);
         dom.die.style.setProperty('--player-color', activeColor);
         const current = state.position ? TILE_BY_ID.get(state.position) : null;
@@ -446,6 +467,7 @@
         if (!targets.length) { toast('There is no valid hexagon for this effect.'); callback(null); return; }
         pendingChoice = { targets, callback, canCancel };
         mode = 'choice'; dom.choiceTitle.textContent = title; dom.choiceHint.textContent = hint; dom.choiceBar.hidden = false; dom.choiceCancel.hidden = !canCancel;
+        if (state.playerCount > 1) fitBoard(true);
         render();
     }
     function endChoice(tile) {
@@ -478,6 +500,7 @@
             if (state.activePlayer === 0) state.cycle++;
         }
         mode = state.position ? 'ready' : 'start';
+        if (state.playerCount > 1 && (advance || cameraMode === 'follow')) fitBoard(true);
         render();
     }
     function skipTurn() {
@@ -514,6 +537,7 @@
         const next = { ...state.next };
         rollingEffects = next;
         state.round += 1;
+        if (state.playerCount > 1 && !next.skip) focusOnPlayer(state.activePlayer);
         mode = 'rolling'; render();
         if (next.skip) { state.next.skip = false; toast('Security issue: no movement this round.', 'negative'); finishAction(); return; }
         if (next.returnToEvent && state.lastEventSpot) {
@@ -743,20 +767,52 @@
         finishAbility();
     }
 
-    function fitBoard() {
+    function fitBoard(animated = false) {
         const rect = dom.boardWindow.getBoundingClientRect();
         // Fit the visible hexagon field, not the black 36 × 36 artboard margins.
         view.scale = Math.min(rect.width, rect.height) / 1100;
-        view.x = (rect.width - 1440 * view.scale) / 2;
-        view.y = (rect.height - 1440 * view.scale) / 2;
-        view.fitted = true; applyView();
+        view.x = (rect.width - BOARD_SIZE * view.scale) / 2;
+        view.y = (rect.height - BOARD_SIZE * view.scale) / 2;
+        view.fitted = true;
+        cameraMode = 'overview';
+        applyView(animated, '650ms');
     }
-    function applyView() { dom.boardTransform.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.scale})`; }
+    function focusOnPlayer(index, animated = true, duration = '650ms') {
+        if (state.playerCount < 2) return;
+        const tile = TILE_BY_ID.get(player(index)?.position);
+        if (!tile) return;
+        const rect = dom.boardWindow.getBoundingClientRect();
+        const overviewScale = Math.min(rect.width, rect.height) / 1100;
+        view.scale = Math.min(1.7, Math.max(.65, overviewScale * 1.9));
+        view.x = rect.width / 2 - (MAP_OFFSET + tile.x * MAP_SCALE) * view.scale;
+        view.y = rect.height / 2 - (MAP_OFFSET + tile.y * MAP_SCALE) * view.scale;
+        view.fitted = false;
+        cameraMode = 'follow';
+        applyView(animated, duration);
+    }
+    function applyView(animated = false, duration = '650ms') {
+        dom.boardTransform.classList.toggle('is-camera-animating', animated && !reducedMotion());
+        if (animated) dom.boardTransform.style.setProperty('--camera-duration', duration);
+        dom.boardWindow.scrollLeft = 0;
+        dom.boardWindow.scrollTop = 0;
+        dom.boardTransform.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.scale})`;
+    }
+    function freezeView() {
+        if (!dom.boardTransform.classList.contains('is-camera-animating')) return;
+        const matrix = new DOMMatrixReadOnly(getComputedStyle(dom.boardTransform).transform);
+        view.scale = matrix.a;
+        view.x = matrix.e;
+        view.y = matrix.f;
+        applyView();
+    }
     function zoom(factor, centerX, centerY) {
+        freezeView();
         const newScale = Math.min(2.4, Math.max(.26, view.scale * factor));
         view.x = centerX - (centerX - view.x) * newScale / view.scale;
         view.y = centerY - (centerY - view.y) * newScale / view.scale;
-        view.scale = newScale; applyView();
+        view.scale = newScale;
+        cameraMode = 'manual';
+        applyView();
     }
     function wireMapPan() {
         let dragging = null;
@@ -767,7 +823,14 @@
         dom.boardWindow.addEventListener('pointermove', event => {
             if (!dragging) return;
             const dx = event.clientX - dragging.x, dy = event.clientY - dragging.y;
-            if (Math.hypot(dx, dy) > 7) { dragging.moved = true; dom.boardWindow.classList.add('is-dragging'); view.x = dragging.originX + dx; view.y = dragging.originY + dy; applyView(); }
+            if (Math.hypot(dx, dy) > 7) {
+                if (!dragging.moved) { freezeView(); dragging.originX = view.x; dragging.originY = view.y; cameraMode = 'manual'; }
+                dragging.moved = true;
+                dom.boardWindow.classList.add('is-dragging');
+                view.x = dragging.originX + dx;
+                view.y = dragging.originY + dy;
+                applyView();
+            }
         });
         const finish = event => { if (dragging?.moved) { event.preventDefault(); window.__traceSuppressClick = true; setTimeout(() => { window.__traceSuppressClick = false; }, 60); } dragging = null; dom.boardWindow.classList.remove('is-dragging'); };
         dom.boardWindow.addEventListener('pointerup', finish);
@@ -775,12 +838,16 @@
         dom.boardWindow.addEventListener('wheel', event => { event.preventDefault(); const rect = dom.boardWindow.getBoundingClientRect(); zoom(event.deltaY < 0 ? 1.12 : .89, event.clientX - rect.left, event.clientY - rect.top); }, { passive: false });
         EL('zoomIn').addEventListener('click', () => zoom(1.25, dom.boardWindow.clientWidth / 2, dom.boardWindow.clientHeight / 2));
         EL('zoomOut').addEventListener('click', () => zoom(.8, dom.boardWindow.clientWidth / 2, dom.boardWindow.clientHeight / 2));
-        EL('zoomReset').addEventListener('click', fitBoard);
-        new ResizeObserver(fitBoard).observe(dom.boardWindow);
+        EL('zoomReset').addEventListener('click', () => fitBoard(true));
+        new ResizeObserver(() => {
+            const wasAnimating = dom.boardTransform.classList.contains('is-camera-animating');
+            if (cameraMode === 'follow') focusOnPlayer(state.activePlayer, wasAnimating, '350ms');
+            else fitBoard(wasAnimating);
+        }).observe(dom.boardWindow);
     }
     function showHelp() {
         lastFocus = document.activeElement;
-        dom.modalContents.innerHTML = `<div class="plain-modal"><span class="reveal-type">TRACE / FIELD GUIDE</span><h2 id="modalTitle">Explore the network</h2><p>Choose one to four players. Each player selects a starting hexagon, then Player 1 begins. Take turns in number order. Roll a six-sided die, then choose one neighboring hexagon to set your direction. Your piece travels straight for the rolled number of steps, stopping at the edge of the map. A split-move card lets you turn once. The die badge previews card effects and shows your exact step count before you choose a direction.</p><ul><li><strong>Colored hexagons:</strong> green Community, blue Expression, pink Justice, and yellow Resources. Landing on one draws a matching event card. Event cards can repeat.</li><li><strong>Brown symbols:</strong> meet a randomly selected connection. Each person or collective can be drawn only once across the group.</li><li><strong>Numbered teal hexagons:</strong> collect the corresponding address card once across the group. Its number disappears after collection.</li><li><strong>Card effects:</strong> each player's cards, abilities, and future-roll effects appear when it is their turn. Changes to the map are shared. Cards that affect a teammate let you choose who receives the effect.</li><li><strong>Skip a turn:</strong> choose “Skip this turn” before rolling or while choosing a direction. Card effects that have already begun must still be resolved.</li><li><strong>Field notes:</strong> use the two selectors on the right to inspect any player’s progress and hand, or see all collected cards together. Viewing does not change whose turn it is.</li><li><strong>Solo play:</strong> teammate-only effects have no target. Any printed solo alternative still applies. Half steps round down to at least one; “roll twice” adds two dice. Cards trigger at the final landing space, and teleports can trigger another card.</li><li>Refreshing the page starts a new journey. You can also use “Start a new journey” without leaving the page.</li></ul><button class="modal-action" id="helpClose" type="button">BACK TO THE MAP</button></div>`;
+        dom.modalContents.innerHTML = `<div class="plain-modal"><span class="reveal-type">TRACE / FIELD GUIDE</span><h2 id="modalTitle">Explore the network</h2><p>Choose one to four players. Each player selects a starting hexagon, then Player 1 begins. Take turns in number order. Roll a six-sided die, then choose one neighboring hexagon to set your direction. Your piece travels straight for the rolled number of steps, stopping at the edge of the map. A split-move card lets you turn once. The die badge previews card effects and shows your exact step count before you choose a direction.</p><ul><li><strong>Colored hexagons:</strong> green Community, blue Expression, pink Justice, and yellow Resources. Landing on one draws a matching event card. Event cards can repeat.</li><li><strong>Brown symbols:</strong> meet a randomly selected connection. Each person or collective can be drawn only once across the group.</li><li><strong>Numbered teal hexagons:</strong> collect the corresponding address card once across the group. Its number disappears after collection.</li><li><strong>Card effects:</strong> each player's cards, abilities, and future-roll effects appear when it is their turn. Changes to the map are shared. Cards that affect a teammate let you choose who receives the effect.</li><li><strong>Camera:</strong> in multiplayer, rolling follows the active player. The map returns to the full view after the turn. Drag or zoom to inspect freely; the next roll resumes following.</li><li><strong>Skip a turn:</strong> choose “Skip this turn” before rolling or while choosing a direction. Card effects that have already begun must still be resolved.</li><li><strong>Field notes:</strong> use the two selectors on the right to inspect any player’s progress and hand, or see all collected cards together. Viewing does not change whose turn it is.</li><li><strong>Solo play:</strong> teammate-only effects have no target. Any printed solo alternative still applies. Half steps round down to at least one; “roll twice” adds two dice. Cards trigger at the final landing space, and teleports can trigger another card.</li><li>Refreshing the page starts a new journey. You can also use “Start a new journey” without leaving the page.</li></ul><button class="modal-action" id="helpClose" type="button">BACK TO THE MAP</button></div>`;
         dom.modalBackdrop.hidden = false; modalAction = hideModal; EL('helpClose').addEventListener('click', hideModal); dom.modalClose.focus();
     }
     function resetGame() {
@@ -790,7 +857,7 @@
             archiveFilter = 'all'; dom.archiveFilter.textContent = 'ALL ▾';
             const setup = EL('setupOverlay'); if (setup) setup.hidden = false;
             syncSoundButton();
-            render(); toast('Choose how many players will explore.', 'positive');
+            render(); fitBoard(true); toast('Choose how many players will explore.', 'positive');
         });
     }
 
@@ -804,6 +871,7 @@
         const setup = EL('setupOverlay'); if (setup) setup.hidden = true;
         syncSoundButton();
         render();
+        fitBoard();
         toast(`${playerLabel(0)}, choose your starting hexagon.`, 'positive');
     }
 

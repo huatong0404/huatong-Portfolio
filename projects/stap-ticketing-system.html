@@ -430,7 +430,7 @@
                             <span class="journey-label">Thought</span><p class="journey-value journey-thought">“Oh no! My projector is broken. I need someone to fix it for me.”</p>
                             <span class="journey-label">Actors</span><div class="journey-value"><span class="journey-actor"><span class="actor-dot">TE</span><span class="journey-actor-name">Teacher</span></span></div>
                         </div>
-                        <div class="journey-mood">
+                        <div class="journey-mood" data-cursor-surface="teal">
                             <svg viewBox="0 0 260 220" preserveAspectRatio="none" aria-hidden="true">
                                 <line class="mood-guide" x1="20" y1="28" x2="20" y2="205"/><line class="mood-guide" x1="75" y1="28" x2="75" y2="205"/><line class="mood-guide" x1="130" y1="28" x2="130" y2="205"/><line class="mood-guide" x1="185" y1="28" x2="185" y2="205"/><line class="mood-guide" x1="240" y1="28" x2="240" y2="205"/>
                                 <path class="mood-path best-mood-path best-teacher-path" d="M20 140 C40 110 58 65 75 65 S110 150 130 155 S165 75 185 60 S220 30 240 25"/>
@@ -681,5 +681,6 @@
         lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
         document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
     </script>
+    <script src="../assets/site-cursor.js?v=20261028-3"></script>
 </body>
 </html>

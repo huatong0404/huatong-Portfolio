@@ -320,7 +320,6 @@
             margin-bottom: 16px;
         }
         .sm-ocean-grid,
-        .sm-making-grid,
         .sm-people-grid,
         .sm-public-grid {
             display: grid;
@@ -352,24 +351,6 @@
         .sm-ocean-grid figure:last-child img {
             height: auto;
             aspect-ratio: 4 / 3;
-        }
-        .sm-making-grid {
-            row-gap: 36px;
-        }
-        .sm-making-grid img {
-            width: 100%;
-            height: 330px;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-            background: #ECEBE5;
-        }
-        .sm-making-grid .fabric-photo img {
-            object-fit: cover;
-            background: #F5F5F5;
-        }
-        .sm-making-grid .unwrap-image img {
-            height: 410px;
         }
         .sm-people-grid figure:first-child,
         .sm-public-grid .sm-public-wide {
@@ -585,8 +566,6 @@
         }
 
         /* Use the same recurring image proportions as Rick's Radio. */
-        .sm-making-grid img,
-        .sm-making-grid .unwrap-image img,
         .sm-ocean-grid img,
         .sm-people-grid img,
         .sm-public-grid img { height: 340px; }
@@ -632,62 +611,6 @@
             width: 100%;
         }
         .sm-ocean-grid figure:last-child img { height: 340px; }
-
-        .sm-making-grid {
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-            gap: 34px 20px;
-            align-items: start;
-        }
-        .sm-making-grid > figure:nth-child(-n + 4) {
-            width: min(100%, 380px);
-        }
-        .sm-making-grid > figure:nth-child(-n + 2) img {
-            height: 235px;
-            object-fit: contain;
-        }
-        .sm-making-grid > .fabric-photo img {
-            height: 235px;
-            object-fit: cover;
-        }
-        .sm-making-grid > figure:nth-child(1) {
-            grid-column: 1 / span 5;
-            justify-self: start;
-        }
-        .sm-making-grid > figure:nth-child(2) {
-            grid-column: 7 / span 5;
-            justify-self: end;
-            margin-top: 46px;
-        }
-        .sm-making-grid > figure:nth-child(3) {
-            grid-column: 2 / span 5;
-            justify-self: start;
-            margin-top: 8px;
-        }
-        .sm-making-grid > figure:nth-child(4) {
-            grid-column: 8 / span 5;
-            justify-self: end;
-            margin-top: 58px;
-        }
-        .sm-making-grid .unwrap-image {
-            width: min(100%, 340px);
-        }
-        .sm-making-grid > figure:nth-child(5) {
-            grid-column: 1 / span 4;
-            justify-self: start;
-            margin-top: 12px;
-        }
-        .sm-making-grid > figure:nth-child(6) {
-            grid-column: 7 / span 4;
-            justify-self: end;
-            margin-top: 74px;
-        }
-        .sm-making-grid .unwrap-image img {
-            width: 100%;
-            height: auto;
-            max-height: none;
-            object-fit: contain;
-            background: #FAFAFA;
-        }
 
         .sm-people-grid,
         .sm-public-grid {
@@ -779,6 +702,328 @@
             object-position: center;
         }
 
+        /* A step-by-step explanation of how the flat nylon becomes a volume. */
+        .sm-process-explorer {
+            margin: 34px 0 42px;
+            border: 2px solid #0A0A0A;
+            background: #FAFAFA;
+            box-shadow: 7px 8px 0 rgba(64, 193, 172, 0.5);
+        }
+        .sm-process-tabs {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            border-bottom: 2px solid #0A0A0A;
+        }
+        .sm-process-tab {
+            min-height: 74px;
+            padding: 14px 16px;
+            border: 0;
+            border-right: 1px solid #0A0A0A;
+            color: #0A0A0A;
+            background: #F3F1EA;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.35;
+            text-align: left;
+            cursor: pointer;
+            transition: background 160ms ease;
+        }
+        .sm-process-tab:last-child { border-right: 0; }
+        .sm-process-tab:hover { background: #DDF3EF; }
+        .sm-process-tab[aria-selected="true"] { background: #40C1AC; }
+        .sm-process-tab:focus-visible {
+            position: relative;
+            z-index: 1;
+            outline: 3px solid #1769E0;
+            outline-offset: -4px;
+        }
+        .sm-process-tab-number {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+        }
+        .sm-process-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(270px, 0.8fr);
+            min-height: 410px;
+        }
+        .sm-process-panel[hidden] { display: none; }
+        .sm-process-media {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            padding: 24px;
+            background: #ECEBE5;
+            align-items: center;
+            min-width: 0;
+        }
+        .sm-process-shot { min-width: 0; }
+        .sm-process-shot img {
+            display: block;
+            width: 100%;
+            height: 280px;
+            object-fit: contain;
+            background: #FAFAFA;
+        }
+        .sm-process-shot--photo img { object-fit: cover; }
+        .sm-process-shot > span {
+            display: block;
+            padding-top: 9px;
+            color: #525252;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+        .sm-process-media--baffle {
+            grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr);
+            gap: 8px;
+        }
+        .sm-process-arrow {
+            color: #287F71;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .sm-process-media--unwrap {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            align-content: center;
+        }
+        .sm-unwrap-pair {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
+            gap: 8px;
+            align-items: start;
+            min-width: 0;
+        }
+        .sm-unwrap-pair-label {
+            grid-column: 1 / -1;
+            color: #123E38;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+        .sm-unwrap-pair .sm-process-shot > .sm-process-image-trigger img {
+            height: 220px;
+            background: transparent;
+        }
+        .sm-unwrap-pair .sm-process-shot > span { font-size: 11px; }
+        .sm-unwrap-pair .sm-process-arrow {
+            align-self: center;
+            font-size: 24px;
+            transform: none;
+        }
+        .sm-unwrap-output {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: #FAFAFA;
+        }
+        .sm-unwrap-output img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            max-width: none;
+            object-fit: initial;
+        }
+        .sm-unwrap-output--head img {
+            left: 50%;
+            width: min(100%, 340px);
+            transform: translateX(-50%);
+        }
+        .sm-unwrap-output--tentacles img {
+            top: auto;
+            bottom: 0;
+            left: 50%;
+            width: clamp(500px, 180%, 540px);
+            transform: translateX(-50%);
+        }
+        .sm-process-shot--diagram img {
+            box-sizing: border-box;
+            padding: 8px;
+            border: 1px solid #D4D4D4;
+        }
+        .sm-baffle-detail {
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            min-height: 280px;
+            border: 1px solid #D4D4D4;
+            background: #FAFAFA;
+        }
+        .sm-process-shot--baffle .sm-baffle-detail img {
+            box-sizing: border-box;
+            width: 50%;
+            height: 260px;
+            padding: 8px 0 8px 8px;
+            background: transparent;
+        }
+        .sm-baffle-detail-label {
+            box-sizing: border-box;
+            width: 50%;
+            padding: 0 10px;
+        }
+        .sm-baffle-detail-label b {
+            display: block;
+            color: #123E38;
+            font-size: 11px;
+            letter-spacing: .06em;
+        }
+        .sm-baffle-detail-label span {
+            display: block;
+            margin-top: 8px;
+            color: #525252;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+        .sm-process-image-trigger {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+        }
+        .sm-process-image-trigger:focus-visible {
+            outline: 3px solid #1769E0;
+            outline-offset: 3px;
+        }
+        .sm-pattern-dialog {
+            box-sizing: border-box;
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100dvh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 72px 24px 24px;
+            border: 0;
+            color: #FAFAFA;
+            background: rgba(10, 10, 10, 0.96);
+            overflow: auto;
+        }
+        .sm-pattern-dialog[open] {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .sm-pattern-dialog::backdrop { background: rgba(10, 10, 10, 0.86); }
+        .sm-pattern-dialog img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: calc(100dvh - 130px);
+            margin: 0 auto;
+            object-fit: contain;
+            background: #FAFAFA;
+        }
+        .sm-pattern-dialog p {
+            margin: 12px 0 0;
+            color: rgba(250, 250, 250, 0.82);
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .sm-pattern-close {
+            position: fixed;
+            top: 18px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border: 2px solid #0A0A0A;
+            color: #0A0A0A;
+            background: #40C1AC;
+            font: inherit;
+            font-size: 25px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .sm-pattern-close:focus-visible {
+            outline: 3px solid #1769E0;
+            outline-offset: 3px;
+        }
+        .sm-process-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 32px clamp(22px, 3vw, 40px);
+            border-left: 2px solid #0A0A0A;
+            min-width: 0;
+        }
+        .sm-process-eyebrow {
+            margin-bottom: 15px;
+            color: #287F71;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+        .sm-process-copy h3 {
+            margin: 0 0 16px;
+            font-family: 'Archivo Black', Impact, sans-serif;
+            font-size: clamp(21px, 2.5vw, 28px);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        .sm-process-copy p {
+            margin: 0;
+            color: #525252;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .sm-process-copy strong { color: #0A0A0A; }
+        .sm-unwrap-steps {
+            display: grid;
+            gap: 7px;
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: unwrap-step;
+            color: #0A0A0A;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+        .sm-unwrap-steps li {
+            display: grid;
+            grid-template-columns: 22px minmax(0, 1fr);
+            gap: 8px;
+        }
+        .sm-unwrap-steps li::before {
+            counter-increment: unwrap-step;
+            content: "0" counter(unwrap-step);
+            color: #287F71;
+            font-weight: 700;
+        }
+        .sm-process-change {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
+            padding-top: 16px;
+            border-top: 2px solid #D4D4D4;
+            color: #0A0A0A;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        .sm-process-change b { color: #287F71; font-size: 18px; }
+        .sm-fabrication-note {
+            max-width: 790px;
+        }
+        .sm-fabrication-note p {
+            margin-bottom: 16px;
+            color: #525252;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
         @media (max-width: 900px) {
             .rr-case { width: min(calc(100% - 48px), 1080px); }
             .project-detail-hero { padding-left: var(--page-padding); padding-right: var(--page-padding); }
@@ -800,7 +1045,6 @@
             .sm-concept-gallery,
             .sm-dye-grid,
             .sm-ocean-grid,
-            .sm-making-grid,
             .sm-people-grid,
             .sm-public-grid { grid-template-columns: 1fr; }
             .rr-outcome-grid figure:first-child { grid-column: span 1; }
@@ -842,14 +1086,6 @@
             .sm-ocean-grid img,
             .sm-people-grid img,
             .sm-public-grid img { height: 320px; }
-            .sm-making-grid img,
-            .sm-making-grid .unwrap-image img { height: auto; }
-            .sm-making-grid > figure:nth-child(n) {
-                grid-column: 1;
-                width: min(100%, 420px);
-                margin-top: 0;
-                justify-self: center;
-            }
             .rr-evidence-page .rr-case { padding-bottom: 72px; }
             #why.split-row.wide-media { grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr); }
             #why .split-image.tall img { height: 300px; }
@@ -861,10 +1097,10 @@
             .sm-people-grid figure,
             .sm-public-grid figure,
             .sm-public-grid .sm-public-wide { display: block; }
-            .sm-making-grid > figure:nth-child(-n + 2) img { height: 210px; }
-            .sm-making-grid > .fabric-photo img { height: 210px; }
             #soft-things .sm-photo-column--left figure:nth-child(2) { width: 100%; }
             #acknowledgment .rr-outcome-grid figure:first-child img { height: auto; }
+            .sm-process-panel { grid-template-columns: 1fr; }
+            .sm-process-copy { border-left: 0; border-top: 2px solid #0A0A0A; }
         }
 
         @media (max-width: 560px) {
@@ -890,8 +1126,23 @@
             .sm-people-grid img,
             .sm-public-grid img,
             .sm-photo-column figure:nth-child(n) img { height: 220px; }
-            .sm-making-grid > figure:nth-child(-n + 2) img { height: 190px; }
             #acknowledgment .rr-outcome-grid figure:first-child img { height: auto; }
+            .sm-process-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sm-process-tab { min-height: 58px; padding: 10px 12px; border-bottom: 1px solid #0A0A0A; }
+            .sm-process-tab:nth-child(2n) { border-right: 0; }
+            .sm-process-tab:last-child { grid-column: 1 / -1; border-bottom: 0; }
+            .sm-process-media { grid-template-columns: 1fr; padding: 16px; }
+            .sm-process-shot img { height: 220px; }
+            .sm-process-media--baffle { grid-template-columns: 1fr; }
+            .sm-process-arrow { line-height: 1; transform: rotate(90deg); }
+            .sm-unwrap-pair { grid-template-columns: 1fr; }
+            .sm-unwrap-pair .sm-process-arrow { line-height: 1; transform: rotate(90deg); }
+            .sm-unwrap-pair .sm-process-shot > .sm-process-image-trigger img,
+            .sm-unwrap-output { height: 220px; }
+            .sm-unwrap-output img { height: auto; }
+            .sm-baffle-detail { min-height: 240px; }
+            .sm-process-shot--baffle .sm-baffle-detail img { height: 220px; }
+            .sm-process-copy { padding: 26px 20px; }
         }
     </style>
 </head>
@@ -951,7 +1202,7 @@
             <li><a href="#overview">Overview</a></li>
             <li><a href="#why">Why</a></li>
             <li><a href="#ocean">Ocean</a></li>
-            <li><a href="#fabrication">Fabrication</a></li>
+            <li><a href="#fabrication">How It's Made</a></li>
             <li><a href="#soft-things">Soft Things</a></li>
             <li><a href="#public-life">Public Life</a></li>
             <li><a href="#acknowledgment">Acknowledgment</a></li>
@@ -966,6 +1217,7 @@
             <p class="lead">
                 The Sea Monster is a room-scale inflatable installation composed of nylon, costume fans, and stage lighting. Two halves of an open head and five illuminated tentacles sit across WQED Studio A as fragments of a much larger creature, with the gallery floor standing in for the surface of the sea.
             </p>
+            <p><a class="sm-official-link" href="#fabrication">See how flat fabric became the creature &darr;</a></p>
         </section>
 
         <section class="split-row wide-media" id="why">
@@ -1016,40 +1268,149 @@
             <div class="sm-section-copy">
                 <h2 class="rr-section-title">From Flat to Full</h2>
                 <p>
-                    The head and tentacles began as digital models, then got unwrapped into flat panels, cut from nylon, and sewn back into volume. In this part, I modeled all five tentacles. The seams had to be precise enough for the fabric to recover the modeled curves once air filled it, so the tentacles would not leak air or shift their shape. To keep the head in shape, we added inner baffles, structures that control the air flow speed in an inflatable.
-                </p>
-                <p>
-                    I also dyed the fabric one color at a time since they were white. Blue for the exterior of the head, pink for the inside of the mouth. The teeth and internal baffles stayed white.
-                </p>
-                <p>
-                    Some parts of the creature were far larger than a person, which meant we could not sew them alone. Laying out, pinning, and stitching the larger panels was a two to three person task every time. The work was slow, but when a tentacle inflated for the first time and stood up on its own, the whole team applauded.
+                    How does flat nylon become a curved head or tentacle? Choose a step to follow the change from a digital shape to fabric, seams, and finally air.
                 </p>
             </div>
-            <div class="sm-making-grid">
-                <figure>
-                    <img src="../assets/projects/sea-monster/render1.png" alt="Digital model of The Sea Monster head">
-                    <figcaption>Head model before its surfaces were unwrapped.</figcaption>
-                </figure>
-                <figure>
-                    <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Digital model of the nearly horizontal tentacle extending from a single base">
-                    <figcaption>The nearly horizontal tentacle model.</figcaption>
-                </figure>
-                <figure class="fabric-photo">
-                    <img src="../assets/projects/sea-monster/dyeing1.png" alt="Blue nylon panels drying on a rack">
-                    <figcaption>Blue-dyed nylon for the exterior of the head.</figcaption>
-                </figure>
-                <figure class="fabric-photo">
-                    <img src="../assets/projects/sea-monster/dyeing3.png" alt="Pink nylon panels drying on a rack">
-                    <figcaption>Pink-dyed nylon for the inside of the mouth.</figcaption>
-                </figure>
-                <figure class="unwrap-image">
-                    <img src="../assets/projects/sea-monster/wrapup.png" alt="Unwrapped panel layout for The Sea Monster head, including internal baffles with openings">
-                    <figcaption>Head panel layout. The pieces with openings are the white internal baffles; the teeth also remained white.</figcaption>
-                </figure>
-                <figure class="unwrap-image">
-                    <img src="../assets/projects/sea-monster/tentacle wrapup2.png" alt="Unwrapped flat panel layout for one tentacle">
-                    <figcaption>Unwrapped panel layout for one of the tentacles.</figcaption>
-                </figure>
+            <div class="sm-process-explorer" aria-label="How The Sea Monster was made">
+                <div class="sm-process-tabs" role="tablist" aria-label="Making process steps">
+                    <button class="sm-process-tab" id="sm-step-tab-1" type="button" role="tab" aria-controls="sm-step-panel-1" aria-selected="true" tabindex="0"><span class="sm-process-tab-number">01</span>Model</button>
+                    <button class="sm-process-tab" id="sm-step-tab-2" type="button" role="tab" aria-controls="sm-step-panel-2" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">02</span>Unwrap</button>
+                    <button class="sm-process-tab" id="sm-step-tab-3" type="button" role="tab" aria-controls="sm-step-panel-3" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">03</span>Cut &amp; dye</button>
+                    <button class="sm-process-tab" id="sm-step-tab-4" type="button" role="tab" aria-controls="sm-step-panel-4" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">04</span>Sew</button>
+                    <button class="sm-process-tab" id="sm-step-tab-5" type="button" role="tab" aria-controls="sm-step-panel-5" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">05</span>Inflate</button>
+                </div>
+
+                <div class="sm-process-panel" id="sm-step-panel-1" role="tabpanel" aria-labelledby="sm-step-tab-1">
+                    <div class="sm-process-media">
+                        <div class="sm-process-shot">
+                            <img src="../assets/projects/sea-monster/render1.png" alt="Digital model showing the curved, open head with pointed teeth">
+                            <span>Digital head model</span>
+                        </div>
+                        <div class="sm-process-shot">
+                            <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Digital model of two curving tentacles">
+                            <span>Digital tentacle model</span>
+                        </div>
+                    </div>
+                    <div class="sm-process-copy">
+                        <span class="sm-process-eyebrow">Step 1 of 5 · 3D plan</span>
+                        <h3>First, decide the shape.</h3>
+                        <p>The head and five tentacles began as digital models. I modeled all five tentacles, setting the curves the fabric would later need to recreate.</p>
+                        <div class="sm-process-change"><span>Idea</span><b aria-hidden="true">→</b><span>3D shape</span></div>
+                    </div>
+                </div>
+
+                <div class="sm-process-panel" id="sm-step-panel-2" role="tabpanel" aria-labelledby="sm-step-tab-2" hidden>
+                    <div class="sm-process-media sm-process-media--unwrap">
+                        <div class="sm-unwrap-pair">
+                            <span class="sm-unwrap-pair-label">HEAD</span>
+                            <div class="sm-process-shot">
+                                <button class="sm-process-image-trigger sm-process-zoom-trigger" type="button" aria-label="Enlarge the head surface grid">
+                                    <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/grids of surface head.png" alt="3D model of the open head, with a grid of lines across its curved surface">
+                                </button>
+                                <span>3D surface grid</span>
+                            </div>
+                            <span class="sm-process-arrow" aria-hidden="true">→</span>
+                            <div class="sm-process-shot">
+                                <div class="sm-unwrap-output sm-unwrap-output--head">
+                                    <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/wrapup.png" alt="One visible set of the flat head cutting outlines arranged in a 2D layout">
+                                </div>
+                                <span>2D cutting layout</span>
+                            </div>
+                        </div>
+                        <div class="sm-unwrap-pair">
+                            <span class="sm-unwrap-pair-label">TENTACLES</span>
+                            <div class="sm-process-shot">
+                                <button class="sm-process-image-trigger sm-process-zoom-trigger" type="button" aria-label="Enlarge the tentacle surface grid">
+                                    <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/grids of surface tentacle.png" alt="3D model of two curling tentacles, with a grid of lines across their curved surfaces">
+                                </button>
+                                <span>3D surface grid</span>
+                            </div>
+                            <span class="sm-process-arrow" aria-hidden="true">→</span>
+                            <div class="sm-process-shot">
+                                <div class="sm-unwrap-output sm-unwrap-output--tentacles">
+                                    <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/tentacle wrapup1.png" alt="Color-coded flat fabric panels for a tentacle, shown as a planning study">
+                                </div>
+                                <span>Flattened panel study</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sm-process-copy">
+                        <span class="sm-process-eyebrow">Step 2 of 5 · Pattern planning</span>
+                        <h3>How does a 3D shape become a cutting plan?</h3>
+                        <p>The left images show 3D surface grids, not final cut lines. On the right are a head cutting layout and a tentacle panel study from the planning process.</p>
+                        <ol class="sm-unwrap-steps">
+                            <li>UV unwrap: flatten each curved model surface into a 2D map.</li>
+                            <li>Choose where the fabric panels should sit.</li>
+                            <li>Generate printable layouts with our custom tool, then send them for laser cutting.</li>
+                        </ol>
+                        <div class="sm-process-change"><span>3D surface</span><b aria-hidden="true">→</b><span>2D UV map</span><b aria-hidden="true">→</b><span>Cutting layout</span></div>
+                    </div>
+                </div>
+
+                <div class="sm-process-panel" id="sm-step-panel-3" role="tabpanel" aria-labelledby="sm-step-tab-3" hidden>
+                    <div class="sm-process-media">
+                        <div class="sm-process-shot sm-process-shot--photo">
+                            <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/dyeing1.png" alt="Blue-dyed nylon panels hanging to dry on a rack">
+                            <span>Blue panels for the outside of the head</span>
+                        </div>
+                        <div class="sm-process-shot sm-process-shot--photo">
+                            <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/dyeing3.png" alt="Pink-dyed nylon panels hanging to dry on a rack">
+                            <span>Pink panels for the inside of the mouth</span>
+                        </div>
+                    </div>
+                    <div class="sm-process-copy">
+                        <span class="sm-process-eyebrow">Step 3 of 5 · Material</span>
+                        <h3>Cut first, then add color.</h3>
+                        <p>We laser-cut white nylon into panels using those 2D layouts. I then dyed the cut pieces blue for the head’s outside and pink for the mouth’s inside; the teeth and fabric dividers inside the head stayed white.</p>
+                        <div class="sm-process-change"><span>Cutting layout</span><b aria-hidden="true">→</b><span>Dyed panels</span></div>
+                    </div>
+                </div>
+
+                <div class="sm-process-panel" id="sm-step-panel-4" role="tabpanel" aria-labelledby="sm-step-tab-4" hidden>
+                    <div class="sm-process-media sm-process-media--baffle">
+                        <div class="sm-process-shot sm-process-shot--diagram">
+                            <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/inner baffle.svg" alt="Cutaway drawing of the Sea Monster head with its central inner baffle highlighted teal and three equal vertical elliptical ventilation holes">
+                            <span>Inside the head · one white baffle highlighted in teal</span>
+                        </div>
+                        <span class="sm-process-arrow" aria-hidden="true">→</span>
+                        <div class="sm-process-shot sm-process-shot--baffle">
+                            <div class="sm-baffle-detail">
+                                <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/inner-baffle-isolated.svg" alt="Angled view of one fabric baffle with three equal openings; fine arrows pass through each hole from left to right">
+                                <div class="sm-baffle-detail-label"><b>ONE BAFFLE</b><span>A fabric wall sewn inside the shell. Openings let air pass through.</span></div>
+                            </div>
+                            <span>Three equal openings · about 40% open in this drawing</span>
+                        </div>
+                    </div>
+                    <div class="sm-process-copy">
+                        <span class="sm-process-eyebrow">Step 4 of 5 · Assembly</span>
+                        <h3>What is a baffle?</h3>
+                        <p>We sewed the cut panels into a shell and added fabric dividers inside it. Each divider is a <strong>baffle</strong>: it limits how far the fabric can bulge when air fills the head. The three openings let air move through this wall while the remaining fabric helps hold the intended curve.</p>
+                        <div class="sm-process-change"><span>Fabric panels</span><b aria-hidden="true">→</b><span>Unfilled shell</span></div>
+                    </div>
+                </div>
+
+                <div class="sm-process-panel" id="sm-step-panel-5" role="tabpanel" aria-labelledby="sm-step-tab-5" hidden>
+                    <div class="sm-process-media">
+                        <div class="sm-process-shot sm-process-shot--photo">
+                            <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/before exhibition.png" alt="The two blue and pink head halves standing upright after inflation">
+                            <span>Inflated head before the exhibition</span>
+                        </div>
+                        <div class="sm-process-shot sm-process-shot--photo">
+                            <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-tentacle-detail-web.jpg" alt="A visitor crouching under a large glowing tentacle during the exhibition">
+                            <span>Illuminated tentacle in the studio</span>
+                        </div>
+                    </div>
+                    <div class="sm-process-copy">
+                        <span class="sm-process-eyebrow">Step 5 of 5 · Full scale</span>
+                        <h3>Air reveals the shape.</h3>
+                        <p>Costume fans filled the sewn parts, pushing the nylon toward its modeled curves. We placed the head and tentacles across the studio and lit them so visitors could walk among the fragments.</p>
+                        <div class="sm-process-change"><span>Unfilled shell</span><b aria-hidden="true">→</b><span>Room-scale creature</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sm-fabrication-note">
+                <p>Precision mattered: the seams had to keep air in and let each tentacle recover its intended curve. The parts were so large that laying out and sewing the bigger panels took two or three people at a time.</p>
+                <p>When a tentacle inflated for the first time and stood on its own, the whole team applauded.</p>
             </div>
         </section>
 
@@ -1157,6 +1518,12 @@
         </section>
     </main>
 
+    <dialog class="sm-pattern-dialog" aria-label="Enlarged fabrication image" aria-describedby="sm-pattern-caption">
+        <button class="sm-pattern-close" type="button" aria-label="Close enlarged image">&times;</button>
+        <img alt="">
+        <p id="sm-pattern-caption"></p>
+    </dialog>
+
     <nav class="project-pagination" aria-label="Project navigation">
         <a class="project-prev" href="vertical-garden.html">
             <span class="pagination-label">&larr; Previous project</span>
@@ -1263,6 +1630,55 @@
         window.addEventListener('scroll', requestSectionUpdate, { passive: true });
         window.addEventListener('resize', requestSectionUpdate);
         updateActiveSection();
+
+        const processTabs = [...document.querySelectorAll('.sm-process-tab')];
+        const processPanels = processTabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+
+        function selectProcessStep(index, focusTab = false) {
+            processTabs.forEach((tab, tabIndex) => {
+                const selected = tabIndex === index;
+                tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+                tab.tabIndex = selected ? 0 : -1;
+                processPanels[tabIndex].hidden = !selected;
+            });
+            if (focusTab) processTabs[index].focus();
+        }
+
+        processTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => selectProcessStep(index));
+            tab.addEventListener('keydown', event => {
+                let nextIndex;
+                if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % processTabs.length;
+                else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + processTabs.length) % processTabs.length;
+                else if (event.key === 'Home') nextIndex = 0;
+                else if (event.key === 'End') nextIndex = processTabs.length - 1;
+                else return;
+                event.preventDefault();
+                selectProcessStep(nextIndex, true);
+            });
+        });
+
+        const patternDialog = document.querySelector('.sm-pattern-dialog');
+        const expandedPattern = patternDialog.querySelector('img');
+        const patternCaption = patternDialog.querySelector('#sm-pattern-caption');
+
+        document.querySelectorAll('.sm-process-zoom-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const shot = trigger.closest('.sm-process-shot');
+                const source = shot?.querySelector('img');
+                expandedPattern.src = trigger.dataset.fullImage || source.currentSrc || source.src;
+                expandedPattern.alt = trigger.dataset.fullAlt || source.alt;
+                patternCaption.textContent = trigger.dataset.caption || shot.querySelector(':scope > span').textContent;
+                patternDialog.showModal();
+            });
+        });
+
+        patternDialog.querySelector('.sm-pattern-close').addEventListener('click', () => patternDialog.close());
+        patternDialog.addEventListener('click', event => {
+            if (event.target === patternDialog) patternDialog.close();
+        });
+        patternDialog.addEventListener('close', () => expandedPattern.removeAttribute('src'));
     </script>
+    <script src="../assets/site-cursor.js?v=20261028-3"></script>
 </body>
 </html>
