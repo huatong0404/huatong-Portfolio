@@ -3,41 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Archive Hua Tong is an interdisciplinary portfolio of HCI, architecture, spatial installations, and tangible design projects.">
     <title>Hua Tong — Portfolio</title>
-    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="icon" type="image/png" href="assets/icon-128.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261026-6">
+    <link rel="stylesheet" href="styles.css?v=20261105-2">
 </head>
-<body class="home-page">
+<body class="home-page" data-home-view="basic">
     <nav>
         <a href="index.html" class="logo">HUA TONG</a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="primaryNav">
             <li><a href="#projects" class="active" aria-current="page">Projects</a></li>
             <li><a href="playground.html">Playground</a></li>
             <li><a href="about.html">About Me</a></li>
         </ul>
-        <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="primaryNav" aria-expanded="false" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </button>
     </nav>
 
+    <main class="home-projects-shell">
     <section class="home-hero" id="home">
         <div class="home-hero-content">
             <h1 aria-label="Archive Hua Tong"><span class="home-archive-word">ARCHIVE</span>HUA TONG</h1>
-            <div class="home-hero-meta">
-                <span>Architecture + Human-Computer Interaction</span>
-                <span>Carnegie Mellon University</span>
+            <div class="home-hero-intro">
+                <div class="home-hero-meta">
+                    <span>Architecture + HCI</span>
+                    <span>Carnegie Mellon University</span>
+                </div>
+                <p>Hi, welcome to Archive Hua Tong. Hua Tong is an interdisciplinary designer who interprets the world in a tangible, analytical and simultaneously sentimental way. She makes good use of her architectural training and brings it into solving real-world problems. Here is the archive of some of her best projects.</p>
             </div>
         </div>
     </section>
 
-    <section class="evidence-board-section" id="projects" aria-label="Selected projects and their connections">
+        <div class="home-projects-anchor" id="projects" aria-hidden="true"></div>
+        <div class="home-view-toolbar">
+            <div class="home-view-switch" role="group" aria-label="Choose a project view">
+                <button type="button" data-home-view="basic" aria-pressed="true" aria-controls="basicProjects">Basic</button>
+                <button type="button" data-home-view="fun" aria-pressed="false" aria-controls="funProjects">Fun</button>
+            </div>
+        </div>
+
+        <section class="basic-projects home-view" id="basicProjects" aria-label="Selected projects">
+            <div class="basic-projects-columns">
+                <section class="basic-projects-column" aria-labelledby="hciColumnTitle">
+                    <h2 class="basic-column-title" id="hciColumnTitle">HCI</h2>
+                    <div class="basic-card-list">
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/ricks-radio.html">
+                            <span class="basic-card-media"><img src="assets/home-thumbs/board-rickradio.png" width="1200" height="900" loading="eager" fetchpriority="high" decoding="async" alt="Rick's Radio with halftone hands on a turquoise background"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Physical Computing</span><time>Fall 2025</time></div><h3>Rick's Radio</h3><p class="basic-card-summary">A brick-sized radio linking a mason to stations from his children's cities.</p></div>
+                        </a></article>
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/jamsesh.html">
+                            <span class="basic-card-media"><img src="assets/home-thumbs/board-jamsesh.png" width="1200" height="900" loading="lazy" decoding="async" alt="JamSesh handheld sound instrument on a turquoise background"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Tangible Interaction</span><time>Spring 2025</time></div><h3>JamSesh</h3><p class="basic-card-summary">Handheld instruments turn movement and proximity into shared sound.</p></div>
+                        </a></article>
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/stap-ticketing-system.html">
+                            <span class="basic-card-media basic-card-media--dark"><img src="assets/home-thumbs/board-stap.png" width="1200" height="900" loading="lazy" decoding="async" alt="STAP ticketing interface on a turquoise cover"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>High School Service Design</span><time>Spring 2026</time></div><h3>STAP Ticketing System</h3><p class="basic-card-summary">A research-led request system for a student-run high school IT program.</p></div>
+                        </a></article>
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/lumilo.html">
+                            <span class="basic-card-media basic-card-media--dark"><img src="assets/home-thumbs/board-lumilo.png" width="1200" height="900" loading="lazy" decoding="async" alt="Lumilo glasses framing a classroom scene"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Learning Technology</span><time>Summer 2026</time></div><h3>Lumilo</h3><p class="basic-card-summary">Making the reasoning behind teacher-facing recommendations visible.</p></div>
+                        </a></article>
+                        <article class="basic-project-card basic-project-card--preview"><div class="basic-card-surface">
+                            <span class="basic-card-media basic-card-media--letter"><img src="assets/home-thumbs/letter-from-future.jpg" width="520" height="386" loading="lazy" decoding="async" alt="Letter From Future wellbeing interface"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Speculative Interface</span><time>Spring 2025</time></div><h3>Letter From Future</h3><p class="basic-card-summary">An alternate reality game interface exploring wellbeing.</p><span class="basic-card-preview-label">Preview</span></div>
+                        </div></article>
+                    </div>
+                </section>
+                <section class="basic-projects-column" aria-labelledby="architectureColumnTitle">
+                    <h2 class="basic-column-title" id="architectureColumnTitle">Architecture</h2>
+                    <div class="basic-card-list">
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/sea-monster.html">
+                            <span class="basic-card-media basic-card-media--dark"><img src="assets/home-thumbs/board-seamonster.png" width="1200" height="900" loading="lazy" decoding="async" alt="Inside The Sea Monster's pink and blue inflatable mouth"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Inflatable Installation</span><time>Spring 2026</time></div><h3>The Sea Monster</h3><p class="basic-card-summary">A room-scale inflatable creature with sewn nylon and illuminated tentacles.</p></div>
+                        </a></article>
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/trace.html">
+                            <span class="basic-card-media basic-card-media--trace"><span class="basic-card-rotated-frame"><img src="assets/connect/trace%20cover.png" width="768" height="1024" loading="lazy" decoding="async" alt="Trace game cards and dice on a turquoise background"></span></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Queer History / Game Design</span><time>Spring 2024</time></div><h3>Trace</h3><p class="basic-card-summary">A playable archive of Pittsburgh's queer and feminist histories built from local publications.</p></div>
+                        </a></article>
+                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/vertical-garden.html">
+                            <span class="basic-card-media"><img src="assets/home-thumbs/board-pollenfarm.png" width="1200" height="631" loading="lazy" decoding="async" alt="Pollen Farm plywood garden modules on a turquoise background"></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Computational Design</span><time>Spring 2024</time></div><h3>Pollen Farm</h3><p class="basic-card-summary">Pollen-inspired geometry shapes CNC-routed plywood modules into a garden structure.</p></div>
+                        </a></article>
+                        <article class="basic-project-card basic-project-card--preview"><div class="basic-card-surface">
+                            <span class="basic-card-media basic-card-media--placeholder" aria-hidden="true"><span>GY</span></span>
+                            <div class="basic-card-content"><div class="basic-card-meta"><span>Parametric Study</span><time>Fall 2026</time></div><h3>Entangled Wood</h3><p class="basic-card-summary">A parametric geometry study.</p><span class="basic-card-preview-label">Preview</span></div>
+                        </div></article>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+    <section class="evidence-board-section home-view" id="funProjects" aria-label="Selected projects and their connections" hidden>
         <div class="board-instruction" role="note" aria-label="How to explore the project board">
             <strong>How to explore</strong>
-            <span><b>Desktop</b> — Hover to inspect connections · Click to open</span>
-            <span><b>Touchscreen</b> — Press and hold to inspect connections · Tap to open</span>
+            <span><b>Desktop</b> — Hover to inspect connections · Click a linked project to open</span>
+            <span><b>Touchscreen</b> — Press and hold to inspect connections · Tap a linked project to open</span>
         </div>
 
         <div class="project-filters" aria-label="Filter projects by type">
@@ -59,72 +123,72 @@
             <div class="evidence-board-canvas" id="evidenceBoard">
                 <svg class="board-connections" id="boardConnections" aria-hidden="true"></svg>
 
-                <button class="evidence-card evidence-placeholder" type="button" data-node="entangled" data-types="computational-design" style="--x:10;--y:14;--w:11;--r:-3deg;--mx:10;--my:10;--mw:20">
+                <button class="evidence-card evidence-placeholder" type="button" aria-label="Entangled Wood preview" data-node="entangled" data-types="computational-design" style="--x:10;--y:14;--w:11;--r:-3deg;--mx:10;--my:10;--mw:20">
                     <span class="anchor-point" aria-hidden="true"></span>
                     <span class="evidence-thumb evidence-empty"><span>GY</span></span>
-                    <span class="evidence-hover-copy">Parametric Geometry Study</span>
+                    <span class="evidence-hover-copy">Preview · Parametric Geometry Study</span>
                     <span class="evidence-label"><strong>Entangled Wood</strong><time>Fall 2026</time></span>
                 </button>
 
                 <a class="evidence-card" href="projects/trace.html" data-node="trace" data-types="architecture social-topics history" style="--x:29;--y:26;--w:15.5;--r:3deg;--mx:29;--my:22;--mw:25;--cover-ratio:3 / 4">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/connect/trace%20cover.png" loading="lazy" decoding="async" alt="Trace game cards and dice on a turquoise background"></span>
-                    <span class="evidence-hover-copy">Archival Research Board Game</span>
+                    <span class="evidence-thumb"><img src="assets/connect/trace%20cover.png" width="768" height="1024" loading="lazy" decoding="async" alt="Trace game cards and dice on a turquoise background"></span>
+                    <span class="evidence-hover-copy">Queer History Board Game</span>
                     <span class="evidence-label"><strong>Trace</strong><time>Spring 2024</time></span>
                 </a>
 
                 <a class="evidence-card" href="projects/lumilo.html" data-node="lumilo" data-types="hci" style="--x:51;--y:15;--w:16.5;--r:-2deg;--mx:52;--my:10;--mw:25;--cover-ratio:1890 / 1417">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-lumilo.png" loading="lazy" decoding="async" alt="Lumilo glasses framing a classroom scene"></span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-lumilo.png" width="1200" height="900" loading="lazy" decoding="async" alt="Lumilo glasses framing a classroom scene"></span>
                     <span class="evidence-hover-copy">Teacher Decision Support</span>
                     <span class="evidence-label"><strong>Lumilo</strong><time>Summer 2026</time></span>
                 </a>
 
                 <a class="evidence-card" href="projects/stap-ticketing-system.html" data-node="stap" data-types="hci" style="--x:85;--y:24;--w:15;--r:-3.5deg;--mx:84;--my:23;--mw:24;--cover-ratio:1890 / 1417">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-stap.png" loading="lazy" decoding="async" alt="STAP ticketing interface cover"></span>
-                    <span class="evidence-hover-copy">Educational Ticketing Interface</span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-stap.png" width="1200" height="900" loading="lazy" decoding="async" alt="STAP ticketing interface cover"></span>
+                    <span class="evidence-hover-copy">High School IT Ticketing</span>
                     <span class="evidence-label"><strong>STAP Ticketing System</strong><time>Spring 2026</time></span>
                 </a>
 
                 <a class="evidence-card" href="projects/sea-monster.html" data-node="sea" data-types="architecture computational-design inflatable" style="--x:11;--y:58;--w:13.5;--r:-3deg;--mx:12;--my:55;--mw:22;--cover-ratio:1890 / 1417">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-seamonster.png" loading="lazy" decoding="async" alt="Inside The Sea Monster's pink and blue inflatable mouth"></span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-seamonster.png" width="1200" height="900" loading="lazy" decoding="async" alt="Inside The Sea Monster's pink and blue inflatable mouth"></span>
                     <span class="evidence-hover-copy">Inflatable Spatial Installation</span>
                     <span class="evidence-label"><strong>The Sea Monster</strong><time>Spring 2026</time></span>
                 </a>
 
                 <a class="evidence-card" href="projects/vertical-garden.html" data-node="pollen" data-types="architecture computational-design" style="--x:28;--y:84;--w:17;--r:2.5deg;--mx:25;--my:82;--mw:26;--cover-ratio:3780 / 1989">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-pollenfarm.png" loading="lazy" decoding="async" alt="Pollen Farm garden modules and people on a turquoise background"></span>
-                    <span class="evidence-hover-copy">Computational Garden System</span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-pollenfarm.png" width="1200" height="631" loading="lazy" decoding="async" alt="Pollen Farm garden modules and people on a turquoise background"></span>
+                    <span class="evidence-hover-copy">Pollen-Inspired Geometry</span>
                     <span class="evidence-label"><strong>Pollen Farm</strong><time>Spring 2024</time></span>
                 </a>
 
                 <a class="evidence-card evidence-magician" href="about.html" data-node="magician" data-types="" style="--x:50;--y:62;--w:13.5;--r:1.5deg;--mx:48;--my:58;--mw:22">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/the-magician.jpg" loading="lazy" decoding="async" alt="The Magician self-portrait surrounded by Hua Tong's design tools"></span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/the-magician.jpg" width="489" height="700" loading="lazy" decoding="async" alt="The Magician self-portrait surrounded by Hua Tong's design tools"></span>
                     <span class="evidence-hover-copy">Designer Profile</span>
                     <span class="evidence-label"><strong>The Magician</strong><time>Profile / 2026</time></span>
                 </a>
 
-                <button class="evidence-card" type="button" data-node="letter" data-types="hci social-topics fiction" style="--x:69;--y:49;--w:13.5;--r:-2.5deg;--mx:74;--my:48;--mw:22">
+                <button class="evidence-card" type="button" aria-label="Letter From Future preview" data-node="letter" data-types="hci social-topics fiction" style="--x:69;--y:49;--w:13.5;--r:-2.5deg;--mx:74;--my:48;--mw:22">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/letter-from-future.jpg" loading="lazy" decoding="async" alt="Letter From Future wellbeing goal interface"></span>
-                    <span class="evidence-hover-copy">ARG Wellbeing Interface</span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/letter-from-future.jpg" width="520" height="386" loading="lazy" decoding="async" alt="Letter From Future wellbeing goal interface"></span>
+                    <span class="evidence-hover-copy">Preview · ARG Wellbeing Interface</span>
                     <span class="evidence-label"><strong>Letter From Future</strong><time>Spring 2025</time></span>
                 </button>
 
                 <a class="evidence-card" href="projects/jamsesh.html" data-node="jamsesh" data-types="hci physical-computation social-topics" style="--x:88;--y:64;--w:11;--r:3.5deg;--mx:88;--my:62;--mw:20;--cover-ratio:1890 / 1417">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-jamsesh.png" loading="lazy" decoding="async" alt="JamSesh handheld sound instrument on a turquoise background"></span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-jamsesh.png" width="1200" height="900" loading="lazy" decoding="async" alt="JamSesh handheld sound instrument on a turquoise background"></span>
                     <span class="evidence-hover-copy">Shared Sound Instrument</span>
                     <span class="evidence-label"><strong>JamSesh</strong><time>Spring 2025</time></span>
                 </a>
 
                 <a class="evidence-card" href="projects/ricks-radio.html" data-node="rick" data-types="hci physical-computation" style="--x:72;--y:84;--w:17;--r:-3deg;--mx:70;--my:82;--mw:26;--cover-ratio:1890 / 1417">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-rickradio.png" loading="lazy" decoding="async" alt="Rick's Radio with halftone hands on a turquoise background"></span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/board-rickradio.png" width="1200" height="900" loading="lazy" decoding="async" alt="Rick's Radio with halftone hands on a turquoise background"></span>
                     <span class="evidence-hover-copy">Internet Radio</span>
                     <span class="evidence-label"><strong>Rick's Radio</strong><time>Fall 2025</time></span>
                 </a>
@@ -137,15 +201,57 @@
         </div>
     </section>
 
+    </main>
+
     <footer id="contact">
         <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
         <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('open');
+        const navLinks = document.querySelector('.nav-links');
+        const navToggle = document.querySelector('.nav-toggle');
+        function setMenuOpen(open) {
+            navLinks.classList.toggle('open', open);
+            navToggle.setAttribute('aria-expanded', String(open));
         }
+        function toggleMenu() {
+            setMenuOpen(!navLinks.classList.contains('open'));
+        }
+        navLinks.addEventListener('click', event => {
+            if (event.target.closest('a')) setMenuOpen(false);
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+                setMenuOpen(false);
+                navToggle.focus();
+            }
+        });
+        window.matchMedia('(min-width: 769px)').addEventListener('change', event => {
+            if (event.matches) setMenuOpen(false);
+        });
+
+        (() => {
+            const basic = document.getElementById('basicProjects');
+            const fun = document.getElementById('funProjects');
+            const anchor = document.getElementById('projects');
+            const switches = [...document.querySelectorAll('.home-view-switch button')];
+            if (!basic || !fun || !anchor || switches.length !== 2) return;
+
+            function showView(view, fromSwitch = false) {
+                const showFun = view === 'fun';
+                if (!showFun && !fun.hidden) document.dispatchEvent(new Event('home:fun-hidden'));
+                basic.hidden = showFun;
+                fun.hidden = !showFun;
+                document.body.dataset.homeView = showFun ? 'fun' : 'basic';
+                switches.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.homeView === view)));
+                if (showFun) requestAnimationFrame(() => document.dispatchEvent(new Event('home:fun-shown')));
+                if (fromSwitch) anchor.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+            }
+
+            switches.forEach(button => button.addEventListener('click', () => showView(button.dataset.homeView, true)));
+            showView('basic');
+        })();
 
         (() => {
             const board = document.getElementById('evidenceBoard');
@@ -154,6 +260,8 @@
             const filterButtons = [...document.querySelectorAll('.project-filter')];
             const clearFilterButton = document.getElementById('clearProjectFilter');
             if (!board || !svg || !caption) return;
+            const captionIndex = caption.querySelector('.evidence-caption-index');
+            const captionText = caption.querySelector('p');
 
             const ns = 'http://www.w3.org/2000/svg';
             const cards = new Map([...board.querySelectorAll('.evidence-card')].map(card => [card.dataset.node, card]));
@@ -188,34 +296,38 @@
 
             let activeId = null;
             let activeFilter = null;
-            let touchTargetId = null;
             let suppressClickId = null;
             let pressTimer = null;
             let pressStart = null;
             let lastTouchTime = 0;
             const longPressDuration = 480;
-            const touchMode = window.matchMedia('(hover: none), (pointer: coarse), (any-pointer: coarse)');
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
             const anchors = new Map([...cards].map(([id, card]) => [id, card.querySelector('.anchor-point')]));
             let animationFrame = null;
-            let geometryAnimationUntil = 0;
             let lastBoardSize = '';
             let lastPoints = new Map();
+            let needsFullGeometry = true;
+            const movingNodes = new Map();
             function updateGeometry() {
                 const bounds = board.getBoundingClientRect();
+                if (!bounds.width || !bounds.height) return false;
                 const boardSize = `${bounds.width} ${bounds.height}`;
+                const measureAll = needsFullGeometry || boardSize !== lastBoardSize || lastPoints.size !== anchors.size;
                 if (boardSize !== lastBoardSize) {
                     svg.setAttribute('viewBox', `0 0 ${boardSize}`);
                     lastBoardSize = boardSize;
                 }
                 const changed = new Set();
-                const points = new Map([...anchors].map(([id, anchor]) => {
+                const points = new Map(lastPoints);
+                const ids = measureAll ? anchors.keys() : movingNodes.keys();
+                for (const id of ids) {
+                    const anchor = anchors.get(id);
                     const rect = anchor.getBoundingClientRect();
                     const point = { x: rect.left + rect.width / 2 - bounds.left, y: rect.top + rect.height / 2 - bounds.top };
                     const previous = lastPoints.get(id);
                     if (!previous || Math.abs(point.x - previous.x) > .01 || Math.abs(point.y - previous.y) > .01) changed.add(id);
-                    return [id, point];
-                }));
+                    points.set(id, point);
+                }
                 lines.forEach(({ connection, element }) => {
                     if (!changed.has(connection.a) && !changed.has(connection.b)) return;
                     const a = points.get(connection.a); const b = points.get(connection.b);
@@ -228,18 +340,35 @@
                     pin.setAttribute('cx', point.x); pin.setAttribute('cy', point.y);
                 });
                 lastPoints = points;
+                needsFullGeometry = false;
+                return true;
             }
             function requestGeometry() {
                 if (animationFrame === null) animationFrame = requestAnimationFrame(tickGeometry);
             }
+            function requestFullGeometry() {
+                needsFullGeometry = true;
+                requestGeometry();
+            }
             function tickGeometry(timestamp) {
                 animationFrame = null;
-                updateGeometry();
-                if (timestamp < geometryAnimationUntil) requestGeometry();
+                if (!updateGeometry()) {
+                    movingNodes.clear();
+                    return;
+                }
+                movingNodes.forEach((until, id) => {
+                    if (timestamp >= until) movingNodes.delete(id);
+                });
+                if (movingNodes.size) requestGeometry();
             }
-            function animateGeometry() {
-                geometryAnimationUntil = reducedMotion.matches ? 0 : performance.now() + 320;
-                requestGeometry();
+            function animateGeometry(...ids) {
+                if (reducedMotion.matches) {
+                    requestFullGeometry();
+                    return;
+                }
+                const until = performance.now() + 320;
+                ids.filter(Boolean).forEach(id => movingNodes.set(id, until));
+                if (movingNodes.size) requestGeometry();
             }
             function formatList(items) {
                 if (items.length === 1) return items[0];
@@ -254,6 +383,8 @@
                 return `${titles.get(id)} is related to ${formatList(items)}.`;
             }
             function activate(id) {
+                if (activeId === id) return;
+                const previousId = activeId;
                 activeId = id;
                 board.classList.add('has-active');
                 cards.forEach((card, cardId) => {
@@ -273,11 +404,23 @@
                     pin.classList.toggle('is-muted', pinId !== id && !connected);
                 });
                 caption.classList.add('is-active');
-                caption.querySelector('.evidence-caption-index').textContent = `RELATION / ${titles.get(id).toUpperCase()}`;
-                caption.querySelector('p').textContent = relationText(id);
-                animateGeometry();
+                captionIndex.textContent = `RELATION / ${titles.get(id).toUpperCase()}`;
+                captionText.textContent = relationText(id);
+                animateGeometry(previousId, id);
+            }
+            function renderIdleCaption() {
+                if (activeFilter) {
+                    const selectedLabel = filterButtons.find(button => button.dataset.filter === activeFilter)?.textContent || activeFilter;
+                    const matchCount = [...cards.values()].filter(card => !isFilteredOut(card)).length;
+                    captionIndex.textContent = `FILTER / ${selectedLabel.toUpperCase()}`;
+                    captionText.textContent = `${matchCount} project${matchCount === 1 ? '' : 's'} shown. Other projects are inactive.`;
+                } else {
+                    captionIndex.textContent = 'RELATION / —';
+                    captionText.textContent = 'Hover, focus, or press and hold a project to inspect its connections.';
+                }
             }
             function deactivate() {
+                const previousId = activeId;
                 activeId = null;
                 suppressClickId = null;
                 board.classList.remove('has-active');
@@ -285,20 +428,18 @@
                 lines.forEach(({ element }) => element.classList.remove('is-active', 'is-muted'));
                 pins.forEach(pin => pin.classList.remove('is-active', 'is-muted'));
                 caption.classList.remove('is-active');
-                caption.querySelector('.evidence-caption-index').textContent = 'RELATION / —';
-                caption.querySelector('p').textContent = 'Hover, focus, or press and hold a project to inspect its connections.';
-                animateGeometry();
+                renderIdleCaption();
+                animateGeometry(previousId);
             }
 
             function isFilteredOut(card) {
                 return card.classList.contains('is-filtered-out');
             }
 
-            function applyFilter(filter, label) {
+            function applyFilter(filter) {
                 deactivate();
                 activeFilter = activeFilter === filter ? null : filter;
                 board.classList.toggle('has-filter', Boolean(activeFilter));
-                let matchCount = 0;
 
                 filterButtons.forEach(button => {
                     const selected = button.dataset.filter === activeFilter;
@@ -316,7 +457,6 @@
                     } else {
                         card.removeAttribute('aria-disabled');
                         card.removeAttribute('tabindex');
-                        if (activeFilter) matchCount += 1;
                     }
                 });
 
@@ -330,11 +470,7 @@
                 });
 
                 clearFilterButton.hidden = !activeFilter;
-                if (activeFilter) {
-                    const selectedLabel = filterButtons.find(button => button.dataset.filter === activeFilter)?.textContent || label;
-                    caption.querySelector('.evidence-caption-index').textContent = `FILTER / ${selectedLabel.toUpperCase()}`;
-                    caption.querySelector('p').textContent = `${matchCount} project${matchCount === 1 ? '' : 's'} shown. Other projects are inactive.`;
-                }
+                renderIdleCaption();
             }
 
             function cancelPressTimer() {
@@ -349,7 +485,6 @@
                     if (event.touches.length !== 1) return;
                     cancelPressTimer();
                     const touch = event.touches[0];
-                    touchTargetId = id;
                     lastTouchTime = Date.now();
                     pressStart = { x: touch.clientX, y: touch.clientY };
                     pressTimer = window.setTimeout(() => {
@@ -367,21 +502,19 @@
                 }, { passive: true });
                 card.addEventListener('touchend', () => {
                     cancelPressTimer();
-                    touchTargetId = null;
                 }, { passive: true });
                 card.addEventListener('touchcancel', () => {
                     cancelPressTimer();
-                    touchTargetId = null;
                 }, { passive: true });
                 card.addEventListener('contextmenu', event => {
-                    if (touchMode.matches || suppressClickId === id) event.preventDefault();
+                    if (suppressClickId === id || Date.now() - lastTouchTime < 1200) event.preventDefault();
                 });
-                card.addEventListener('mouseenter', () => {
-                    if (isFilteredOut(card)) return;
-                    if (!touchMode.matches && touchTargetId !== id) activate(id);
+                card.addEventListener('pointerenter', event => {
+                    if (event.pointerType === 'touch' || isFilteredOut(card)) return;
+                    activate(id);
                 });
-                card.addEventListener('mouseleave', () => {
-                    if (!touchMode.matches && !card.matches(':focus-visible')) deactivate();
+                card.addEventListener('pointerleave', event => {
+                    if (event.pointerType !== 'touch' && !card.matches(':focus-visible')) deactivate();
                 });
                 card.addEventListener('focus', () => {
                     if (isFilteredOut(card)) return;
@@ -400,13 +533,15 @@
                 });
             });
             filterButtons.forEach(button => {
-                button.addEventListener('click', () => applyFilter(button.dataset.filter, button.textContent));
+                button.addEventListener('click', () => applyFilter(button.dataset.filter));
             });
-            clearFilterButton.addEventListener('click', () => applyFilter(null, ''));
+            clearFilterButton.addEventListener('click', () => applyFilter(null));
             board.addEventListener('click', event => { if (event.target === board || event.target === svg) deactivate(); });
-            new ResizeObserver(requestGeometry).observe(board);
-            board.querySelectorAll('img').forEach(img => img.addEventListener('load', requestGeometry));
-            window.addEventListener('resize', requestGeometry, { passive: true });
+            new ResizeObserver(requestFullGeometry).observe(board);
+            window.addEventListener('resize', requestFullGeometry, { passive: true });
+            document.addEventListener('home:fun-shown', requestFullGeometry);
+            document.addEventListener('home:fun-hidden', deactivate);
+            document.fonts?.ready.then(requestFullGeometry);
             updateGeometry();
         })();
     </script>
