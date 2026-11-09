@@ -51,6 +51,39 @@
     </header>
 
     <main>
+        <section class="trace-section trace-film" id="film" aria-labelledby="trace-film-title">
+            <div class="trace-container">
+                <div class="trace-film-heading">
+                    <span class="trace-kicker trace-kicker--light">00 / Before the map</span>
+                    <h2 id="trace-film-title">Trace, in motion.</h2>
+                </div>
+                <div class="trace-film-player">
+                    <video controls playsinline preload="metadata" poster="../assets/projects/trace/trace-video-poster.png" aria-label="Trace introductory film">
+                        <source src="../assets/projects/trace/trace-web.mp4" type="video/mp4">
+                        <a href="https://youtu.be/VGeFKrbcdxI" target="_blank" rel="noopener noreferrer">Watch the Trace film on YouTube ↗</a>
+                    </video>
+                    <div class="trace-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+                        <button class="trace-video-control trace-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="trace-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="trace-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                        </button>
+                        <span class="trace-video-time"><span class="trace-video-current">0:00</span> / <span class="trace-video-duration">0:00</span></span>
+                        <input class="trace-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                        <button class="trace-video-control trace-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="trace-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="trace-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </button>
+                        <button class="trace-video-control trace-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="trace-film-credits">
+                    <p><span>Music</span>“Home” by Toby Fox</p>
+                    <p><span>On screen</span>Members of Guanyun Lab</p>
+                    <a href="https://youtu.be/VGeFKrbcdxI" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+                </div>
+            </div>
+        </section>
+
         <section class="trace-section trace-origin" id="origin">
             <div class="trace-container">
                 <div class="trace-origin-heading">
@@ -68,6 +101,7 @@
                         <p class="trace-source-note">Publication history: <a href="https://pitt.libguides.com/c.php?g=569586&amp;p=3979667" target="_blank" rel="noopener noreferrer">University of Pittsburgh Archives &amp; Special Collections ↗</a> · <a href="https://pittrarebooks.tumblr.com/post/113433169159/womens-history-month-the-allegheny-feminist" target="_blank" rel="noopener noreferrer">Pitt Rare Books ↗</a></p>
                     </div>
                 </div>
+                <p class="trace-iteration-caption">Early cards and board. Their rules belong to the first iteration.</p>
             </div>
         </section>
 
@@ -168,7 +202,77 @@
             }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
             document.querySelectorAll('.trace-reveal').forEach(element => revealObserver.observe(element));
         }
+        const traceFilm = document.querySelector('.trace-film-player video');
+        const tracePlayer = traceFilm.closest('.trace-film-player');
+        const traceControls = tracePlayer.querySelector('.trace-video-controls');
+        const tracePlayButton = traceControls.querySelector('.trace-video-toggle');
+        const traceMuteButton = traceControls.querySelector('.trace-video-mute');
+        const traceFullscreenButton = traceControls.querySelector('.trace-video-fullscreen');
+        const traceSeek = traceControls.querySelector('.trace-video-seek');
+        const traceCurrent = traceControls.querySelector('.trace-video-current');
+        const traceDuration = traceControls.querySelector('.trace-video-duration');
+        const formatTraceTime = seconds => {
+            if (!Number.isFinite(seconds)) return '0:00';
+            const whole = Math.floor(seconds);
+            const minutes = Math.floor(whole / 60);
+            return `${minutes}:${String(whole % 60).padStart(2, '0')}`;
+        };
+        let traceSeeking = false;
+        const updateTraceTime = () => {
+            const duration = Number.isFinite(traceFilm.duration) ? traceFilm.duration : 0;
+            traceDuration.textContent = formatTraceTime(duration);
+            if (traceSeeking) return;
+            traceCurrent.textContent = formatTraceTime(traceFilm.currentTime);
+            traceSeek.value = duration ? String(Math.round(traceFilm.currentTime / duration * 1000)) : '0';
+            traceSeek.style.setProperty('--trace-video-progress', `${Number(traceSeek.value) / 10}%`);
+            traceSeek.setAttribute('aria-valuetext', formatTraceTime(traceFilm.currentTime));
+        };
+        const updateTracePlay = () => {
+            const playing = !traceFilm.paused && !traceFilm.ended;
+            tracePlayButton.dataset.playing = String(playing);
+            tracePlayButton.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+            tracePlayButton.setAttribute('aria-pressed', String(playing));
+        };
+        tracePlayButton.addEventListener('click', () => {
+            if (traceFilm.paused || traceFilm.ended) traceFilm.play().catch(() => {});
+            else traceFilm.pause();
+        });
+        traceMuteButton.addEventListener('click', () => { traceFilm.muted = !traceFilm.muted; });
+        traceFilm.addEventListener('volumechange', () => {
+            traceMuteButton.dataset.muted = String(traceFilm.muted);
+            traceMuteButton.setAttribute('aria-label', traceFilm.muted ? 'Unmute video' : 'Mute video');
+            traceMuteButton.setAttribute('aria-pressed', String(traceFilm.muted));
+        });
+        traceSeek.addEventListener('input', () => {
+            traceSeeking = true;
+            const time = (Number(traceSeek.value) / 1000) * (Number.isFinite(traceFilm.duration) ? traceFilm.duration : 0);
+            traceCurrent.textContent = formatTraceTime(time);
+            traceSeek.style.setProperty('--trace-video-progress', `${Number(traceSeek.value) / 10}%`);
+            traceSeek.setAttribute('aria-valuetext', formatTraceTime(time));
+        });
+        traceSeek.addEventListener('change', () => {
+            if (Number.isFinite(traceFilm.duration)) traceFilm.currentTime = Number(traceSeek.value) / 1000 * traceFilm.duration;
+            traceSeeking = false;
+            updateTraceTime();
+        });
+        traceFullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement === tracePlayer) document.exitFullscreen();
+            else if (tracePlayer.requestFullscreen) tracePlayer.requestFullscreen();
+            else if (traceFilm.webkitEnterFullscreen) traceFilm.webkitEnterFullscreen();
+        });
+        document.addEventListener('fullscreenchange', () => {
+            traceFullscreenButton.setAttribute('aria-label', document.fullscreenElement === tracePlayer ? 'Exit fullscreen' : 'Enter fullscreen');
+        });
+        traceFilm.addEventListener('loadedmetadata', updateTraceTime);
+        traceFilm.addEventListener('timeupdate', updateTraceTime);
+        traceFilm.addEventListener('play', updateTracePlay);
+        traceFilm.addEventListener('pause', updateTracePlay);
+        traceFilm.addEventListener('ended', updateTracePlay);
+        traceFilm.controls = false;
+        traceControls.hidden = false;
+        updateTraceTime();
+        updateTracePlay();
     </script>
-    <script src="../assets/site-cursor.js?v=20261028-3"></script>
+    <script src="../assets/site-cursor.js?v=20261109-2"></script>
 </body>
 </html>

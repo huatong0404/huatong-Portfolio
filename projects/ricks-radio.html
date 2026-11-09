@@ -109,6 +109,10 @@
             border-top: 2px solid #E5E5E5;
             align-items: center;
         }
+        #research { grid-template-columns: minmax(0, 1fr); align-items: start; }
+        #research .split-text { justify-content: flex-start; }
+        .rr-comic img { width: 100%; height: auto; display: block; }
+        .rr-narrative .rr-comic { margin-bottom: 24px; }
         .split-row.reverse { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
         .split-text {
             padding: 0;
@@ -163,9 +167,11 @@
             top: calc(var(--nav-height) + 24px);
         }
         .rr-text-block > p,
-        .rr-text-block > .rr-callout {
+        .rr-text-block > .rr-callout,
+        .rr-text-block > .split-image {
             grid-column: 2;
         }
+        .rr-text-block > .split-image { margin: 8px 0 24px; }
         .rr-callout {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -674,18 +680,11 @@
 
         <section class="split-row" id="research">
             <div class="split-text">
-                <h2>From Workflow to Wellbeing</h2>
-                <p>
-                    It was a chilly morning when we conducted our contextual inquiry. We followed Rick outside for about an hour, stood with him in the cold wind, watched him lay brick, and asked about his daily routine, his most-used tools, the moments that slowed him down, and the parts of work he enjoyed.
-                </p>
-                <p>
-                    As such a skilled mason, his work routine is embodied in his body. He measured the water and powder with hand estimation. When the team was stunned by his craftsmanship, he started talking about his children. He talked about his daughters and sons, some of them still in local college, but some even left the country. He was such a proud father. However, he worked for a few hours alone in the dark, long Pittsburgh winter dawn, to an extent that we genuinely worried about his wellbeing, and felt like this was where we could do something to improve his experience.
-                </p>
+                <figure class="rr-comic zoomable-figure">
+                    <img src="../assets/projects/ricks-radio/Rick Intro.png" alt="Comic showing Rick at work, the team's concern about his solitary mornings, and their question about music">
+                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick introduction comic" data-zoom-src="../assets/projects/ricks-radio/Rick Intro.png" data-zoom-alt="Comic showing Rick at work, the team's concern about his solitary mornings, and their question about music" data-zoom-caption="Rick introduction comic."></button>
+                </figure>
             </div>
-            <figure class="split-image">
-                <img src="../assets/projects/ricks-radio/rick-meeting.jpg" alt="Hua showing sketches to Rick while the team discusses the radio design at a table">
-                <figcaption>Rick and the team sitting at a table during a client feedback conversation.</figcaption>
-            </figure>
         </section>
 
         <section class="rr-text-block">
@@ -696,6 +695,10 @@
             <p>
                 Music was already part of his day. He told us it keeps him company while he works. We started to see music as something that could add a little warmth to his workday. The realization moved the project towards a more personal question: could a device help him feel closer to the people and places he cares about?
             </p>
+            <figure class="split-image">
+                <img src="../assets/projects/ricks-radio/rick-meeting.jpg" alt="Hua showing sketches to Rick while the team discusses the radio design at a table">
+                <figcaption>Rick and the team sitting at a table during a client feedback conversation.</figcaption>
+            </figure>
             <div class="rr-callout">
                 <div>
                     <h3>What we expected</h3>
@@ -796,6 +799,10 @@
 
         <section class="rr-narrative">
             <span class="overline">Narrative Sketch</span>
+            <figure class="rr-comic zoomable-figure">
+                <img src="../assets/projects/ricks-radio/Rick Scenario.png" alt="Illustrated scenario of Rick using his radio during a workday">
+                <button class="zoom-image-button" type="button" aria-label="Enlarge Rick narrative comic" data-zoom-src="../assets/projects/ricks-radio/Rick Scenario.png" data-zoom-alt="Illustrated scenario of Rick using his radio during a workday" data-zoom-caption="Rick narrative sketch."></button>
+            </figure>
             <p>The following is an imagined use scenario based on our research.</p>
             <p>
                 <em>Rick gets to work early in the morning and starts his day with the radio on his cart.</em> Instead of turning to a random playlist, he turns the station dial to Paris. The LCD confirms the station, and the sound follows him as he drives to the work site, reminding him of his daughter who once worked there.

@@ -209,7 +209,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="vertical-garden-story.css?v=20261022">
+    <link rel="stylesheet" href="vertical-garden-story.css?v=20261109b">
 </head>
 <body class="vg-evidence-page">
     <nav>
@@ -241,6 +241,38 @@
         </div>
     </section>
 
+    <section class="pf-film" aria-labelledby="pf-film-title">
+        <div class="pf-film-inner">
+            <div class="pf-film-heading">
+                <span class="pf-film-kicker">00 / Film</span>
+                <h2 id="pf-film-title">Pollen Farm, in motion.</h2>
+            </div>
+            <div class="pf-film-player">
+                <video controls playsinline preload="metadata" poster="../assets/projects/vertical-garden/pollen-film-poster.jpg" aria-label="Pollen Farm illustration film">
+                    <source src="../assets/projects/vertical-garden/pollen-film-web.mp4" type="video/mp4">
+                    <a href="../assets/projects/vertical-garden/pollen-film-web.mp4">View the Pollen Farm film</a>
+                </video>
+                <img class="pf-film-poster" src="../assets/projects/vertical-garden/pollen-film-poster.jpg" alt="" aria-hidden="true" decoding="async">
+                <div class="pf-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+                    <button class="pf-video-control pf-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="pf-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="pf-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                    </button>
+                    <span class="pf-video-time"><span class="pf-video-current">0:00</span> / <span class="pf-video-duration">0:00</span></span>
+                    <input class="pf-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                    <button class="pf-video-control pf-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="pf-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="pf-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </button>
+                    <button class="pf-video-control pf-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="pf-film-credits">
+                <p><span>Music</span>“Ruins” by Toby Fox</p>
+            </div>
+        </div>
+    </section>
+
     <aside class="page-jump-nav" aria-label="Jump to Pollen Farm section">
         <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
         <ul>
@@ -261,10 +293,17 @@
 
         <section class="pf-section" id="prototypes">
             <header class="pf-section-head"><h2>01 / The Prototypes</h2></header>
-            <div class="pf-prose-pair">
+            <div class="pf-origin" id="pollen-inspiration">
                 <p>Like its name, the module of the piece of furniture’s inspiration comes from the microscopic structure in plant pollen. One of them is <em>Stellaria holostea</em>, whose pollen is roughly dodecahedral, which means the object is composed of 12 regular pentagons. Finding its structure interesting, we decided to utilize the shape of it to generate the room of a single module.</p>
-                <p>However, after our experiments with pentagon structures, we realized that geometric shapes with fewer edges work even better. For example, a pentagonal bipyramid is composed of 10 triangular facets, and is far more flexible in the sense of creating space. Using different angles and connecting methods, we are able to fold and develop the shape towards different directions, thus having the structure organically grow into a natural but cohesive cluster of rooms.</p>
+                <div class="pf-origin-visual">
+                    <figure class="pf-origin-photo zoomable-figure">
+                        <img src="../assets/projects/vertical-garden/stellaria-holostea-pollen-halbritter-paldat.jpg" alt="Microscope image of the polygonal dry pollen grains of Stellaria holostea" decoding="async">
+                        <figcaption>Dry pollen grains · microscopic reference</figcaption>
+                    </figure>
+                    <p class="pf-origin-credit">Image: H. Halbritter<br><a href="https://www.paldat.org/pub/Stellaria_holostea/306417" target="_blank" rel="noopener noreferrer">PalDat (2000 onwards, www.paldat.org) ↗</a></p>
+                </div>
             </div>
+            <p class="pf-prototype-next">However, after our experiments with pentagon structures, we realized that geometric shapes with fewer edges work even better. For example, a pentagonal bipyramid is composed of 10 triangular facets, and is far more flexible in the sense of creating space. Using different angles and connecting methods, we are able to fold and develop the shape towards different directions, thus having the structure organically grow into a natural but cohesive cluster of rooms.</p>
             <div class="pf-paper-grid" aria-label="Series of paper-cut spatial prototypes">
                 <figure class="pf-paper-main"><img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="Hand holding a series of folded paper spatial prototypes" loading="lazy" decoding="async"></figure>
                 <figure><img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="Flat paper net of connected faces" loading="lazy" decoding="async"></figure>
@@ -348,6 +387,7 @@
         <div><img alt=""><p></p></div>
     </div>
     <script src="vertical-garden-story.js?v=20261022" defer></script>
+    <script src="pollen-film.js?v=20261109c" defer></script>
     <script>
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
 
