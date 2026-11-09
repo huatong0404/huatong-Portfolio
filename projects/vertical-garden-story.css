@@ -1,4 +1,36 @@
 /* Pollen Farm story layout. */
+.pf-film { overflow: hidden; padding: 42px 0 72px; color: #FAFAFA; background: #0A0A0A; }
+.pf-film-inner { width: min(calc(100% - 112px), 1080px); margin-inline: auto; }
+.pf-film-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 25px; }
+.pf-film-kicker { color: #40C1AC; font-size: 11px; font-weight: 700; line-height: 1.3; letter-spacing: .15em; text-transform: uppercase; }
+.pf-film-heading h2 { margin: 0; color: #FAFAFA; font-family: 'Archivo Black', Impact, sans-serif; font-size: clamp(26px, 3vw, 40px); font-weight: 400; letter-spacing: -.045em; line-height: 1.08; }
+.pf-film-player { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid #555; background: #171717; box-shadow: 10px 10px 0 #40C1AC; }
+.pf-film-player video { display: block; width: 100%; height: 100%; background: #171717; object-fit: contain; }
+.pf-film-poster { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.pf-film-poster[hidden] { display: none; }
+.pf-video-controls[hidden] { display: none; }
+.pf-video-controls { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 32px auto minmax(80px, 1fr) 32px 32px; gap: 12px; align-items: center; min-height: 65px; padding: 17px 18px 9px; background: linear-gradient(transparent, rgb(10 10 10 / 94%) 42%); color: #FAFAFA; }
+.pf-video-control { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; color: #FAFAFA; cursor: pointer; }
+.pf-video-control:hover, .pf-video-control:focus-visible { color: #40C1AC; }
+.pf-video-control:focus-visible, .pf-video-seek:focus-visible { outline: 2px solid #40C1AC; outline-offset: 2px; }
+.pf-video-control svg { display: block; width: 19px; height: 19px; }
+.pf-video-pause-icon, .pf-video-muted-icon { display: none; }
+.pf-video-toggle[data-playing="true"] .pf-video-play-icon, .pf-video-mute[data-muted="true"] .pf-video-sound-icon { display: none; }
+.pf-video-toggle[data-playing="true"] .pf-video-pause-icon, .pf-video-mute[data-muted="true"] .pf-video-muted-icon { display: block; }
+.pf-video-time { color: #FAFAFA; font-size: 12px; font-weight: 500; line-height: 1.2; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pf-video-seek { appearance: none; width: 100%; height: 24px; margin: 0; padding: 0; background: transparent; cursor: pointer; }
+.pf-video-seek::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--pf-video-progress, 0%), #D4D4D4 var(--pf-video-progress, 0%)); }
+.pf-video-seek::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; margin-top: -4px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+.pf-video-seek::-moz-range-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--pf-video-progress, 0%), #D4D4D4 var(--pf-video-progress, 0%)); }
+.pf-video-seek::-moz-range-thumb { width: 11px; height: 11px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+.pf-film-player:fullscreen { width: 100vw; height: 100vh; aspect-ratio: auto; border: 0; box-shadow: none; }
+.pf-film-player:fullscreen .pf-video-controls { padding: 20px 26px 16px; }
+.pf-film-credits { margin-top: 27px; padding-top: 17px; border-top: 1px solid #444; }
+.pf-film-credits p { margin: 0; color: #D7D7D7; font-size: 13px; line-height: 1.5; }
+.pf-film-credits p span { display: block; margin-bottom: 5px; color: #40C1AC; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+@media (min-width: 1200px) {
+    .pf-film-inner { transform: translateX(-72px); }
+}
 .pf-draft { padding-bottom: 72px; }
 .pf-origin {
     scroll-margin-top: calc(var(--nav-height) + 20px);
@@ -157,6 +189,7 @@
 .pf-built-wide img { aspect-ratio: 3 / 2; object-fit: cover; object-position: center 48%; }
 
 @media (max-width: 900px) {
+    .pf-film-inner { width: min(calc(100% - 48px), 1080px); }
     .vg-evidence-page .page-jump-nav { position: relative; top: auto; }
     .pf-origin { grid-template-columns: 1fr; gap: 30px; }
     .pf-origin > p { font-size: 17px; }
@@ -174,6 +207,15 @@
     .pf-fabrication-drawing img, .pf-built-detail img { height: 500px; }
 }
 @media (max-width: 680px) {
+    .pf-film { padding: 30px 0 54px; }
+    .pf-film-heading { display: block; margin-bottom: 18px; }
+    .pf-film-kicker { display: block; margin-bottom: 12px; }
+    .pf-film-player { box-shadow: 5px 6px 0 #40C1AC; }
+    .pf-video-controls { grid-template-columns: 24px auto minmax(0, 1fr) 24px 24px; gap: 6px; min-height: 43px; padding: 8px 8px 5px; }
+    .pf-video-control { width: 24px; height: 24px; }
+    .pf-video-control svg { width: 16px; height: 16px; }
+    .pf-video-time { font-size: 10px; }
+    .pf-film-credits { margin-top: 23px; }
     .pf-origin { margin-bottom: 42px; }
     .pf-origin > p { font-size: 17px; }
     .pf-origin-visual { width: 100%; margin-left: 0; }

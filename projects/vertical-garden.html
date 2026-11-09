@@ -209,7 +209,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="vertical-garden-story.css?v=20261102j">
+    <link rel="stylesheet" href="vertical-garden-story.css?v=20261109b">
 </head>
 <body class="vg-evidence-page">
     <nav>
@@ -238,6 +238,38 @@
                 <img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The unplanted plywood Pollen Farm structure standing beside a campus lawn" fetchpriority="high" decoding="async">
                 <figcaption>The CNC routing built plywood structure on campus.</figcaption>
             </figure>
+        </div>
+    </section>
+
+    <section class="pf-film" aria-labelledby="pf-film-title">
+        <div class="pf-film-inner">
+            <div class="pf-film-heading">
+                <span class="pf-film-kicker">00 / Film</span>
+                <h2 id="pf-film-title">Pollen Farm, in motion.</h2>
+            </div>
+            <div class="pf-film-player">
+                <video controls playsinline preload="metadata" poster="../assets/projects/vertical-garden/pollen-film-poster.jpg" aria-label="Pollen Farm illustration film">
+                    <source src="../assets/projects/vertical-garden/pollen-film-web.mp4" type="video/mp4">
+                    <a href="../assets/projects/vertical-garden/pollen-film-web.mp4">View the Pollen Farm film</a>
+                </video>
+                <img class="pf-film-poster" src="../assets/projects/vertical-garden/pollen-film-poster.jpg" alt="" aria-hidden="true" decoding="async">
+                <div class="pf-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+                    <button class="pf-video-control pf-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="pf-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="pf-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                    </button>
+                    <span class="pf-video-time"><span class="pf-video-current">0:00</span> / <span class="pf-video-duration">0:00</span></span>
+                    <input class="pf-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                    <button class="pf-video-control pf-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="pf-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="pf-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </button>
+                    <button class="pf-video-control pf-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="pf-film-credits">
+                <p><span>Music</span>“Ruins” by Toby Fox</p>
+            </div>
         </div>
     </section>
 
@@ -355,6 +387,7 @@
         <div><img alt=""><p></p></div>
     </div>
     <script src="vertical-garden-story.js?v=20261022" defer></script>
+    <script src="pollen-film.js?v=20261109c" defer></script>
     <script>
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
 

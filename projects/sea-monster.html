@@ -57,6 +57,41 @@
         .rr-intro {
             padding: 64px 0 52px;
         }
+        .sm-video-player {
+            position: relative;
+            margin-bottom: 40px;
+            background: #0A0A0A;
+        }
+        .sm-exhibition-video {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #0A0A0A;
+        }
+        .sm-video-controls[hidden] { display: none; }
+        .sm-video-controls { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 32px auto minmax(80px, 1fr) 32px 32px; gap: 12px; align-items: center; min-height: 65px; padding: 17px 18px 9px; background: linear-gradient(transparent, rgb(10 10 10 / 94%) 42%); color: #FAFAFA; }
+        .sm-video-control { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; color: #FAFAFA; }
+        .sm-video-control:hover, .sm-video-control:focus-visible { color: #40C1AC; }
+        .sm-video-control:focus-visible, .sm-video-seek:focus-visible { outline: 2px solid #40C1AC; outline-offset: 2px; }
+        .sm-video-control svg { display: block; width: 19px; height: 19px; }
+        .sm-video-pause-icon, .sm-video-muted-icon { display: none; }
+        .sm-video-toggle[data-playing="true"] .sm-video-play-icon, .sm-video-mute[data-muted="true"] .sm-video-sound-icon { display: none; }
+        .sm-video-toggle[data-playing="true"] .sm-video-pause-icon, .sm-video-mute[data-muted="true"] .sm-video-muted-icon { display: block; }
+        .sm-video-time { color: #FAFAFA; font: 500 12px/1.2 var(--font-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .sm-video-seek { appearance: none; width: 100%; height: 24px; margin: 0; padding: 0; background: transparent; }
+        .sm-video-seek::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--sm-video-progress, 0%), #d4d4d4 var(--sm-video-progress, 0%)); }
+        .sm-video-seek::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; margin-top: -4px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+        .sm-video-seek::-moz-range-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--sm-video-progress, 0%), #d4d4d4 var(--sm-video-progress, 0%)); }
+        .sm-video-seek::-moz-range-thumb { width: 11px; height: 11px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+        .sm-video-player:fullscreen { width: 100vw; height: 100vh; aspect-ratio: auto; border: 0; box-shadow: none; }
+        .sm-video-player:fullscreen video { height: 100%; object-fit: contain; }
+        .sm-video-player:fullscreen .sm-video-controls { padding: 20px 26px 16px; }
+        @media (max-width: 680px) {
+            .sm-video-controls { grid-template-columns: 24px auto minmax(0, 1fr) 24px 24px; gap: 6px; min-height: 43px; padding: 8px 8px 5px; }
+            .sm-video-control { width: 24px; height: 24px; }
+            .sm-video-control svg { width: 16px; height: 16px; }
+            .sm-video-time { font-size: 10px; }
+        }
         .rr-intro .lead {
             max-width: 900px;
             font-size: 20px;
@@ -1211,6 +1246,25 @@
 
     <main class="rr-case">
         <section class="rr-intro" id="overview">
+            <div class="sm-video-player">
+                <video class="sm-exhibition-video" controls playsinline preload="metadata" poster="../assets/projects/sea-monster/exhibit-wide-web.jpg" aria-label="The Sea Monster exhibition video">
+                    <source src="../assets/projects/sea-monster/SEAMONSTER EXHIBITION.mp4" type="video/mp4">
+                    Your browser cannot play this video. <a href="../assets/projects/sea-monster/SEAMONSTER EXHIBITION.mp4">Open the exhibition video</a>.
+                </video>
+                <div class="sm-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+                    <button class="sm-video-control sm-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sm-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="sm-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                    </button>
+                    <span class="sm-video-time"><span class="sm-video-current">0:00</span> / <span class="sm-video-duration">0:00</span></span>
+                    <input class="sm-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                    <button class="sm-video-control sm-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="sm-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="sm-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </button>
+                    <button class="sm-video-control sm-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                    </button>
+                </div>
+            </div>
             <p class="lead">
                 On show night, children ran into its mouth and pretended to be swallowed. Adults stood between its teeth and posed for photos. No one kept a careful distance. No one treated it like a student project.
             </p>
@@ -1678,6 +1732,76 @@
             if (event.target === patternDialog) patternDialog.close();
         });
         patternDialog.addEventListener('close', () => expandedPattern.removeAttribute('src'));
+        const smFilm = document.querySelector('.sm-video-player video');
+        const smPlayer = smFilm.closest('.sm-video-player');
+        const smControls = smPlayer.querySelector('.sm-video-controls');
+        const smPlayButton = smControls.querySelector('.sm-video-toggle');
+        const smMuteButton = smControls.querySelector('.sm-video-mute');
+        const smFullscreenButton = smControls.querySelector('.sm-video-fullscreen');
+        const smSeek = smControls.querySelector('.sm-video-seek');
+        const smCurrent = smControls.querySelector('.sm-video-current');
+        const smDuration = smControls.querySelector('.sm-video-duration');
+        const formatSmTime = seconds => {
+            if (!Number.isFinite(seconds)) return '0:00';
+            const whole = Math.floor(seconds);
+            const minutes = Math.floor(whole / 60);
+            return `${minutes}:${String(whole % 60).padStart(2, '0')}`;
+        };
+        let smSeeking = false;
+        const updateSmTime = () => {
+            const duration = Number.isFinite(smFilm.duration) ? smFilm.duration : 0;
+            smDuration.textContent = formatSmTime(duration);
+            if (smSeeking) return;
+            smCurrent.textContent = formatSmTime(smFilm.currentTime);
+            smSeek.value = duration ? String(Math.round(smFilm.currentTime / duration * 1000)) : '0';
+            smSeek.style.setProperty('--sm-video-progress', `${Number(smSeek.value) / 10}%`);
+            smSeek.setAttribute('aria-valuetext', formatSmTime(smFilm.currentTime));
+        };
+        const updateSmPlay = () => {
+            const playing = !smFilm.paused && !smFilm.ended;
+            smPlayButton.dataset.playing = String(playing);
+            smPlayButton.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+            smPlayButton.setAttribute('aria-pressed', String(playing));
+        };
+        smPlayButton.addEventListener('click', () => {
+            if (smFilm.paused || smFilm.ended) smFilm.play().catch(() => {});
+            else smFilm.pause();
+        });
+        smMuteButton.addEventListener('click', () => { smFilm.muted = !smFilm.muted; });
+        smFilm.addEventListener('volumechange', () => {
+            smMuteButton.dataset.muted = String(smFilm.muted);
+            smMuteButton.setAttribute('aria-label', smFilm.muted ? 'Unmute video' : 'Mute video');
+            smMuteButton.setAttribute('aria-pressed', String(smFilm.muted));
+        });
+        smSeek.addEventListener('input', () => {
+            smSeeking = true;
+            const time = (Number(smSeek.value) / 1000) * (Number.isFinite(smFilm.duration) ? smFilm.duration : 0);
+            smCurrent.textContent = formatSmTime(time);
+            smSeek.style.setProperty('--sm-video-progress', `${Number(smSeek.value) / 10}%`);
+            smSeek.setAttribute('aria-valuetext', formatSmTime(time));
+        });
+        smSeek.addEventListener('change', () => {
+            if (Number.isFinite(smFilm.duration)) smFilm.currentTime = Number(smSeek.value) / 1000 * smFilm.duration;
+            smSeeking = false;
+            updateSmTime();
+        });
+        smFullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement === smPlayer) document.exitFullscreen();
+            else if (smPlayer.requestFullscreen) smPlayer.requestFullscreen();
+            else if (smFilm.webkitEnterFullscreen) smFilm.webkitEnterFullscreen();
+        });
+        document.addEventListener('fullscreenchange', () => {
+            smFullscreenButton.setAttribute('aria-label', document.fullscreenElement === smPlayer ? 'Exit fullscreen' : 'Enter fullscreen');
+        });
+        smFilm.addEventListener('loadedmetadata', updateSmTime);
+        smFilm.addEventListener('timeupdate', updateSmTime);
+        smFilm.addEventListener('play', updateSmPlay);
+        smFilm.addEventListener('pause', updateSmPlay);
+        smFilm.addEventListener('ended', updateSmPlay);
+        smFilm.controls = false;
+        smControls.hidden = false;
+        updateSmTime();
+        updateSmPlay();
     </script>
     <script src="../assets/site-cursor.js?v=20261028-3"></script>
 </body>

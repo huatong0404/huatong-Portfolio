@@ -61,6 +61,31 @@ body{background:#F3F1EA}figure{margin:0}
 .js-detail-grid{margin-top:26px}.js-detail-grid img{height:300px;object-fit:contain}
 .js-video-block{margin-top:52px}.js-video-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:18px;padding-top:17px;border-top:2px solid #0A0A0A}
 .js-video-head h3{margin:0;font-family:'Archivo Black',Impact,sans-serif;font-size:22px;font-weight:400}.js-video-head span{color:#676767;font-size:12px}
+.js-video-player{position:relative;background:#111}
+        .js-video-controls[hidden] { display: none; }
+        .js-video-controls { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 32px auto minmax(80px, 1fr) 32px 32px; gap: 12px; align-items: center; min-height: 65px; padding: 17px 18px 9px; background: linear-gradient(transparent, rgb(10 10 10 / 94%) 42%); color: #FAFAFA; }
+        .js-video-control { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; color: #FAFAFA; }
+        .js-video-control:hover, .js-video-control:focus-visible { color: #40C1AC; }
+        .js-video-control:focus-visible, .js-video-seek:focus-visible { outline: 2px solid #40C1AC; outline-offset: 2px; }
+        .js-video-control svg { display: block; width: 19px; height: 19px; }
+        .js-video-pause-icon, .js-video-muted-icon { display: none; }
+        .js-video-toggle[data-playing="true"] .js-video-play-icon, .js-video-mute[data-muted="true"] .js-video-sound-icon { display: none; }
+        .js-video-toggle[data-playing="true"] .js-video-pause-icon, .js-video-mute[data-muted="true"] .js-video-muted-icon { display: block; }
+        .js-video-time { color: #FAFAFA; font: 500 12px/1.2 var(--font-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .js-video-seek { appearance: none; width: 100%; height: 24px; margin: 0; padding: 0; background: transparent; }
+        .js-video-seek::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--js-video-progress, 0%), #d4d4d4 var(--js-video-progress, 0%)); }
+        .js-video-seek::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; margin-top: -4px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+        .js-video-seek::-moz-range-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--js-video-progress, 0%), #d4d4d4 var(--js-video-progress, 0%)); }
+        .js-video-seek::-moz-range-thumb { width: 11px; height: 11px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+        .js-video-player:fullscreen { width: 100vw; height: 100vh; aspect-ratio: auto; border: 0; box-shadow: none; }
+        .js-video-player:fullscreen video { height: 100%; object-fit: contain; }
+        .js-video-player:fullscreen .js-video-controls { padding: 20px 26px 16px; }
+        @media (max-width: 680px) {
+            .js-video-controls { grid-template-columns: 24px auto minmax(0, 1fr) 24px 24px; gap: 6px; min-height: 43px; padding: 8px 8px 5px; }
+            .js-video-control { width: 24px; height: 24px; }
+            .js-video-control svg { width: 16px; height: 16px; }
+            .js-video-time { font-size: 10px; }
+        }
 .js-video{display:block;width:100%;height:auto;aspect-ratio:854/480;background:#111}.js-video-caption{margin-top:11px!important;color:#676767!important;font-size:12px!important;line-height:1.55!important}
 @media(min-width:1200px){.js-case{transform:translateX(-72px)}}
 @media(max-width:980px){.project-detail-hero{padding-left:var(--page-padding);padding-right:var(--page-padding)}.js-hero-inner{grid-template-columns:1fr;gap:36px}.js-hero-image{max-width:680px}.js-case{width:min(calc(100% - 48px),1080px)}}
@@ -157,10 +182,25 @@ body{background:#F3F1EA}figure{margin:0}
     </div>
     <div class="js-video-block">
       <div class="js-video-head"><h3>Prototype in motion</h3><span>Project video</span></div>
-      <video class="js-video" controls playsinline preload="metadata" poster="../assets/projects/jamsesh/video-poster.png" aria-label="JamSesh handheld prototype video">
-        <source src="../assets/projects/jamsesh/jamsesh-demo.m4v" type="video/mp4">
-        Your browser cannot play this video. <a href="../assets/projects/jamsesh/jamsesh-demo.m4v">Open the project video</a>.
-      </video>
+      <div class="js-video-player">
+        <video class="js-video" controls playsinline preload="metadata" poster="../assets/projects/jamsesh/video-poster.png" aria-label="JamSesh handheld prototype video">
+          <source src="../assets/projects/jamsesh/jamsesh-demo.m4v" type="video/mp4">
+          Your browser cannot play this video. <a href="../assets/projects/jamsesh/jamsesh-demo.m4v">Open the project video</a>.
+        </video>
+        <div class="js-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+            <button class="js-video-control js-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path class="js-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="js-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+            </button>
+            <span class="js-video-time"><span class="js-video-current">0:00</span> / <span class="js-video-duration">0:00</span></span>
+            <input class="js-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+            <button class="js-video-control js-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="js-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="js-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+            <button class="js-video-control js-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+            </button>
+        </div>
+      </div>
       <p class="js-video-caption">A demonstration of the handheld prototype. The renders above show the proposed final form.</p>
     </div>
   </section>
@@ -290,6 +330,76 @@ body{background:#F3F1EA}figure{margin:0}
   document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
   });
+        const jsFilm = document.querySelector('.js-video-player video');
+        const jsPlayer = jsFilm.closest('.js-video-player');
+        const jsControls = jsPlayer.querySelector('.js-video-controls');
+        const jsPlayButton = jsControls.querySelector('.js-video-toggle');
+        const jsMuteButton = jsControls.querySelector('.js-video-mute');
+        const jsFullscreenButton = jsControls.querySelector('.js-video-fullscreen');
+        const jsSeek = jsControls.querySelector('.js-video-seek');
+        const jsCurrent = jsControls.querySelector('.js-video-current');
+        const jsDuration = jsControls.querySelector('.js-video-duration');
+        const formatJsTime = seconds => {
+            if (!Number.isFinite(seconds)) return '0:00';
+            const whole = Math.floor(seconds);
+            const minutes = Math.floor(whole / 60);
+            return `${minutes}:${String(whole % 60).padStart(2, '0')}`;
+        };
+        let jsSeeking = false;
+        const updateJsTime = () => {
+            const duration = Number.isFinite(jsFilm.duration) ? jsFilm.duration : 0;
+            jsDuration.textContent = formatJsTime(duration);
+            if (jsSeeking) return;
+            jsCurrent.textContent = formatJsTime(jsFilm.currentTime);
+            jsSeek.value = duration ? String(Math.round(jsFilm.currentTime / duration * 1000)) : '0';
+            jsSeek.style.setProperty('--js-video-progress', `${Number(jsSeek.value) / 10}%`);
+            jsSeek.setAttribute('aria-valuetext', formatJsTime(jsFilm.currentTime));
+        };
+        const updateJsPlay = () => {
+            const playing = !jsFilm.paused && !jsFilm.ended;
+            jsPlayButton.dataset.playing = String(playing);
+            jsPlayButton.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+            jsPlayButton.setAttribute('aria-pressed', String(playing));
+        };
+        jsPlayButton.addEventListener('click', () => {
+            if (jsFilm.paused || jsFilm.ended) jsFilm.play().catch(() => {});
+            else jsFilm.pause();
+        });
+        jsMuteButton.addEventListener('click', () => { jsFilm.muted = !jsFilm.muted; });
+        jsFilm.addEventListener('volumechange', () => {
+            jsMuteButton.dataset.muted = String(jsFilm.muted);
+            jsMuteButton.setAttribute('aria-label', jsFilm.muted ? 'Unmute video' : 'Mute video');
+            jsMuteButton.setAttribute('aria-pressed', String(jsFilm.muted));
+        });
+        jsSeek.addEventListener('input', () => {
+            jsSeeking = true;
+            const time = (Number(jsSeek.value) / 1000) * (Number.isFinite(jsFilm.duration) ? jsFilm.duration : 0);
+            jsCurrent.textContent = formatJsTime(time);
+            jsSeek.style.setProperty('--js-video-progress', `${Number(jsSeek.value) / 10}%`);
+            jsSeek.setAttribute('aria-valuetext', formatJsTime(time));
+        });
+        jsSeek.addEventListener('change', () => {
+            if (Number.isFinite(jsFilm.duration)) jsFilm.currentTime = Number(jsSeek.value) / 1000 * jsFilm.duration;
+            jsSeeking = false;
+            updateJsTime();
+        });
+        jsFullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement === jsPlayer) document.exitFullscreen();
+            else if (jsPlayer.requestFullscreen) jsPlayer.requestFullscreen();
+            else if (jsFilm.webkitEnterFullscreen) jsFilm.webkitEnterFullscreen();
+        });
+        document.addEventListener('fullscreenchange', () => {
+            jsFullscreenButton.setAttribute('aria-label', document.fullscreenElement === jsPlayer ? 'Exit fullscreen' : 'Enter fullscreen');
+        });
+        jsFilm.addEventListener('loadedmetadata', updateJsTime);
+        jsFilm.addEventListener('timeupdate', updateJsTime);
+        jsFilm.addEventListener('play', updateJsPlay);
+        jsFilm.addEventListener('pause', updateJsPlay);
+        jsFilm.addEventListener('ended', updateJsPlay);
+        jsFilm.controls = false;
+        jsControls.hidden = false;
+        updateJsTime();
+        updateJsPlay();
 </script>
     <script src="../assets/site-cursor.js?v=20261028-3"></script>
 </body>
