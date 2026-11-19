@@ -33,7 +33,7 @@
 .pf-origin {
     scroll-margin-top: calc(var(--nav-height) + 20px);
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
     gap: clamp(38px, 5.2vw, 70px);
     align-items: start;
     margin-bottom: 55px;
@@ -44,10 +44,11 @@
     font-size: var(--pf-body-size);
     line-height: 1.7;
 }
-.pf-origin-visual { width: 100%; min-width: 0; justify-self: end; }
+.pf-origin-visual { width: min(100%, 280px); min-width: 0; justify-self: end; }
 .pf-origin-photo img {
     display: block;
     width: 100%;
+    height: auto;
     aspect-ratio: 709 / 567;
     object-fit: contain;
     background: #0A0A0A;
@@ -211,7 +212,7 @@
     .pf-film-inner { width: min(calc(100% - 48px), 1080px); }
     .vg-evidence-page .page-jump-nav { position: relative; top: auto; }
     .pf-origin { grid-template-columns: 1fr; gap: 30px; }
-    .pf-origin-visual { width: min(100%, 360px); margin-left: auto; }
+    .pf-origin-visual { width: min(100%, 280px); margin-left: auto; }
     .pf-section { padding: 56px 0 65px; }
     .pf-paper-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
     .pf-paper-grid figure.pf-paper-main { grid-column: 1 / -1; grid-row: auto; height: 560px; }
@@ -235,7 +236,7 @@
     .pf-film-description { margin-top: 22px; }
     .pf-film-credits { margin-top: 23px; }
     .pf-origin { margin-bottom: 42px; }
-    .pf-origin-visual { width: 100%; margin-left: 0; }
+    .pf-origin-visual { width: min(100%, 280px); margin-left: 0; justify-self: start; }
     .pf-prototype-next { margin-bottom: 39px; }
     .pf-section-head h2 { font-size: 24px; }
     .pf-section { padding: 45px 0 54px; }
