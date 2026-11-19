@@ -54,13 +54,17 @@
             margin-top: 12px;
         }
 
-        .rr-intro {
-            padding: 64px 0 52px;
-        }
         .sm-video-player {
             position: relative;
-            margin-bottom: 40px;
+            width: min(100%, 1080px);
+            margin: 48px auto 0;
             background: #0A0A0A;
+        }
+        .sm-hero-description {
+            width: min(100%, 1080px);
+            margin: 28px auto 0;
+            color: #FAFAFA;
+            font: 400 clamp(17px, 1.8vw, 20px)/1.65 var(--font-body);
         }
         .sm-exhibition-video {
             display: block;
@@ -91,13 +95,6 @@
             .sm-video-control { width: 24px; height: 24px; }
             .sm-video-control svg { width: 16px; height: 16px; }
             .sm-video-time { font-size: 10px; }
-        }
-        .rr-intro .lead {
-            max-width: 900px;
-            font-size: 20px;
-            line-height: 1.68;
-            margin-bottom: 24px;
-            color: #0A0A0A;
         }
         .rr-summary {
             display: grid;
@@ -589,15 +586,27 @@
             transform: translateY(5px);
             transition: opacity 180ms ease, transform 180ms ease;
         }
-        .rr-evidence-page .rr-hero-image figcaption {
-            right: 0;
-            bottom: 0;
-            left: 0;
+        .rr-evidence-page #top .rr-hero-image figcaption {
+            position: static;
+            right: auto;
+            bottom: auto;
+            left: auto;
+            padding: 10px 0 0;
+            color: rgba(250, 250, 250, 0.68);
+            background: transparent;
+            opacity: 1;
+            pointer-events: auto;
+            transform: none;
+            transition: none;
         }
         .rr-evidence-page figure:hover figcaption,
         .rr-evidence-page figure:focus-within figcaption {
             opacity: 1;
             transform: translateY(0);
+        }
+        .rr-evidence-page #top .rr-hero-image:hover figcaption,
+        .rr-evidence-page #top .rr-hero-image:focus-within figcaption {
+            transform: none;
         }
 
         /* Use the same recurring image proportions as Rick's Radio. */
@@ -629,6 +638,7 @@
             width: 100%;
             max-width: 450px;
             justify-self: end;
+            overflow: visible;
         }
         #why .split-image.tall img { height: 340px; }
 
@@ -708,6 +718,7 @@
             width: min(100%, 360px);
             justify-self: center;
         }
+        #why .split-image figcaption,
         .rr-evidence-page .sm-people-grid figure figcaption,
         .rr-evidence-page .sm-public-grid figure figcaption {
             position: static;
@@ -811,8 +822,14 @@
             line-height: 1.45;
         }
         .sm-process-media--baffle {
-            grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) minmax(0, 1fr);
             gap: 8px;
+            align-items: start;
+        }
+        .sm-process-media--baffle > .sm-process-arrow {
+            display: grid;
+            place-items: center;
+            height: 280px;
         }
         .sm-process-arrow {
             color: #287F71;
@@ -885,35 +902,18 @@
             box-sizing: border-box;
             display: flex;
             align-items: center;
-            min-height: 280px;
+            height: 280px;
             border: 1px solid #D4D4D4;
             background: #FAFAFA;
         }
         .sm-process-shot--baffle .sm-baffle-detail img {
             box-sizing: border-box;
-            width: 50%;
-            height: 260px;
-            padding: 8px 0 8px 8px;
+            width: 100%;
+            height: 100%;
+            padding: 8px;
             background: transparent;
         }
-        .sm-baffle-detail-label {
-            box-sizing: border-box;
-            width: 50%;
-            padding: 0 10px;
-        }
-        .sm-baffle-detail-label b {
-            display: block;
-            color: #123E38;
-            font-size: 11px;
-            letter-spacing: .06em;
-        }
-        .sm-baffle-detail-label span {
-            display: block;
-            margin-top: 8px;
-            color: #525252;
-            font-size: 12px;
-            line-height: 1.45;
-        }
+        .sm-process-shot--baffle-photo img { object-fit: contain; }
         .sm-process-image-trigger {
             display: block;
             width: 100%;
@@ -991,14 +991,6 @@
             border-left: 2px solid #0A0A0A;
             min-width: 0;
         }
-        .sm-process-eyebrow {
-            margin-bottom: 15px;
-            color: #287F71;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.11em;
-            text-transform: uppercase;
-        }
         .sm-process-copy h3 {
             margin: 0 0 16px;
             font-family: 'Archivo Black', Impact, sans-serif;
@@ -1012,6 +1004,7 @@
             font-size: 15px;
             line-height: 1.7;
         }
+        .sm-process-copy p + p { margin-top: 16px; }
         .sm-process-copy strong { color: #0A0A0A; }
         .sm-unwrap-steps {
             display: grid;
@@ -1049,15 +1042,6 @@
             line-height: 1.4;
         }
         .sm-process-change b { color: #287F71; font-size: 18px; }
-        .sm-fabrication-note {
-            max-width: 790px;
-        }
-        .sm-fabrication-note p {
-            margin-bottom: 16px;
-            color: #525252;
-            font-size: 16px;
-            line-height: 1.75;
-        }
 
         @media (max-width: 900px) {
             .rr-case { width: min(calc(100% - 48px), 1080px); }
@@ -1065,6 +1049,7 @@
             .rr-hero-inner { grid-template-columns: 1fr; gap: 40px; }
             .project-detail-hero .project-meta { max-width: none; }
             .rr-hero-copy .back-link { margin-bottom: 32px; }
+            .sm-video-player { margin-top: 40px; }
             .rr-hero-image img { max-height: 360px; aspect-ratio: 16 / 9; }
             .split-row,
             .split-row.reverse,
@@ -1090,7 +1075,6 @@
             .rr-text-block,
             .rr-narrative,
             .rr-reflection { padding: 48px 0; }
-            .rr-intro { padding: 48px 0 40px; }
             .split-image img,
             .split-image.tall img,
             .sm-mosaic figure:first-child img { height: 320px; }
@@ -1143,8 +1127,9 @@
             .project-detail-hero { padding-top: 48px; padding-bottom: 48px; }
             .project-detail-hero h1 { font-size: 38px; margin-bottom: 28px; }
             .project-detail-hero .project-meta { grid-template-columns: 1fr; gap: 18px; }
+            .sm-video-player { margin-top: 32px; }
+            .sm-hero-description { margin-top: 22px; }
             .rr-hero-image img { max-height: 260px; aspect-ratio: 4 / 3; }
-            .rr-intro .lead { font-size: 18px; }
             .rr-evidence-page .rr-case figure:not(.rr-hero-image) { padding: 8px; }
             #why.split-row.wide-media { grid-template-columns: 1fr; }
             #why .split-image { max-width: none; }
@@ -1175,11 +1160,12 @@
             .sm-unwrap-pair .sm-process-shot > .sm-process-image-trigger img,
             .sm-unwrap-output { height: 220px; }
             .sm-unwrap-output img { height: auto; }
-            .sm-baffle-detail { min-height: 240px; }
-            .sm-process-shot--baffle .sm-baffle-detail img { height: 220px; }
+            .sm-baffle-detail { height: 220px; }
+            .sm-process-media--baffle > .sm-process-arrow { height: auto; }
             .sm-process-copy { padding: 26px 20px; }
         }
     </style>
+    <link rel="stylesheet" href="sea-monster-gallery.css">
 </head>
 <body class="rr-evidence-page">
 
@@ -1229,127 +1215,92 @@
                 <figcaption>Wide view of The Sea Monster installation with visitors, glowing tentacles, and the open mouth.</figcaption>
             </figure>
         </div>
+        <div class="sm-video-player">
+            <video class="sm-exhibition-video" controls playsinline preload="metadata" poster="../assets/projects/sea-monster/exhibit-wide-web.jpg" aria-label="The Sea Monster exhibition video">
+                <source src="../assets/projects/sea-monster/SEAMONSTER EXHIBITION.mp4" type="video/mp4">
+                Your browser cannot play this video. <a href="../assets/projects/sea-monster/SEAMONSTER EXHIBITION.mp4">Open the exhibition video</a>.
+            </video>
+            <div class="sm-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+                <button class="sm-video-control sm-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sm-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="sm-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                </button>
+                <span class="sm-video-time"><span class="sm-video-current">0:00</span> / <span class="sm-video-duration">0:00</span></span>
+                <input class="sm-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                <button class="sm-video-control sm-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="sm-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="sm-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                </button>
+                <button class="sm-video-control sm-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                </button>
+            </div>
+        </div>
+        <p class="sm-hero-description">The Sea Monster is an inflatable playground that Hua and her team designed and fabricated for an associated CMU final exhibition. It is composed of a pair of whale mouths and five tentacles. The room-scaled project was exhibited twice in public, at WQED for the final show and MeetMe@ at IDeATe. It allows the audience to play with and immerse themselves in the ocean it brings.</p>
     </section>
 
     <aside class="page-jump-nav" aria-label="Jump to The Sea Monster section">
         <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
         <ul>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#why">Why</a></li>
-            <li><a href="#ocean">Ocean</a></li>
+            <li><a href="#why">Why the Sea Monster</a></li>
             <li><a href="#fabrication">How It's Made</a></li>
             <li><a href="#soft-things">Soft Things</a></li>
-            <li><a href="#public-life">Public Life</a></li>
             <li><a href="#acknowledgment">Acknowledgment</a></li>
         </ul>
     </aside>
 
     <main class="rr-case">
-        <section class="rr-intro" id="overview">
-            <div class="sm-video-player">
-                <video class="sm-exhibition-video" controls playsinline preload="metadata" poster="../assets/projects/sea-monster/exhibit-wide-web.jpg" aria-label="The Sea Monster exhibition video">
-                    <source src="../assets/projects/sea-monster/SEAMONSTER EXHIBITION.mp4" type="video/mp4">
-                    Your browser cannot play this video. <a href="../assets/projects/sea-monster/SEAMONSTER EXHIBITION.mp4">Open the exhibition video</a>.
-                </video>
-                <div class="sm-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
-                    <button class="sm-video-control sm-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="sm-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="sm-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
-                    </button>
-                    <span class="sm-video-time"><span class="sm-video-current">0:00</span> / <span class="sm-video-duration">0:00</span></span>
-                    <input class="sm-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
-                    <button class="sm-video-control sm-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="sm-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="sm-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </button>
-                    <button class="sm-video-control sm-video-fullscreen" type="button" aria-label="Enter fullscreen">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
-                    </button>
-                </div>
-            </div>
-            <p class="lead">
-                On show night, children ran into its mouth and pretended to be swallowed. Adults stood between its teeth and posed for photos. No one kept a careful distance. No one treated it like a student project.
-            </p>
-            <p class="lead">
-                The Sea Monster is a room-scale inflatable installation composed of nylon, costume fans, and stage lighting. Two halves of an open head and five illuminated tentacles sit across WQED Studio A as fragments of a much larger creature, with the gallery floor standing in for the surface of the sea.
-            </p>
-            <p><a class="sm-official-link" href="#fabrication">See how flat fabric became the creature &darr;</a></p>
-        </section>
-
         <section class="split-row wide-media" id="why">
             <div class="split-text">
                 <h2>Why the Sea Monster</h2>
                 <p>
-                    The design question of the installation is a difficult one to answer. The theme of the exhibition is “a fixed world”, after global warming, the AI bubble, the wars, the sixth extinction and even the Anthropocene itself. When everything is fixed from humans and back to normal, what are we expecting?
+                    The theme of the exhibition is “a fixed world”, after global warming, the AI bubble, the wars, the sixth extinction and even the Anthropocene itself. Our early ideas were gentle things like bioluminescent flowers and fireflies. Then someone suggested the ocean, and I started thinking about Moby-Dick and Vingt mille lieues sous les mers.
                 </p>
                 <p>
-                    Our early ideas were gentle. Bioluminescent flowers, fireflies, things that glow and comfort. Then someone suggested the ocean, and I started thinking about Moby-Dick and Vingt mille lieues sous les mers. Sea Monsters, I said.
+                    Sea Monsters, I said.
                 </p>
                 <p>
-                    In the 19th century, slaying the sea monster was once the highest proof of courage. Now, we have gone too far. The only creature we could fear now is ourselves. Instead of presenting something non-threatening and comforting to humans, what about just exhibiting something… in the wild? A symbol of the untamed nature that we have drifted too far from?
+                    In the 19th century, slaying the sea monster was once the highest proof of courage. Now, we have grown from killing killer whales to shouting out for freeing them from sea-themed amusement parks. What if we bring back the sea monsters and remind people that they are able to exist with us in a new way, such as coexistence?
                 </p>
                 <p>
-                    The group liked the idea. We started imagining a hybrid: the head of a whale, the teeth of a shark, the tentacles of an octopus. It does not please, does not have the intent to hurt people, just exists in its own right.
+                    We treated the gallery floor as the sea, showing only the head and tentacle tips so visitors could imagine the larger creature beneath.
                 </p>
             </div>
             <figure class="split-image contain tall">
-                <img src="../assets/projects/sea-monster/preliminary sketch.png" alt="Pencil sketches exploring The Sea Monster's mouth, tentacles, and hybrid anatomy">
-                <figcaption>Early pencil sketches of the head, mouth, and tentacles.</figcaption>
+                <img src="../assets/projects/sea-monster/preliminary sketch.png" alt="Pencil sketches exploring The Sea Monster's mouth, tentacles, and hybrid anatomy" loading="lazy" decoding="async" width="1326" height="1026">
+                <figcaption>Early pencil sketches of the head, mouth, and tentacles. Created by Mason Wang.</figcaption>
             </figure>
-        </section>
-
-        <section class="rr-gallery-section" id="ocean">
-            <div class="sm-section-copy">
-                <h2 class="rr-section-title">The Ocean in the Room</h2>
-                <p>
-                    We treated the gallery floor as the surface of the sea. If we only showed the tips of the tentacles and the top of the head, visitors would have to imagine the rest of the body underneath. The creature would feel larger than anything we actually built. It was a good strategy for one month of working time.
-                </p>
-                <p>
-                    We planned two halves of an open head and five tentacles, placed across WQED Studio A so the fragments occupied the room without filling it. The mouth faced an entrance, so people would realize they were walking between its teeth. On the other side, another group's project, a giant glowing snail, waited like a place to escape into.
-                </p>
-            </div>
-            <div class="sm-ocean-grid">
-                <figure>
-                    <img src="../assets/projects/sea-monster/exhibit-wide-2-web.jpg" alt="Exhibition-wide view of The Sea Monster fragments occupying WQED Studio A">
-                    <figcaption>The head and tentacles occupy the studio as fragments of a much larger unseen body.</figcaption>
-                </figure>
-                <figure>
-                    <img src="../assets/projects/sea-monster/final-15.jpg" alt="View through The Sea Monster's teeth toward the neighboring glowing inflatable">
-                    <figcaption>The open mouth frames the neighboring inflatable on the other side of the room.</figcaption>
-                </figure>
-            </div>
         </section>
 
         <section class="rr-gallery-section" id="fabrication">
             <div class="sm-section-copy">
-                <h2 class="rr-section-title">From Flat to Full</h2>
+                <h2 class="rr-section-title">How It's Made</h2>
                 <p>
-                    How does flat nylon become a curved head or tentacle? Choose a step to follow the change from a digital shape to fabric, seams, and finally air.
+                    Ok, nice. So we got this yard of white nylon here. How are we turning it into this sea monster?
                 </p>
             </div>
             <div class="sm-process-explorer" aria-label="How The Sea Monster was made">
                 <div class="sm-process-tabs" role="tablist" aria-label="Making process steps">
-                    <button class="sm-process-tab" id="sm-step-tab-1" type="button" role="tab" aria-controls="sm-step-panel-1" aria-selected="true" tabindex="0"><span class="sm-process-tab-number">01</span>Model</button>
-                    <button class="sm-process-tab" id="sm-step-tab-2" type="button" role="tab" aria-controls="sm-step-panel-2" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">02</span>Unwrap</button>
-                    <button class="sm-process-tab" id="sm-step-tab-3" type="button" role="tab" aria-controls="sm-step-panel-3" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">03</span>Cut &amp; dye</button>
-                    <button class="sm-process-tab" id="sm-step-tab-4" type="button" role="tab" aria-controls="sm-step-panel-4" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">04</span>Sew</button>
-                    <button class="sm-process-tab" id="sm-step-tab-5" type="button" role="tab" aria-controls="sm-step-panel-5" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">05</span>Inflate</button>
+                    <button class="sm-process-tab" id="sm-step-tab-1" type="button" role="tab" aria-controls="sm-step-panel-1" aria-selected="true" tabindex="0"><span class="sm-process-tab-number">01</span>Modeling</button>
+                    <button class="sm-process-tab" id="sm-step-tab-2" type="button" role="tab" aria-controls="sm-step-panel-2" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">02</span>From 3D to 2D</button>
+                    <button class="sm-process-tab" id="sm-step-tab-3" type="button" role="tab" aria-controls="sm-step-panel-3" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">03</span>Cut &amp; Dye</button>
+                    <button class="sm-process-tab" id="sm-step-tab-4" type="button" role="tab" aria-controls="sm-step-panel-4" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">04</span>How to Keep the Shape?</button>
+                    <button class="sm-process-tab" id="sm-step-tab-5" type="button" role="tab" aria-controls="sm-step-panel-5" aria-selected="false" tabindex="-1"><span class="sm-process-tab-number">05</span>Now Inflate!</button>
                 </div>
 
                 <div class="sm-process-panel" id="sm-step-panel-1" role="tabpanel" aria-labelledby="sm-step-tab-1">
                     <div class="sm-process-media">
                         <div class="sm-process-shot">
-                            <img src="../assets/projects/sea-monster/render1.png" alt="Digital model showing the curved, open head with pointed teeth">
+                            <img src="../assets/projects/sea-monster/render1.png" alt="Digital model showing the curved, open head with pointed teeth" loading="lazy" decoding="async" width="1175" height="1049">
                             <span>Digital head model</span>
                         </div>
                         <div class="sm-process-shot">
-                            <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Digital model of two curving tentacles">
+                            <img src="../assets/projects/sea-monster/tentacle render3.png" alt="Digital model of two curving tentacles" loading="lazy" decoding="async" width="1082" height="760">
                             <span>Digital tentacle model</span>
                         </div>
                     </div>
                     <div class="sm-process-copy">
-                        <span class="sm-process-eyebrow">Step 1 of 5 · 3D plan</span>
-                        <h3>First, decide the shape.</h3>
-                        <p>The head and five tentacles began as digital models. I modeled all five tentacles, setting the curves the fabric would later need to recreate.</p>
-                        <div class="sm-process-change"><span>Idea</span><b aria-hidden="true">→</b><span>3D shape</span></div>
+                        <h3>Modeling</h3>
+                        <p>I modeled the five tentacles, and my teammate Siyu modeled the head. That's how we started.</p>
+                        <div class="sm-process-change"><span>Idea</span><b aria-hidden="true">→</b><span>3D Shape</span></div>
                     </div>
                 </div>
 
@@ -1389,15 +1340,9 @@
                         </div>
                     </div>
                     <div class="sm-process-copy">
-                        <span class="sm-process-eyebrow">Step 2 of 5 · Pattern planning</span>
-                        <h3>How does a 3D shape become a cutting plan?</h3>
-                        <p>The left images show 3D surface grids, not final cut lines. On the right are a head cutting layout and a tentacle panel study from the planning process.</p>
-                        <ol class="sm-unwrap-steps">
-                            <li>UV unwrap: flatten each curved model surface into a 2D map.</li>
-                            <li>Choose where the fabric panels should sit.</li>
-                            <li>Generate printable layouts with our custom tool, then send them for laser cutting.</li>
-                        </ol>
-                        <div class="sm-process-change"><span>3D surface</span><b aria-hidden="true">→</b><span>2D UV map</span><b aria-hidden="true">→</b><span>Cutting layout</span></div>
+                        <h3>From 3D to 2D</h3>
+                        <p>Well, now we have the 3D models. We are going to separate the models along certain cutting lines and eventually unwrap them into 2D panels that we can print and use on plain fabric.</p>
+                        <div class="sm-process-change"><span>3D Shape</span><b aria-hidden="true">→</b><span>2D Panel Plans</span></div>
                     </div>
                 </div>
 
@@ -1413,10 +1358,10 @@
                         </div>
                     </div>
                     <div class="sm-process-copy">
-                        <span class="sm-process-eyebrow">Step 3 of 5 · Material</span>
-                        <h3>Cut first, then add color.</h3>
-                        <p>We laser-cut white nylon into panels using those 2D layouts. I then dyed the cut pieces blue for the head’s outside and pink for the mouth’s inside; the teeth and fabric dividers inside the head stayed white.</p>
-                        <div class="sm-process-change"><span>Cutting layout</span><b aria-hidden="true">→</b><span>Dyed panels</span></div>
+                        <h3>Cut &amp; Dye</h3>
+                        <p>We laser-cut white nylon into panels using those 2D layouts. I then dyed the cut pieces blue for the head’s outside and pink for the mouth’s inside. The teeth and baffles inside the head stayed white.</p>
+                        <p>What's a baffle, you may ask.</p>
+                        <div class="sm-process-change"><span>2D Panel Plans</span><b aria-hidden="true">→</b><span>2D Panels</span><b aria-hidden="true">→</b><span>2D Colored Panels</span></div>
                     </div>
                 </div>
 
@@ -1430,16 +1375,18 @@
                         <div class="sm-process-shot sm-process-shot--baffle">
                             <div class="sm-baffle-detail">
                                 <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/inner-baffle-isolated.svg" alt="Angled view of one fabric baffle with three equal openings; fine arrows pass through each hole from left to right">
-                                <div class="sm-baffle-detail-label"><b>ONE BAFFLE</b><span>A fabric wall sewn inside the shell. Openings let air pass through.</span></div>
                             </div>
-                            <span>Three equal openings · about 40% open in this drawing</span>
+                            <span>A fabric wall sewn inside the shell. Openings let air pass through.</span>
+                        </div>
+                        <div class="sm-process-shot sm-process-shot--baffle-photo">
+                            <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/baffle-photo.jpg" alt="White baffle fabric panels with circular air openings laid out on the studio floor beside blue fabric">
+                            <span>Cut baffle panels laid out before sewing</span>
                         </div>
                     </div>
                     <div class="sm-process-copy">
-                        <span class="sm-process-eyebrow">Step 4 of 5 · Assembly</span>
-                        <h3>What is a baffle?</h3>
-                        <p>We sewed the cut panels into a shell and added fabric dividers inside it. Each divider is a <strong>baffle</strong>: it limits how far the fabric can bulge when air fills the head. The three openings let air move through this wall while the remaining fabric helps hold the intended curve.</p>
-                        <div class="sm-process-change"><span>Fabric panels</span><b aria-hidden="true">→</b><span>Unfilled shell</span></div>
+                        <h3>How to Keep the Shape?</h3>
+                        <p>We sewed the cut panels into a shell and added baffles to the head. A baffle is a fabric divider that limits how far the fabric can bulge when air fills the head. The openings in the baffle let air move through this wall while the remaining fabric helps hold the intended curve.</p>
+                        <div class="sm-process-change"><span>2D Colored Panels</span><b aria-hidden="true">→</b><span>3D Unfilled Shell</span></div>
                     </div>
                 </div>
 
@@ -1455,100 +1402,103 @@
                         </div>
                     </div>
                     <div class="sm-process-copy">
-                        <span class="sm-process-eyebrow">Step 5 of 5 · Full scale</span>
-                        <h3>Air reveals the shape.</h3>
-                        <p>Costume fans filled the sewn parts, pushing the nylon toward its modeled curves. We placed the head and tentacles across the studio and lit them so visitors could walk among the fragments.</p>
-                        <div class="sm-process-change"><span>Unfilled shell</span><b aria-hidden="true">→</b><span>Room-scale creature</span></div>
+                        <h3>Now Inflate!</h3>
+                        <p>We put in costume fans to fill the sewn parts, pushing the nylon toward its modeled curves. We placed the head and tentacles across the studio and lit them. Now a playground is created!</p>
+                        <div class="sm-process-change"><span>3D Unfilled Shell</span><b aria-hidden="true">→</b><span>3D Inflatable</span></div>
                     </div>
                 </div>
             </div>
-            <div class="sm-fabrication-note">
-                <p>Precision mattered: the seams had to keep air in and let each tentacle recover its intended curve. The parts were so large that laying out and sewing the bigger panels took two or three people at a time.</p>
-                <p>When a tentacle inflated for the first time and stood on its own, the whole team applauded.</p>
-            </div>
         </section>
 
-        <section class="rr-gallery-section" id="soft-things">
-            <div class="sm-section-copy">
-                <h2 class="rr-section-title">Soft Things</h2>
-                <p>
-                    In architecture, people observe models from a careful distance and almost never touch them. Soft fabrication inverts that. Inflated fabric gives people the impression that it will not break, so they do not hesitate. Everyone has been inside a bouncy castle. The material carries that memory before you say a word.
-                </p>
-                <p>
-                    The installation asked for our bodies too. We stood inside the studio to decide where each piece should go, then one of us walked back to see if the placement looked right from a distance. We crouched to install lights, crawled under fabric to find fan connections, held panels above our heads during inflation. There was no way to build this from a desk. Every decision was made at full scale, with our own bodies as the reference.
-                </p>
-                <p>
-                    There is also something disarming about an object this large being this temporary. The entire creature compresses into a few bags. It fills a room and then it disappears. A week later it can fill a different room and become something else entirely.
-                </p>
-                <p>
-                    Most of what we live in does not work like that. The buildings around us stay where they are, bound to their sites and to the investments that put them there. This creature has no site. It borrows a room, transforms it, and gives it back.
-                </p>
-            </div>
-            <div class="sm-people-grid">
-                <div class="sm-photo-column sm-photo-column--left">
-                    <figure>
+        <section class="sm-gallery" id="soft-things" aria-labelledby="sm-gallery-title">
+            <div class="sm-gallery-inner">
+                <div class="sm-gallery-opening">
+                    <h2 id="sm-gallery-title">Soft Things</h2>
+                    <p>In architecture, people observe models from a careful distance and almost never touch them. Soft fabrication inverts that. Inflated fabric gives people the impression that it will not break, so they do not hesitate. Everyone has been inside a bouncy castle. The material carries that memory before you say a word.</p>
+                </div>
+
+                <div class="sm-gallery-row sm-gallery-row--scale">
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/trying to decide the location.png" alt="Team members using their bodies to test the placement of inflatable parts in the studio">
                         <figcaption>Placement decisions were tested at full scale in the studio.</figcaption>
                     </figure>
-                    <figure>
-                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/Hua holding the light.png" alt="Hua holding a stage light beside an inflated tentacle">
-                        <figcaption>Testing how stage light traveled through the inflated nylon.</figcaption>
-                    </figure>
-                </div>
-                <div class="sm-photo-column sm-photo-column--right">
-                    <figure>
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/deciding on the size.png" alt="Team members holding the mouth fabric above their heads during installation">
                         <figcaption>The scale of the mouth required several bodies to position and assess it.</figcaption>
                     </figure>
-                    <figure>
+                </div>
+
+                <div class="sm-gallery-row sm-gallery-row--making">
+                    <div class="sm-gallery-text">
+                        <p>The installation asked for our bodies too. We stood inside the studio to decide where each piece should go, then one of us walked back to see if the placement looked right from a distance. We crouched to install lights, crawled under fabric to find fan connections, held panels above our heads during inflation.</p>
+                    </div>
+                    <figure class="sm-gallery-figure">
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/Hua holding the light.png" alt="Hua holding a stage light beside an inflated tentacle">
+                        <figcaption>Testing how stage light traveled through the inflated nylon.</figcaption>
+                    </figure>
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-tentacle-detail-web.jpg" alt="Visitor crouching beneath the illuminated horizontal tentacle">
                         <figcaption>A visitor crouching beneath the illuminated horizontal tentacle.</figcaption>
                     </figure>
-                    <figure>
+                </div>
+
+                <div class="sm-gallery-row sm-gallery-row--temporary">
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-inside-web.jpg" alt="Visitors inside a neighboring inflatable, framed by The Sea Monster's open mouth">
                         <figcaption>The mouth frames visitors sitting inside a neighboring inflatable installation.</figcaption>
                     </figure>
+                    <div class="sm-gallery-text">
+                        <p>There is also something disarming about an object this large being this temporary. The entire creature compresses into a few bags. It fills a room and then it disappears. A week later it can fill a different room and become something else entirely.</p>
+                        <p>Most of what we live in does not work like that. The buildings around us stay where they are, bound to their sites and to the investments that put them there. This creature has no site. It borrows a room, transforms it, and gives it back.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="rr-gallery-section" id="public-life">
-            <div class="sm-section-copy">
-                <h2 class="rr-section-title">Public Life</h2>
-                <p>
-                    On show night, the music and drama students projected waves and deep-water footage onto the surrounding screens. The studio went dark. With stage lights glowing inside the tentacles and the mouth lit from within, the room stopped feeling like a gallery and started feeling like the bottom of something.
-                </p>
-                <p>
-                    Children were the first to test it. They ran straight into the mouth and pretended to be swallowed. Adults followed, standing between the teeth, waving at cameras, sitting inside as if it were a place that had always been there. No one asked if they were allowed to enter. No one treated it like something that might break.
-                </p>
-                <p>
-                    We had designed the creature around an idea about coexistence. It’s something that simply exists in its own right, not for us. But once it entered the room, it stopped being ours. People brought their own readings, their own play, their own reasons for walking in. That is how public work operates. The intention travels with the object, but it does not get to decide what happens next.
-                </p>
-                <p>
-                    <a class="sm-official-link" href="https://ideate.cmu.edu/news-and-announcements/2026/05_may/meet-me-%40-spring-26.html" target="_blank" rel="noopener noreferrer">The Sea Monster was shown again at Ideate's 2026 Meet Me@ exhibition.</a>
-                </p>
-            </div>
-            <div class="sm-public-grid">
-                <div class="sm-photo-column sm-photo-column--left">
-                    <figure>
+                <figure class="sm-gallery-figure sm-gallery-panorama">
+                    <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-wide-2-web.jpg" alt="Exhibition-wide view of The Sea Monster fragments occupying WQED Studio A">
+                    <figcaption>The head and tentacles occupy the studio as fragments of a much larger unseen body.</figcaption>
+                </figure>
+
+                <div class="sm-gallery-row sm-gallery-row--show">
+                    <div class="sm-gallery-text">
+                        <p>On show night, the music and drama students projected waves and deep-water footage onto the surrounding screens. With stage lights glowing inside the tentacles and the mouth lit from within, the room started feeling like the bottom of something. Children started running straight into the monster's mouth and pretended to be swallowed. Adults followed, standing between the teeth and waving at cameras.</p>
+                    </div>
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-kids-web.jpg" alt="Children running through The Sea Monster's open mouth">
                         <figcaption>Children running into the mouth and pretending to be swallowed.</figcaption>
                     </figure>
-                    <figure>
+                </div>
+
+                <div class="sm-gallery-row sm-gallery-row--visitors">
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-mouth-open-web.jpg" alt="Visitor standing between the two sides of the open mouth">
                         <figcaption>A visitor posing between the two sides of the open mouth.</figcaption>
                     </figure>
-                    <figure>
+                    <figure class="sm-gallery-figure">
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-visitor-web.jpg" alt="Visitor looking through the inflatable teeth">
+                        <figcaption>A visitor using the teeth as a frame.</figcaption>
+                    </figure>
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-visitors-peek-web.jpg" alt="Team member Ella and a visitor looking through the inflatable teeth">
                         <figcaption>Team member Ella and a visitor looking through the teeth.</figcaption>
                     </figure>
                 </div>
-                <div class="sm-photo-column sm-photo-column--right">
-                    <figure>
-                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/exhibit-visitor-web.jpg" alt="Visitor looking through the inflatable teeth">
-                        <figcaption>A visitor using the teeth as a frame.</figcaption>
+
+                <div class="sm-gallery-row sm-gallery-row--coexist">
+                    <figure class="sm-gallery-figure">
+                        <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/final-15.jpg" alt="View through The Sea Monster's teeth toward the neighboring glowing inflatable">
+                        <figcaption>The open mouth frames the neighboring inflatable on the other side of the room.</figcaption>
                     </figure>
-                    <figure class="sm-public-wide">
+                    <div class="sm-gallery-text">
+                        <p>We had designed the creature around an idea about coexistence. It’s something that simply exists in its own right, not for us. But once it entered the room, it stopped being ours. People brought their own readings, their own play, their own reasons for walking in.</p>
+                    </div>
+                </div>
+
+                <div class="sm-gallery-row sm-gallery-row--ending">
+                    <div class="sm-gallery-text sm-gallery-text--ending">
+                        <p>That is how public work operates.</p>
+                        <a class="sm-gallery-link" href="https://ideate.cmu.edu/news-and-announcements/2026/05_may/meet-me-%40-spring-26.html" target="_blank" rel="noopener noreferrer">The Sea Monster was shown again at Ideate's 2026 Meet Me@ exhibition. ↗</a>
+                    </div>
+                    <figure class="sm-gallery-figure">
                         <img loading="lazy" decoding="async" src="../assets/projects/sea-monster/Meet Me@.png" alt="Overhead view of The Sea Monster at CMU IDeATe's Spring 2026 Meet Me @ exhibition">
                         <figcaption>The Sea Monster shown again at CMU IDeATe's Spring 2026 “Meet Me @” exhibition.</figcaption>
                     </figure>
@@ -1579,17 +1529,17 @@
     </dialog>
 
     <nav class="project-pagination" aria-label="Project navigation">
-        <a class="project-prev" href="vertical-garden.html">
+        <a class="project-prev" href="stap-ticketing-system.html">
             <span class="pagination-label">&larr; Previous project</span>
-            <span class="pagination-title">Pollen Farm</span>
+            <span class="pagination-title">STAP Ticketing System</span>
         </a>
         <a class="back-to-top" href="#top">
             <span class="pagination-label">Back to</span>
             <span class="pagination-title">Top &uarr;</span>
         </a>
-        <a class="project-next" href="ricks-radio.html">
+        <a class="project-next" href="trace.html">
             <span class="pagination-label">Next project &rarr;</span>
-            <span class="pagination-title">Rick's Radio</span>
+            <span class="pagination-title">Trace</span>
         </a>
     </nav>
 
@@ -1597,10 +1547,12 @@
     <footer>
         <div class="footer-left">
             <span class="footer-logo">HUA TONG</span>
-            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
+            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong. This site was vibe coded.</p>
         </div>
         <div class="footer-right">
             <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+            <a href="https://www.linkedin.com/in/hua-tong-50b1a7293/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="../assets/HuaTong_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
         </div>
     </footer>
 
@@ -1659,6 +1611,7 @@
             .map((link) => document.querySelector(link.getAttribute('href')))
             .filter(Boolean);
         let sectionTrackingFrame = null;
+        let activeSectionId = null;
 
         function updateActiveSection() {
             const readingLine = window.innerHeight * 0.34;
@@ -1668,12 +1621,15 @@
                 if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
             });
 
-            sectionNavLinks.forEach((link) => {
-                const isActive = link.getAttribute('href') === `#${activeSection.id}`;
-                link.classList.toggle('active', isActive);
-                if (isActive) link.setAttribute('aria-current', 'location');
-                else link.removeAttribute('aria-current');
-            });
+            if (activeSection.id !== activeSectionId) {
+                activeSectionId = activeSection.id;
+                sectionNavLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === `#${activeSectionId}`;
+                    link.classList.toggle('active', isActive);
+                    if (isActive) link.setAttribute('aria-current', 'location');
+                    else link.removeAttribute('aria-current');
+                });
+            }
             sectionTrackingFrame = null;
         }
 

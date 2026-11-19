@@ -211,6 +211,13 @@
             padding: 52px 0;
             border-top: 2px solid #E5E5E5;
         }
+        .rr-tech-brief { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr); gap: 36px; align-items: start; margin-top: 24px; }
+        .rr-tech-brief img { display: block; width: 100%; height: auto; }
+        .rr-tech-resources { display: grid; margin-top: 28px; border-top: 1px solid #BDBDBD; }
+        .rr-tech-resources a { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid #D4D4D4; color: #0A0A0A; font-size: 14px; font-weight: 600; line-height: 1.4; }
+        .rr-tech-resources a span { color: #287F71; font-size: 18px; line-height: 1; }
+        .rr-tech-resources a:hover, .rr-tech-resources a:focus-visible { color: #287F71; }
+        .rr-tech-resources a:focus-visible { outline: 2px solid #287F71; outline-offset: 3px; }
         .rr-product-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -250,6 +257,9 @@
             gap: 28px;
             margin-top: 28px;
         }
+        .rr-use-grid { grid-template-columns: minmax(0, 760px); }
+        #prototype .rr-use-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        #prototype .rr-prototype-copy { margin-top: 32px; }
         .rr-use-grid img,
         .rr-process-grid img,
         .rr-outcome-grid img {
@@ -292,6 +302,62 @@
             display: block;
         }
         .rr-narrative p em { color: #0A0A0A; }
+        .rr-evidence-page .rr-case > .rr-radio-story {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            padding: clamp(72px, 8vw, 116px) 0 clamp(88px, 10vw, 140px);
+            border: 0;
+            background: #0A0A0A;
+            color: #FAFAFA;
+        }
+        @media (min-width: 1200px) {
+            .rr-evidence-page .rr-case > .rr-radio-story::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 100%;
+                width: 72px;
+                background: #0A0A0A;
+                pointer-events: none;
+            }
+        }
+        .rr-story-inner { width: min(calc(100% - 112px), 1080px); margin-inline: auto; }
+        .rr-story-opening {
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+            gap: clamp(28px, 6vw, 88px);
+            align-items: end;
+            padding-bottom: clamp(42px, 6vw, 72px);
+            border-bottom: 1px solid #565656;
+        }
+        .rr-story-opening h2 { margin: 0; color: #FAFAFA; font: 400 clamp(54px, 7.5vw, 104px)/.94 'Archivo Black', Impact, sans-serif; letter-spacing: -.055em; }
+        .rr-story-opening h2::after { content: ''; display: block; width: 56px; height: 4px; margin-top: 28px; background: #40C1AC; }
+        .rr-story-opening p { max-width: 38ch; margin: 0; color: #F3F1EA; font: 400 clamp(19px, 2vw, 25px)/1.5 var(--font-body); }
+        .rr-story-comic { margin-top: clamp(52px, 7vw, 96px) !important; }
+        .rr-story-comic img { display: block; width: 100%; height: auto; background: #FAFAFA; }
+        .rr-story-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); align-items: center; margin-top: clamp(70px, 9vw, 132px); }
+        .rr-story-row--morning .rr-story-text { grid-column: span 5; }
+        .rr-story-row--morning figure { grid-column: span 7; }
+        .rr-story-row--object { align-items: start; }
+        .rr-story-row--object figure:first-child { grid-column: span 7; }
+        .rr-story-row--object figure:last-child { grid-column: span 5; }
+        .rr-story-row--details { align-items: start; }
+        .rr-story-row--details figure:first-child { grid-column: span 5; }
+        .rr-story-row--details .rr-story-text { grid-column: span 7; }
+        .rr-story-row--inside figure { grid-column: span 7; }
+        .rr-story-text { padding-top: 20px; border-top: 2px solid #40C1AC; }
+        .rr-story-text .rr-story-kicker { display: block; margin-bottom: 20px; color: #40C1AC; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+        .rr-story-text p { max-width: 43ch; margin: 0 0 20px; color: #F3F1EA; font: 400 clamp(17px, 1.55vw, 21px)/1.65 var(--font-body); }
+        .rr-story-text p:last-child { margin-bottom: 0; }
+        .rr-story-ending { grid-column: span 5; margin: 0; padding-top: 20px; border-top: 2px solid #40C1AC; color: #FAFAFA; font: 400 clamp(24px, 2.6vw, 34px)/1.4 var(--font-body); text-align: left; }
+        .rr-evidence-page .rr-case #product figure { min-width: 0; padding: 0; border: 0; background: transparent; box-shadow: none; transform: none; transition: none; }
+        .rr-evidence-page .rr-case #product figure::before { display: none; }
+        .rr-evidence-page .rr-case #product figure:hover { transform: none; box-shadow: none; }
+        .rr-radio-story figure img { display: block; width: 100%; height: auto; border: 1px solid rgba(250, 250, 250, .4); }
+        .rr-evidence-page .rr-case .rr-radio-story figure figcaption { padding: 10px 0 0 11px; border-left: 2px solid #40C1AC; color: #B8C5C2; font-size: 12px; line-height: 1.5; }
+        .rr-radio-story .zoom-image-button { opacity: 1; transform: none; }
         .rr-reflection h2 {
             padding-bottom: 8px;
             border-bottom: 2px solid #0A0A0A;
@@ -388,6 +454,65 @@
             color: rgba(250, 250, 250, 0.56);
             padding-top: 10px;
         }
+        .rr-hero-film {
+            position: relative;
+            width: min(100%, 1080px);
+            margin: 48px auto 0;
+            background: #0A0A0A;
+        }
+        .rr-hero-film video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            background: #0A0A0A;
+        }
+        .rr-hero-film.is-custom video::-webkit-media-controls { display: none !important; }
+        .rr-video-controls[hidden] { display: none; }
+        .rr-video-controls { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 32px auto minmax(80px, 1fr) 32px 32px; gap: 12px; align-items: center; min-height: 65px; padding: 17px 18px 9px; background: linear-gradient(transparent, rgb(10 10 10 / 94%) 42%); color: #FAFAFA; }
+        .rr-video-control { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; color: #FAFAFA; }
+        .rr-video-control:hover, .rr-video-control:focus-visible { color: #40C1AC; }
+        .rr-video-control:focus-visible, .rr-video-seek:focus-visible { outline: 2px solid #40C1AC; outline-offset: 2px; }
+        .rr-video-control svg { display: block; width: 19px; height: 19px; }
+        .rr-video-pause-icon, .rr-video-muted-icon { display: none; }
+        .rr-video-toggle[data-playing="true"] .rr-video-play-icon, .rr-video-mute[data-muted="true"] .rr-video-sound-icon { display: none; }
+        .rr-video-toggle[data-playing="true"] .rr-video-pause-icon, .rr-video-mute[data-muted="true"] .rr-video-muted-icon { display: block; }
+        .rr-video-time { color: #FAFAFA; font: 500 12px/1.2 var(--font-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .rr-video-seek { appearance: none; width: 100%; height: 24px; margin: 0; padding: 0; background: transparent; }
+        .rr-video-seek::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--rr-video-progress, 0%), #d4d4d4 var(--rr-video-progress, 0%)); }
+        .rr-video-seek::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; margin-top: -4px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+        .rr-video-seek::-moz-range-track { height: 4px; background: linear-gradient(90deg, #40C1AC var(--rr-video-progress, 0%), #d4d4d4 var(--rr-video-progress, 0%)); }
+        .rr-video-seek::-moz-range-thumb { width: 11px; height: 11px; border: 1px solid #0A0A0A; border-radius: 50%; background: #40C1AC; }
+        .rr-hero-film:fullscreen { width: 100vw; height: 100vh; }
+        .rr-hero-film:fullscreen video { height: 100%; }
+        @media (max-width: 680px) {
+            .rr-video-controls { grid-template-columns: 24px auto minmax(0, 1fr) 24px 24px; gap: 6px; min-height: 43px; padding: 8px 8px 5px; }
+            .rr-video-control { width: 24px; height: 24px; }
+            .rr-video-control svg { width: 16px; height: 16px; }
+            .rr-video-time { font-size: 10px; }
+        }
+        .rr-hero-description {
+            width: min(100%, 1080px);
+            margin: 28px auto 0;
+            color: #FAFAFA;
+            font: 400 clamp(17px, 1.8vw, 20px)/1.65 var(--font-body);
+        }
+        .rr-hero-description p { margin: 0 0 20px; }
+        .rr-hero-description p:last-child { margin-bottom: 0; }
+        .rr-meet-intro { margin: 0 0 28px; font-size: clamp(22px, 2.7vw, 30px); font-weight: 600; line-height: 1.3; color: #0A0A0A; }
+        .rr-question-bridge { display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr); gap: 18px; align-items: center; margin-top: 40px; }
+        .rr-question-card { min-height: 172px; padding: 24px; border: 2px solid #0A0A0A; border-left: 7px solid #40C1AC; background: #FAFAFA; }
+        .rr-question-card--found { border-left: 2px solid #0A0A0A; background: #0A0A0A; }
+        .rr-question-card h3 { margin: 0 0 20px; font: 400 20px/1.2 'Archivo Black', Impact, sans-serif; }
+        .rr-question-card p { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.5; }
+        .rr-question-card--found h3 { color: #40C1AC; }
+        .rr-question-card--found p { color: #FAFAFA; }
+        .rr-question-arrow { display: grid; place-items: center; width: 72px; height: 72px; color: #287F71; }
+        .rr-question-arrow svg { width: 54px; height: 54px; fill: none; stroke: currentColor; stroke-width: 4; stroke-linecap: square; stroke-linejoin: miter; }
+        .rr-insight-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 36px; align-items: start; }
+        .rr-insight-copy p { font-size: 16px; line-height: 1.75; color: #525252; margin: 0 0 16px; }
+        .rr-insight-photo { min-width: 0; }
+        .rr-insight-photo img { display: block; width: 100%; height: auto; }
 
         /* === Evidence trail layout === */
         .rr-evidence-page .project-detail-hero {
@@ -443,33 +568,23 @@
             transform: rotate(0deg) translateY(-3px);
             box-shadow: 9px 10px 0 rgba(64, 193, 172, 0.5);
         }
-        .rr-evidence-page .rr-case figure:not(.rr-hero-image) figcaption {
-            padding: 10px 12px;
-        }
-        .rr-evidence-page figure figcaption {
-            position: absolute;
-            z-index: 5;
-            right: 11px;
-            bottom: 11px;
-            left: 11px;
+        .rr-evidence-page .rr-case figure figcaption {
+            position: static;
             width: auto;
-            padding: 10px 12px;
-            color: #FAFAFA;
-            background: rgba(10, 10, 10, 0.84);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(5px);
-            transition: opacity 180ms ease, transform 180ms ease;
+            padding: 10px 2px 0;
+            color: #737373;
+            background: transparent;
+            opacity: 1;
+            pointer-events: auto;
+            transform: none;
+            transition: none;
         }
         .rr-evidence-page .rr-hero-image figcaption {
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-        .rr-evidence-page figure:hover figcaption,
-        .rr-evidence-page figure:focus-within figcaption {
+            position: static;
+            padding-top: 10px;
+            color: rgba(250, 250, 250, 0.68);
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
         .rr-evidence-page .card-strip {
             background: transparent;
@@ -558,12 +673,21 @@
         }
 
         @media (max-width: 900px) {
+            .rr-story-inner { width: min(calc(100% - 48px), 1080px); }
+            .rr-story-opening { grid-template-columns: 1fr; align-items: start; }
+            .rr-story-row--morning, .rr-story-row--details { grid-template-columns: 1fr; }
+            .rr-story-row--morning > *, .rr-story-row--details > * { grid-column: 1 !important; }
             .rr-case { width: min(calc(100% - 48px), 1080px); }
             .project-detail-hero { padding-left: var(--page-padding); padding-right: var(--page-padding); }
             .rr-hero-inner { grid-template-columns: 1fr; gap: 40px; }
             .project-detail-hero .project-meta { max-width: none; }
             .rr-hero-copy .back-link { margin-bottom: 32px; }
             .rr-hero-image img { max-height: 360px; aspect-ratio: 16 / 9; }
+            .rr-hero-film { margin-top: 40px; }
+            .rr-insight-layout { grid-template-columns: 1fr; }
+            .rr-insight-photo { max-width: 560px; }
+            .rr-tech-brief { grid-template-columns: 1fr; }
+            .rr-tech-brief figure { max-width: 640px; }
             .split-row,
             .split-row.reverse,
             .rr-summary,
@@ -595,11 +719,24 @@
         }
 
         @media (max-width: 560px) {
+            .rr-evidence-page .rr-case > .rr-radio-story { padding: 64px 0 82px; }
+            .rr-story-inner { width: calc(100% - 48px); }
+            .rr-story-opening { gap: 28px; padding-bottom: 44px; }
+            .rr-story-opening h2 { font-size: clamp(46px, 13vw, 66px); }
+            .rr-story-opening p { font-size: 18px; }
+            .rr-story-row { grid-template-columns: 1fr; gap: 28px; margin-top: 66px; }
+            .rr-story-row > * { grid-column: 1 !important; }
+            .rr-story-ending { font-size: 25px; }
             .rr-case { width: calc(100% - 48px); }
             .project-detail-hero { padding-top: 48px; padding-bottom: 48px; }
             .project-detail-hero h1 { font-size: 38px; margin-bottom: 28px; }
             .project-detail-hero .project-meta { grid-template-columns: 1fr; gap: 18px; }
             .rr-hero-image img { max-height: 260px; aspect-ratio: 4 / 3; }
+            .rr-hero-film { margin-top: 32px; }
+            .rr-hero-description { margin-top: 22px; }
+            .rr-question-bridge { grid-template-columns: 1fr; gap: 16px; }
+            .rr-question-arrow { justify-self: center; transform: rotate(90deg); }
+            #prototype .rr-use-grid { grid-template-columns: 1fr; }
             .rr-intro .lead { font-size: 18px; }
             .card-strip { grid-template-columns: 1fr; }
             .rr-evidence-page .rr-case figure:not(.rr-hero-image) { padding: 8px; }
@@ -649,214 +786,195 @@
             </div>
             <figure class="rr-hero-image">
                 <img src="../assets/projects/ricks-radio/product-front.png" alt="Rick's Radio front view with LCD screen, volume dial, station dial, Bluetooth button, and power switch on a brick-sized plywood enclosure">
-                <figcaption>Front view of the finished Rick's Radio with two dials, an LCD screen, Bluetooth button, and power switch.</figcaption>
+                <figcaption>The finished brick-sized radio has two dials, an LCD screen, a Bluetooth button, and a power switch.</figcaption>
             </figure>
+        </div>
+        <div class="rr-hero-film" data-cursor-shape="hand">
+            <video controls playsinline preload="metadata" poster="../assets/projects/ricks-radio/product-front.png" aria-label="Rick's Radio demonstration video">
+                <source src="../assets/projects/ricks-radio/C0002-web.m4v" type="video/mp4">
+                Your browser cannot play this video. <a href="../assets/projects/ricks-radio/C0002-web.m4v">Open the radio demonstration video</a>.
+            </video>
+            <div class="rr-video-controls" role="group" aria-label="Video playback controls" hidden>
+                <button class="rr-video-control rr-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="rr-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="rr-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                </button>
+                <span class="rr-video-time"><span class="rr-video-current">0:00</span> / <span class="rr-video-duration">0:00</span></span>
+                <input class="rr-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                <button class="rr-video-control rr-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="rr-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="rr-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                </button>
+                <button class="rr-video-control rr-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="rr-hero-description" id="overview">
+            <p>The radio is a customized present for Rick. Rick has been a mason for over 50 years, currently working at CMU. He was extremely proficient at his job, so we were not able to invent anything to "improve his work efficiency". However, for such a lovely family man who worked in the cold Pittsburgh winter alone all day long, we decided to give him a present. The radio has several stations connecting to his children, is customized to adapt to his daily workflow, and is a size and shape of a standard brick.</p>
+            <p>Rick loves the radio.</p>
         </div>
     </section>
 
     <aside class="page-jump-nav" aria-label="Jump to Rick's Radio section">
         <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
         <ul>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#concept">Concept</a></li>
-            <li><a href="#prototype">Prototype</a></li>
-            <li><a href="#product">Product</a></li>
-            <li><a href="#technical">Technical</a></li>
+            <li><a href="#research">Meet Rick</a></li>
+            <li><a href="#concept">From a tool to a present</a></li>
+            <li><a href="#prototype">Prototype &amp; Feedback</a></li>
+            <li><a href="#product">Rick's Radio</a></li>
+            <li><a href="#technical">Technical Pivot</a></li>
             <li><a href="#outcome">Outcome</a></li>
-            <li><a href="#reflection">Reflection</a></li>
         </ul>
     </aside>
 
     <main class="rr-case">
-        <section class="rr-intro" id="overview">
-            <p class="lead">
-                We designed the radio for Rick, a mason at Carnegie Mellon who has worked with brick for over five decades. At the beginning, we thought we would end up with a small assistive device to improve his work efficiency. After talking with him and observing his work environment, we realized the better design opportunity was not efficiency, but the long, solitary time Rick has to spend each day doing his work.
-            </p>
-            <p class="lead">
-                The final object is a brick-shaped radio that streams stations from cities connected to his children, including Paris and Las Vegas. It uses a Raspberry Pi Zero, an LCD screen, a speaker, Bluetooth output, and physical dials inside a laser-cut plywood enclosure that is the same size as a real brick.
-            </p>
-        </section>
-
         <section class="split-row" id="research">
             <div class="split-text">
+                <h2 class="rr-section-title">Meet Rick</h2>
+                <p class="rr-meet-intro">That's how we met Rick!</p>
                 <figure class="rr-comic zoomable-figure">
-                    <img src="../assets/projects/ricks-radio/Rick Intro.png" alt="Comic showing Rick at work, the team's concern about his solitary mornings, and their question about music">
-                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick introduction comic" data-zoom-src="../assets/projects/ricks-radio/Rick Intro.png" data-zoom-alt="Comic showing Rick at work, the team's concern about his solitary mornings, and their question about music" data-zoom-caption="Rick introduction comic."></button>
+                    <img src="../assets/projects/ricks-radio/Rick Intro.png" alt="Four-panel comic about meeting Rick and shifting focus from work efficiency to companionship" aria-describedby="rick-intro-caption" loading="lazy" decoding="async" width="2388" height="1668">
+                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick introduction comic" data-zoom-src="../assets/projects/ricks-radio/Rick Intro.png" data-zoom-alt="Four-panel comic about meeting Rick and shifting focus from work efficiency to companionship" data-zoom-caption="The team meets Rick, recognizes that his masonry skill needs no efficiency fix, and notices that he spends long Pittsburgh winter workdays alone. The comic ends with the team asking whether he likes music. Drawn by Hua Tong."></button>
+                    <figcaption id="rick-intro-caption">The team meets Rick, recognizes that his masonry skill needs no efficiency fix, and notices that he spends long Pittsburgh winter workdays alone. The comic ends with the team asking whether he likes music. Drawn by Hua Tong.</figcaption>
                 </figure>
             </div>
-        </section>
-
-        <section class="rr-text-block">
-            <h2 class="rr-section-title">Research Insight</h2>
-            <p>
-                As we switched our direction from efficiency improvement to improving his working experience, especially mentally, we wanted to hear what he already did during his work.
-            </p>
-            <p>
-                Music was already part of his day. He told us it keeps him company while he works. We started to see music as something that could add a little warmth to his workday. The realization moved the project towards a more personal question: could a device help him feel closer to the people and places he cares about?
-            </p>
-            <figure class="split-image">
-                <img src="../assets/projects/ricks-radio/rick-meeting.jpg" alt="Hua showing sketches to Rick while the team discusses the radio design at a table">
-                <figcaption>Rick and the team sitting at a table during a client feedback conversation.</figcaption>
-            </figure>
-            <div class="rr-callout">
-                <div>
+            <div class="rr-question-bridge" aria-label="How our research question changed">
+                <div class="rr-question-card">
                     <h3>What we expected</h3>
                     <p>How do we improve Rick's working efficiency?</p>
                 </div>
-                <div>
+                <div class="rr-question-arrow" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M5 24h36m-13-13 13 13-13 13"/></svg></div>
+                <div class="rr-question-card rr-question-card--found">
                     <h3>What we found</h3>
                     <p>How do we improve Rick's working experience?</p>
                 </div>
             </div>
         </section>
 
-        <section class="rr-text-block" id="concept">
-            <h2 class="rr-section-title">Concept</h2>
-            <p>
-                We decided to build a radio that could stream stations from the cities where Rick's children live or once lived. The idea grew out of what Rick chose to share with us: his children's cities, and his habit of listening to music while he worked. Instead of a random playlist, the radio would let him tune into a place. Paris could remind him of his daughter. Las Vegas could remind him of his son. We also added several ad-free Pittsburgh local stations, so he could switch back to music that felt familiar to him.
-            </p>
-            <p>
-                The brick shape came from Rick's own world. We kept the dimensions close to a standard brick, used laser-cut 1/8 inch plywood for the enclosure, and kept the plywood unadorned because Rick liked the plain wood look. The interface stayed physical: one dial for volume, one dial for station selection, a Bluetooth button, a power switch, and an LCD that shows both the station and output mode.
-            </p>
+        <section class="rr-gallery-section" id="concept">
+            <h2 class="rr-section-title">From a tool to a present</h2>
+            <div class="rr-insight-layout">
+                <div class="rr-insight-copy">
+                    <p>Rick said he loves all types of music, and he listens to music at work sometimes! That is a great start for us. We decided to design a device that provides company and joy to Rick at the same time. A music player that caters to his daily work fits the description. However, to add more personal elements to the design, we thought of a radio that preserves important family sentiments. Paris could remind him of his daughter. Las Vegas could remind him of his son. We also added several ad-free Pittsburgh local stations, so he could switch back to music that felt familiar to him.</p>
+                    <p>We also kept the dimensions close to a standard brick, used laser-cut 1/8 inch plywood for the enclosure, and kept the plywood unadorned because Rick liked the plain wood look.</p>
+                </div>
+                <figure class="rr-insight-photo">
+                    <img src="../assets/projects/ricks-radio/rick-meeting.jpg" alt="Hua showing sketches to Rick while the team discusses the radio design at a table" loading="lazy" decoding="async" width="2992" height="2000">
+                    <figcaption>Rick and the team looking at design sketches together.</figcaption>
+                </figure>
+            </div>
         </section>
 
         <section class="card-strip" aria-label="Brainstorm sketches for Rick's Radio">
             <figure>
-                <img src="../assets/projects/ricks-radio/sketch-whiteboard-1.jpg" alt="Whiteboard brainstorm sketch of the radio interface with speaker, knobs, toggle, and labels">
-                <figcaption>Whiteboard sketch showing an early front interface layout with knobs, speaker, and switch labels.</figcaption>
+                <img src="../assets/projects/ricks-radio/sketch-whiteboard-1.jpg" alt="Whiteboard brainstorm sketch of the radio interface with speaker, knobs, toggle, and labels" loading="lazy" decoding="async" width="5712" height="4284">
+                <figcaption>Early whiteboard sketch placing the speaker, dials, and switches on the radio's front panel.</figcaption>
             </figure>
             <figure>
-                <img src="../assets/projects/ricks-radio/sketch-whiteboard-wide.jpg" alt="Wide whiteboard brainstorm sketch showing the full front panel layout with LCD and dimensions">
-                <figcaption>Whiteboard sketch showing the full front panel layout, LCD placement, and brick-scale dimensions.</figcaption>
+                <img src="../assets/projects/ricks-radio/sketch-whiteboard-wide.jpg" alt="Wide whiteboard brainstorm sketch showing the full front panel layout with LCD and dimensions" loading="lazy" decoding="async" width="4032" height="3024">
+                <figcaption>Whiteboard sketch of the front panel with LCD placement and brick-sized measurements.</figcaption>
             </figure>
             <figure>
-                <img src="../assets/projects/ricks-radio/sketch-whiteboard-2.jpg" alt="Whiteboard brainstorm sketch of front panel layout with LCD screen placement">
-                <figcaption>Whiteboard sketch exploring LCD placement.</figcaption>
+                <img src="../assets/projects/ricks-radio/sketch-whiteboard-2.jpg" alt="Whiteboard brainstorm sketch of front panel layout with LCD screen placement" loading="lazy" decoding="async" width="4032" height="3024">
+                <figcaption>Whiteboard sketch testing a front panel layout around the LCD screen.</figcaption>
             </figure>
             <figure>
-                <img src="../assets/projects/ricks-radio/sketch-whiteboard-3.jpg" alt="Whiteboard brainstorm sketch with alternate component placement for Rick's Radio">
-                <figcaption>Whiteboard sketch exploring the dial design.</figcaption>
+                <img src="../assets/projects/ricks-radio/sketch-whiteboard-3.jpg" alt="Whiteboard brainstorm sketch with alternate component placement for Rick's Radio" loading="lazy" decoding="async" width="3024" height="4032">
+                <figcaption>Whiteboard sketch testing another arrangement for the radio's two dials.</figcaption>
             </figure>
         </section>
 
         <section class="rr-gallery-section" id="prototype">
             <h2 class="rr-section-title">Prototype &amp; Feedback</h2>
-            <p>
-                We made a non-working plywood prototype first, because we wanted Rick to react to the size, layout, and interaction before we spent too much time on electronics. The prototype had the main ingredients in place: two dials, an LCD, a Bluetooth button, an on/off control, and a brick-like box.
-            </p>
             <div class="rr-use-grid">
                 <figure>
-                    <img src="../assets/projects/ricks-radio/prototype-front.jpg" alt="First plywood prototype of Rick's Radio with two dials, LCD screen, blue Bluetooth button, and toggle switch">
-                    <figcaption>First plywood appearance prototype with two dials, an LCD screen, blue button, and toggle switch.</figcaption>
+                    <img src="../assets/projects/ricks-radio/prototype-front.jpg" alt="First plywood prototype of Rick's Radio with two dials, LCD screen, blue Bluetooth button, and toggle switch" loading="lazy" decoding="async" width="3869" height="2902">
+                    <figcaption>First plywood prototype with two dials, an LCD screen, a blue button, and a toggle switch.</figcaption>
                 </figure>
                 <figure>
-                    <img src="../assets/projects/ricks-radio/prototype-use-2.jpg" alt="Hand pressing the blue Bluetooth button on the Rick's Radio prototype">
-                    <figcaption>Hand pressing the blue button on the plywood prototype.</figcaption>
+                    <img src="../assets/projects/ricks-radio/prototype-use-2.jpg" alt="Hand pressing the blue Bluetooth button on the Rick's Radio prototype" loading="lazy" decoding="async" width="4032" height="3024">
+                    <figcaption>A hand pressing the blue button on the plywood prototype.</figcaption>
                 </figure>
             </div>
-            <p style="margin-top:24px;">
-                Rick liked the brick form and even preferred the plain wood over a painted finish. He also helped us see what was not clear yet: the toggle did not read as an on/off switch, and the two dials were too similar. He imagined putting the radio on his work cart or near the top of the cart window, and asked whether magnets could be added to the back.
-            </p>
-            <p>
-                After that feedback, we changed the toggle to a clearer power switch, added a volume pattern around one dial, labeled the Bluetooth button with an icon, and kept the natural plywood finish.
-            </p>
-        </section>
-
-        <section class="rr-gallery-section" id="product">
-            <h2 class="rr-section-title">Final Product</h2>
-            <div class="rr-product-grid">
-                <figure>
-                    <img class="crop-front" src="../assets/projects/ricks-radio/front-closeup.png" alt="Close-up of Rick's Radio front panel showing LCD text, volume dial pattern, station dial, Bluetooth button, and power switch">
-                    <figcaption>Close-up of the front panel with the LCD screen, two dials, Bluetooth button, and power switch.</figcaption>
-                </figure>
-                <figure>
-                    <img class="crop-perspective" src="../assets/projects/ricks-radio/product-perspective.png" alt="Perspective view of Rick's Radio showing its brick-like plywood enclosure and finger-jointed edges">
-                    <figcaption>Perspective view of the finished plywood enclosure with finger-jointed edges.</figcaption>
-                </figure>
-                <figure>
-                    <img class="crop-back" src="../assets/projects/ricks-radio/product-back.png" alt="Back view of Rick's Radio showing the battery compartment on the plywood enclosure">
-                    <figcaption>Back view of the radio with the battery compartment visible.</figcaption>
-                </figure>
-                <figure>
-                    <img class="crop-inside" src="../assets/projects/ricks-radio/inside structure.jpg" alt="Inside view of Rick's Radio showing the speaker, Raspberry Pi, LCD wiring, dials, and battery wiring inside the plywood enclosure">
-                    <figcaption>Inside view of the final radio enclosure with the speaker, Raspberry Pi, wiring, dials, and LCD screen.</figcaption>
-                </figure>
-            </div>
-            <div class="rr-use-grid">
-                <figure>
-                    <img src="../assets/projects/ricks-radio/product-use.png" alt="Hand turning the volume knob on Rick's Radio while the radio rests on a table">
-                    <figcaption>Hand turning the volume dial on the finished radio.</figcaption>
-                </figure>
-                <figure>
-                    <video controls preload="metadata" aria-label="Demo video showing Rick's Radio being used to stream music and change controls">
-                        <source src="../assets/projects/ricks-radio/C0002-web.m4v" type="video/mp4">
-                    </video>
-                    <figcaption>Video demo of the finished radio playing a streamed station.</figcaption>
-                </figure>
+            <div class="rr-prototype-copy">
+                <p>We made a non-working plywood prototype first, because we wanted Rick to react to the size, layout, and interaction before we moved further into electrics.</p>
+                <p>Rick liked the brick form and even preferred the plain wood over a painted finish. He noticed that the toggle did not read as an on/off switch, and the two dials were too similar. Those are very helpful feedbacks moving on.</p>
             </div>
         </section>
 
-        <section class="rr-narrative">
-            <span class="overline">Narrative Sketch</span>
-            <figure class="rr-comic zoomable-figure">
-                <img src="../assets/projects/ricks-radio/Rick Scenario.png" alt="Illustrated scenario of Rick using his radio during a workday">
-                <button class="zoom-image-button" type="button" aria-label="Enlarge Rick narrative comic" data-zoom-src="../assets/projects/ricks-radio/Rick Scenario.png" data-zoom-alt="Illustrated scenario of Rick using his radio during a workday" data-zoom-caption="Rick narrative sketch."></button>
-            </figure>
-            <p>The following is an imagined use scenario based on our research.</p>
-            <p>
-                <em>Rick gets to work early in the morning and starts his day with the radio on his cart.</em> Instead of turning to a random playlist, he turns the station dial to Paris. The LCD confirms the station, and the sound follows him as he drives to the work site, reminding him of his daughter who once worked there.
-            </p>
-            <p>
-                Later, when he starts working outside, he presses the Bluetooth button and switches the sound to his earbuds. He turns the volume down so he can still hear his surroundings, then changes the station to Las Vegas, his son's city. The radio stays simple: two dials, one button, one switch, and a small screen showing the city and the station.
-            </p>
+        <section class="rr-radio-story" id="product" aria-labelledby="rr-story-title">
+            <div class="rr-story-inner">
+                <div class="rr-story-opening">
+                    <h2 id="rr-story-title">Rick's Radio</h2>
+                    <p>A brick-sized radio for the hours Rick spends working alone, with stations tied to the places and people he loves.</p>
+                </div>
+
+                <figure class="rr-story-comic zoomable-figure">
+                    <img src="../assets/projects/ricks-radio/Rick Scenario.png" alt="Four-panel imagined scenario of Rick using the radio during his workday" aria-describedby="rick-scenario-caption" loading="lazy" decoding="async" width="2388" height="1668">
+                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick narrative comic" data-zoom-src="../assets/projects/ricks-radio/Rick Scenario.png" data-zoom-alt="Four-panel imagined scenario of Rick using the radio during his workday" data-zoom-caption="An imagined workday: Rick starts at 5 AM, turns on the brick-sized radio, connects his earbuds, and listens to stations that remind him of his children while he lays bricks. Drawn by Hua Tong."></button>
+                    <figcaption id="rick-scenario-caption">An imagined workday: Rick starts at 5 AM, turns on the brick-sized radio, connects his earbuds, and listens to stations that remind him of his children while he lays bricks. Drawn by Hua Tong.</figcaption>
+                </figure>
+
+                <div class="rr-story-row rr-story-row--morning">
+                    <div class="rr-story-text">
+                        <span class="rr-story-kicker">An imagined workday</span>
+                        <p>At 5 a.m., Rick starts his day with the radio on his cart. He turns the station dial to Paris. The LCD confirms his choice, and the music brings his daughter to mind.</p>
+                        <p>The radio is small enough to travel with him. Its shape is as familiar as the bricks he has spent decades laying.</p>
+                    </div>
+                    <figure>
+                        <img src="../assets/projects/ricks-radio/product-use.png" alt="Hand turning the volume knob on Rick's Radio while the radio rests on a table" loading="lazy" decoding="async" width="1856" height="1022">
+                        <figcaption>A hand turning the volume dial on the finished radio.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="rr-story-row rr-story-row--object">
+                    <figure>
+                        <img src="../assets/projects/ricks-radio/front-closeup.png" alt="Close-up of Rick's Radio front panel showing LCD text, volume dial pattern, station dial, Bluetooth button, and power switch" loading="lazy" decoding="async" width="719" height="357">
+                        <figcaption>The finished front panel with an LCD screen, two dials, a Bluetooth button, and a power switch.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../assets/projects/ricks-radio/product-perspective.png" alt="Perspective view of Rick's Radio showing its brick-like plywood enclosure and finger-jointed edges" loading="lazy" decoding="async" width="1918" height="1276">
+                        <figcaption>The finished plywood enclosure with visible finger-jointed edges.</figcaption>
+                    </figure>
+                </div>
+
+                <div class="rr-story-row rr-story-row--details">
+                    <figure>
+                        <img src="../assets/projects/ricks-radio/product-back.png" alt="Back view of Rick's Radio showing the battery compartment on the plywood enclosure" loading="lazy" decoding="async" width="1888" height="1258">
+                        <figcaption>The back of the radio showing its battery compartment.</figcaption>
+                    </figure>
+                    <div class="rr-story-text">
+                        <span class="rr-story-kicker">Close enough to carry</span>
+                        <p>Outside, he can press the Bluetooth button and listen through his earbuds. Another turn of the dial can take him to Las Vegas, a place connected to his son. Pittsburgh stations are there too, ready when he wants something closer to home.</p>
+                        <p>Two dials, one button, one switch, and a small screen let the radio join his routine without asking him to change the way he works.</p>
+                    </div>
+                </div>
+
+                <div class="rr-story-row rr-story-row--inside">
+                    <figure>
+                        <img src="../assets/projects/ricks-radio/inside structure.jpg" alt="Inside view of Rick's Radio showing the speaker, Raspberry Pi, LCD wiring, dials, and battery wiring inside the plywood enclosure" loading="lazy" decoding="async" width="1280" height="847">
+                        <figcaption>Inside the radio: the speaker, Raspberry Pi, wiring, dials, and LCD screen.</figcaption>
+                    </figure>
+                    <p class="rr-story-ending">A familiar object can carry a song, a place, and the thought of someone far away into the workday.</p>
+                </div>
+            </div>
         </section>
 
         <section class="rr-gallery-section" id="technical">
             <h2 class="rr-section-title">Technical Pivot</h2>
-            <p>
-                We originally planned to use a Raspberry Pi Pico 2 W because it was small and seemed convenient. The problem was that the Pico could not handle the kind of Bluetooth audio and live web streaming we needed, and we didn't have the analog-to-digital converter at that time. That was a major bottleneck because a lot of our schedule had been built around it.
-            </p>
-            <div class="rr-process-grid">
+            <div class="rr-tech-brief">
+                <div class="rr-tech-copy">
+                    <p>We started with a Raspberry Pi Pico 2 W, but it could not handle the live radio streaming and Bluetooth audio this project needed. We switched to a Raspberry Pi Zero W with an Adafruit Speaker Bonnet, then revised the wiring and code so the stations, physical controls, LCD, and audio could work together inside a brick-sized enclosure.</p>
+                    <div class="rr-tech-resources" role="group" aria-label="Technical resources">
+                        <a href="https://github.com/danappyboi/RadioRick" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a>
+                        <a href="../assets/projects/ricks-radio/schematic1.png" target="_blank" rel="noopener noreferrer">Component diagram <span aria-hidden="true">↗</span></a>
+                        <a href="../assets/projects/ricks-radio/schematic2.png" target="_blank" rel="noopener noreferrer">Circuit schematic <span aria-hidden="true">↗</span></a>
+                        <a href="https://sites.google.com/andrew.cmu.edu/60-223-f25/final-project-documentation/bluestems-radio-rick" target="_blank" rel="noopener noreferrer">Original project documentation <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
                 <figure>
-                    <img src="../assets/projects/ricks-radio/prototype.jpg" alt="Early breadboard electronics with Raspberry Pi Pico, many jumper wires, potentiometers, and a speaker">
-                    <figcaption>Breadboard prototype with a Raspberry Pi Pico, jumper wires, potentiometers, and a speaker.</figcaption>
+                    <img src="../assets/projects/ricks-radio/final workstage.jpg" alt="Monitor and Raspberry Pi Zero with wires and radio components spread across a work table during debugging" loading="lazy" decoding="async" width="1280" height="918">
+                    <figcaption>The Pi Zero W and radio components on the work table during debugging.</figcaption>
                 </figure>
-                <figure>
-                    <img src="../assets/projects/ricks-radio/final workstage.jpg" alt="Final work table with monitor, Raspberry Pi Zero, wiring, battery pack, and radio parts during debugging">
-                    <figcaption>Work table with a monitor, Raspberry Pi Zero, wiring, battery pack, and radio components during debugging.</figcaption>
-                </figure>
-            </div>
-            <p style="margin-top:24px;">
-                We moved to a Raspberry Pi Zero with an Adafruit Speaker Bonnet. This solved the streaming problem, but it also changed the whole build: less space inside the box, different power needs, and the code architecture that manages knob input, button presses, Bluetooth state, and station switching at the same time.
-            </p>
-            <div class="rr-schematic-grid">
-                <figure class="zoomable-figure">
-                    <img src="../assets/projects/ricks-radio/schematic1.png" alt="Block diagram showing user inputs and audio output flow for Rick's Radio">
-                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick's Radio block diagram" data-zoom-src="../assets/projects/ricks-radio/schematic1.png" data-zoom-alt="Block diagram showing user inputs and audio output flow for Rick's Radio" data-zoom-caption="Block diagram showing the relationship between user inputs, radio station selection, and audio output."></button>
-                    <figcaption>Block diagram showing the relationship between user inputs, radio station selection, and audio output.</figcaption>
-                </figure>
-                <figure class="zoomable-figure">
-                    <img src="../assets/projects/ricks-radio/schematic2.png" alt="Circuit schematic for Rick's Radio electronics and wiring">
-                    <button class="zoom-image-button" type="button" aria-label="Enlarge Rick's Radio circuit schematic" data-zoom-src="../assets/projects/ricks-radio/schematic2.png" data-zoom-alt="Circuit schematic for Rick's Radio electronics and wiring" data-zoom-caption="Circuit schematic showing the final wiring layout."></button>
-                    <figcaption>Circuit schematic showing the final wiring layout.</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <section class="split-row reverse">
-            <figure class="split-image">
-                <img src="../assets/projects/ricks-radio/internals.jpg" alt="Open Rick's Radio enclosure on a workbench with loose wiring, speaker, LCD, and components during final fitting">
-                <figcaption>Open radio enclosure during final fitting, with the speaker, LCD screen, and wiring exposed.</figcaption>
-            </figure>
-            <div class="split-text">
-                <h2>Last day accident</h2>
-                <p>
-                    Near the deadline, something we didn't expect happened again. When we were still figuring out battery power, speaker clearance, and how to close the enclosure without forcing the parts against each other, we found that it would not close.
-                </p>
-                <p>
-                    The accident was very literal: the original speaker and the LCD screen physically did not fit in the same closed box. We had hoped to keep a stronger stereo setup, but due to the accident, we switched to a smaller, simpler speaker so the radio could close, power on, and work reliably for the presentation.
-                </p>
             </div>
         </section>
 
@@ -870,52 +988,26 @@
             </p>
             <div class="rr-outcome-grid">
                 <figure>
-                    <img src="../assets/projects/ricks-radio/team photo with client.jpg" alt="Rick smiling and holding Rick's Radio with the project team standing around him in the studio">
-                    <figcaption>Rick holding the finished Rick's Radio with the team standing behind him.</figcaption>
+                    <img src="../assets/projects/ricks-radio/team photo with client.jpg" alt="Rick smiling and holding Rick's Radio with the project team standing around him in the studio" loading="lazy" decoding="async" width="1280" height="710">
+                    <figcaption>Rick holding the finished radio with the project team behind him.</figcaption>
                 </figure>
             </div>
         </section>
 
-        <section class="rr-reflection" id="reflection">
-            <h2>Reflection</h2>
-            <p>
-                This project taught us that user research does not always lead to a clear efficiency problem. Sometimes the more respectful answer is to leave a skilled workflow alone. Rick's masonry practice already worked because he had spent a lifetime building it into muscle memory.
-            </p>
-            <p>
-                The design opportunity came from listening to the parts of his day around the work: the music, the long hours alone, the pride in his children, and the places attached to them. On the technical side, we also learned to test hardware limits earlier. The Pico decision cost us time, but the pivot to the Pi Zero made the final radio possible.
-            </p>
-            <p>
-                Looking back, the most impressive aspect of this journey is how different it feels to design for a specific user. In most of our coursework, users are abstracted into personas and journey maps. This time however, the user had a specific face, a specific set of stories, and a specific family. That changed the texture of every decision.
-            </p>
-        </section>
-
-        <section class="rr-links">
-            <h2>Project Links</h2>
-            <div class="rr-link-list">
-                <a href="https://sites.google.com/andrew.cmu.edu/60-223-f25/final-project-documentation/bluestems-radio-rick" target="_blank" rel="noopener noreferrer">
-                    <strong>Original Documentation</strong>
-                    sites.google.com/andrew.cmu.edu/60-223-f25/final-project-documentation/bluestems-radio-rick
-                </a>
-                <a href="https://github.com/danappyboi/RadioRick" target="_blank" rel="noopener noreferrer">
-                    <strong>GitHub Repository</strong>
-                    danappyboi/RadioRick
-                </a>
-            </div>
-        </section>
     </main>
 
-    <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged schematic" aria-hidden="true">
+    <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged project image" aria-hidden="true">
         <button class="lightbox-close" type="button" aria-label="Close enlarged image">&times;</button>
         <div>
-            <img src="" alt="">
+            <img alt="">
             <p></p>
         </div>
     </div>
 
     <nav class="project-pagination" aria-label="Project navigation">
-        <a class="project-prev" href="sea-monster.html">
+        <a class="project-prev" href="entangled-wood.html">
             <span class="pagination-label">&larr; Previous project</span>
-            <span class="pagination-title">The Sea Monster</span>
+            <span class="pagination-title">Entangled Wood</span>
         </a>
         <a class="back-to-top" href="#top">
             <span class="pagination-label">Back to</span>
@@ -931,10 +1023,12 @@
     <footer>
         <div class="footer-left">
             <span class="footer-logo">HUA TONG</span>
-            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
+            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong. This site was vibe coded.</p>
         </div>
         <div class="footer-right">
             <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+            <a href="https://www.linkedin.com/in/hua-tong-50b1a7293/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="../assets/HuaTong_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
         </div>
     </footer>
 
@@ -993,6 +1087,7 @@
             .map((link) => document.querySelector(link.getAttribute('href')))
             .filter(Boolean);
         let sectionTrackingFrame = null;
+        let activeSectionId = null;
 
         function updateActiveSection() {
             const readingLine = window.innerHeight * 0.34;
@@ -1002,12 +1097,15 @@
                 if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
             });
 
-            sectionNavLinks.forEach((link) => {
-                const isActive = link.getAttribute('href') === `#${activeSection.id}`;
-                link.classList.toggle('active', isActive);
-                if (isActive) link.setAttribute('aria-current', 'location');
-                else link.removeAttribute('aria-current');
-            });
+            if (activeSection.id !== activeSectionId) {
+                activeSectionId = activeSection.id;
+                sectionNavLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === `#${activeSectionId}`;
+                    link.classList.toggle('active', isActive);
+                    if (isActive) link.setAttribute('aria-current', 'location');
+                    else link.removeAttribute('aria-current');
+                });
+            }
             sectionTrackingFrame = null;
         }
 
@@ -1042,7 +1140,7 @@
             lightbox.classList.remove('open');
             lightbox.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            lightboxImage.src = '';
+            lightboxImage.removeAttribute('src');
             if (lastZoomTrigger) lastZoomTrigger.focus();
         }
 
@@ -1056,6 +1154,78 @@
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
         });
+
+        const rrFilm = document.querySelector('.rr-hero-film video');
+        const rrPlayer = rrFilm.closest('.rr-hero-film');
+        const rrControls = rrPlayer.querySelector('.rr-video-controls');
+        const rrPlayButton = rrControls.querySelector('.rr-video-toggle');
+        const rrMuteButton = rrControls.querySelector('.rr-video-mute');
+        const rrFullscreenButton = rrControls.querySelector('.rr-video-fullscreen');
+        const rrSeek = rrControls.querySelector('.rr-video-seek');
+        const rrCurrent = rrControls.querySelector('.rr-video-current');
+        const rrDuration = rrControls.querySelector('.rr-video-duration');
+        const formatRrTime = seconds => {
+            if (!Number.isFinite(seconds)) return '0:00';
+            const whole = Math.floor(seconds);
+            return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`;
+        };
+        let rrSeeking = false;
+        const updateRrTime = () => {
+            const duration = Number.isFinite(rrFilm.duration) ? rrFilm.duration : 0;
+            rrDuration.textContent = formatRrTime(duration);
+            if (rrSeeking) return;
+            rrCurrent.textContent = formatRrTime(rrFilm.currentTime);
+            rrSeek.value = duration ? String(Math.round(rrFilm.currentTime / duration * 1000)) : '0';
+            rrSeek.style.setProperty('--rr-video-progress', `${Number(rrSeek.value) / 10}%`);
+            rrSeek.setAttribute('aria-valuetext', formatRrTime(rrFilm.currentTime));
+        };
+        const updateRrPlay = () => {
+            const playing = !rrFilm.paused && !rrFilm.ended;
+            rrPlayButton.dataset.playing = String(playing);
+            rrPlayButton.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+            rrPlayButton.setAttribute('aria-pressed', String(playing));
+        };
+        rrPlayButton.addEventListener('click', () => {
+            if (rrFilm.paused || rrFilm.ended) rrFilm.play().catch(() => {});
+            else rrFilm.pause();
+        });
+        rrFilm.addEventListener('click', () => rrPlayButton.click());
+        rrMuteButton.addEventListener('click', () => { rrFilm.muted = !rrFilm.muted; });
+        rrFilm.addEventListener('volumechange', () => {
+            rrMuteButton.dataset.muted = String(rrFilm.muted);
+            rrMuteButton.setAttribute('aria-label', rrFilm.muted ? 'Unmute video' : 'Mute video');
+            rrMuteButton.setAttribute('aria-pressed', String(rrFilm.muted));
+        });
+        rrSeek.addEventListener('input', () => {
+            rrSeeking = true;
+            const time = Number(rrSeek.value) / 1000 * (Number.isFinite(rrFilm.duration) ? rrFilm.duration : 0);
+            rrCurrent.textContent = formatRrTime(time);
+            rrSeek.style.setProperty('--rr-video-progress', `${Number(rrSeek.value) / 10}%`);
+            rrSeek.setAttribute('aria-valuetext', formatRrTime(time));
+        });
+        rrSeek.addEventListener('change', () => {
+            if (Number.isFinite(rrFilm.duration)) rrFilm.currentTime = Number(rrSeek.value) / 1000 * rrFilm.duration;
+            rrSeeking = false;
+            updateRrTime();
+        });
+        rrFullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement === rrPlayer) document.exitFullscreen();
+            else if (rrPlayer.requestFullscreen) rrPlayer.requestFullscreen();
+            else if (rrFilm.webkitEnterFullscreen) rrFilm.webkitEnterFullscreen();
+        });
+        document.addEventListener('fullscreenchange', () => {
+            rrFullscreenButton.setAttribute('aria-label', document.fullscreenElement === rrPlayer ? 'Exit fullscreen' : 'Enter fullscreen');
+        });
+        rrFilm.addEventListener('loadedmetadata', updateRrTime);
+        rrFilm.addEventListener('timeupdate', updateRrTime);
+        rrFilm.addEventListener('play', updateRrPlay);
+        rrFilm.addEventListener('pause', updateRrPlay);
+        rrFilm.addEventListener('ended', updateRrPlay);
+        rrFilm.controls = false;
+        rrPlayer.classList.add('is-custom');
+        rrControls.hidden = false;
+        updateRrTime();
+        updateRrPlay();
     </script>
     <script src="../assets/site-cursor.js?v=20261028-3"></script>
 </body>

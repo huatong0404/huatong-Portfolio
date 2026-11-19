@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=20260709">
-    <link rel="stylesheet" href="trace.css">
+    <link rel="stylesheet" href="trace.css?v=20261119-scroll">
 </head>
 <body>
     <nav>
@@ -30,134 +30,208 @@
             <div class="trace-hero-copy">
                 <a href="../index.html#projects" class="back-link">&#8592; All Projects</a>
                 <h1>Trace</h1>
-                <p class="trace-hero-dek">A board game made from the people, places, and political imagination found in Pittsburgh’s feminist press.</p>
-                <a class="trace-play-cta" href="trace-game.html" target="_blank" rel="noopener noreferrer" aria-label="Play Trace in a new tab">
-                    <span class="trace-play-eyebrow">THE DIGITAL FIELD EDITION · 1–4 PLAYERS</span>
-                    <span class="trace-play-action">PLAY TRACE <span class="trace-play-arrow" aria-hidden="true">↗</span></span>
-                    <span class="trace-play-caption">Choose a hexagon. Follow the city.</span>
-                </a>
                 <div class="project-meta">
                     <div class="meta-item"><span class="meta-label">Category</span>Historical Research &middot; Game Design</div>
                     <div class="meta-item"><span class="meta-label">Methods</span>Archival Research &middot; Game Systems &middot; Visual Design</div>
                     <div class="meta-item"><span class="meta-label">Context</span>CMU Architecture, Spring 2024</div>
                     <div class="meta-item"><span class="meta-label">Role</span>Sole Designer &amp; Researcher</div>
+                    <div class="meta-item"><span class="meta-label">Faculty Advisor</span><strong class="trace-advisor-name">Theodossis (Theo) Issaias</strong></div>
                 </div>
             </div>
-            <figure class="trace-hero-image trace-frame">
+            <figure class="trace-hero-image">
                 <img src="../assets/projects/trace/exhibition.jpg" alt="Hua holding the Trace board beside the exhibition display">
-                <figcaption>Trace, exhibited as a map and a set of encounters.</figcaption>
+                <figcaption>Hua holding the trace board and the grand spots map at final review.</figcaption>
             </figure>
+        </div>
+        <div class="trace-film" id="film">
+            <div class="trace-film-player">
+                <video controls playsinline preload="metadata" poster="../assets/projects/trace/trace-video-poster.png" aria-label="Trace introductory film">
+                    <source src="../assets/projects/trace/trace-web.mp4" type="video/mp4">
+                    <a href="https://youtu.be/VGeFKrbcdxI" target="_blank" rel="noopener noreferrer">Watch the Trace film on YouTube ↗</a>
+                </video>
+                <div class="trace-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
+                    <button class="trace-video-control trace-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="trace-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="trace-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
+                    </button>
+                    <span class="trace-video-time"><span class="trace-video-current">0:00</span> / <span class="trace-video-duration">0:00</span></span>
+                    <input class="trace-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
+                    <button class="trace-video-control trace-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="trace-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="trace-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </button>
+                    <button class="trace-video-control trace-video-fullscreen" type="button" aria-label="Enter fullscreen">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="trace-film-credits">
+                <p><span>Music</span>“Home” by Toby Fox</p>
+                <p><span>On screen</span>Members of Guanyun Lab</p>
+                <a href="https://youtu.be/VGeFKrbcdxI" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+            </div>
+            <p class="trace-film-description">Trace is a board game focusing on education about the history of Pittsburgh feminists and queer life in the 1970s. The map is authentic to Pittsburgh and has 20 important locations introduced at the exact spots. There are also cards of people and events based on the then-popular newspaper Allegheny Feminist. It doesn't have a set goal, so players are able to explore it freely.</p>
         </div>
     </header>
 
-    <main>
-        <section class="trace-section trace-film" id="film" aria-labelledby="trace-film-title">
-            <div class="trace-container">
-                <div class="trace-film-heading">
-                    <span class="trace-kicker trace-kicker--light">00 / Before the map</span>
-                    <h2 id="trace-film-title">Trace, in motion.</h2>
-                </div>
-                <div class="trace-film-player">
-                    <video controls playsinline preload="metadata" poster="../assets/projects/trace/trace-video-poster.png" aria-label="Trace introductory film">
-                        <source src="../assets/projects/trace/trace-web.mp4" type="video/mp4">
-                        <a href="https://youtu.be/VGeFKrbcdxI" target="_blank" rel="noopener noreferrer">Watch the Trace film on YouTube ↗</a>
-                    </video>
-                    <div class="trace-video-controls" role="group" aria-label="Video playback controls" data-cursor-shape="hand" hidden>
-                        <button class="trace-video-control trace-video-toggle" type="button" aria-label="Play video" aria-pressed="false">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="trace-video-play-icon" d="M6 3 21 12 6 21Z" fill="currentColor"/><path class="trace-video-pause-icon" d="M6 3h4v18H6zm8 0h4v18h-4z" fill="currentColor"/></svg>
-                        </button>
-                        <span class="trace-video-time"><span class="trace-video-current">0:00</span> / <span class="trace-video-duration">0:00</span></span>
-                        <input class="trace-video-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video" aria-valuetext="0:00">
-                        <button class="trace-video-control trace-video-mute" type="button" aria-label="Mute video" aria-pressed="false">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l6-5v16l-6-5H3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/><path class="trace-video-sound-icon" d="M16 8c1.5 1 2.2 2.3 2.2 4s-.7 3-2.2 4m2-11c2.6 1.8 4 4.1 4 7s-1.4 5.2-4 7" fill="none" stroke="currentColor" stroke-width="2"/><path class="trace-video-muted-icon" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                        </button>
-                        <button class="trace-video-control trace-video-fullscreen" type="button" aria-label="Enter fullscreen">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="trace-film-credits">
-                    <p><span>Music</span>“Home” by Toby Fox</p>
-                    <p><span>On screen</span>Members of Guanyun Lab</p>
-                    <a href="https://youtu.be/VGeFKrbcdxI" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
-                </div>
-            </div>
-        </section>
+    <aside class="page-jump-nav" aria-label="Jump to Trace section">
+        <button class="jump-drag-handle" type="button" aria-label="Move section navigation">&#8942;&#8942;</button>
+        <ul>
+            <li><a href="#origin">About Allegheny Feminists</a></li>
+            <li><a href="#iteration">First Iteration</a></li>
+            <li><a href="#final-iteration">Roll the die</a></li>
+            <li><a href="#card-archive">Card Archive</a></li>
+        </ul>
+    </aside>
 
+    <main>
         <section class="trace-section trace-origin" id="origin">
             <div class="trace-container">
                 <div class="trace-origin-heading">
-                    <span class="trace-kicker">01 / A publication as a map</span>
-                    <h2>A Newspaper</h2>
+                    <h2>About Allegheny Feminists</h2>
                 </div>
-                <div class="trace-origin-grid">
-                    <figure class="trace-frame trace-origin-art trace-reveal">
-                        <img loading="lazy" src="../assets/projects/trace/board-overview.png" alt="Research collage with pages, drawings, photographs, and the masthead of The Allegheny Feminist">
-                        <figcaption>Fragments gathered while tracing the publication and the lives around it.</figcaption>
-                    </figure>
-                    <div class="trace-origin-copy">
-                        <p class="trace-origin-lead">Nearly forgotten today, <em>The Allegheny Feminist</em> carried news, arguments, events, and addresses between feminists in Pittsburgh. It began in 1976 and later continued as <em>Network News</em>.</p>
-                        <p>Those issues became the main source for Trace’s research and imagery. I translated their record of everyday life, political pressure, and collective hope into a game of movement and chance. I think of it as documentation you can enter.</p>
-                        <p class="trace-source-note">Publication history: <a href="https://pitt.libguides.com/c.php?g=569586&amp;p=3979667" target="_blank" rel="noopener noreferrer">University of Pittsburgh Archives &amp; Special Collections ↗</a> · <a href="https://pittrarebooks.tumblr.com/post/113433169159/womens-history-month-the-allegheny-feminist" target="_blank" rel="noopener noreferrer">Pitt Rare Books ↗</a></p>
-                    </div>
+                <div class="trace-origin-story">
+                    <p>It all started with a piece of newspaper from 1970s Pittsburgh. The newspaper is called Allegheny Feminists. At the time, it was one of the most popular feminist publications in the Pittsburgh region. The newspaper debuted in November 1976 and was printed by KNOW Press of Wilkinsburg, a local feminist printing press. <em>The Allegheny Feminist</em> was published monthly until 1981, when it was renamed <em>The Network News</em>.</p>
+                    <p>I found out that I can access real newspapers from the 1970s at Susanna Downie's archive at the University of Pittsburgh, so I reached out and read all the available prints of the press. Here are some of the pages included in the archive. It was surely an archive with a high barrier to entry, which is hard for the average history learner to access.</p>
                 </div>
-                <p class="trace-iteration-caption">Early cards and board. Their rules belong to the first iteration.</p>
+                <div class="trace-mini-gallery trace-archive-gallery" aria-label="Selected materials from the Susanna Downie Papers">
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/gallery/archive-overview-web.jpg" data-card-caption="Research collage of The Allegheny Feminist, Network News, and related materials" aria-label="Enlarge research collage"><img loading="lazy" src="../assets/projects/trace/gallery/archive-overview-web.jpg" alt="Research collage with newspaper illustrations, activist photographs, and the masthead of The Allegheny Feminist"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Research collage</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/gallery/archive-5286-web.jpg" data-card-caption="Photograph of women at a demonstration, from the Susanna Downie Papers" aria-label="Enlarge demonstration photograph"><img loading="lazy" src="../assets/projects/trace/gallery/archive-5286-web.jpg" alt="Archival photograph of women at a demonstration holding a sign against violence"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Demonstration photograph</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/gallery/archive-5301-web.jpg" data-card-caption="Handwritten and illustrated page from the Susanna Downie Papers" aria-label="Enlarge handwritten archive page"><img loading="lazy" src="../assets/projects/trace/gallery/archive-5301-web.jpg" alt="Colorful handwritten page with lines and notes about change"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Handwritten page</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/gallery/archive-5307-web.jpg" data-card-caption="YWCA and abortion-rights contact list, 1987, from the Susanna Downie Papers" aria-label="Enlarge 1987 contact list"><img loading="lazy" src="../assets/projects/trace/gallery/archive-5307-web.jpg" alt="Typed 1987 YWCA and abortion-rights contact list"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Contact list, 1987</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/gallery/archive-5311-web.jpg" data-card-caption="Illustrated call for contributors to the PA NOW Times, from the Susanna Downie Papers" aria-label="Enlarge PA NOW Times page"><img loading="lazy" src="../assets/projects/trace/gallery/archive-5311-web.jpg" alt="Illustrated PA NOW Times page calling for writing, photographs, and graphics"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>PA NOW Times page</figcaption></figure>
+                </div>
+                <div class="trace-origin-story">
+                    <p>I wasn't thinking straight at that time. And surely I don't like old newspapers.</p>
+                    <p>As a feminist and a queer person living in Pittsburgh, I have every reason in the world to learn about the history. Yet the newspapers themselves were hardly an engaging way for me to learn about any of this.</p>
+                    <p>The press calls itself a network, and Pittsburgh owns a map. Something clicked in my mind: What about making this into a set-map board game? If any way works for a group of impatient, self-diagnosed ADHD young adults like me to voluntarily learn spatial political history, this is it.</p>
+                    <p>After collecting and categorizing the information I got from the archive about feminists' daily life and political communication in the 1970s in Pittsburgh, I started the design of the card sets.</p>
+                </div>
+                <div class="trace-mini-gallery trace-wip-gallery" aria-label="Trace research and card design work in progress">
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/in progress work/屏幕截图 2024-02-29 114209.png" data-card-caption="Early research board collecting sources about Pittsburgh feminist spaces and publications" aria-label="Enlarge early research board"><img loading="lazy" src="../assets/projects/trace/in progress work/屏幕截图 2024-02-29 114209.png" alt="Work in progress research board with three columns of sources and notes"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Early research board</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/in progress work/屏幕截图 2024-02-29 114218.png" data-card-caption="Network relationships and early map-game concept sketches" aria-label="Enlarge network relationship sketch"><img loading="lazy" src="../assets/projects/trace/in progress work/屏幕截图 2024-02-29 114218.png" alt="Work in progress network diagram connecting publications and feminist spaces, with hand-drawn map-game ideas"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Network and map sketches</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/in progress work/屏幕截图 2024-02-29 114226.png" data-card-caption="Early categories and source images for the Trace card sets" aria-label="Enlarge card-category board"><img loading="lazy" src="../assets/projects/trace/in progress work/屏幕截图 2024-02-29 114226.png" alt="Work in progress board sorting card ideas into places, policies, crime, art events, and publications"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption>Card categories in progress</figcaption></figure>
+                </div>
+                <p class="trace-source-note">Publication history: <a href="https://pitt.libguides.com/c.php?g=569586&amp;p=3979667" target="_blank" rel="noopener noreferrer">University of Pittsburgh Archives &amp; Special Collections ↗</a> · <a href="https://pittrarebooks.tumblr.com/post/113433169159/womens-history-month-the-allegheny-feminist" target="_blank" rel="noopener noreferrer">Pitt Rare Books ↗</a></p>
             </div>
         </section>
 
         <section class="trace-section trace-iteration" id="iteration">
             <div class="trace-container">
-                <div class="trace-iteration-heading">
-                    <div>
-                        <span class="trace-kicker trace-kicker--light">02 / Iteration, briefly</span>
+                <div class="trace-iteration-top">
+                    <div class="trace-iteration-copy">
                         <h2>First Iteration</h2>
+                        <p>For the first iteration, I only made 5 categories of event cards, several connection cards with no real figures on them, and no spot cards. I used a square grid as the map structure, and soon realized it wasn't fun enough.</p>
+                        <p>The rule was also too rigid. To bring more potential into the game, I decided to create a new game system.</p>
                     </div>
-                    <p>An early board used a fixed path and a reunion goal. The final game opened that path into a city of possible encounters.</p>
+                    <figure class="trace-frame trace-iteration-photo"><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/gameplay-cards.png" data-card-caption="First iteration board and cards" aria-label="Enlarge first iteration board and cards" aria-describedby="trace-first-photo-caption"><img loading="lazy" src="../assets/projects/trace/gameplay-cards.png" alt="First iteration board with cards and dice"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption id="trace-first-photo-caption">Early cards held above the first square-grid board.</figcaption></figure>
                 </div>
-                <div class="trace-iteration-stage trace-reveal" aria-label="First iteration cards scattered across the early board">
-                    <figure class="trace-early-photo">
-                        <img loading="lazy" src="../assets/projects/trace/gameplay-cards.png" alt="Hands holding first iteration cards over the early dot-map board and dice">
-                    </figure>
-                    <img class="trace-early-card trace-early-card--one" loading="lazy" src="../assets/projects/trace/card-art.png" alt="" aria-hidden="true">
-                    <img class="trace-early-card trace-early-card--two" loading="lazy" src="../assets/projects/trace/card-organizer.png" alt="" aria-hidden="true">
-                    <img class="trace-early-card trace-early-card--three" loading="lazy" src="../assets/projects/trace/card-policies.png" alt="" aria-hidden="true">
-                    <span class="trace-iteration-mark">FIRST ITERATION / CARDS + BOARD</span>
+                <div class="trace-mini-gallery trace-iteration-scatter" aria-label="First iteration rule book and cards">
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/rulebook.png" data-card-caption="First iteration rule book" aria-label="Enlarge first iteration rule book" aria-describedby="trace-first-rulebook-caption"><img loading="lazy" src="../assets/projects/trace/rulebook.png" alt="First iteration rule book page"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption id="trace-first-rulebook-caption">The first rule book.</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/card-art.png" data-card-caption="First iteration art card" aria-label="Enlarge first iteration art card" aria-describedby="trace-first-art-caption"><img loading="lazy" src="../assets/projects/trace/card-art.png" alt="First iteration art event card"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption id="trace-first-art-caption">Art event card.</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/card-organizer.png" data-card-caption="First iteration organizer card" aria-label="Enlarge first iteration organizer card" aria-describedby="trace-first-organizer-caption"><img loading="lazy" src="../assets/projects/trace/card-organizer.png" alt="First iteration connection card"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption id="trace-first-organizer-caption">Organizer connection card.</figcaption></figure>
+                    <figure><button type="button" data-cursor-shape="lens" data-card-image="../assets/projects/trace/card-policies.png" data-card-caption="First iteration policies card" aria-label="Enlarge first iteration policies card" aria-describedby="trace-first-policies-caption"><img loading="lazy" src="../assets/projects/trace/card-policies.png" alt="First iteration policies event card"><span class="trace-gallery-zoom-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9.5" cy="9.5" r="5.5"/><path d="m14 14 6 6"/></svg></span></button><figcaption id="trace-first-policies-caption">Policies event card.</figcaption></figure>
                 </div>
-                <p class="trace-iteration-caption">Early cards and board. Their rules belong to the first iteration.</p>
             </div>
         </section>
 
-        <section class="trace-section trace-final" id="final-board">
+        <section class="trace-section trace-final-iteration" id="final-iteration">
+            <div class="trace-final-inner">
+                <div class="trace-final-opening">
+                    <h2>Roll the die</h2>
+                    <p>For the final iteration, I decided to make rules only for how players move on the board, with no other restrictions. Players are able to decide on their own goals for exploring the map, and learn about the history of Pittsburgh feminists' 1970s political movements in their own ways.</p>
+                </div>
+                <div class="trace-final-row trace-final-row--pair">
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A0013-web.jpg" alt="Friends gathered around the Trace board during a game at Guanyun Lab"><figcaption>Friends at Guanyun Lab play Trace together, with cards spread around the map.</figcaption></figure>
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9907-web.jpg" alt="Trace board, cards, and playing pieces during a game"><figcaption>Game pieces, a die, and event cards on the Pittsburgh map.</figcaption></figure>
+                </div>
+                <div class="trace-final-row trace-final-row--making">
+                    <div class="trace-final-text"><p>Here are photos of my friends (at Guanyun Lab) actually playing the board game and having fun with it. They said that they had fun and also learned a lot about Pittsburgh, feminist movements, and women's quality of life in the 1970s.</p></div>
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9922-web.jpg" alt="Hands holding a deck of Trace cards above the game map"><figcaption>A player holds a deck of Trace cards over the map.</figcaption></figure>
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9913-web.jpg" alt="Players moving pieces across the Trace board"><figcaption>A player moves a red piece across the map.</figcaption></figure>
+                </div>
+                <div class="trace-final-panorama">
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A0008-web.jpg" alt="Two players pointing toward pieces on the Trace board during play"><figcaption>Two players reach toward the board to make a move.</figcaption></figure>
+                </div>
+                <div class="trace-final-row trace-final-row--play">
+                    <div class="trace-final-text">
+                        <p>If you also want to explore the playable archive, you can enjoy the digital copy of the original game. Despite being vibe-coded, all cards, effects, and maps are identical to the original tangible game.</p>
+                        <a class="trace-play-link" href="trace-game.html">Play Trace digitally <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9911-web.jpg" alt="A player holding a Trace Justice event card"><figcaption>A player holds the Justice event card “New Law.”</figcaption></figure>
+                </div>
+                <div class="trace-final-row trace-final-row--details">
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9914-web.jpg" alt="A player holding an Expression event card and a die"><figcaption>An Expression event card and a die during play.</figcaption></figure>
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9921-web.jpg" alt="A deck of Trace cards laid across the map"><figcaption>The Trace deck in a player’s hands, with the map behind it.</figcaption></figure>
+                    <figure class="trace-final-photo"><img loading="lazy" decoding="async" width="1600" height="1067" src="../assets/projects/trace/final-web/1X6A9961-web.jpg" alt="A player holding a Trace location card"><figcaption>A player reads the House of Tilden location card.</figcaption></figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="trace-section trace-card-archive" id="card-archive">
             <div class="trace-container">
-                <div class="trace-final-heading">
-                    <div>
-                        <span class="trace-kicker">03 / The final board</span>
-                        <h2>20 Spots</h2>
+                <h2>Card Archive</h2>
+                <div class="trace-archive-group">
+                    <h3>Spots</h3>
+                    <div class="trace-spot-board">
+                        <img class="trace-spot-board-image" loading="lazy" decoding="async" width="2333" height="2333" src="../assets/projects/trace/final-board-poster.jpg" alt="Trace map with its location cards arranged around Pittsburgh and connected to their numbered spots">
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:23.0%" data-card-image="../assets/projects/trace/cards-png/locations/spot-01-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-01-back.png" data-card-caption="" aria-label="Enlarge Spot 1 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-01-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:36.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-02-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-02-back.png" data-card-caption="" aria-label="Enlarge Spot 2 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-02-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:91.3%;--spot-y:25.1%" data-card-image="../assets/projects/trace/cards-png/locations/spot-03-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-03-back.png" data-card-caption="" aria-label="Enlarge Spot 3 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-03-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:76.0%" data-card-image="../assets/projects/trace/cards-png/locations/spot-04-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-04-back.png" data-card-caption="" aria-label="Enlarge Spot 4 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-04-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:41.1%;--spot-y:89.3%" data-card-image="../assets/projects/trace/cards-png/locations/spot-05-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-05-back.png" data-card-caption="" aria-label="Enlarge Spot 5 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-05-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit trace-spot-hit--map" style="--spot-x:53.2%;--spot-y:52.0%" data-card-image="../assets/projects/trace/cards-png/locations/spot-06-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-06-back.png" data-card-caption="" aria-label="Enlarge Spot 6 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-06-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:50.3%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-07-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-07-back.png" data-card-caption="" aria-label="Enlarge Spot 7 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-07-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:49.5%" data-card-image="../assets/projects/trace/cards-png/locations/spot-08-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-08-back.png" data-card-caption="" aria-label="Enlarge Spot 8 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-08-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:77.8%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-09-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-09-back.png" data-card-caption="" aria-label="Enlarge Spot 9 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-09-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:91.3%;--spot-y:40.1%" data-card-image="../assets/projects/trace/cards-png/locations/spot-10-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-10-back.png" data-card-caption="" aria-label="Enlarge Spot 10 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-10-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:91.3%;--spot-y:54.8%" data-card-image="../assets/projects/trace/cards-png/locations/spot-11-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-11-back.png" data-card-caption="" aria-label="Enlarge Spot 11 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-11-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-12-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-12-back.png" data-card-caption="" aria-label="Enlarge Spot 12 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-12-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:23.4%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-13-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-13-back.png" data-card-caption="" aria-label="Enlarge Spot 13 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-13-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:62.8%" data-card-image="../assets/projects/trace/cards-png/locations/spot-14-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-14-back.png" data-card-caption="" aria-label="Enlarge Spot 14 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-14-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:36.8%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-15-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-15-back.png" data-card-caption="" aria-label="Enlarge Spot 15 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-15-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:91.3%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-16-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-16-back.png" data-card-caption="" aria-label="Enlarge Spot 16 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-16-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:9.0%;--spot-y:89.3%" data-card-image="../assets/projects/trace/cards-png/locations/spot-17-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-17-back.png" data-card-caption="" aria-label="Enlarge Spot 17 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-17-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:64.4%;--spot-y:10.2%" data-card-image="../assets/projects/trace/cards-png/locations/spot-18-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-18-back.png" data-card-caption="" aria-label="Enlarge Spot 18 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-18-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:57.0%;--spot-y:89.3%" data-card-image="../assets/projects/trace/cards-png/locations/spot-19-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-19-back.png" data-card-caption="" aria-label="Enlarge Spot 19 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-19-front.png" alt=""></button>
+                        <button type="button" class="trace-spot-hit" style="--spot-x:25.1%;--spot-y:89.3%" data-card-image="../assets/projects/trace/cards-png/locations/spot-20-front.png" data-card-back="../assets/projects/trace/cards-png/locations/spot-20-back.png" data-card-caption="" aria-label="Enlarge Spot 20 card"><img loading="lazy" width="756" height="757" src="../assets/projects/trace/cards-png/locations/spot-20-front.png" alt=""></button>
                     </div>
-                    <p>Each numbered point on the map is linked to a specific address card. The people and events between them make every route different.</p>
                 </div>
-                <figure class="trace-location-board trace-reveal">
-                    <button type="button" class="trace-board-expand" data-card-image="../assets/projects/trace/final-board-poster.jpg" data-card-caption="Final Trace exhibition board — twenty place cards connected to the Pittsburgh map" aria-label="Enlarge the final Trace board and its twenty place cards">
-                        <img loading="lazy" src="../assets/projects/trace/final-board-poster.jpg" alt="Final Trace exhibition board with twenty address cards arranged around and connected to Pittsburgh’s contour map">
-                        <span>VIEW THE BOARD ↗</span>
-                    </button>
-                    <figcaption>The place cards remain attached to their real locations, even as a player's route changes.</figcaption>
-                </figure>
-                <a class="trace-board-link" href="../assets/projects/trace/FINAL%20BOARD.pdf" target="_blank" rel="noopener noreferrer">Open the original board at full size ↗</a>
-            </div>
-        </section>
-
-        <section class="trace-section trace-outro" id="play">
-            <div class="trace-container trace-outro-grid">
-                <figure class="trace-frame trace-outro-image trace-reveal">
-                    <img loading="lazy" src="../assets/projects/trace/board-photo-2.jpg" alt="Final Trace connection and event cards spread across the physical board">
-                    <figcaption>Cards in play, carrying the archive into another encounter.</figcaption>
-                </figure>
-                <div class="trace-outro-copy">
-                    <span class="trace-kicker">04 / Enter the city</span>
-                    <h2>Take a turn.<br>Leave a trace.</h2>
-                    <p>Choose a starting hexagon and explore at your own pace, alone or with up to three others.</p>
-                    <a class="trace-end-cta" href="trace-game.html" target="_blank" rel="noopener noreferrer" aria-label="Play Trace in a new tab">PLAY TRACE <span aria-hidden="true">↗</span></a>
+                <div class="trace-archive-group">
+                    <h3>Events</h3>
+                    <div class="trace-archive-grid trace-event-grid">
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/community-01-front.png" data-card-back="../assets/projects/trace/cards-png/events/community-back.png" data-card-caption="" aria-label="Enlarge community event card 1"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/community-01-front.png" alt="Community event card 1"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/community-02-front.png" data-card-back="../assets/projects/trace/cards-png/events/community-back.png" data-card-caption="" aria-label="Enlarge community event card 2"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/community-02-front.png" alt="Community event card 2"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/community-03-front.png" data-card-back="../assets/projects/trace/cards-png/events/community-back.png" data-card-caption="" aria-label="Enlarge community event card 3"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/community-03-front.png" alt="Community event card 3"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/community-04-front.png" data-card-back="../assets/projects/trace/cards-png/events/community-back.png" data-card-caption="" aria-label="Enlarge community event card 4"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/community-04-front.png" alt="Community event card 4"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/expression-01-front.png" data-card-back="../assets/projects/trace/cards-png/events/expression-back.png" data-card-caption="" aria-label="Enlarge expression event card 1"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/expression-01-front.png" alt="Expression event card 1"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/expression-02-front.png" data-card-back="../assets/projects/trace/cards-png/events/expression-back.png" data-card-caption="" aria-label="Enlarge expression event card 2"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/expression-02-front.png" alt="Expression event card 2"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/expression-03-front.png" data-card-back="../assets/projects/trace/cards-png/events/expression-back.png" data-card-caption="" aria-label="Enlarge expression event card 3"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/expression-03-front.png" alt="Expression event card 3"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/expression-04-front.png" data-card-back="../assets/projects/trace/cards-png/events/expression-back.png" data-card-caption="" aria-label="Enlarge expression event card 4"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/expression-04-front.png" alt="Expression event card 4"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/justice-01-front.png" data-card-back="../assets/projects/trace/cards-png/events/justice-back.png" data-card-caption="" aria-label="Enlarge justice event card 1"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/justice-01-front.png" alt="Justice event card 1"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/justice-02-front.png" data-card-back="../assets/projects/trace/cards-png/events/justice-back.png" data-card-caption="" aria-label="Enlarge justice event card 2"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/justice-02-front.png" alt="Justice event card 2"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/justice-03-front.png" data-card-back="../assets/projects/trace/cards-png/events/justice-back.png" data-card-caption="" aria-label="Enlarge justice event card 3"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/justice-03-front.png" alt="Justice event card 3"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/justice-04-front.png" data-card-back="../assets/projects/trace/cards-png/events/justice-back.png" data-card-caption="" aria-label="Enlarge justice event card 4"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/justice-04-front.png" alt="Justice event card 4"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/resources-01-front.png" data-card-back="../assets/projects/trace/cards-png/events/resources-back.png" data-card-caption="" aria-label="Enlarge resources event card 1"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/resources-01-front.png" alt="Resources event card 1"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/resources-02-front.png" data-card-back="../assets/projects/trace/cards-png/events/resources-back.png" data-card-caption="" aria-label="Enlarge resources event card 2"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/resources-02-front.png" alt="Resources event card 2"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/resources-03-front.png" data-card-back="../assets/projects/trace/cards-png/events/resources-back.png" data-card-caption="" aria-label="Enlarge resources event card 3"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/resources-03-front.png" alt="Resources event card 3"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/events/resources-04-front.png" data-card-back="../assets/projects/trace/cards-png/events/resources-back.png" data-card-caption="" aria-label="Enlarge resources event card 4"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/events/resources-04-front.png" alt="Resources event card 4"></button>
+                    </div>
+                </div>
+                <div class="trace-archive-group">
+                    <h3>Connections</h3>
+                    <div class="trace-archive-grid trace-connection-grid">
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-01-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 1"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-01-front.png" alt="Connection card 1"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-02-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 2"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-02-front.png" alt="Connection card 2"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-03-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 3"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-03-front.png" alt="Connection card 3"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-04-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 4"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-04-front.png" alt="Connection card 4"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-05-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 5"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-05-front.png" alt="Connection card 5"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-06-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 6"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-06-front.png" alt="Connection card 6"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-07-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 7"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-07-front.png" alt="Connection card 7"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-08-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 8"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-08-front.png" alt="Connection card 8"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-09-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 9"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-09-front.png" alt="Connection card 9"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-10-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 10"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-10-front.png" alt="Connection card 10"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-11-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 11"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-11-front.png" alt="Connection card 11"></button>
+                        <button type="button" class="trace-archive-card" data-card-image="../assets/projects/trace/cards-png/people/connection-12-front.png" data-card-back="../assets/projects/trace/cards-png/people/connection-back.png" data-card-caption="" aria-label="Enlarge connection card 12"><img loading="lazy" decoding="async" width="530" height="908" src="../assets/projects/trace/cards-png/people/connection-12-front.png" alt="Connection card 12"></button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -165,42 +239,175 @@
 
     <dialog class="trace-card-dialog" id="traceCardDialog" aria-label="Enlarged Trace card">
         <button class="trace-dialog-close" type="button" aria-label="Close enlarged card">×</button>
-        <div class="trace-card-dialog-inner"><img src="" alt=""><p></p></div>
+        <div class="trace-card-dialog-inner"><img alt=""><p></p><button class="trace-dialog-flip" type="button" hidden>Show back</button></div>
     </dialog>
+
+    <nav class="project-pagination" aria-label="Project navigation">
+        <a class="project-prev" href="sea-monster.html"><span class="pagination-label">&larr; Previous project</span><span class="pagination-title">The Sea Monster</span></a>
+        <a class="back-to-top" href="#top"><span class="pagination-label">Back to</span><span class="pagination-title">Top &uarr;</span></a>
+        <a class="project-next" href="vertical-garden.html"><span class="pagination-label">Next project &rarr;</span><span class="pagination-title">Pollen Farm</span></a>
+    </nav>
 
     <footer>
         <div class="footer-left">
             <span class="footer-logo">HUA TONG</span>
-            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p>
+            <p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong. This site was vibe coded.</p>
         </div>
-        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+            <a href="https://www.linkedin.com/in/hua-tong-50b1a7293/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="../assets/HuaTong_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
+        </div>
     </footer>
 
     <script>
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+        function enableMovableJumpNav(nav) {
+            const handle = nav.querySelector('.jump-drag-handle');
+            if (!handle) return;
+
+            let startX = 0;
+            let startY = 0;
+            let baseX = 0;
+            let baseY = 0;
+            let bounds = null;
+
+            handle.addEventListener('pointerdown', (event) => {
+                if (window.innerWidth <= 900) return;
+                const rect = nav.getBoundingClientRect();
+                startX = event.clientX;
+                startY = event.clientY;
+                baseX = Number(nav.dataset.dragX || 0);
+                baseY = Number(nav.dataset.dragY || 0);
+                bounds = {
+                    minX: 12 - rect.left,
+                    maxX: window.innerWidth - 12 - rect.right,
+                    minY: 12 - rect.top,
+                    maxY: window.innerHeight - 12 - rect.bottom
+                };
+                handle.setPointerCapture(event.pointerId);
+                event.preventDefault();
+            });
+
+            handle.addEventListener('pointermove', (event) => {
+                if (!handle.hasPointerCapture(event.pointerId) || !bounds) return;
+                const deltaX = Math.min(bounds.maxX, Math.max(bounds.minX, event.clientX - startX));
+                const deltaY = Math.min(bounds.maxY, Math.max(bounds.minY, event.clientY - startY));
+                const nextX = baseX + deltaX;
+                const nextY = baseY + deltaY;
+                nav.dataset.dragX = nextX;
+                nav.dataset.dragY = nextY;
+                nav.style.setProperty('--jump-x', `${nextX}px`);
+                nav.style.setProperty('--jump-y', `${nextY}px`);
+            });
+
+            handle.addEventListener('pointerup', (event) => {
+                if (handle.hasPointerCapture(event.pointerId)) handle.releasePointerCapture(event.pointerId);
+                bounds = null;
+            });
+        }
+
+        enableMovableJumpNav(document.querySelector('.page-jump-nav'));
+
+        const sectionNavLinks = [...document.querySelectorAll('.page-jump-nav a')];
+        const trackedSections = sectionNavLinks
+            .map((link) => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+        let sectionTrackingFrame = null;
+        let activeSectionId = null;
+
+        function updateActiveSection() {
+            const readingLine = window.innerHeight * 0.34;
+            let activeSection = trackedSections[0];
+
+            trackedSections.forEach((section) => {
+                if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
+            });
+
+            if (activeSection.id !== activeSectionId) {
+                activeSectionId = activeSection.id;
+                sectionNavLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === `#${activeSectionId}`;
+                    link.classList.toggle('active', isActive);
+                    if (isActive) link.setAttribute('aria-current', 'location');
+                    else link.removeAttribute('aria-current');
+                });
+            }
+            sectionTrackingFrame = null;
+        }
+
+        function requestSectionUpdate() {
+            if (sectionTrackingFrame === null) sectionTrackingFrame = requestAnimationFrame(updateActiveSection);
+        }
+
+        window.addEventListener('scroll', requestSectionUpdate, { passive: true });
+        window.addEventListener('resize', requestSectionUpdate);
+        updateActiveSection();
+
         const traceCardDialog = document.getElementById('traceCardDialog');
         const enlargedCard = traceCardDialog.querySelector('img');
         const enlargedCaption = traceCardDialog.querySelector('p');
+        const flipCardButton = traceCardDialog.querySelector('.trace-dialog-flip');
+        let cardFront = '';
+        let cardBack = '';
+        let showingCardBack = false;
         document.querySelectorAll('[data-card-image]').forEach(button => {
             button.addEventListener('click', () => {
-                enlargedCard.src = button.dataset.cardImage;
-                enlargedCard.alt = button.querySelector('img').alt;
-                enlargedCaption.textContent = button.dataset.cardCaption;
+                cardFront = button.dataset.cardImage;
+                cardBack = button.dataset.cardBack || '';
+                showingCardBack = false;
+                enlargedCard.src = cardFront;
+                enlargedCard.alt = button.getAttribute('aria-label') || button.querySelector('img').alt;
+                enlargedCaption.textContent = button.dataset.cardCaption || '';
+                flipCardButton.hidden = !cardBack;
+                flipCardButton.textContent = 'Show back';
                 traceCardDialog.showModal();
+                const customCursor = document.querySelector('.site-cursor-icon');
+                if (customCursor) traceCardDialog.appendChild(customCursor);
             });
         });
+        flipCardButton.addEventListener('click', () => {
+            showingCardBack = !showingCardBack;
+            enlargedCard.src = showingCardBack ? cardBack : cardFront;
+            flipCardButton.textContent = showingCardBack ? 'Show front' : 'Show back';
+        });
         traceCardDialog.querySelector('.trace-dialog-close').addEventListener('click', () => traceCardDialog.close());
-        traceCardDialog.addEventListener('click', event => { if (event.target === traceCardDialog) traceCardDialog.close(); });
-        if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.documentElement.classList.add('trace-motion');
-            const revealObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
+        traceCardDialog.addEventListener('click', event => {
+            if (event.target === enlargedCard || event.target.closest('.trace-dialog-flip, .trace-dialog-close')) return;
+            traceCardDialog.close();
+        });
+        traceCardDialog.addEventListener('close', () => {
+            const customCursor = traceCardDialog.querySelector('.site-cursor-icon');
+            if (customCursor) document.body.appendChild(customCursor);
+        });
+        const iterationScatter = document.querySelector('.trace-iteration-scatter');
+        const iterationCards = [...iterationScatter.querySelectorAll('figure')];
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let scatterFrame = null;
+            let lastScatterProgress = -1;
+            const updateScatterProgress = () => {
+                scatterFrame = null;
+                const start = window.innerHeight * .96;
+                const end = window.innerHeight * .42;
+                const progress = Math.max(0, Math.min(1, (start - iterationScatter.getBoundingClientRect().top) / (start - end)));
+                if (progress === lastScatterProgress) return;
+                lastScatterProgress = progress;
+                iterationCards.forEach((card, index) => {
+                    const delay = index * .13;
+                    const cardProgress = Math.max(0, Math.min(1, (progress - delay) / (1 - delay)));
+                    const eased = 1 - Math.pow(1 - cardProgress, 3);
+                    card.style.opacity = eased;
+                    card.style.translate = `0 ${(1 - eased) * 55}px`;
                 });
-            }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.trace-reveal').forEach(element => revealObserver.observe(element));
+            };
+            const requestScatterUpdate = () => {
+                if (scatterFrame === null) scatterFrame = requestAnimationFrame(updateScatterProgress);
+            };
+            document.documentElement.classList.add('trace-motion');
+            window.addEventListener('scroll', requestScatterUpdate, { passive: true });
+            window.addEventListener('resize', requestScatterUpdate);
+            window.addEventListener('load', requestScatterUpdate);
+            updateScatterProgress();
         }
         const traceFilm = document.querySelector('.trace-film-player video');
         const tracePlayer = traceFilm.closest('.trace-film-player');

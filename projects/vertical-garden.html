@@ -34,7 +34,7 @@
 
         .vg-hero-image { position: relative; align-self: end; display: flex; flex-direction: column; justify-content: flex-end; }
         .vg-hero-image img { width: 100%; aspect-ratio: 4 / 3; max-height: 320px; object-fit: cover; object-position: center; display: block; }
-        .vg-hero-image figcaption { color: #FAFAFA; padding-top: 10px; }
+        .vg-hero-image figcaption { padding-top: 10px; color: rgba(250, 250, 250, .7); }
 
         /* Same pinned evidence-card frame used by Sea Monster and Rick's Radio. */
         .vg-evidence-page .vg-case { padding: 32px 0 96px; }
@@ -70,25 +70,17 @@
             box-shadow: 9px 10px 0 rgba(64, 193, 172, .5);
         }
         .vg-evidence-page figure figcaption {
-            position: absolute;
-            z-index: 5;
-            right: 11px;
-            bottom: 11px;
-            left: 11px;
+            position: static;
             width: auto;
-            padding: 10px 12px;
-            color: #FAFAFA;
-            background: rgba(10, 10, 10, .84);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(5px);
-            transition: opacity 180ms ease, transform 180ms ease;
+            padding: 10px 2px 0;
+            color: #606060;
+            background: transparent;
+            opacity: 1;
+            pointer-events: auto;
+            transform: none;
+            transition: none;
         }
-        .vg-evidence-page .vg-hero-image figcaption { right: 0; bottom: 0; left: 0; }
-        .vg-evidence-page .vg-case figure:hover figcaption,
-        .vg-evidence-page .vg-case figure:focus-within figcaption,
-        .vg-evidence-page .vg-hero-image:hover figcaption,
-        .vg-evidence-page .vg-hero-image:focus-within figcaption { opacity: 1; transform: translateY(0); }
+        .vg-evidence-page .vg-hero-image figcaption { color: rgba(250, 250, 250, .7); }
 
         .intro { padding: 64px 0 52px; }
         .intro .lead { max-width: 900px; font-size: 20px; line-height: 1.68; margin-bottom: 24px; color: #0A0A0A; }
@@ -142,7 +134,8 @@
 
         .zoomable-figure { cursor: zoom-in; }
         .zoom-image-button { position: absolute; z-index: 6; top: 18px; right: 18px; width: 46px; height: 46px; border: 2px solid #0A0A0A; border-radius: 50%; background: #40C1AC; cursor: zoom-in; opacity: 0; transform: translateY(6px); transition: opacity 180ms ease, transform 180ms ease, background-color 180ms ease; }
-        .zoomable-figure:hover .zoom-image-button, .zoom-image-button:focus-visible { opacity: 1; transform: translateY(0); }
+        .zoomable-figure:hover .zoom-image-button, .zoomable-figure:focus-within .zoom-image-button, .zoom-image-button:focus-visible { opacity: 1; transform: translateY(0); }
+        .zoom-image-button:focus-visible { outline: 3px solid #1769E0; outline-offset: 3px; }
         .zoom-image-button::before { content: ''; position: absolute; top: 12px; left: 12px; width: 14px; height: 14px; border: 2px solid #0A0A0A; border-radius: 50%; }
         .zoom-image-button::after { content: ''; position: absolute; top: 27px; left: 27px; width: 10px; height: 2px; background: #0A0A0A; transform: rotate(45deg); transform-origin: left center; }
         .image-lightbox { position: fixed; z-index: 3000; inset: 0; display: none; place-items: center; padding: 64px; background: rgba(0, 0, 0, .9); }
@@ -198,18 +191,12 @@
             .vg-hero-image img { max-height: 260px; aspect-ratio: 4 / 3; }
             .intro .lead { font-size: 18px; }
         }
-        @media (hover: none) {
-            .vg-evidence-page .vg-case figure figcaption {
-                position: static;
-                margin-top: 0;
-                color: #525252;
-                background: transparent;
-                opacity: 1;
-                transform: none;
-            }
+        @media (hover: none) { .zoom-image-button { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            .vg-evidence-page .vg-case figure, .zoom-image-button { transition: none; }
         }
     </style>
-    <link rel="stylesheet" href="vertical-garden-story.css?v=20261109b">
+    <link rel="stylesheet" href="vertical-garden-story.css?v=20261119d">
 </head>
 <body class="vg-evidence-page">
     <nav>
@@ -236,17 +223,13 @@
             </div>
             <figure class="vg-hero-image">
                 <img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The unplanted plywood Pollen Farm structure standing beside a campus lawn" fetchpriority="high" decoding="async">
-                <figcaption>The CNC routing built plywood structure on campus.</figcaption>
+                <figcaption>The assembled plywood structure on the CMU campus.</figcaption>
             </figure>
         </div>
     </section>
 
-    <section class="pf-film" aria-labelledby="pf-film-title">
+    <section class="pf-film" aria-label="Pollen Farm film and overview">
         <div class="pf-film-inner">
-            <div class="pf-film-heading">
-                <span class="pf-film-kicker">00 / Film</span>
-                <h2 id="pf-film-title">Pollen Farm, in motion.</h2>
-            </div>
             <div class="pf-film-player">
                 <video controls playsinline preload="metadata" poster="../assets/projects/vertical-garden/pollen-film-poster.jpg" aria-label="Pollen Farm illustration film">
                     <source src="../assets/projects/vertical-garden/pollen-film-web.mp4" type="video/mp4">
@@ -270,6 +253,7 @@
             <div class="pf-film-credits">
                 <p><span>Music</span>“Ruins” by Toby Fox</p>
             </div>
+            <p class="pf-film-description" id="overview">Pollen farm is a curious but morphic name for the piece of furniture. Throughout the project, our question has always been: How can we use a simple set of transformative rules to duplicate and perform 2D geometric shapes into usable space for farming? In the end, our answer is composed only of flat pieces of CNC-routed plywood boards, solely depending on the different angles and connectors to form delicate, complicated, and ultimately usable rooms.</p>
         </div>
     </section>
 
@@ -282,22 +266,18 @@
             <li><a href="#gaps">Gaps</a></li>
             <li><a href="#concept">Concept</a></li>
             <li><a href="#fabrication">Fabrication</a></li>
+            <li><a href="#gallery">Gallery</a></li>
         </ul>
     </aside>
 
     <main class="vg-case pf-draft">
-        <section class="pf-intro" id="overview">
-            <h2>From 2D elements to 3D space</h2>
-            <p>Pollen farm is a curious but morphic name for the piece of furniture. Throughout the project, our question has always been: How can we use a simple set of transformative rules to duplicate and perform 2D geometric shapes into usable space for farming? In the end, our answer is composed only of flat pieces of CNC-routed plywood boards, solely depending on the different angles and connectors to form delicate, complicated, and ultimately usable rooms.</p>
-        </section>
-
         <section class="pf-section" id="prototypes">
-            <header class="pf-section-head"><h2>01 / The Prototypes</h2></header>
+            <header class="pf-section-head"><h2>The Prototypes</h2></header>
             <div class="pf-origin" id="pollen-inspiration">
                 <p>Like its name, the module of the piece of furniture’s inspiration comes from the microscopic structure in plant pollen. One of them is <em>Stellaria holostea</em>, whose pollen is roughly dodecahedral, which means the object is composed of 12 regular pentagons. Finding its structure interesting, we decided to utilize the shape of it to generate the room of a single module.</p>
                 <div class="pf-origin-visual">
                     <figure class="pf-origin-photo zoomable-figure">
-                        <img src="../assets/projects/vertical-garden/stellaria-holostea-pollen-halbritter-paldat.jpg" alt="Microscope image of the polygonal dry pollen grains of Stellaria holostea" decoding="async">
+                        <img src="../assets/projects/vertical-garden/stellaria-holostea-pollen-halbritter-paldat.jpg" alt="Microscope view of polygonal Stellaria holostea pollen grains, the geometric reference for Pollen Farm" decoding="async" loading="lazy" decoding="async" width="709" height="567">
                         <figcaption>Dry pollen grains · microscopic reference</figcaption>
                     </figure>
                     <p class="pf-origin-credit">Image: H. Halbritter<br><a href="https://www.paldat.org/pub/Stellaria_holostea/306417" target="_blank" rel="noopener noreferrer">PalDat (2000 onwards, www.paldat.org) ↗</a></p>
@@ -305,24 +285,24 @@
             </div>
             <p class="pf-prototype-next">However, after our experiments with pentagon structures, we realized that geometric shapes with fewer edges work even better. For example, a pentagonal bipyramid is composed of 10 triangular facets, and is far more flexible in the sense of creating space. Using different angles and connecting methods, we are able to fold and develop the shape towards different directions, thus having the structure organically grow into a natural but cohesive cluster of rooms.</p>
             <div class="pf-paper-grid" aria-label="Series of paper-cut spatial prototypes">
-                <figure class="pf-paper-main"><img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="Hand holding a series of folded paper spatial prototypes" loading="lazy" decoding="async"></figure>
-                <figure><img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="Flat paper net of connected faces" loading="lazy" decoding="async"></figure>
-                <figure><img src="../assets/projects/vertical-garden/paper-cluster-web.jpg" alt="Paper spatial prototypes arranged into a cluster" loading="lazy" decoding="async"></figure>
+                <figure class="pf-paper-main"><img src="../assets/projects/vertical-garden/paper-dodeca-hand-web.jpg" alt="A hand holding several connected pentagonal paper rooms" loading="lazy" decoding="async"><figcaption>First paper model based on a pollen grain’s pentagonal geometry.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/paper-net-web.jpg" alt="Unfolded paper net of connected polygonal faces" loading="lazy" decoding="async"><figcaption>The flat pattern before folding.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/paper-cluster-web.jpg" alt="Several folded paper modules joined into a spatial cluster" loading="lazy" decoding="async"><figcaption>Paper modules combined into a cluster of rooms.</figcaption></figure>
             </div>
         </section>
 
         <section class="pf-section" id="rule">
-            <header class="pf-section-head"><h2>02 / The Rule</h2></header>
+            <header class="pf-section-head"><h2>The Rule</h2></header>
             <p class="pf-rule-fragment">Now we know that the prototype&#x20;would be a pentagonal bipyramid. Its five-sided logic still recalled the pollen reference, while its triangular facets gave us different directions in which to repeat it. We mirrored one module along an edge and folded the copy over that edge. Repeating this simple operation allowed the rooms to grow upward, outward, or around one another without losing their shared geometry.</p>
             <div class="pf-rule-grid">
-                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/matrix-forms.png" alt="Comparison matrix of geometric module families" loading="lazy" decoding="async"><figcaption>01 / Form studies</figcaption></figure>
-                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/diagram-system.png" alt="Diagram of the module's mirroring and folding rule" loading="lazy" decoding="async"><figcaption>02 / Transformation rule</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/matrix-forms.png" alt="Matrix comparing geometric modules and the spaces they can form" loading="lazy" decoding="async"><figcaption>01 / Form studies — comparing the starting geometries.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/diagram-system.png" alt="Diagram showing a module mirrored across an edge and folded into a growing structure" loading="lazy" decoding="async"><figcaption>02 / Transformation rule — mirror, fold, and repeat.</figcaption></figure>
             </div>
-            <figure class="pf-flat pf-rule-variations zoomable-figure"><img src="../assets/projects/vertical-garden/spatial-matrix.png" alt="Possible spatial arrangements developed from the repeated module" loading="lazy" decoding="async"><figcaption>03 / Spatial variations</figcaption></figure>
+            <figure class="pf-flat pf-rule-variations zoomable-figure"><img src="../assets/projects/vertical-garden/spatial-matrix.png" alt="Grid of spatial arrangements made by repeating and rotating the same module" loading="lazy" decoding="async"><figcaption>03 / Spatial variations — one rule, several room configurations.</figcaption></figure>
         </section>
 
         <section class="pf-section" id="gaps">
-            <header class="pf-section-head"><h2>03/ The Gaps</h2></header>
+            <header class="pf-section-head"><h2>The Gaps</h2></header>
             <p class="pf-section-copy">The pentagonal bipyramid gives us two different dihedral angles, which we translated into two basic gap conditions. The A joint connects five triangular pieces into a pentagon, while the B joint connects the two halves of the bipyramid. As the structure extends beyond one module, these joints also become AA, BB, and AB, allowing the same pieces to meet at different angles.</p>
             <div class="pf-joint-module">
                 <div class="pf-module-bar"><span>Connector study</span><span>A / AA / B / BB / AB</span></div>
@@ -333,60 +313,88 @@
                     <button type="button" aria-pressed="false" data-joint="3">BB</button>
                     <button type="button" aria-pressed="false" data-joint="4">AB</button>
                 </div>
-                <div class="pf-joint-sheet"><div class="pf-joint-scroll"><svg id="joint-crop" viewBox="95 338 1360 560" role="img" aria-label="Close view of connector A from the final drawing"><image href="../assets/projects/vertical-garden/joints-diagram.png" x="0" y="0" width="2880" height="4320"></image></svg></div></div>
+                <div class="pf-joint-sheet"><div class="pf-joint-scroll"><svg id="joint-crop" viewBox="320 374 1100 510" role="img" aria-label="Plan and axonometric drawings of connector A, which joins five triangular panels into a pentagon"><image href="../assets/projects/vertical-garden/joints-diagram.png" x="0" y="0" width="2880" height="4320"></image></svg></div></div>
                 <div class="pf-module-foot"><span>Scroll the drawing to inspect the connection.</span><button type="button" id="joint-full-button">View full diagram ↗</button></div>
             </div>
             <p class="pf-prototype-copy">After the paper concept prototypes of the connected structures, we decided to introduce a connective method inspired by building flakes. By cutting slots at different positions and angles of the shape, connecting them through joints of specific angles, we are able to turn laser-cutted materials with thickness into the same shape as the concept prototypes.</p>
             <div class="pf-chipboard-grid" aria-label="Chipboard prototypes">
-                <figure><img src="../assets/projects/vertical-garden/proto-connectors-web.jpg" alt="Early laser-cut chipboard connector pieces" loading="lazy" decoding="async"></figure>
-                <figure><img src="../assets/projects/vertical-garden/proto-joint-detail-web.jpg" alt="Chipboard panels joined with slotted connectors" loading="lazy" decoding="async"></figure>
-                <figure><img src="../assets/projects/vertical-garden/proto-assembled-web.jpg" alt="Assembled chipboard structure prototype" loading="lazy" decoding="async"></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-connectors-web.jpg" alt="Laser-cut chipboard connector pieces laid out for assembly" loading="lazy" decoding="async"><figcaption>Early chipboard connector tests.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-joint-detail-web.jpg" alt="Two chipboard panels held together by slotted connectors" loading="lazy" decoding="async"><figcaption>Slots allow flat panels to meet at an angle.</figcaption></figure>
+                <figure><img src="../assets/projects/vertical-garden/proto-assembled-web.jpg" alt="Assembled chipboard prototype made of joined geometric panels" loading="lazy" decoding="async"><figcaption>A small assembled structure tests the connection.</figcaption></figure>
             </div>
         </section>
 
         <section class="pf-section" id="concept">
-            <header class="pf-section-head"><h2>04/ The Concept</h2></header>
+            <header class="pf-section-head"><h2>The Concept</h2></header>
             <p class="pf-section-copy">After deciding how the units connect, we arranged the cluster as a piece of furniture for farming. In plan, the openings turn toward different directions; the front and side elevations reveal how the rooms rise and lean across the structure. In the renderings, plants and people suggest how these spaces could be used.</p>
-            <figure class="pf-flat pf-render-wide zoomable-figure"><span class="pf-image-label">Illustrated proposal</span><img src="../assets/projects/vertical-garden/render-context-1-web.jpg" alt="Illustrated Pollen Farm proposal with several planted modules and people in front of a greenhouse" loading="lazy" decoding="async"></figure>
+            <figure class="pf-flat pf-render-wide zoomable-figure"><span class="pf-image-label" aria-hidden="true">Illustrated proposal</span><img src="../assets/projects/vertical-garden/render-context-1-web.jpg" alt="Rendering of four planted plywood clusters outside a greenhouse, with people and a dog nearby" loading="lazy" decoding="async"><figcaption>The proposed Pollen Farm as a group of planted structures.</figcaption></figure>
             <div class="pf-drawing-heading"><span>Architectural views</span><span>Plan &amp; elevations · enlarge any view ↗</span></div>
             <div class="pf-drawing-grid" aria-label="Pollen Farm plan and elevations">
-                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-plan.png" alt="Pollen Farm plan showing the directions of its planting openings" loading="lazy" decoding="async"><figcaption>01 / Plan — The openings turn in different directions.</figcaption></figure>
-                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-front.png" alt="Pollen Farm front elevation showing the height of the clustered rooms" loading="lazy" decoding="async"><figcaption>02 / Front elevation — The rooms rise from the ground.</figcaption></figure>
-                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-left.png" alt="Pollen Farm left elevation showing the stacked modules and planting openings" loading="lazy" decoding="async"><figcaption>03 / Left elevation — The modules lean and open.</figcaption></figure>
-                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-right.png" alt="Pollen Farm right elevation showing the changing silhouette and planted rooms" loading="lazy" decoding="async"><figcaption>04 / Right elevation — Another side of the same cluster.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-plan.png" alt="Illustrated top view of Pollen Farm with planting openings facing different directions, flowers, bees, and a person for scale" loading="lazy" decoding="async"><figcaption>01 / Plan — The openings turn in different directions.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-front.png" alt="Front elevation of the clustered plywood rooms with planting openings and a human figure for scale" loading="lazy" decoding="async"><figcaption>02 / Front elevation — The rooms rise from the ground.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-left.png" alt="Left elevation of the plywood structure showing stacked modules and angled planting openings" loading="lazy" decoding="async"><figcaption>03 / Left elevation — The modules lean and open.</figcaption></figure>
+                <figure class="pf-flat zoomable-figure"><img src="../assets/projects/vertical-garden/final-right.png" alt="Right elevation of the plywood structure showing its layered silhouette and planted openings" loading="lazy" decoding="async"><figcaption>04 / Right elevation — Another side of the same cluster.</figcaption></figure>
             </div>
             <div class="pf-concept-pair">
-                <figure class="pf-flat pf-render-pair zoomable-figure"><span class="pf-image-label">Illustrated proposal</span><img src="../assets/projects/vertical-garden/render-context-2-web.jpg" alt="Second illustrated proposal showing planted structures near a greenhouse" loading="lazy" decoding="async"></figure>
-                <figure class="pf-flat pf-concept-cutout zoomable-figure"><span class="pf-image-label">Illustrated proposal</span><img src="../assets/projects/vertical-garden/context-photo-web.jpg" alt="Illustrated planted structure with people on a white background" loading="lazy" decoding="async"></figure>
+                <figure class="pf-flat pf-render-pair zoomable-figure"><span class="pf-image-label" aria-hidden="true">Illustrated proposal</span><img src="../assets/projects/vertical-garden/render-context-2-web.jpg" alt="Rendering of a long cluster of planted plywood rooms by a greenhouse, with people and a dog" loading="lazy" decoding="async"><figcaption>A longer arrangement of the same growing modules.</figcaption></figure>
+                <figure class="pf-flat pf-concept-cutout zoomable-figure"><span class="pf-image-label" aria-hidden="true">Illustrated proposal</span><img src="../assets/projects/vertical-garden/context-photo-web.jpg" alt="White-background montage of the planted Pollen Farm structure with people for scale" loading="lazy" decoding="async"><figcaption>A cutout view showing how people might use the planted rooms.</figcaption></figure>
             </div>
         </section>
 
         <section class="pf-section pf-fabrication" id="fabrication">
-            <header class="pf-section-head"><h2>05/ The Fabrication</h2></header>
+            <header class="pf-section-head"><h2>The Fabrication</h2></header>
             <p class="pf-section-copy">To make the final piece, we translated the triangular faces and connectors back into flat outlines for CNC routing. We cut them from plywood boards and assembled the parts through the same slotting logic tested in chipboard. At full scale on campus, their angles began to define rooms between the panels, making the passage from 2D elements to 3D space tangible.</p>
             <div class="pf-fabrication-grid">
-                <figure class="pf-flat pf-fabrication-drawing zoomable-figure"><img src="../assets/projects/vertical-garden/exploded-axonometric.png" alt="Exploded axonometric drawing of the separate plywood parts" loading="lazy" decoding="async"><figcaption>Assembly drawing</figcaption></figure>
-                <figure class="pf-flat pf-built-detail zoomable-figure"><span class="pf-image-label">Built structure</span><img src="../assets/projects/vertical-garden/actual-model-web.jpg" alt="Close view of the built unplanted plywood structure and its connectors" loading="lazy" decoding="async"></figure>
+                <figure class="pf-flat pf-fabrication-drawing zoomable-figure"><img src="../assets/projects/vertical-garden/exploded-axonometric.png" alt="Exploded axonometric drawing separating the plywood panels and connector pieces" loading="lazy" decoding="async"><figcaption>Assembly drawing of the CNC-cut parts.</figcaption></figure>
+                <figure class="pf-flat pf-built-detail zoomable-figure"><span class="pf-image-label" aria-hidden="true">Built structure</span><img src="../assets/projects/vertical-garden/actual-model-web.jpg" alt="Full assembled plywood Pollen Farm structure isolated on a white background" loading="lazy" decoding="async"><figcaption>The completed structure before planting.</figcaption></figure>
             </div>
-            <figure class="pf-flat pf-built-wide zoomable-figure"><span class="pf-image-label">Built on campus</span><img src="../assets/projects/vertical-garden/campus-install-web.jpg" alt="The built unplanted Pollen Farm plywood structure on campus" loading="lazy" decoding="async"></figure>
+        </section>
+
+        <section class="pf-section pf-gallery" id="gallery" aria-labelledby="pf-gallery-title">
+            <div class="pf-gallery-inner">
+                <header class="pf-gallery-opening">
+                    <h2 id="pf-gallery-title">Miracle in Equilateral Triangle</h2>
+                    <p>The proposed planted rooms and the built plywood structure, from overall views to the joints that hold its panels together.</p>
+                </header>
+                <div class="pf-gallery-renders">
+                    <figure class="zoomable-figure"><img src="../assets/projects/vertical-garden/render-context-1-web.jpg" width="2200" height="1131" alt="Rendering of four planted plywood clusters beside a greenhouse, with people and a dog nearby" loading="lazy" decoding="async"><figcaption>Planted modules in the proposed greenhouse setting.</figcaption></figure>
+                    <figure class="zoomable-figure"><img src="../assets/projects/vertical-garden/render-context-2-web.jpg" width="2200" height="1027" alt="Rendering of a longer arrangement of planted plywood rooms beside a greenhouse" loading="lazy" decoding="async"><figcaption>A second arrangement growing from the same triangular pieces.</figcaption></figure>
+                </div>
+                <p class="pf-gallery-transition">At full scale, the rule is visible in every cut, slot, and opening.</p>
+                <div class="pf-gallery-materials">
+                    <figure class="pf-material-overall zoomable-figure"><img src="../assets/projects/vertical-garden/gallery/lawn-structure-web.jpg" data-zoom-src="../assets/projects/vertical-garden/final photos/PXL_20240501_210249900.jpg" width="1350" height="1800" alt="Full Pollen Farm plywood structure standing on grass in afternoon sunlight" loading="lazy" decoding="async"><figcaption>The assembled structure on the lawn.</figcaption></figure>
+                    <figure class="pf-material-joint-a zoomable-figure"><img src="../assets/projects/vertical-garden/gallery/joint-opening-web.jpg" data-zoom-src="../assets/projects/vertical-garden/final photos/PXL_20240501_210949731.jpg" width="1800" height="1350" alt="Sunlit close-up looking through a triangular opening in the plywood structure, with slotted connectors along its edges" loading="lazy" decoding="async"><figcaption>Looking through a triangular opening at the layered joints.</figcaption></figure>
+                    <figure class="pf-material-joint-b zoomable-figure"><img src="../assets/projects/vertical-garden/gallery/connector-angles-web.jpg" data-zoom-src="../assets/projects/vertical-garden/final photos/PXL_20240501_211006565.jpg" width="1800" height="1350" alt="Close-up of plywood panels and curved slotted connectors crossing at several angles" loading="lazy" decoding="async"><figcaption>Flat panels meet through repeated slotted connectors.</figcaption></figure>
+                    <figure class="pf-material-inside zoomable-figure"><img src="../assets/projects/vertical-garden/gallery/inside-panels-web.jpg" data-zoom-src="../assets/projects/vertical-garden/final photos/PXL_20240501_210956421.jpg" width="1350" height="1800" alt="Low-angle close-up through layered plywood panels and projecting slotted connectors, with glimpses of blue sky" loading="lazy" decoding="async"><figcaption>Inside the angled cluster, with light passing between panels.</figcaption></figure>
+                    <figure class="pf-material-base zoomable-figure"><img src="../assets/projects/vertical-garden/gallery/base-openings-web.jpg" data-zoom-src="../assets/projects/vertical-garden/final photos/PXL_20240501_211151947.jpg" width="1800" height="1350" alt="Low-angle view of triangular plywood openings and connectors in the assembled structure, with trees beyond" loading="lazy" decoding="async"><figcaption>Openings and connectors seen from the base of the structure.</figcaption></figure>
+                </div>
+                <div class="pf-gallery-final-row">
+                    <figure class="pf-material-arch zoomable-figure"><img src="../assets/projects/vertical-garden/gallery/campus-finale-web.jpg" data-zoom-src="../assets/projects/vertical-garden/final photos/PXL_20240501_211104685.jpg" width="1350" height="1800" alt="Completed plywood Pollen Farm structure in sunlight before an arched brick building on the CMU campus" loading="lazy" decoding="async"><figcaption>The finished Pollen Farm on campus.</figcaption></figure>
+                    <figure class="pf-gallery-finale zoomable-figure"><img src="../assets/projects/vertical-garden/campus-install-web.jpg" width="1800" height="1350" alt="Wide view of the assembled Pollen Farm plywood structure on the CMU campus lawn, with trees and campus buildings behind it" loading="lazy" decoding="async"><figcaption>The assembled structure at full scale on campus.</figcaption></figure>
+                </div>
+            </div>
         </section>
     </main>
 
     <nav class="project-pagination" aria-label="Project navigation">
-        <a class="project-prev" href="stap-ticketing-system.html"><span class="pagination-label">&larr; Previous project</span><span class="pagination-title">STAP Ticketing System</span></a>
+        <a class="project-prev" href="trace.html"><span class="pagination-label">&larr; Previous project</span><span class="pagination-title">Trace</span></a>
         <a class="back-to-top" href="#top"><span class="pagination-label">Back to</span><span class="pagination-title">Top &uarr;</span></a>
-        <a class="project-next" href="sea-monster.html"><span class="pagination-label">Next project &rarr;</span><span class="pagination-title">The Sea Monster</span></a>
+        <a class="project-next" href="lumilo.html"><span class="pagination-label">Next project &rarr;</span><span class="pagination-title">Lumilo</span></a>
     </nav>
 
     <footer>
-        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
-        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
+        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong. This site was vibe coded.</p></div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+            <a href="https://www.linkedin.com/in/hua-tong-50b1a7293/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="../assets/HuaTong_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
+        </div>
     </footer>
-    <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded project drawing" aria-hidden="true">
-        <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+    <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged project image" aria-hidden="true">
+        <button class="lightbox-close" type="button" aria-label="Close enlarged image">&times;</button>
         <div><img alt=""><p></p></div>
     </div>
-    <script src="vertical-garden-story.js?v=20261022" defer></script>
+    <script src="vertical-garden-story.js?v=20261118b" defer></script>
     <script src="pollen-film.js?v=20261109c" defer></script>
     <script>
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
@@ -437,18 +445,22 @@
         const sectionNavLinks = [...document.querySelectorAll('.page-jump-nav a')];
         const trackedSections = sectionNavLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
         let sectionTrackingFrame = null;
+        let activeSectionId = null;
         function updateActiveSection() {
             const readingLine = window.innerHeight * .34;
             let activeSection = trackedSections[0];
             trackedSections.forEach(section => {
                 if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
             });
-            sectionNavLinks.forEach(link => {
-                const isActive = link.getAttribute('href') === `#${activeSection.id}`;
-                link.classList.toggle('active', isActive);
-                if (isActive) link.setAttribute('aria-current', 'location');
-                else link.removeAttribute('aria-current');
-            });
+            if (activeSection.id !== activeSectionId) {
+                activeSectionId = activeSection.id;
+                sectionNavLinks.forEach(link => {
+                    const isActive = link.getAttribute('href') === `#${activeSectionId}`;
+                    link.classList.toggle('active', isActive);
+                    if (isActive) link.setAttribute('aria-current', 'location');
+                    else link.removeAttribute('aria-current');
+                });
+            }
             sectionTrackingFrame = null;
         }
         function requestSectionUpdate() {
@@ -476,7 +488,7 @@
         function openLightbox(trigger) {
             const figure = trigger.closest('figure');
             const image = figure.querySelector('img');
-            openLightboxImage(image.src, image.alt, figure.querySelector('figcaption')?.textContent || '', trigger);
+            openLightboxImage(image.dataset.zoomSrc || image.src, image.alt, figure.querySelector('figcaption')?.textContent || '', trigger);
         }
         function closeLightbox() {
             lightbox.classList.remove('open');
@@ -498,7 +510,12 @@
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+            if (!lightbox.classList.contains('open')) return;
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'Tab') {
+                event.preventDefault();
+                lightboxClose.focus();
+            }
         });
     </script>
     <script src="../assets/site-cursor.js?v=20261028-3"></script>

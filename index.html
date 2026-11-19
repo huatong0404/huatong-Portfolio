@@ -63,14 +63,6 @@
                             <span class="basic-card-media basic-card-media--dark"><img src="assets/home-thumbs/board-stap.png" width="1200" height="900" loading="lazy" decoding="async" alt="STAP ticketing interface on a turquoise cover"></span>
                             <div class="basic-card-content"><div class="basic-card-meta"><span>High School Service Design</span><time>Spring 2026</time></div><h3>STAP Ticketing System</h3><p class="basic-card-summary">A research-led request system for a student-run high school IT program.</p></div>
                         </a></article>
-                        <article class="basic-project-card"><a class="basic-card-surface" href="projects/lumilo.html">
-                            <span class="basic-card-media basic-card-media--dark"><img src="assets/home-thumbs/board-lumilo.png" width="1200" height="900" loading="lazy" decoding="async" alt="Lumilo glasses framing a classroom scene"></span>
-                            <div class="basic-card-content"><div class="basic-card-meta"><span>Learning Technology</span><time>Summer 2026</time></div><h3>Lumilo</h3><p class="basic-card-summary">Making the reasoning behind teacher-facing recommendations visible.</p></div>
-                        </a></article>
-                        <article class="basic-project-card basic-project-card--preview"><div class="basic-card-surface">
-                            <span class="basic-card-media basic-card-media--letter"><img src="assets/home-thumbs/letter-from-future.jpg" width="520" height="386" loading="lazy" decoding="async" alt="Letter From Future wellbeing interface"></span>
-                            <div class="basic-card-content"><div class="basic-card-meta"><span>Speculative Interface</span><time>Spring 2025</time></div><h3>Letter From Future</h3><p class="basic-card-summary">An alternate reality game interface exploring wellbeing.</p><span class="basic-card-preview-label">Preview</span></div>
-                        </div></article>
                     </div>
                 </section>
                 <section class="basic-projects-column" aria-labelledby="architectureColumnTitle">
@@ -88,13 +80,22 @@
                             <span class="basic-card-media"><img src="assets/home-thumbs/board-pollenfarm.png" width="1200" height="631" loading="lazy" decoding="async" alt="Pollen Farm plywood garden modules on a turquoise background"></span>
                             <div class="basic-card-content"><div class="basic-card-meta"><span>Computational Design</span><time>Spring 2024</time></div><h3>Pollen Farm</h3><p class="basic-card-summary">Pollen-inspired geometry shapes CNC-routed plywood modules into a garden structure.</p></div>
                         </a></article>
-                        <article class="basic-project-card basic-project-card--preview"><div class="basic-card-surface">
-                            <span class="basic-card-media basic-card-media--placeholder" aria-hidden="true"><span>GY</span></span>
-                            <div class="basic-card-content"><div class="basic-card-meta"><span>Parametric Study</span><time>Fall 2026</time></div><h3>Entangled Wood</h3><p class="basic-card-summary">A parametric geometry study.</p><span class="basic-card-preview-label">Preview</span></div>
-                        </div></article>
                     </div>
                 </section>
             </div>
+            <section class="basic-projects-lab" aria-labelledby="labResearchTitle">
+                <h2 class="basic-column-title" id="labResearchTitle">Lab Research</h2>
+                <div class="basic-lab-grid">
+                    <article class="basic-project-card"><a class="basic-card-surface" href="projects/lumilo.html">
+                        <span class="basic-card-media basic-card-media--dark"><img src="assets/home-thumbs/board-lumilo.png" width="1200" height="900" loading="lazy" decoding="async" alt="Lumilo glasses framing a classroom scene"></span>
+                        <div class="basic-card-content"><div class="basic-card-meta"><span>Learning Technology</span><time>Summer 2026</time></div><h3>Lumilo</h3><p class="basic-card-summary">Making the reasoning behind teacher-facing recommendations visible.</p></div>
+                    </a></article>
+                    <article class="basic-project-card"><a class="basic-card-surface" href="projects/entangled-wood.html">
+                        <span class="basic-card-media"><img src="assets/home-thumbs/board-entangled-wood-photo.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="A hand holding a flowing structure of curled wood strips"></span>
+                        <div class="basic-card-content"><div class="basic-card-meta"><span>Material Research</span><time>Fall 2026</time></div><h3>Entangled Wood</h3><p class="basic-card-summary">Exploring expressive, flexible forms with wood.</p></div>
+                    </a></article>
+                </div>
+            </section>
         </section>
 
     <section class="evidence-board-section home-view" id="funProjects" aria-label="Selected projects and their connections" hidden>
@@ -114,7 +115,6 @@
                 <button class="project-filter" type="button" data-filter="physical-computation" aria-pressed="false">Physical Computation</button>
                 <button class="project-filter" type="button" data-filter="social-topics" aria-pressed="false">Social Topics</button>
                 <button class="project-filter" type="button" data-filter="history" aria-pressed="false">History</button>
-                <button class="project-filter" type="button" data-filter="fiction" aria-pressed="false">Fiction</button>
             </div>
             <button class="project-filter-clear" id="clearProjectFilter" type="button" hidden>Clear</button>
         </div>
@@ -123,12 +123,12 @@
             <div class="evidence-board-canvas" id="evidenceBoard">
                 <svg class="board-connections" id="boardConnections" aria-hidden="true"></svg>
 
-                <button class="evidence-card evidence-placeholder" type="button" aria-label="Entangled Wood preview" data-node="entangled" data-types="computational-design" style="--x:10;--y:14;--w:11;--r:-3deg;--mx:10;--my:10;--mw:20">
+                <a class="evidence-card" href="projects/entangled-wood.html" data-node="entangled" data-types="computational-design" style="--x:10;--y:14;--w:11;--r:-3deg;--mx:10;--my:10;--mw:20;--cover-ratio:4 / 3">
                     <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb evidence-empty"><span>GY</span></span>
-                    <span class="evidence-hover-copy">Preview · Parametric Geometry Study</span>
+                    <span class="evidence-thumb"><img src="assets/home-thumbs/entangled-wood-board-source.jpg" width="830" height="1200" loading="lazy" decoding="async" alt="Curled wood strips forming a flowing structure"></span>
+                    <span class="evidence-hover-copy">Material Research</span>
                     <span class="evidence-label"><strong>Entangled Wood</strong><time>Fall 2026</time></span>
-                </button>
+                </a>
 
                 <a class="evidence-card" href="projects/trace.html" data-node="trace" data-types="architecture social-topics history" style="--x:29;--y:26;--w:15.5;--r:3deg;--mx:29;--my:22;--mw:25;--cover-ratio:3 / 4">
                     <span class="anchor-point" aria-hidden="true"></span>
@@ -172,13 +172,6 @@
                     <span class="evidence-label"><strong>The Magician</strong><time>Profile / 2026</time></span>
                 </a>
 
-                <button class="evidence-card" type="button" aria-label="Letter From Future preview" data-node="letter" data-types="hci social-topics fiction" style="--x:69;--y:49;--w:13.5;--r:-2.5deg;--mx:74;--my:48;--mw:22">
-                    <span class="anchor-point" aria-hidden="true"></span>
-                    <span class="evidence-thumb"><img src="assets/home-thumbs/letter-from-future.jpg" width="520" height="386" loading="lazy" decoding="async" alt="Letter From Future wellbeing goal interface"></span>
-                    <span class="evidence-hover-copy">Preview · ARG Wellbeing Interface</span>
-                    <span class="evidence-label"><strong>Letter From Future</strong><time>Spring 2025</time></span>
-                </button>
-
                 <a class="evidence-card" href="projects/jamsesh.html" data-node="jamsesh" data-types="hci physical-computation social-topics" style="--x:88;--y:64;--w:11;--r:3.5deg;--mx:88;--my:62;--mw:20;--cover-ratio:1890 / 1417">
                     <span class="anchor-point" aria-hidden="true"></span>
                     <span class="evidence-thumb"><img src="assets/home-thumbs/board-jamsesh.png" width="1200" height="900" loading="lazy" decoding="async" alt="JamSesh handheld sound instrument on a turquoise background"></span>
@@ -204,8 +197,12 @@
     </main>
 
     <footer id="contact">
-        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong, with AI assistance for brainstorming and proofreading. This site was vibe coded.</p></div>
-        <div class="footer-right"><a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a></div>
+        <div class="footer-left"><span class="footer-logo">HUA TONG</span><p>&copy; 2026 Hua Tong. Unless otherwise credited, all drawings and visual designs on this site are hand-made. All text is written and edited by Hua Tong. This site was vibe coded.</p></div>
+        <div class="footer-right">
+            <a href="mailto:huatong0404@gmail.com">huatong0404@gmail.com</a>
+            <a href="https://www.linkedin.com/in/hua-tong-50b1a7293/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="assets/HuaTong_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
+        </div>
     </footer>
 
     <script>
@@ -269,12 +266,10 @@
             const projectIds = [...cards.keys()].filter(id => id !== 'magician');
             const connections = [
                 ...projectIds.map(id => ({ a: id, b: 'magician', reason: 'Part of Hua Tong’s Practice', hub: true })),
-                { a: 'trace', b: 'letter', reason: 'Gamification' },
                 { a: 'trace', b: 'jamsesh', reason: 'Social Topics' },
                 { a: 'sea', b: 'pollen', reason: 'Nature-Inspired Design' },
                 { a: 'pollen', b: 'entangled', reason: 'Computational Design' },
                 { a: 'rick', b: 'jamsesh', reason: 'Physical Computing' },
-                { a: 'stap', b: 'letter', reason: 'UI' },
                 { a: 'stap', b: 'lumilo', reason: 'Design for Educational Contexts' }
             ];
             const lines = connections.map(connection => {

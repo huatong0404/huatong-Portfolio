@@ -27,26 +27,30 @@
         .map(link => document.getElementById(link.hash.slice(1)))
         .filter(Boolean);
     let chapterUpdateQueued = false;
+    let activeChapterId = null;
 
     function updateActiveChapter() {
         chapterUpdateQueued = false;
-        const readingLine = window.scrollY + window.innerHeight * 0.32;
+        const readingLine = window.innerHeight * 0.32;
         let current = chapters[0];
         for (const chapter of chapters) {
-            if (chapter.getBoundingClientRect().top + window.scrollY <= readingLine) {
+            if (chapter.getBoundingClientRect().top <= readingLine) {
                 current = chapter;
             } else {
                 break;
             }
         }
         if (!current) return;
-        chapterLinks.forEach(link => {
-            const active = link.hash === `#${current.id}`;
-            link.classList.toggle('is-active', active);
-            if (active) link.setAttribute('aria-current', 'location');
-            else link.removeAttribute('aria-current');
-        });
-        document.body.classList.toggle('pf2-on-dark', current.id === 'gaps');
+        if (current.id !== activeChapterId) {
+            activeChapterId = current.id;
+            chapterLinks.forEach(link => {
+                const active = link.hash === `#${activeChapterId}`;
+                link.classList.toggle('is-active', active);
+                if (active) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+            });
+            document.body.classList.toggle('pf2-on-dark', activeChapterId === 'gaps');
+        }
     }
 
     function queueChapterUpdate() {
