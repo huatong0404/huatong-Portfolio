@@ -19,7 +19,7 @@
         },
         3: {
             title: 'Bird Feeder',
-            body: "I'm a birder. Though I've never owned a feeder of my own, I love bird watching and bird taxonomy. The four birds are (from left to right) house wren, red-winged blackbird (male), azure-winged magpie, and blue jay. The azure-winged magpie is a common bird in Nanjing, my hometown."
+            body: "I'm a birder. The four birds are (from left to right) house wren, red-winged blackbird (male), azure-winged magpie, and blue jay. The azure-winged magpie is a common bird in Nanjing, my hometown."
         },
         4: {
             title: 'Identity',
@@ -51,7 +51,7 @@
         },
         11: {
             title: 'Raspberry Pi 4',
-            body: 'The lowest barrier to entry with the highest return for physical computing. However, this makes it feel a lot more like digital programming. Two of the three physical computing projects on this website use Raspberry Pi instead of Arduino Uno.'
+            body: 'The lowest barrier to entry with the highest return for physical computing. However, this makes it feel a lot more like digital programming.'
         },
         12: {
             title: "Phipps Conservatory's Plan",
@@ -88,6 +88,7 @@
             bwElement.src = `assets/about/about%20me%20folder/pieces-bw/${number}.png`;
             bwElement.alt = '';
             bwElement.draggable = false;
+            bwElement.loading = 'lazy';
             bwElement.decoding = 'async';
             bwElement.style.left = element.style.left;
             bwElement.style.top = element.style.top;
@@ -216,12 +217,24 @@
         }) || null;
     }
 
+    let hoverFrame = 0;
+    let hoverPoint = null;
     stage.addEventListener('pointermove', (event) => {
         if (event.pointerType === 'touch') return;
-        setHovered(pieceAt(event.clientX, event.clientY));
-    });
+        hoverPoint = { x: event.clientX, y: event.clientY };
+        if (hoverFrame) return;
+        hoverFrame = requestAnimationFrame(() => {
+            hoverFrame = 0;
+            if (hoverPoint) setHovered(pieceAt(hoverPoint.x, hoverPoint.y));
+        });
+    }, { passive: true });
 
-    stage.addEventListener('pointerleave', () => setHovered(null));
+    stage.addEventListener('pointerleave', () => {
+        if (hoverFrame) cancelAnimationFrame(hoverFrame);
+        hoverFrame = 0;
+        hoverPoint = null;
+        setHovered(null);
+    });
 
     stage.addEventListener('click', (event) => {
         const piece = event.detail === 0 ? hoveredPiece : pieceAt(event.clientX, event.clientY);

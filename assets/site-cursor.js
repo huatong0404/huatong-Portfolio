@@ -56,6 +56,31 @@
     let lastDynamicStage = null;
     let lastShape = null;
     let lastColor = null;
+    let updateFrame = 0;
+    let pendingTarget = null;
+    let recheckTarget = false;
+
+    function scheduleUpdate(target, recheck = false) {
+        if (!enabled || !lastPoint) return;
+        pendingTarget = target;
+        recheckTarget = recheck;
+        if (updateFrame) return;
+        updateFrame = requestAnimationFrame(() => {
+            updateFrame = 0;
+            if (!enabled || !lastPoint) return;
+            const currentTarget = recheckTarget
+                ? document.elementFromPoint(lastPoint.x, lastPoint.y)
+                : pendingTarget;
+            updateAt(lastPoint.x, lastPoint.y, currentTarget);
+        });
+    }
+
+    function hideCursor() {
+        if (updateFrame) cancelAnimationFrame(updateFrame);
+        updateFrame = 0;
+        lastTarget = undefined;
+        cursor.style.visibility = 'hidden';
+    }
 
     function isTeal(rgb) {
         return rgb[1] >= 105 && rgb[1] > rgb[0] * 1.22 &&
@@ -117,33 +142,25 @@
         document.documentElement.classList.toggle('site-cursor-enabled', enabled);
         cursor.style.visibility = 'hidden';
         if (enabled && lastPoint) {
-            updateAt(lastPoint.x, lastPoint.y, document.elementFromPoint(lastPoint.x, lastPoint.y));
+            scheduleUpdate(null, true);
         }
     }
 
     document.addEventListener('pointermove', event => {
         if (event.pointerType === 'touch') return;
         lastPoint = { x: event.clientX, y: event.clientY };
-        updateAt(lastPoint.x, lastPoint.y, event.target);
+        scheduleUpdate(event.target);
     }, { passive: true });
     document.addEventListener('scroll', () => {
-        if (enabled && lastPoint) updateAt(lastPoint.x, lastPoint.y, document.elementFromPoint(lastPoint.x, lastPoint.y));
+        scheduleUpdate(null, true);
     }, { capture: true, passive: true });
     document.addEventListener('click', () => {
         if (!enabled || !lastPoint) return;
-        requestAnimationFrame(() => {
-            lastTarget = undefined;
-            updateAt(lastPoint.x, lastPoint.y, document.elementFromPoint(lastPoint.x, lastPoint.y));
-        });
+        lastTarget = undefined;
+        scheduleUpdate(null, true);
     }, { capture: true });
-    document.addEventListener('pointerleave', () => {
-        lastTarget = undefined;
-        cursor.style.visibility = 'hidden';
-    });
-    window.addEventListener('blur', () => {
-        lastTarget = undefined;
-        cursor.style.visibility = 'hidden';
-    });
+    document.addEventListener('pointerleave', hideCursor);
+    window.addEventListener('blur', hideCursor);
     if (pointerMedia.addEventListener) pointerMedia.addEventListener('change', refresh);
     else pointerMedia.addListener(refresh);
     if (setupOverlay) new MutationObserver(refresh).observe(setupOverlay, { attributes: true, attributeFilter: ['hidden'] });
